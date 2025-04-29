@@ -1,0 +1,57 @@
+.signup,
+.login {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+}
+.signup {
+  .row {
+    border-left: none !important;
+  }
+  .form {
+    img {
+      width: 20px;
+    }
+    img:last-child {
+      width: 15px;
+    }
+    input {
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid var(--taxt-bg);
+      padding: 5px;
+    }
+    .form-control {
+      border-radius: 0 !important;
+    }
+  }
+  .form__container {
+    position: relative;
+    place-content: center;
+    .terms {
+      position: absolute;
+      bottom: 3px;
+      right: 3px;
+      font-size: 10px;
+    }
+  }
+
+  button {
+    width: fit-content;
+    padding: 10px 20px;
+  }
+}
+.login {
+  .form__container {
+    place-content: center;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .signup,
+  .login {
+    width: 100%;
+  }
+}
