@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (user) {
       showToast("success", "Login successful!");
-      open("index.html", "_self");
+      open("../../index.html", "_self");
     } else {
       showToast("error", "please check your email or password.");
     }

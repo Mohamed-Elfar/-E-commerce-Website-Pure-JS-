@@ -9,12 +9,37 @@ input {
 }
 :root {
   --taxt-bg: rgb(200, 198, 198);
-  --text-primary:#db4444;
-  --text-secondary: rgb(0, 0, 0);
-  --button-secondary: #db4444;
+  --text-primary: #db4444;
+  --text-secondary: rgb(200, 198, 198);
+  --button-primary: #db4444;
 }
+@font-face {
+  font-family: "Poppins";
+  src: url("/assets/fonts/Poppins-Regular.ttf") format("truetype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/assets/fonts/Poppins-Medium.ttf") format("truetype");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/assets/fonts/Poppins-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/assets/fonts/Poppins-Bold.ttf") format("truetype");
+  font-weight: 700;
+}
+
 body {
-  font-family: "Volkhov", serif;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
 }
 a {
   text-decoration: none;
@@ -55,16 +80,29 @@ a {
   pointer-events: auto;
 }
 
-.btn--secondary {
-  background-color: var(--button-secondary);
+.btn--primary {
+  background-color: var(--button-primary);
   color: white;
 }
-.btn--secondary:hover,
-.btn--secondary:active,
-.btn--secondary:visited {
+.btn--primary:hover,
+.btn--primary:active,
+.btn--primary:visited {
   background-color: #ee3838;
 }
 
 .text--primary {
   color: var(--text-primary);
+}
+.text--secondary {
+  color: var(--text-secondary);
+}
+.form-control::placeholder {
+  font-size: 12px;
+}
+.no-outline:focus {
+  outline: none;
+  box-shadow: none;
+}
+exclusive-header p {
+  color: rgb(200, 198, 198);
 }

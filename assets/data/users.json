@@ -1,0 +1,32 @@
+[
+    {
+      "userId": 1,
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john.doe@example.com",
+      "phone": "1234567890",
+      "password": "Secure@123",
+      "want_to_be_seller": false,
+      "role": "Customer"
+    },
+    {
+      "userId": 2,
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "email": "jane.smith@example.com",
+      "phone": "0987654321",
+      "password": "Passw0rd!",
+      "want_to_be_seller": true,
+      "role": "Customer"
+    },
+    {
+      "userId": 3,
+      "firstName": "Admin",
+      "lastName": "User",
+      "email": "admin@example.com",
+      "phone": "5551234567",
+      "password": "Admin@2468",
+      "want_to_be_seller": true,
+      "role": "Admin"
+    }
+  ]

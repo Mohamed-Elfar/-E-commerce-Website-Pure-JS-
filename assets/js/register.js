@@ -225,7 +225,7 @@ function validateName(input) {
   if (!reName.test(input.value)) {
     input.classList.add("is-invalid");
     input.classList.remove("is-valid");
-    signupImg.style.height = "600px";
+    signupImg.style.height = "650px";
     return false;
   } else {
     input.classList.remove("is-invalid");
@@ -240,7 +240,7 @@ function validateEmail(input) {
   if (!reEmail.test(input.value)) {
     input.classList.add("is-invalid");
     input.classList.remove("is-valid");
-    signupImg.style.height = "600px";
+    signupImg.style.height = "650px";
 
     return false;
   } else {
@@ -255,7 +255,7 @@ function validatePhone(input) {
   if (!rePhone.test(input.value)) {
     input.classList.add("is-invalid");
     input.classList.remove("is-valid");
-    signupImg.style.height = "600px";
+    signupImg.style.height = "650px";
 
     return false;
   } else {
@@ -271,7 +271,7 @@ function validatePassword(input) {
   if (!rePassword.test(input.value)) {
     input.classList.add("is-invalid");
     input.classList.remove("is-valid");
-    signupImg.style.height = "600px";
+    signupImg.style.height = "650px";
     return false;
   } else {
     input.classList.remove("is-invalid");
@@ -286,7 +286,7 @@ function validatePasswordMatch() {
   if (password !== confirmPassword) {
     document.getElementById("confirmpassword").classList.add("is-invalid");
     document.getElementById("confirmpassword").classList.remove("is-valid");
-    signupImg.style.height = "600px";
+    signupImg.style.height = "650px";
     return false;
   } else {
     document.getElementById("confirmpassword").classList.remove("is-invalid");
@@ -315,53 +315,19 @@ function validateForm(
   return valid;
 }
 
-// async function callApi(data) {
-//   try {
-//     const response = await fetch("http://127.0.0.1:8000/api/signup/", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify(data),
-//     });
 
-//     const result = await response.json();
-//     console.log(result);
-//     localStorage.setItem("token", result.token);
-//     if (!response.ok) {
-//       showToast("error", `Error ${result.error}.`);
-//     } else {
-//       showToast("success", "Your account has been created successfully.");
-//       open("login.html", "_self");
-//     }
-//   } catch (error) {
-//     showToast("error", "Something went wrong. Please try again later.");
-//   }
-// }
-
-// // Test data
-// const data = {
-//   first_name: "mohamed",
-//   last_name: "samir",
-//   email: "mohamedsamiir252@gmail.com",
-//   phone_number: "01060493174",
-//   password: "Mohamed@2468",
-//   want_to_be_seller: true,
-// };
-
-// // Create instances
-// const user1 = new Customer(data);
-// const user2 = new Seller(data);
-// const user3 = new Admin(data);
-
-// // // Print details
-// // user1.print();
-// // user2.print();
-// // user3.print();
-
-// // Save to localStorage (if not already saved)
-// saveUserToLocal(user1);
-// saveUserToLocal(user2);
-// saveUserToLocal(user3);
-
-// Log stored users for confirmation
+(async function loadInitialData() {
+  try {
+    const response = await fetch('../assets/data/users.json');
+    const users = await response.json();
+    
+    if (!localStorage.getItem("users")) {
+      localStorage.setItem("users", JSON.stringify(users));
+      console.log("Initial data loaded");
+    }else{
+      console.log("Initial data already loaded");
+    }
+  } catch (error) {
+    console.error("Error loading initial data:", error);
+  }
+})();
