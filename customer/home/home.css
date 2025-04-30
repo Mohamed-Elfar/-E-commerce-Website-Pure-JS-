@@ -253,23 +253,6 @@ a {
     margin: 0;
 }
 
-.section__arrow-container {
-    width: 46px;
-    height: 46px;
-    border-radius: 50%;
-    background-color: var(--color-F5);
-    text-align: center;
-    align-content: center;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.section__arrow {
-    font-size: 20px;
-}
-
 .section__title {
     color: var(--color-black);
     font-size: 28px;
@@ -277,10 +260,32 @@ a {
     letter-spacing: 1.12px;
     line-height: 1.2;
     margin: 0;
+}
+
+.section__button {
+    width: 160px;
+    height: 56px;
+    background: var(--color-DB);
+    color: var(--color-FA);
+    font-size: 16px;
+    line-height: 24px;
+    border-radius: 4px;
+    border: none;
+}
+
+.section__button:hover {
+    opacity: 0.8;
+}
+
+.section__highlights {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 20px;
 }
 
-/* Product Styles */
+/* ----------------------------------Product Card---------------------------------- */
+
 .product {
     height: auto;
     width: 100%;
@@ -440,3 +445,7 @@ a {
     justify-content: space-between;
     align-items: center;
 }
+
+
+
+

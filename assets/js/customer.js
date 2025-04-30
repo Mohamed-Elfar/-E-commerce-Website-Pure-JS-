@@ -11,7 +11,10 @@ class SectionHeaderComponent extends HTMLElement {
                     <div class="section__pin-icon"></div>
                     <p class="section__pin-text">Today's</p>
                 </div>
-                <p class="section__title">Flash Sales</p>
+                <div class="section__highlights">
+                    <p class="section__title">Flash Sales</p>
+                    <button class="section__button">View All</button>
+                </div>
             </div>
       `;
     }
