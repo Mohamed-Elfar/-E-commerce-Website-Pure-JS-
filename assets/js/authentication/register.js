@@ -1,4 +1,11 @@
-import { showToast } from "./utils.js";
+import {
+  showToast,
+  validateEmail,
+  validatePassword,
+  validatePhone,
+  validatePasswordMatch,
+  validateName,
+} from "../utils.js";
 var existingUsers = JSON.parse(localStorage.getItem("users")) || [];
 
 function saveUserToLocal(userInstance) {
@@ -150,10 +157,9 @@ class Admin extends Seller {
   }
 }
 
-console.log(JSON.parse(localStorage.getItem("users")));
+// console.log(JSON.parse(localStorage.getItem("users")));
 
 let form = document.querySelector("form");
-let signupImg = document.querySelector("picture>img");
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
@@ -164,6 +170,7 @@ form.addEventListener("submit", (event) => {
   var phone = form.phonenumber;
   var password = form.password;
   var confirmPassword = form.confirmpassword;
+  
   var sellerRadio = form.role;
   // Validate all fields
   const isValid = validateForm(
@@ -185,7 +192,7 @@ form.addEventListener("submit", (event) => {
       want_to_be_seller: sellerRadio.checked ? true : false,
     };
 
-    console.log("Form data:", data);
+    // console.log("Form data:", data);
 
     try {
       new Customer(data);
@@ -217,83 +224,8 @@ document.getElementById("password").addEventListener("input", function () {
 document
   .getElementById("confirmpassword")
   .addEventListener("input", function () {
-    validatePasswordMatch();
+    validatePasswordMatch(password,this);
   });
-
-function validateName(input) {
-  var reName = /^[a-zA-Z ]+$/;
-  if (!reName.test(input.value)) {
-    input.classList.add("is-invalid");
-    input.classList.remove("is-valid");
-    signupImg.style.height = "650px";
-    return false;
-  } else {
-    input.classList.remove("is-invalid");
-    input.classList.add("is-valid");
-    return true;
-  }
-}
-
-function validateEmail(input) {
-  var reEmail =
-    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  if (!reEmail.test(input.value)) {
-    input.classList.add("is-invalid");
-    input.classList.remove("is-valid");
-    signupImg.style.height = "650px";
-
-    return false;
-  } else {
-    input.classList.remove("is-invalid");
-    input.classList.add("is-valid");
-    return true;
-  }
-}
-
-function validatePhone(input) {
-  var rePhone = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
-  if (!rePhone.test(input.value)) {
-    input.classList.add("is-invalid");
-    input.classList.remove("is-valid");
-    signupImg.style.height = "650px";
-
-    return false;
-  } else {
-    input.classList.remove("is-invalid");
-    input.classList.add("is-valid");
-    return true;
-  }
-}
-
-function validatePassword(input) {
-  var rePassword =
-    /^(?=.*[A-Z])(?=.*[a-zA-Z0-9])(?=.*[!@#$%^&*()_+={}\[\]:;"'<>,.?/\\|`~\-]).{6,}$/;
-  if (!rePassword.test(input.value)) {
-    input.classList.add("is-invalid");
-    input.classList.remove("is-valid");
-    signupImg.style.height = "650px";
-    return false;
-  } else {
-    input.classList.remove("is-invalid");
-    input.classList.add("is-valid");
-    return true;
-  }
-}
-
-function validatePasswordMatch() {
-  var password = document.getElementById("password").value;
-  var confirmPassword = document.getElementById("confirmpassword").value;
-  if (password !== confirmPassword) {
-    document.getElementById("confirmpassword").classList.add("is-invalid");
-    document.getElementById("confirmpassword").classList.remove("is-valid");
-    signupImg.style.height = "650px";
-    return false;
-  } else {
-    document.getElementById("confirmpassword").classList.remove("is-invalid");
-    document.getElementById("confirmpassword").classList.add("is-valid");
-    return true;
-  }
-}
 
 function validateForm(
   firstName,
@@ -310,21 +242,20 @@ function validateForm(
   if (!validateEmail(email)) valid = false;
   if (!validatePhone(phone)) valid = false;
   if (!validatePassword(password)) valid = false;
-  if (!validatePasswordMatch()) valid = false;
+  if (!validatePasswordMatch(password, confirmPassword)) valid = false;
 
   return valid;
 }
 
-
 (async function loadInitialData() {
   try {
-    const response = await fetch('../assets/data/users.json');
+    const response = await fetch("../assets/data/users.json");
     const users = await response.json();
-    
+
     if (!localStorage.getItem("users")) {
       localStorage.setItem("users", JSON.stringify(users));
       console.log("Initial data loaded");
-    }else{
+    } else {
       console.log("Initial data already loaded");
     }
   } catch (error) {

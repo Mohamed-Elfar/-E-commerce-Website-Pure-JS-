@@ -31,8 +31,10 @@
         </div>
         <div class="col form__container mx-auto">
           <form class="form px-3">
-            <h2 class="my-4 text-center">Login to <span class="text--primary">Excluxive</span></h2>
-            
+            <h2 class="my-4 text-center">
+              Login to <span class="text--primary">Excluxive</span>
+            </h2>
+
             <div class="row row-cols-1 row-gap-3">
               <div class="col w-75 m-auto">
                 <input
@@ -60,9 +62,17 @@
                 </div>
               </div>
               <div class="col w-75 m-auto text-end">
-                <a href="#" class="text--primary border-0 forget-password">forgot password?</a>
+                <a
+                  href="#"
+                  class="text--primary border-0 forget-password"
+                  data-bs-toggle="modal"
+                  data-bs-target="#forgetModal"
+                  role="button"
+                  aria-expanded="false"
+                  aria-controls="staticBackdrop"
+                  >forgot password?</a
+                >
               </div>
-
             </div>
             <div class="submitBtn text-center">
               <button
@@ -73,13 +83,101 @@
                 Login
               </button>
               <p class="my-3">
-                don't have an account? &nbsp;<a href="register.html" class="text--primary border-0">Register</a>
+                don't have an account? &nbsp;<a
+                  href="register.html"
+                  class="text--primary border-0"
+                  >Register</a
+                >
               </p>
             </div>
           </form>
         </div>
       </div>
     </div>
-    <script src="../assets/js/login.js" type="module"></script>
+    <div class="modal" tabindex="-1" id="forgetModal">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Enter your email</h5>
+            <button
+              type="button"
+              class="btn-close emailModal"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>please enter your email address.</p>
+            <input
+              type="email"
+              placeholder="Email Address"
+              name="email"
+              class="form-control"
+              id="forgetEmailInput"
+            />
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn--primary" id="submitEmailBtn">
+              submit
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal" tabindex="-1" id="resetModal">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">reset password</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>please enter new password</p>
+            <input
+              type="password"
+              id="resetPassword"
+              placeholder="Password"
+              name="password"
+              class="form-control"
+            />
+            <input
+              type="password"
+              id="resetConfirmpassword"
+              placeholder="Confirm Password"
+              name="confirmpassword"
+              class="form-control mt-2"
+            />
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary passwordModal"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn--primary saveBtn" >Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="../assets/js/authentication/forgetPassword.js"
+      type="module"
+    ></script>
+    <script src="../assets/js/authentication/login.js" type="module"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
