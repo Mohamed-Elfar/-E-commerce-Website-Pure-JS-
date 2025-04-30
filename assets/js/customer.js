@@ -1,27 +1,17 @@
 class SectionHeaderComponent extends HTMLElement {
 
     connectedCallback() {
-        const shadow = this.attachShadow({ mode: 'open' });
-        shadow.innerHTML = `
+        this.innerHTML = `
             <link rel="stylesheet" href="/assets/css/fontawesome.min.css">
             <link rel="stylesheet" href="/assets/css/style.css">
             <link rel="stylesheet" href="/customer/home/home.css">
+            <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
             <div class="section__header">
                 <div class="section__pin">
                     <div class="section__pin-icon"></div>
                     <p class="section__pin-text">Today's</p>
                 </div>
-                <div class="section__title-controls">
-                    <p class="section__title">Flash Sales</p>
-                    <div class="section__controls">
-                        <div class="section__arrow-container">
-                            <i class="section__arrow fa-solid fa-arrow-left"></i>
-                        </div>
-                        <div class="section__arrow-container">
-                            <i class="section__arrow fa-solid fa-arrow-right"></i>
-                        </div>
-                    </div>
-                </div>
+                <p class="section__title">Flash Sales</p>
             </div>
       `;
     }
@@ -30,9 +20,8 @@ customElements.define('section-header', SectionHeaderComponent);
 
 class ProductCardComponent extends HTMLElement {
     connectedCallback() {
-        const shadow = this.attachShadow({ mode: 'open' });
 
-        shadow.innerHTML = `
+        this.innerHTML = `
             <link rel="stylesheet" href="/assets/css/fontawesome.min.css">
             <link rel="stylesheet" href="/assets/css/style.css">
             <link rel="stylesheet" href="/customer/home/home.css">
@@ -76,8 +65,8 @@ class ProductCardComponent extends HTMLElement {
             </div>
       `;
 
-        // product discount special case
-        const productDiscount = shadow.getElementById('discount');
+        // Product discount special case
+        const productDiscount = this.querySelector('#discount');
         if (this.hasAttribute('discount')) {
             productDiscount.classList.add('product__discount');
             productDiscount.textContent = '-40%';
