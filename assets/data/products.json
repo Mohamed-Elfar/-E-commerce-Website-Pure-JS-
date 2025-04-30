@@ -1,0 +1,202 @@
+[
+  {
+    "id": 29,
+    "name": "HUAWEI Watch GT 4",
+    "description": "46mm AMOLED display, up to 14-day battery life, TruSeen 5.5+ heart rate monitoring, 100+ workout modes, Bluetooth calling, compatible with Android/iOS.",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSO2jRalIQhsYmGOQnwtgzi99_PML754AiNiQ&s",
+    "price": 6999.0,
+    "quantity": 15,
+    "Rating": 4,
+    "ratingPeople": 342,
+    "category": "Smartwatches",
+    "images": [
+      "https://smartkoshk.com/cdn/shop/files/800_800_8f39403155d135055e7c22c83df4e833.png?v=1699582538&width=1946",
+      "https://smartkoshk.com/cdn/shop/files/800_800_fa7f39967740efd0f556f5581b8addd5.png?v=1699582539&width=1946",
+      "https://allsport.mu/cdn/shop/files/MKT_Phoinix_ProductImage_Green_01_EN_HQ_PNG_20230720_300x300.png?v=1744124111"
+    ]
+  },
+  {
+    "id": 30,
+    "name": "Amazfit GTS 4 Mini",
+    "description": "1.65\" AMOLED display, 200+ watch faces, GPS, 5ATM waterproof, 15-day battery life, blood oxygen/heart rate monitoring, 120+ sports modes.",
+    "image": "https://2b.com.eg/media/catalog/product/cache/661473ab953cdcdf4c3b607144109b90/w/t/wt410-1-min.jpg",
+    "price": 3499.0,
+    "quantity": 8,
+    "Rating": 4,
+    "ratingPeople": 187,
+    "category": "Smartwatches",
+    "images": [
+      "https://m.media-amazon.com/images/I/51kVXSehruL.jpg",
+      "https://cdn.shopify.com/s/files/1/0406/4500/1379/files/6-2.png?v=1667821164",
+      "https://m.media-amazon.com/images/I/51AEp3q-ulL.jpg"
+    ]
+  },
+  {
+    "id": 31,
+    "name": "Samsung Galaxy Watch6",
+    "description": "44mm Bluetooth, sapphire crystal glass, 3-in-1 bio sensor (heart rate/ECG/blood pressure), sleep coaching, 40+ workout tracking, IP68 waterproof.",
+    "image": "https://images.samsung.com/is/image/samsung/p6pim/africa_en/2307/gallery/africa-en-galaxy-watch6-r945-sm-r940nzkamea-537401503?$684_547_PNG$",
+    "price": 9999.0,
+    "quantity": 12,
+    "Rating": 5,
+    "ratingPeople": 421,
+    "category": "Smartwatches",
+    "images": [
+      "https://m.media-amazon.com/images/I/61sh9XHS93L.jpg",
+      "https://eshop.hkcsl.com/on/demandware.static/-/Sites-master-hkt-hk/default/dwc559ac1d/images/4223061scol/4223061.jpg",
+      "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//catalog-image/100/MTA-138624408/samsung_samsung_galaxy_watch_6_-44mm-_-_garansi_resmi_full01_in1212af.jpg"
+    ]
+  },
+  {
+    "id": 32,
+    "name": "Xiaomi Redmi Watch 3 Active",
+    "description": "1.83\" LCD display, SpO2 monitoring, 5ATM waterproof, 121 sports modes, 12-day battery life, Bluetooth 5.3, lightweight design (37g).",
+    "image": "https://down-tw.img.susercontent.com/file/sg-11134201-7rdvl-m19dgjqaxjcu56",
+    "price": 2299.0,
+    "quantity": 20,
+    "Rating": 4,
+    "ratingPeople": 156,
+    "category": "Smartwatches",
+    "images": [
+      "https://btech.com/media/catalog/product/cache/62b531a6a95dad9307c3d613e4bc3dfa/2/7/273783263909e8c1cd2e5eaacc3334c29ba6f4cb14ec966d0b7c812097174754.jpeg",
+      "https://i0.wp.com/i02.appmifile.com/mi-com-product/fly-birds/redmi-watch-3-active/pc/d85881ab842f063a1ca4cef8e5fc7f1a.png?ssl=1",
+      "https://i02.appmifile.com/mi-com-product/fly-birds/redmi-watch-3-active/m/1c42dc958e03c4fa62fa4d37a7143c73.png"
+    ]
+  },
+  {
+    "id": 33,
+    "name": "Garmin Venu Sq 2",
+    "description": "AMOLED display, advanced sleep monitoring, stress tracking, GPS, 11-day battery, animated workouts, women's health tracking, contactless payments.",
+    "image": "https://www.garmin.com.my/m/my/g/products/venu-sq-2-music-black-cf-lg.jpg",
+    "price": 7999.0,
+    "quantity": 6,
+    "Rating": 5,
+    "ratingPeople": 89,
+    "category": "Smartwatches",
+    "images": [
+      "https://images-cdn.ubuy.co.id/63bfd431fb21980f22488a07-garmin-venu-sq-2-slateblack-music.jpg",
+      "https://res.garmin.com/transform/image/upload/b_rgb:FFFFFF,c_pad,dpr_2.0,f_auto,h_400,q_auto,w_400/c_pad,h_400,w_400/v1/Product_Images/en/products/010-02701-00/v/pd-02-xl?pgw=1",
+      "https://ph.garmin.com/m/ph/g/products/venu-sq-2-gray-pd-04-lg.jpg"
+    ]
+  },
+  {
+    "id": 34,
+    "name": "Fitbit Versa 4",
+    "description": "Built-in GPS, 40+ exercise modes, sleep score, SpO2 tracking, 6+ day battery, Amazon Alexa, water resistant to 50m, health metrics dashboard.",
+    "image": "https://lh3.googleusercontent.com/yStrNz7l0aUnjKWo7jyJYXHfSLZmg6TyseayaF61NneZBOSfSKilQ-o3LoYZB-ucPnq7qUVmla6ARmrwiw-8eQTeWjU64xHd_g=s0",
+    "price": 5999.0,
+    "quantity": 10,
+    "Rating": 4,
+    "ratingPeople": 210,
+    "category": "Smartwatches",
+    "images": [
+      "https://fonepro.pk/wp-content/uploads/2022/09/versa4-black-device-front-380x380.png",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLdwVcqThCTpWK8aKixTgS8-Clag5IyZ63F03ms05Q6JzooecwN-Eer8F_EsTgCRMi9oM&usqp=CAU",
+      "https://m.media-amazon.com/images/I/71QqE06f4+L._AC_SL1500_.jpg"
+    ]
+  },
+  {
+    "id": 35,
+    "name": "Apple Watch SE (2nd Gen)",
+    "description": "Retina OLED display, crash detection, heart rate notifications, water resistant 50m, GPS/GNSS, 18hr battery, iOS compatible, aluminum case.",
+    "image": "https://istore.ph/cdn/shop/files/Apple_Watch_SE_40mm_GPS_Midnight_Aluminum_Sport_Loop_Ink_PDP_Image_Position_1__PH-EN.jpg?v=1728113835",
+    "price": 10999.0,
+    "quantity": 7,
+    "Rating": 5,
+    "ratingPeople": 512,
+    "category": "Smartwatches",
+    "images": [
+      "https://cdsassets.apple.com/live/SZLF0YNV/images/sp/111853_apple-watch-se-2nd-gen.png",
+      "https://estore.jawwal.ps/storage/product/2732/eTgssXUjuvjn2Big6wzRRxlld5a68SPG9Ya4VPEI.jpg",
+      "https://www.apple.com/v/apple-watch-se/k/images/overview/lighter/lighter__m02ijcqqneaq_large.jpg"
+    ]
+  },
+  {
+    "id": 36,
+    "name": "Razer DeathAdder V2 Gaming Mouse",
+    "description": "20K DPI optical sensor, 8 programmable buttons, Razer Optical Mouse Switches, 70g lightweight design, Chroma RGB lighting, speedflex cable.",
+    "image": "https://istore.ph/cdn/shop/files/Apple_Watch_SE_40mm_GPS_Midnight_Aluminum_Sport_Loop_Ink_PDP_Image_Position_1__PH-EN.jpg?v=1728113835",
+    "price": 1999.0,
+    "quantity": 25,
+    "Rating": 5,
+    "ratingPeople": 432,
+    "category": "Gaming",
+    "images": []
+  },
+  {
+    "id": 37,
+    "name": "Logitech G Pro X Mechanical Keyboard",
+    "description": "GX Blue clicky switches, detachable USB-C cable, programmable LIGHTSYNC RGB, aircraft-grade aluminum frame, 12-key rollover, tournament-ready design.",
+    "image": "../../assets/images/gaming2.webp",
+    "price": 3499.0,
+    "quantity": 10,
+    "Rating": 4,
+    "ratingPeople": 287,
+    "category": "Gaming",
+    "link": "https://www.amazon.eg/-/en/Logitech-Mechanical-Gaming-Keyboard-Switches/dp/B07T7L21YM"
+  },
+  {
+    "id": 38,
+    "name": "ASUS ROG Strix G15 Gaming Laptop",
+    "description": "15.6\" FHD 144Hz, AMD Ryzen 7 6800H, RTX 3050 4GB, 16GB DDR5, 512GB SSD, RGB keyboard, Windows 11, 90Wh battery, ROG Intelligent Cooling.",
+    "image": "../../assets/images/gaming3.webp",
+    "price": 24999.0,
+    "quantity": 5,
+    "Rating": 5,
+    "ratingPeople": 156,
+    "category": "Gaming",
+    "link": "https://www.amazon.eg/-/en/Strix-G513RC-HN041W-Gaming-Laptop/dp/B0B5JJ338K"
+  },
+  {
+    "id": 39,
+    "name": "SteelSeries Arctis Nova 7 Wireless Headset",
+    "description": "2.4GHz wireless + Bluetooth, 38hr battery, ClearCast Gen 2 mic, Sonar software suite, PC/PS5/Android compatible, adjustable headband, 360° spatial audio.",
+    "image": "../../assets/images/gaming4.webp",
+    "price": 5999.0,
+    "quantity": 8,
+    "Rating": 4,
+    "ratingPeople": 198,
+    "category": "Gaming",
+    "link": "https://www.amazon.eg/-/en/SteelSeries-Arctis-Wireless-Gaming-Headset/dp/B09VCHR1V1"
+  },
+  {
+    "id": 40,
+    "name": "Xbox Wireless Controller - Shock Blue",
+    "description": "Textured grip, hybrid D-pad, Bluetooth technology, 3.5mm audio jack, custom button mapping, up to 40hr battery life, Xbox Wireless connectivity.",
+    "image": "../../assets/images/gaming5.webp",
+    "price": 2199.0,
+    "quantity": 30,
+    "Rating": 5,
+    "ratingPeople": 512,
+    "category": "Gaming",
+    "link": "https://www.amazon.eg/-/en/Xbox-Wireless-Controller-Shock-Blue/dp/B091CK241X"
+  },
+  {
+    "id": 41,
+    "name": "Acer Nitro 27\" Gaming Monitor",
+    "description": "QHD 2560x1440, 170Hz refresh rate, 1ms VRB, AMD FreeSync Premium, HDR10, 90% DCI-P3, 2xHDMI 2.0, DisplayPort, tilt/swivel/pivot adjustment.",
+    "image": "../../assets/images/gaming6.webp",
+    "price": 12999.0,
+    "quantity": 4,
+    "Rating": 4,
+    "ratingPeople": 76,
+    "category": "Gaming",
+    "link": "https://www.amazon.eg/-/en/Nitro-XV271U-M3bmiipprx-Gaming-Monitor/dp/B0B8ZQH5T1"
+  },
+  {
+    "id": 42,
+    "name": "HyperX Cloud Alpha Gaming Headset",
+    "description": "Dual chamber drivers, aluminum frame, detachable noise cancellation mic, memory foam ear cushions, multi-platform compatibility, 3.5mm connection.",
+    "image": "https://cdn.shopify.com/s/files/1/0514/0270/3004/files/hyperx_cloud_alpha_s_blackblue_2_detachable_450x.jpg?v=1724860422",
+    "price": 2999.0,
+    "quantity": 18,
+    "Rating": 5,
+    "ratingPeople": 643,
+    "category": "Gaming",
+    "images": [
+      "https://delenordic.com/cdn/shop/products/3049743_2e7339b38f82_900x.webp?v=1674566312",
+      "https://au.hyperx.com/cdn/shop/files/hyperx_cloud_alpha_s_blue_9_packaging_back.jpg?v=1724865830&width=1946",
+      "https://img.mvideo.ru/Pdb/50175813b2.jpg"
+    ]
+  }
+]

@@ -54,7 +54,7 @@ a {
 
 .toast-success,
 .toast-error {
-  position: absolute;
+  position: fixed;
   left: 50%;
   transform: translate(-50%, -100px);
   transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
@@ -106,10 +106,39 @@ a {
 exclusive-header p {
   color: rgb(200, 198, 198);
 }
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+
+  .col  {
+    min-width: 245px;
+  }
+  .footer__barcode {
+    max-width: 90px;
+  }
+  .place-items-center{
+    place-items: center;
+  }
+ 
+
+  @media screen and (max-width: 768px) {
+    .footer {
+      input[type="email"] {
+        width: 100% !important;
+      }
+      /* ul>  .nav-item{
+        font-size: 13px;
+      } */
+    }
+  }
+}
+
 @media (max-width: 991px) {
   .toast-success,
-.toast-error {
-  text-align: center;
-  width: 300px;
-}
+  .toast-error {
+    text-align: center;
+    width: 300px;
+  }
 }
