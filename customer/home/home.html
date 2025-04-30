@@ -19,12 +19,12 @@
     <div class="btn d-lg-none my-3 " data-bs-toggle="collapse" data-bs-target="#sidebar">
       <i class="fa-solid fa-bars"></i>
     </div>
-    
+
     <!-- Backdrop (Hidden on lg/xl/xxl , Shown on ex-sm/sm/md) -->
     <div class="sidebar-backdrop"></div>
 
     <!-- Main Section (sidebar + divider + promo)-->
-    <div class="row g-3 mb-5 mb-lg-140">
+    <div class="row g-3 mb-5">
 
       <!-- Side Menu Bar ( Hidden on ex-sm/sm/md , Shown on lg/xl/xxl) -->
       <nav id="sidebar" class="col-6 col-md-3 col-lg-2 d-lg-block sidebar collapse mt-lg-4">
@@ -75,18 +75,10 @@
       <section-header></section-header>
 
       <div class="products__group row g-3 g-md-4">
-        <div class="col-6 col-md-4 col-lg-3">
-          <product-card discount></product-card>
-        </div>
-        <div class="col-6 col-md-4 col-lg-3">
-          <product-card discount></product-card>
-        </div>
-        <div class="col-6 col-md-4 col-lg-3">
-          <product-card discount></product-card>
-        </div>
-        <div class="col-6 col-md-4 col-lg-3">
-          <product-card discount></product-card>
-        </div>
+        <product-card discount class="col-12 col-sm-6 col-md-5 col-xl-3"></product-card>
+        <product-card discount class="col-12 col-sm-6 col-md-5 col-xl-3"></product-card>
+        <product-card discount class="col-12 col-sm-6 col-md-5 col-xl-3"></product-card>
+        <product-card discount class="col-12 col-sm-6 col-md-5 col-xl-3"></product-card>
       </div>
     </div>
   </div>

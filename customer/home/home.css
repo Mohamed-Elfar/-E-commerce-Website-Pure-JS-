@@ -5,12 +5,6 @@
     --color-F5: #F5F5F5;
 }
 
-
-
-
-
-
-
 body {
     padding: 0 5vw;
     /* was 135px */
@@ -21,17 +15,21 @@ body {
     padding: 0;
 }
 
+p {
+    margin-bottom: 0 !important;
+}
+
 /* Sidebar */
 .sidebar {
     background-color: var(--color-DB);
     position: fixed;
     z-index: 1040;
     top: 0;
-    left: -250px; 
+    left: -250px;
     margin: 0;
     padding-top: 10px;
     transition: left 0.3s ease;
-    border-radius:  0px 10px 10px 0px;
+    border-radius: 0px 10px 10px 0px;
 }
 
 .sidebar .nav-link {
@@ -55,14 +53,15 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
     z-index: 1039;
     opacity: 0;
     visibility: hidden;
 }
 
 .sidebar.show {
-    left: 0; /* Slide in when shown */
+    left: 0;
+    /* Slide in when shown */
 }
 
 .sidebar-backdrop.show {
@@ -71,10 +70,11 @@ body {
 }
 
 @media (max-width: 992px) {
-    .sidebar{
+    .sidebar {
         min-height: 100vh;
     }
 }
+
 @media (min-width: 992px) {
     .sidebar {
         background-color: white;
@@ -227,6 +227,7 @@ a {
     text-decoration: none;
 
 }
+
 .section {
     margin-top: 40px;
 }
@@ -279,14 +280,6 @@ a {
     margin-bottom: 20px;
 }
 
-@media (min-width: 768px) {
-    .section__title {
-        font-size: 36px;
-        line-height: 48px;
-        margin-bottom: 30px;
-    }
-}
-
 /* Product Styles */
 .product {
     height: auto;
@@ -311,7 +304,7 @@ a {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 270px;
+    width: 100%;
     height: 41px;
     background: var(--color-black);
     border-radius: 0px 0px 4px 4px;
@@ -410,7 +403,7 @@ a {
 .product__price {
     display: flex;
     gap: 8px;
-    margin: 8px 0px;
+    margin: 8px 0;
 }
 
 .product__price-new {
@@ -446,34 +439,4 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-@media (min-width: 576px) {
-    .product__image {
-        max-width: 70%;
-        max-height: 70%;
-    }
-}
-
-@media (min-width: 768px) {
-    .product__image {
-        max-width: 60%;
-        max-height: 60%;
-    }
-}
-
-@media (min-width: 992px) {
-    .product {
-        height: 350px;
-    }
-
-    .product__badge {
-        height: 250px;
-        padding-bottom: 0;
-    }
-
-    .product__image {
-        max-width: 100%;
-        max-height: 100%;
-    }
 }
