@@ -5,58 +5,83 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>home</title>
-
-  <link rel="stylesheet" href="home.css" />
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="/assets/css/style.css">
-  <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/assets/css/fontawesome.min.css">
-
+  <link rel="stylesheet" href="/customer/home/home.css">
 </head>
 
 <body>
-  <div class="main-section">
-    <!-- Side Menu -->
-    <div class="side-menu" id="sideMenu">
-      <a href="#">Smartphones</a>
-      <a href="#">Laptops</a>
-      <a href="#">Tablets</a>
-      <a href="#">Computers</a>
-      <a href="#">Gaming Consoles</a>
-      <a href="#">Televisions</a>
-      <a href="#">Smartwatches</a>
-      <a href="#">HeadPhones</a>
-      <a href="#">Home Appliances</a>
-      <a href="#">Accessories</a>
-    </div>
-    <div class="vetical-divider"></div>
-    <!-- Promo -->
-    <div class="promo">
-      <div>
-        <div class="promo__header">
-          <i class="promo__icon-apple fa-brands fa-apple"></i>
-          <span class="promo__title">iPhone 14 Series</span>
-        </div>
-        <p class="promo__description">Up to 10% <br> off Voucher</p>
-        <div class="promo__footer">
-          <a href="#" class="promo__link">Shop Now</a>
-          <i class="promo__icon-arrow fa-solid fa-arrow-right"></i>
+  <div class="container-fluid px-lg-5">
+    <!-- Main Section -->
+    <div class="row g-3 mb-5 mb-lg-140">
+      <!-- Side Menu - Hidden on small screens, shown on lg and up -->
+      <div class="col-lg-2 d-none d-lg-block">
+        <div class="side-menu sticky-top pt-4" id="sideMenu">
+          <a href="#" class="mb-3">Smartphones</a>
+          <a href="#" class="mb-3">Laptops</a>
+          <a href="#" class="mb-3">Tablets</a>
+          <a href="#" class="mb-3">Computers</a>
+          <a href="#" class="mb-3">Gaming Consoles</a>
+          <a href="#" class="mb-3">Televisions</a>
+          <a href="#" class="mb-3">Smartwatches</a>
+          <a href="#" class="mb-3">HeadPhones</a>
+          <a href="#" class="mb-3">Home Appliances</a>
+          <a href="#" class="mb-3">Accessories</a>
         </div>
       </div>
-      <img src="/assets/images/home_promo.png" alt="" class="promo__image">
+      
+      <!-- Vertical Divider - Only shown on lg and up -->
+      <div class="col-auto d-none d-lg-block">
+        <div class="vetical-divider h-100"></div>
+      </div>
+      
+      <!-- Promo Section -->
+      <div class="col-12 col-lg-9">
+        <div class="promo row g-0 mx-0 mt-3 mt-lg-4">
+          <div class="promo__content col-sm-6">
+            <div class="promo__header">
+              <i class="promo__icon-apple fa-brands fa-apple"></i>
+              <span class="promo__title">iPhone 14 Series</span>
+            </div>
+            <p class="promo__description">Up to 10% <br> off Voucher</p>
+            <div class="promo__footer">
+              <a href="#" class="promo__link">Shop Now</a>
+              <i class="promo__icon-arrow fa-solid fa-arrow-right"></i>
+            </div>
+          </div>
+          <div class="col-sm-6 ">
+            <img src="/assets/images/home_promo.png" alt="iPhone Promo" class="promo__image img-fluid">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flash Sales Section -->
+    <div class="section mt-4 mt-lg-5">
+      <section-header></section-header>
+      
+      <div class="products__group row g-3 g-md-4">
+        <div class="col-6 col-md-4 col-lg-3">
+          <product-card discount></product-card>
+        </div>
+        <div class="col-6 col-md-4 col-lg-3">
+          <product-card discount></product-card>
+        </div>
+        <div class="col-6 col-md-4 col-lg-3">
+          <product-card discount></product-card>
+        </div>
+        <div class="col-6 col-md-4 col-lg-3">
+          <product-card discount></product-card>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="section">
-    <section-header></section-header>
-    <div class="products__group">
-      <product-card discount></product-card>
-      <product-card discount></product-card>
-      <product-card discount></product-card>
-      <product-card discount></product-card>
-    </div>
-  </div>
-
-  <script src="/assets/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap JS Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="/assets/js/customer.js"></script>
 </body>
 
