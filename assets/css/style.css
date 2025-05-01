@@ -4,15 +4,18 @@
   box-sizing: border-box;
   text-transform: capitalize;
 }
+
 input {
   text-transform: none;
 }
+
 :root {
   --text-bg: rgb(200, 198, 198);
   --text-primary: #db4444;
   --text-secondary: rgb(200, 198, 198);
   --button-primary: #db4444;
 }
+
 @font-face {
   font-family: "Poppins";
   src: url("/assets/fonts/Poppins-Regular.ttf") format("truetype");
@@ -41,12 +44,14 @@ body {
   margin: 0;
   font-family: "Poppins", sans-serif;
 }
+
 a {
   text-decoration: none;
   border-bottom: 2px solid #7d8184;
   color: var(--text-secondary);
 }
-.fs-8{
+
+.fs-8 {
   font-size: 13px;
 }
 
@@ -72,10 +77,12 @@ a {
   opacity: 0;
   pointer-events: none;
 }
+
 .toast-success {
   color: green;
   background-color: #d4edda;
 }
+
 .toast-error {
   background-color: red;
   color: white;
@@ -91,6 +98,7 @@ a {
   background-color: var(--button-primary);
   color: white;
 }
+
 .btn--primary:hover,
 .btn--primary:active,
 .btn--primary:visited {
@@ -100,16 +108,20 @@ a {
 .text--primary {
   color: var(--text-primary);
 }
+
 .text--secondary {
   color: var(--text-secondary);
 }
+
 .form-control::placeholder {
   font-size: 12px;
 }
+
 .no-outline:focus {
   outline: none;
   box-shadow: none;
 }
+
 exclusive-header p {
   color: rgb(200, 198, 198);
 }
@@ -118,15 +130,47 @@ exclusive-header p {
   .col {
     min-width: 245px;
   }
+
   .footer__barcode {
     max-width: 90px;
   }
+
   .place-items-center {
     place-items: center;
   }
-  .footer__rights > p {
+
+  .footer__rights>p {
     border-color: rgb(94, 93, 93);
-    color:  rgb(94, 93, 93);
+    color: rgb(94, 93, 93);
+  }
+
+  .items-heading {
+    position: relative;
+    display: inline-block;
+    transition: all 0.5s;
+  }
+
+  .items-heading:hover {
+    color: white !important;
+    cursor: pointer;
+  }
+
+  .items-heading::before {
+    content: "";
+    width: 18%;
+    height: 50px;
+    background-color: #DC3545;
+    border-radius: 6px;
+    position: absolute;
+    left: -25px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: -1 !important;
+    transition: all 0.8s;
+  }
+
+  .items-heading:hover::before {
+    width: 150%;
   }
 
   @media screen and (max-width: 768px) {
@@ -134,6 +178,7 @@ exclusive-header p {
       input[type="email"] {
         width: 100% !important;
       }
+
       /* ul>  .nav-item{
         font-size: 13px;
       } */
@@ -142,12 +187,14 @@ exclusive-header p {
 }
 
 @media (max-width: 991px) {
+
   .toast-success,
   .toast-error {
     text-align: center;
     width: 300px;
   }
-  .container{
+
+  .container {
     width: 100% !important;
   }
 }
