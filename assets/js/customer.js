@@ -18,11 +18,11 @@ class SectionHeaderComponent extends HTMLElement {
             </div>
       `;
 
-      // Product categories button special case
-      const viewallBtn = this.querySelector('#viewall');
-      if (this.hasAttribute('noviewall')) {
-          viewallBtn.style.display = 'none';
-      }
+        // Product categories button special case
+        const viewallBtn = this.querySelector('#viewall');
+        if (this.hasAttribute('noviewall')) {
+            viewallBtn.style.display = 'none';
+        }
     }
 }
 customElements.define('section-header', SectionHeaderComponent);
@@ -83,3 +83,18 @@ class ProductCardComponent extends HTMLElement {
     }
 }
 customElements.define('product-card', ProductCardComponent);
+
+class TimerComponent extends HTMLElement {
+    connectedCallback() {
+        this.innerHTML = `
+            <link rel="stylesheet" href="/assets/css/fontawesome.min.css">
+            <link rel="stylesheet" href="/assets/css/style.css">
+            <link rel="stylesheet" href="/customer/home/home.css">
+            <div class="banner-timer">
+                <p class="banner-timer-number">23h</p>
+                <p class="banner-timer-text">Hours</p>
+            </div>
+      `;
+    }
+}
+customElements.define('banner-timer', TimerComponent);
