@@ -1,0 +1,102 @@
+class SectionHeaderComponent extends HTMLElement {
+    connectedCallback() {
+        const section_title = this.getAttribute('title');
+        const section_pin = this.getAttribute('pin');
+
+        this.innerHTML = `
+            <link rel="stylesheet" href="/assets/css/fontawesome.min.css">
+            <link rel="stylesheet" href="/assets/css/style.css">
+            <link rel="stylesheet" href="/customer/home/home.css">
+            <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+            <div class="section__header">
+                <div class="section__pin">
+                    <div class="section__pin-icon background-primary"></div>
+                    <p class="section__pin-text color-primary">${section_pin}</p>
+                </div>
+                <div class="section__highlights">
+                    <p class="section__title">${section_title}</p>
+                    <button class="section__button background-primary secondary-color" type="button" id="viewall">View All</button>
+                </div>
+            </div>
+      `;
+
+        // Check if the 'noviewall' attribute exists to hide the View All button
+        this.hasAttribute('noviewall') ? 'display: none;' : '';
+    }
+}
+customElements.define('section-header', SectionHeaderComponent);
+
+
+class ProductCardComponent extends HTMLElement {
+    connectedCallback() {
+
+        this.innerHTML = `
+            <link rel="stylesheet" href="/assets/css/fontawesome.min.css">
+            <link rel="stylesheet" href="/assets/css/style.css">
+            <link rel="stylesheet" href="/customer/home/home.css">
+            <div class="product">
+                <div class="product__badge">
+                    <div class="product__actions">
+                        <div id="discount"></div>
+                        <div class="product__icons">
+                            <a href="#">
+                                <div class="product__icon-container">
+                                    <i class="product__icon fa-regular fa-heart"></i>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <div class="product__icon-container">
+                                    <i class="product__icon fa-regular fa-eye"></i>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <img class="product__image" src="/assets/images/g92.png" alt="G92">
+                    <a href="#">
+                    <div class="product__overlay bg-black secondary-color">Add To Cart</div>
+                    </a>
+                </div>
+                <h6 class="product__title">HAVIT HV-G92 Gamepad</h6>
+                <div class="product__price">
+                    <h6 class="product__price-new color-primary">$120</h6>
+                    <p class="product__price-old">$160</p>
+                </div>
+                <div class="product__rating">
+                    <div>
+                    <i class="product__rating-star fa-solid fa-star"></i>
+                    <i class="product__rating-star fa-solid fa-star"></i>
+                    <i class="product__rating-star fa-solid fa-star"></i>
+                    <i class="product__rating-star fa-solid fa-star"></i>
+                    <i class="product__rating-star fa-regular fa-star"></i>
+                    </div>
+                    <p class="product__rating-count">(88)</p>
+                </div>
+            </div>
+      `;
+
+        // Product discount special case
+        const productDiscount = this.querySelector('#discount');
+        if (this.hasAttribute('discount')) {
+            productDiscount.classList.add('product__discount', 'background-primary', 'secondary-color');
+            productDiscount.textContent = '-40%';
+        }
+    }
+}
+customElements.define('product-card', ProductCardComponent);
+
+class TimerComponent extends HTMLElement {
+    connectedCallback() {
+        const timer_text = this.getAttribute('text');
+        const timer_number = this.getAttribute('number');
+        this.innerHTML = `
+            <link rel="stylesheet" href="/assets/css/fontawesome.min.css">
+            <link rel="stylesheet" href="/assets/css/style.css">
+            <link rel="stylesheet" href="/customer/home/home.css">
+            <div class="banner-timer">
+                <p class="banner-timer-number">${timer_number}</p>
+                <p class="banner-timer-text">${timer_text}</p>
+            </div>
+      `;
+    }
+}
+customElements.define('banner-timer', TimerComponent);
