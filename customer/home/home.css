@@ -36,11 +36,11 @@ p {
         margin-bottom: 5px;
         color: var(--color-FA) !important;
     }
-    
+
     .nav-link:hover {
         background-color: rgba(255, 255, 255, 0.1);
     }
-  
+
 }
 
 .sidebar-backdrop {
@@ -142,7 +142,7 @@ p {
 
 .promo__title,
 .link {
-    color: var(--color-FA)!important;
+    color: var(--color-FA) !important;
     font-size: 16px;
 }
 
@@ -220,7 +220,10 @@ XXL: ≥ 1400px
 }
 
 /* ------------------------------Section Styles---------------------------------- */
-a, a:hover, a:focus, a:active{
+a,
+a:hover,
+a:focus,
+a:active {
     text-decoration: none !important;
     color: inherit !important;
 }
@@ -284,10 +287,12 @@ a, a:hover, a:focus, a:active{
     .section__button {
         width: 100px;
     }
+
     .section__title {
         font-size: 24px;
     }
 }
+
 /* ----------------------------------Product Card---------------------------------- */
 
 .product {
@@ -451,13 +456,11 @@ a, a:hover, a:focus, a:active{
 }
 
 hr {
-    height: 1px;
-    background-color: #000000;
-    opacity: 30%;
-    margin: 70px 0;
+    margin: 70px 0 !important;
 }
 
-.featured__image {
+/* ----------------------------------Grid---------------------------------- */
+.grid__image {
     position: relative;
 
     img {
@@ -467,7 +470,7 @@ hr {
     }
 }
 
-.featured__overlay {
+.grid__overlay {
     position: absolute;
     bottom: 0px;
     left: 0px;
@@ -475,52 +478,137 @@ hr {
     margin: 0px 0px 20px 28px;
 }
 
-.featured__overlay-title {
+.grid__overlay-title {
     font-size: 24px;
     font-weight: 600;
     letter-spacing: 0.72px;
 }
 
-.featured__overlay-description {
+.grid__overlay-description {
     font-size: 14px;
     font-weight: 400;
 }
 
 @media (max-width: 992px) {
-    .featured__overlay-title {
+    .grid__overlay-title {
         font-size: 20px;
     }
 
-    .featured__overlay-description {
-        font-size: 12px;
-    }
-    .featured__overlay {
-        margin: 0px 0px 16px 24px;
-    }
-    .featured__link{
-        font-size: 12px;
-    }
-}
-@media (max-width: 768px) {
-    .featured__overlay-title {
+    .grid__overlay-description {
         font-size: 12px;
     }
 
-    .featured__overlay-description {
+    .grid__overlay {
+        margin: 0px 0px 16px 24px;
+    }
+
+    .grid__link {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .grid__overlay-title {
+        font-size: 12px;
+    }
+
+    .grid__overlay-description {
         font-size: 10px;
     }
-    .featured__overlay {
+
+    .grid__overlay {
         margin: 0px 0px 12px 20px;
     }
-    .featured__link{
+
+    .grid__link {
         font-size: 10px;
     }
 }
+
 @media (max-width: 576px) {
-    .featured__overlay-title,.featured__overlay-description {
+
+    .grid__overlay-title,
+    .grid__overlay-description {
         display: none;
     }
-    .featured__link{
+
+    .grid__link {
         font-size: 6px;
+    }
+}
+
+/* -----------------------------Features-------------------------------- */
+
+.features {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin:140px 0;
+}
+
+.feature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.feature__title {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 24px 0 8px 0;
+}
+
+.feature__description {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.feature__icon {
+    font-size: 24px;
+    color: #FAFAFA;
+}
+
+.feature__icon-wrapper {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #C3C3C3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feature__icon-wrapper2 {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--color-black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+@media(max-width: 992px) {
+    .feature__title {
+        font-size: 16px;
+    }
+    .feature__description {
+        font-size: 12px;
+    }
+}
+
+@media(max-width:768px) {
+    .features {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+    }
+    .feature__title {
+        font-size: 24px;
+    }
+    .feature__description {
+        font-size: 14px;
     }
 }
