@@ -12,8 +12,8 @@ class SectionHeaderComponent extends HTMLElement {
                     <p class="section__pin-text">Today's</p>
                 </div>
                 <div class="section__highlights">
-                    <p class="section__title">Flash Sales</p>
-                    <button class="section__button">View All</button>
+                    <p class="section__title">Best Selling Products</p>
+                    <button class="section__button" type="button">View All</button>
                 </div>
             </div>
       `;
