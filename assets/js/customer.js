@@ -13,10 +13,16 @@ class SectionHeaderComponent extends HTMLElement {
                 </div>
                 <div class="section__highlights">
                     <p class="section__title">Best Selling Products</p>
-                    <button class="section__button" type="button">View All</button>
+                    <button class="section__button" type="button" id="viewall">View All</button>
                 </div>
             </div>
       `;
+
+      // Product categories button special case
+      const viewallBtn = this.querySelector('#viewall');
+      if (this.hasAttribute('noviewall')) {
+          viewallBtn.style.display = 'none';
+      }
     }
 }
 customElements.define('section-header', SectionHeaderComponent);

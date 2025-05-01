@@ -5,12 +5,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>home</title>
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="/assets/css/style.css">
-  <link rel="stylesheet" href="/customer/home/home.css">
+  <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/css/fontawesome.min.css" rel="stylesheet">
+  <link href="/assets/css/style.css" rel="stylesheet">
+  <link href="/customer/home/home.css" rel="stylesheet">
 </head>
 
 <body>
@@ -60,36 +58,62 @@
             </div>
           </div>
           <div class="col-sm-6 ">
-            <img src="/assets/images/home_promo.png" alt="iPhone Promo" class="promo__image">
+            <img src="https://www.apple.com/newsroom/images/product/iphone/standard/Apple-iPhone-14-Pro-iPhone-14-Pro-Max-hero-220907_Full-Bleed-Image.jpg.large.jpg" alt="iPhone Promo" class="promo__image">
           </div>
         </div>
       </div>
     </div>
 
     <!-- Flash Sales Section -->
-    <div class="section mt-4 mt-lg-5">
-      <section-header></section-header>
-
-      <div class="products__group row g-3 g-md-4">
-        <product-card discount class="col-12 col-sm-6 col-md-5 col-xl-3"></product-card>
-        <product-card discount class="col-12 col-sm-6 col-md-5 col-xl-3"></product-card>
-        <product-card discount class="col-12 col-sm-6 col-md-5 col-xl-3"></product-card>
-        <product-card discount class="col-12 col-sm-6 col-md-5 col-xl-3"></product-card>
-      </div>
+    <section-header></section-header>
+    <div class="products__group row g-3 g-md-4">
+      <product-card discount class="col-12 col-sm-6 col-md-5 col-xl-3"></product-card>
+      <product-card discount class="col-12 col-sm-6 col-md-5 col-xl-3"></product-card>
+      <product-card discount class="col-12 col-sm-6 col-md-5 col-xl-3"></product-card>
+      <product-card discount class="col-12 col-sm-6 col-md-5 col-xl-3"></product-card>
     </div>
 
     <!-- Divider -->
     <hr>
 
     <!-- Best Selling Products -->
-    <div class="section mt-4 mt-lg-5">
-      <section-header></section-header>
+    <section-header></section-header>
+    <div class="products__group row g-3 g-md-4">
+      <product-card discount class="col-12 col-sm-6 col-md-5 col-xl-3"></product-card>
+      <product-card discount class="col-12 col-sm-6 col-md-5 col-xl-3"></product-card>
+      <product-card discount class="col-12 col-sm-6 col-md-5 col-xl-3"></product-card>
+      <product-card discount class="col-12 col-sm-6 col-md-5 col-xl-3"></product-card>
+    </div>
 
-      <div class="products__group row g-3 g-md-4">
-        <product-card discount class="col-12 col-sm-6 col-md-5 col-xl-3"></product-card>
-        <product-card discount class="col-12 col-sm-6 col-md-5 col-xl-3"></product-card>
-        <product-card discount class="col-12 col-sm-6 col-md-5 col-xl-3"></product-card>
-        <product-card discount class="col-12 col-sm-6 col-md-5 col-xl-3"></product-card>
+    <!-- Divider -->
+    <hr>
+
+    <!-- Browse By Category -->
+    <section-header noviewall></section-header>
+    <div class="products__categories">
+      <div class="products__category ">
+        <i class="products__category-icon fas fa-mobile-alt"></i>
+        <p class="products__category-title">Smartphones</p>
+      </div>
+      <div class="products__category ">
+        <i class="products__category-icon fas fa-laptop"></i>
+        <p class="products__category-title">Laptops</p>
+      </div>
+      <div class="products__category ">
+        <i class="products__category-icon fas fa-tablet-alt"></i>
+        <p class="products__category-title">Tablets</p>
+      </div>
+      <div class="products__category ">
+        <i class="products__category-icon fas fa-gamepad"></i>
+        <p class="products__category-title">Gaming</p>
+      </div>
+      <div class="products__category ">
+        <i class="products__category-icon far fa-clock"></i>
+        <p class="products__category-title">Smartwatches</p>
+      </div>
+      <div class="products__category ">
+        <i class="products__category-icon fas fa-headphones"></i>
+        <p class="products__category-title">HeadPhones</p>
       </div>
     </div>
 
@@ -97,67 +121,60 @@
     <hr>
 
     <!-- Explore Our Products -->
-    <div class="section mt-4 mt-lg-5">
-      <section-header></section-header>
-
-      <div class="products__group row g-3 g-md-4">
-        <product-card discount class="col-12 col-sm-6 col-md-5 col-xl-3"></product-card>
-        <product-card discount class="col-12 col-sm-6 col-md-5 col-xl-3"></product-card>
-        <product-card discount class="col-12 col-sm-6 col-md-5 col-xl-3"></product-card>
-        <product-card discount class="col-12 col-sm-6 col-md-5 col-xl-3"></product-card>
-      </div>
+    <section-header></section-header>
+    <div class="products__group row g-3 g-md-4">
+      <product-card discount class="col-12 col-sm-6 col-md-5 col-xl-3"></product-card>
+      <product-card discount class="col-12 col-sm-6 col-md-5 col-xl-3"></product-card>
+      <product-card discount class="col-12 col-sm-6 col-md-5 col-xl-3"></product-card>
+      <product-card discount class="col-12 col-sm-6 col-md-5 col-xl-3"></product-card>
     </div>
 
-    <!-- Divider -->
-    <hr>
-
+    <br>
+    <br>
+    <br>
     <!-- New Arrivals -->
-    <div class="section mt-4 mt-lg-5">
-      <section-header></section-header>
-      <div class="grid row my-3">
-        <div class="col-6 grid__image">
-          <img src="https://cdn.pixabay.com/photo/2019/01/06/01/20/headphones-3916271_1280.jpg" alt="HeadPhone">
-          <div class="grid__overlay">
-            <p class="grid__overlay-title">Headphones</p>
-            <p class="grid__overlay-description">Black and White version of the PS5 coming out on sale.</p>
-            <a href="#" class="link grid__link">Shop Now</a>
-          </div>
-
+    <section-header></section-header>
+    <div class="grid row mb-3">
+      <div class="col-6 grid__image">
+        <img src="https://cdn.pixabay.com/photo/2019/01/06/01/20/headphones-3916271_1280.jpg" alt="HeadPhone">
+        <div class="grid__overlay">
+          <p class="grid__overlay-title">Headphones</p>
+          <p class="grid__overlay-description">Black and White version of the PS5 coming out on sale.</p>
+          <a href="#" class="link grid__link">Shop Now</a>
         </div>
-        <div class="col-6">
-          <div class="row">
-            <div class="col-12 mb-3 grid__image">
-              <img src="https://cdn.pixabay.com/photo/2020/04/08/16/32/keyboard-5017973_1280.jpg" alt="Labtop">
-              <div class="grid__overlay">
-                <p class="grid__overlay-title">Headphones</p>
-                <p class="grid__overlay-description">Black and White version of the PS5 coming out on sale.</p>
-                <a href="#" class="link grid__link">Shop Now</a>
-              </div>
+      </div>
+      <div class="col-6">
+        <div class="row">
+          <div class="col-12 mb-3 grid__image">
+            <img src="https://cdn.pixabay.com/photo/2020/04/08/16/32/keyboard-5017973_1280.jpg" alt="Labtop">
+            <div class="grid__overlay">
+              <p class="grid__overlay-title">Headphones</p>
+              <p class="grid__overlay-description">Black and White version of the PS5 coming out on sale.</p>
+              <a href="#" class="link grid__link">Shop Now</a>
             </div>
-            <div class="col-6 grid__image">
-              <img src="https://cdn.pixabay.com/photo/2023/10/07/14/24/smartwatch-8300238_1280.jpg" alt="Smartwatche">
-              <div class="grid__overlay">
-                <p class="grid__overlay-title">Headphones</p>
-                <p class="grid__overlay-description">coming out on sale.</p>
-                <a href="#" class="link grid__link">Shop Now</a>
-              </div>
+          </div>
+          <div class="col-6 grid__image">
+            <img src="https://cdn.pixabay.com/photo/2023/10/07/14/24/smartwatch-8300238_1280.jpg" alt="Smartwatche">
+            <div class="grid__overlay">
+              <p class="grid__overlay-title">Headphones</p>
+              <p class="grid__overlay-description">coming out on sale.</p>
+              <a href="#" class="link grid__link">Shop Now</a>
             </div>
-            <div class="col-6 grid__image">
-              <img src="https://cdn.pixabay.com/photo/2021/03/13/15/56/controller-6092065_1280.jpg" alt="controller">
-              <div class="grid__overlay">
-                <p class="grid__overlay-title">Headphones</p>
-                <p class="grid__overlay-description">coming out on sale.</p>
-                <a href="#" class="link grid__link">Shop Now</a>
-              </div>
-
-
+          </div>
+          <div class="col-6 grid__image">
+            <img src="https://cdn.pixabay.com/photo/2021/03/13/15/56/controller-6092065_1280.jpg" alt="controller">
+            <div class="grid__overlay">
+              <p class="grid__overlay-title">Headphones</p>
+              <p class="grid__overlay-description">coming out on sale.</p>
+              <a href="#" class="link grid__link">Shop Now</a>
             </div>
           </div>
         </div>
       </div>
-
     </div>
 
+
+<!-- Features -->
     <div class="features">
       <div class="feature col-lg-4">
         <div class="feature__icon-wrapper">
