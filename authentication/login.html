@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="../assets/css/fontawesome.min.css" />
+
+    <!-- Your Custom Styles -->
+    <link rel="stylesheet" href="auth.css" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+  </head>
+  <body>
+    <div class="toast"></div>
+    <div class="container login">
+      <div class="row row-cols-1 row-cols-xxl-2 border">
+        <div class="col p-0 d-none d-xxl-block">
+          <picture>
+            <img
+              src="../assets/images/signup/signup.png"
+              alt="sign up image for Fasco Ecommerce"
+              class="w-100"
+              loading="lazy"
+            />
+          </picture>
+        </div>
+        <div class="col form__container mx-auto">
+          <form class="form px-3">
+            <h2 class="my-4 text-center">
+              Login to <span class="text--primary">Excluxive</span>
+            </h2>
+
+            <div class="row row-cols-1 row-gap-3">
+              <div class="col w-75 m-auto">
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="Email Address"
+                  name="email"
+                  class="form-control"
+                />
+                <div class="invalid-feedback">
+                  Please enter a valid email address.
+                </div>
+              </div>
+              <div class="col w-75 m-auto">
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="Password"
+                  name="password"
+                  class="form-control"
+                  autocomplete="new-password"
+                />
+                <div class="invalid-feedback">
+                  at least 6 chars & include (@, #, $,..).
+                </div>
+              </div>
+              <div class="col w-75 m-auto text-end">
+                <a
+                  href="#"
+                  class="text--primary border-0 forget-password"
+                  data-bs-toggle="modal"
+                  data-bs-target="#forgetModal"
+                  role="button"
+                  aria-expanded="false"
+                  aria-controls="staticBackdrop"
+                  >forgot password?</a
+                >
+              </div>
+            </div>
+            <div class="submitBtn text-center">
+              <button
+                class="btn btn--primary text-light w-75 mt-3 rounded-2"
+                id="create"
+                type="submit"
+              >
+                Login
+              </button>
+              <p class="my-3">
+                don't have an account? &nbsp;<a
+                  href="register.html"
+                  class="text--primary border-0"
+                  >Register</a
+                >
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="modal" tabindex="-1" id="forgetModal">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Enter your email</h5>
+            <button
+              type="button"
+              class="btn-close emailModal"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>please enter your email address.</p>
+            <input
+              type="email"
+              placeholder="Email Address"
+              name="email"
+              class="form-control"
+              id="forgetEmailInput"
+            />
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn--primary" id="submitEmailBtn">
+              submit
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal" tabindex="-1" id="resetModal">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">reset password</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>please enter new password</p>
+            <input
+              type="password"
+              id="resetPassword"
+              placeholder="Password"
+              name="password"
+              class="form-control"
+            />
+            <input
+              type="password"
+              id="resetConfirmpassword"
+              placeholder="Confirm Password"
+              name="confirmpassword"
+              class="form-control mt-2"
+            />
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary passwordModal"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn--primary saveBtn" >Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="forgetPassword.js"
+      type="module"
+    ></script>
+    <script src="login.js" type="module"></script>
+    <script src="..//assets/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

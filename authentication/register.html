@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="../assets/css/fontawesome.min.css" />
+
+    <!-- Your Custom Styles -->
+    <link rel="stylesheet" href="auth.css" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+  </head>
+  <body>
+    <div class="toast"></div>
+    <div class="container signup">
+      <div class="row row-cols-1 row-cols-xxl-2 border">
+        <div class="col p-0 d-none d-xxl-block">
+          <picture>
+            <img
+              src="../assets/images/signup/signup.png"
+              alt="sign up image for Fasco Ecommerce"
+              class="w-100"
+              loading="lazy"
+            />
+          </picture>
+        </div>
+        <div class="col form__container mx-auto">
+          <form class="form px-3">
+            <h2 class="my-3 text-center">Create Account</h2>
+            <div
+              class="btns d-flex justify-content-center justify-content-md-between gap-2 flex-column flex-xxl-row"
+            >
+              <button class="btn w-100 border">
+                <img
+                  src="../assets/images/signup/googleicon.png"
+                  alt="google icon"
+                  loading="lazy"
+                />
+                Sign up with Google
+              </button>
+              <button class="btn w-100 border">
+                <img
+                  src="../assets/images/signup/gmailicon.png"
+                  alt="gmail icon"
+                  loading="lazy"
+                />
+                Sign up with Gmail
+              </button>
+            </div>
+
+            <p class="text-center w-100 my-3 text-uppercase separator">
+              <span>&#8722;</span> or <span>&#8722;</span>
+            </p>
+            <div class="row row-cols-1 row-cols-md-2 row-gap-3">
+              <div class="col">
+                <input
+                  type="text"
+                  id="firstname"
+                  placeholder="First Name"
+                  name="firstname"
+                  class="form-control"
+                />
+                <div class="invalid-feedback">
+                  Please enter a valid first name.
+                </div>
+              </div>
+              <div class="col">
+                <input
+                  type="text"
+                  id="lastname"
+                  placeholder="Last Name"
+                  name="lastname"
+                  class="form-control"
+                />
+                <div class="invalid-feedback">
+                  Please enter a valid last name.
+                </div>
+              </div>
+              <div class="col">
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="Email Address"
+                  name="email"
+                  class="form-control"
+                />
+                <div class="invalid-feedback">
+                  Please enter a valid email address.
+                </div>
+              </div>
+              <div class="col">
+                <input
+                  type="tel"
+                  id="phonenumber"
+                  placeholder="Phone Number"
+                  name="phonenumber"
+                  class="form-control"
+                />
+                <div class="invalid-feedback">
+                  Please enter a valid phone number.
+                </div>
+              </div>
+              <div class="col">
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="Password"
+                  name="password"
+                  class="form-control"
+                  autocomplete="new-password"
+                />
+                <div class="invalid-feedback">
+                  at least 6 chars & include (@, #, $,..).
+                </div>
+              </div>
+              <div class="col">
+                <input
+                  type="password"
+                  id="confirmpassword"
+                  placeholder="Confirm Password"
+                  name="confirmpassword"
+                  class="form-control"
+                />
+                <div class="invalid-feedback">Passwords do not match.</div>
+              </div>
+              <div class="col">
+                <input
+                  class="w-auto"
+                  type="radio"
+                  id="sellerRadio"
+                  name="role"
+                  value="true"
+                />
+                <label for="sellerRadio">Register as Seller</label>
+                <div class="invalid-feedback">Passwords do not match.</div>
+              </div>
+            </div>
+            <div class="submitBtn text-center">
+              <button
+                class="btn btn--primary text-light w-75 mt-3 rounded-2"
+                id="create"
+                type="submit"
+              >
+                Create Account
+              </button>
+              <p class="my-3">
+                Already have an account? &nbsp;
+                <a class="text--primary border-0" href="login.html">Login</a>
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="register.js" type="module"></script>
+  </body>
+</html>

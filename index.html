@@ -13,6 +13,72 @@
 
     <!-- Your Custom Styles -->
     <link rel="stylesheet" href="assets/css/style.css" />
+    <script src="assets/js/components/exclusive-header.js" defer></script>
+    <script src="assets/js/components/exclusive-footer.js" defer></script>
+    <style>
+    </style>
   </head>
-  <body></body>
+  <body>
+    <!-- <exclusive-header></exclusive-header>
+    <section class="products">
+      <ul id="productList">
+        <li>Apple iPhone 14 Pro</li>
+        <li>Samsung Galaxy S22</li>
+        <li>Lenovo IdeaPad 3 Laptop</li>
+        <li>Sony WH-1000XM5 Headphones</li>
+        <li>Logitech MX Master 3 Mouse</li>
+        <li>Dell UltraSharp 27 Monitor</li>
+        <li>Apple MacBook Air M2</li>
+        <li>Canon EOS R7 Camera</li>
+        <li>HP DeskJet 2755e Printer</li>
+        <li>Xiaomi Mi Smart Band 7</li>
+      </ul>
+    </section> 
+    /////////////////////////////////////////////////////////////////
+    -->
+    <!-- <exclusive-footer></exclusive-footer> -->
+
+
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+    <!-- <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Wait for component to be defined
+
+        // Access elements through shadowRoot
+        const search = document.getElementById("navSearch");
+        const searchBtn = document.getElementById("searchBtn");
+        const options = document.getElementById("productSuggestions").options;
+        console.log(options);
+
+        // const searchForm = header.shadowRoot.getElementById('searchForm');
+        const list = document.getElementById("productList");
+
+        // Your custom search implementation
+        search.addEventListener("input", (e) => {
+          const value = e.target.value;
+          for (let i = 0; i < list.children.length; i++) {
+            list.children[i].innerText
+              .toLowerCase()
+              .includes(value.toLowerCase())
+              ? (list.children[i].style.display = "block")
+              : (list.children[i].style.display = "none");
+          }
+        });
+        searchBtn.addEventListener("click", (e) => {
+          let foundOption = null;
+          for (let i = 0; i < options.length; i++) {
+            if (options[i].value === search.value) {
+              foundOption = options[i];
+              break;
+            }
+          }
+          if (foundOption) {
+            console.log(foundOption);
+            open(foundOption.dataset.link, "_blank");
+          }
+        });
+      });
+    </script> -->
+  </body>
 </html>
