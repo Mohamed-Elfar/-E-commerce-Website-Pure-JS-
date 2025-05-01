@@ -13,19 +13,19 @@
 
 <body>
   <div class="container-fluid px-lg-5">
-    <!-- Toggle icon (Hidden on lg/xl/xxl , Shown on ex-sm/sm/md) -->
+    <!-------------------------- Toggle icon (Shown on ex-sm/sm/md) -------------------------->
     <div class="btn d-lg-none my-3 " data-bs-toggle="collapse" data-bs-target="#sidebar">
       <i class="fa-solid fa-bars"></i>
     </div>
 
-    <!-- Backdrop (Hidden on lg/xl/xxl , Shown on ex-sm/sm/md) -->
+    <!-- Backdrop (Shown on ex-sm/sm/md) -->
     <div class="sidebar-backdrop"></div>
 
-    <!-- Main Section (sidebar + divider + promo)-->
+    <!------------------------ Main Section (sidebar + divider + promo)------------------------>
     <div class="row g-3 mb-5">
 
-      <!-- Side Menu Bar ( Hidden on ex-sm/sm/md , Shown on lg/xl/xxl) -->
-      <nav id="sidebar" class="col-6 col-md-3 col-lg-2 d-lg-block sidebar collapse mt-lg-4">
+      <!------------------------ Side Menu Bar (Shown on lg/xl/xxl) ------------------------>
+      <nav id="sidebar" class="col-6 col-md-3 col-lg-2 d-lg-block sidebar collapse mt-lg-4 background-primary">
         <div class="position-sticky">
           <div class="nav flex-column" id="sideMenu">
             <a href="#" class="nav-item nav-link">Smartphones</a>
@@ -38,23 +38,23 @@
         </div>
       </nav>
 
-      <!-- Vertical Divider - Only shown on lg and up -->
+      <!-------------------------- Vertical Divider - Only shown on lg and up -------------------------->
       <div class="col-auto d-none d-lg-block">
-        <div class="vetical-divider h-100 mx-3"></div>
+        <div class="vertical-divider h-100 mx-3 bg-black"></div>
       </div>
 
-      <!-- Promo Section -->
+      <!-------------------------- Promo Section -------------------------->
       <div class="col-12 col-lg-9">
-        <div class="promo row g-0 mx-0 mt-3 mt-lg-4">
+        <div class="promo row mx-0 mt-3 mt-lg-4 p-4 ps-xl-5 rounded bg-black">
           <div class="promo__content col-sm-6">
             <div class="promo__header">
-              <i class="promo__icon-apple fa-brands fa-apple"></i>
+              <i class="promo__icon-apple fa-brands fa-apple fs-1 secondary-color"></i>
               <span class="promo__title">iPhone 14 Series</span>
             </div>
-            <p class="promo__description">Up to 10% <br> off Voucher</p>
+            <p class="promo__description fs-md-1 secondary-color">Up to 10% <br> off Voucher</p>
             <div class="promo__footer">
               <a href="#" class="link">Shop Now</a>
-              <i class="promo__icon-arrow fa-solid fa-arrow-right"></i>
+              <i class="promo__icon-arrow fa-solid fa-arrow-right fs-5 secondary-color"></i>
             </div>
           </div>
           <div class="col-sm-6 ">
@@ -66,7 +66,7 @@
       </div>
     </div>
 
-    <!-- Flash Sales Section -->
+    <!-------------------------- Flash Sales Section -------------------------->
     <section-header></section-header>
     <div class="products__group row g-3 g-md-4">
       <product-card discount class="col-12 col-sm-6 col-md-5 col-xl-3"></product-card>
@@ -78,7 +78,7 @@
     <!-- Divider -->
     <hr>
 
-    <!-- Browse By Category -->
+    <!-------------------------- Browse By Category -------------------------->
     <section-header noviewall></section-header>
     <div class="products__categories">
       <div class="products__category ">
@@ -110,7 +110,7 @@
     <!-- Divider -->
     <hr>
 
-    <!-- Best Selling Products -->
+    <!-------------------------- Best Selling Products -------------------------->
     <section-header></section-header>
     <div class="products__group row g-3 g-md-4">
       <product-card discount class="col-12 col-sm-6 col-md-5 col-xl-3"></product-card>
@@ -119,28 +119,27 @@
       <product-card discount class="col-12 col-sm-6 col-md-5 col-xl-3"></product-card>
     </div>
 
-    <!-- Divider -->
+    <!-------------------------- Divider -------------------------->
     <hr>
-    <!-- Enhance Your Experience -->
+    <!-------------------------- Enhance Your Experience -------------------------->
     <div class="banner row">
-     
-      <div class="banner-content col-sm-6 ">
+      <div class="banner-content col-sm-6 d-flex flex-column">
         <p class="banner-pin">Categories</p>
-        <p class="banner-title">Enhance Your Programming!</p>
+        <p class="banner-title secondary-color">Enhance Your Programming!</p>
         <div class="banner-timers">
           <banner-timer></banner-timer>
           <banner-timer></banner-timer>
           <banner-timer></banner-timer>
           <banner-timer></banner-timer>
         </div>
-        <button class="banner-button" type="button">Buy Now!</button>
+        <button class="banner-button secondary-color" type="button">Buy Now!</button>
       </div>
       <img class="banner-image col-sm-6" src="https://cdn.pixabay.com/photo/2020/04/08/16/32/keyboard-5017973_1280.jpg"
       alt="Labtop">
     </div>
 
 
-    <!-- Explore Our Products -->
+    <!-------------------------- Explore Our Products -------------------------->
     <section-header></section-header>
     <div class="products__group row g-3 g-md-4">
       <product-card discount class="col-12 col-sm-6 col-md-5 col-xl-3"></product-card>
@@ -152,7 +151,7 @@
     <br>
     <br>
     <br>
-    <!-- New Arrivals -->
+    <!-------------------------- New Arrivals -------------------------->
     <section-header></section-header>
     <div class="grid row mb-3">
       <div class="col-6 grid__image">
@@ -196,44 +195,12 @@
     </div>
 
 
-    <!-- Features -->
-    <div class="features">
-      <div class="feature col-lg-4">
-        <div class="feature__icon-wrapper">
-          <div class="feature__icon-wrapper2">
-            <i class="feature__icon fas fa-shipping-fast"></i>
-          </div>
-        </div>
-        <p class="feature__title">FREE AND FAST DELIVERY</p>
-        <p class="feature__description">Free delivery for all orders over $140</p>
-      </div>
-      <div class="feature col-lg-4">
-        <div class="feature__icon-wrapper">
-          <div class="feature__icon-wrapper2">
-            <i class="feature__icon fas fa-headphones-alt"></i>
-          </div>
-        </div>
-        <p class="feature__title">24/7 CUSTOMER SERVICE</p>
-        <p class="feature__description">Friendly 24/7 customer support</p>
-      </div>
-      <div class="feature col-lg-4">
-        <div class="feature__icon-wrapper">
-          <div class="feature__icon-wrapper2">
-            <i class="feature__icon fas fa-shield-alt"></i>
-          </div>
-        </div>
-        <p class="feature__title">MONEY BACK GUARANTEE</p>
-        <p class="feature__description">We reurn money within 30 days</p>
-      </div>
-    </div>
+    <!-------------------------- Features -------------------------->
+    
   </div>
-
-
-
-  </button>
   <!-- Bootstrap JS Bundle with Popper -->
   <script src="/assets/js/bootstrap.bundle.min.js"></script>
-  <script src="/assets/js/customer.js"></script>
+  <script src="/assets/js/components.js"></script>
   <script src="home.js"></script>
 </body>
 
