@@ -1,0 +1,38 @@
+ .ourStory_Details {
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+  .ourStory_Details h1 {
+    margin-bottom: 1.5rem;
+    font-weight: bolder;
+  }
+  .outer-circle {
+    width: 80px;
+    height: 80px;
+    background-color: lightgray;  
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
+  
+  .icon-circle {
+    width: 60px;
+    height: 60px;
+    background-color: #c1c0c1;  
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    font-size: 24px;
+  }
+  
+  .icon-circle{
+    background-color: #2F2E30;
+  }
+  .icon-circle i{
+    color: white;
+  }
