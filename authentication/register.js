@@ -5,7 +5,7 @@ import {
   validatePhone,
   validatePasswordMatch,
   validateName,
-} from "../utils.js";
+} from "../assets/js/utils.js";
 var existingUsers = JSON.parse(localStorage.getItem("users")) || [];
 
 function saveUserToLocal(userInstance) {

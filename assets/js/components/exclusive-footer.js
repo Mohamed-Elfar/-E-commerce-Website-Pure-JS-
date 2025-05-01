@@ -105,7 +105,7 @@ class ExclusiveFooter extends HTMLElement {
             </div>
           </div>
           <div class="footer__rights">
-            <p class="text--secondary border-top text-center m-auto pt-3">
+            <p class="text--secondary border-top text-center m-auto py-3">
               copyright &copy; 2022 exclusive. all rights reserved
             </p>
           </div>

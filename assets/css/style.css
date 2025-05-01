@@ -8,7 +8,7 @@ input {
   text-transform: none;
 }
 :root {
-  --taxt-bg: rgb(200, 198, 198);
+  --text-bg: rgb(200, 198, 198);
   --text-primary: #db4444;
   --text-secondary: rgb(200, 198, 198);
   --button-primary: #db4444;
@@ -45,6 +45,13 @@ a {
   text-decoration: none;
   border-bottom: 2px solid #7d8184;
   color: var(--text-secondary);
+}
+.fs-8{
+  font-size: 13px;
+}
+
+.w-65 {
+  width: 65%;
 }
 
 .invalid-feedback {
@@ -108,20 +115,19 @@ exclusive-header p {
 }
 
 .footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-
-  .col  {
+  .col {
     min-width: 245px;
   }
   .footer__barcode {
     max-width: 90px;
   }
-  .place-items-center{
+  .place-items-center {
     place-items: center;
   }
- 
+  .footer__rights > p {
+    border-color: rgb(94, 93, 93);
+    color:  rgb(94, 93, 93);
+  }
 
   @media screen and (max-width: 768px) {
     .footer {
@@ -140,5 +146,8 @@ exclusive-header p {
   .toast-error {
     text-align: center;
     width: 300px;
+  }
+  .container{
+    width: 100% !important;
   }
 }

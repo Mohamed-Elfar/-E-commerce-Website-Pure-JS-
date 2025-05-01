@@ -2,7 +2,7 @@ import {
   showToast,
   validatePassword,
   validatePasswordMatch,
-} from "../utils.js";
+} from "../assets/js/utils.js";
 const forgetEmail = document.querySelector("#forgetEmailInput");
 const submitEmailBtn = document.querySelector("#submitEmailBtn");
 const closeEmailBtn = document.querySelector(".emailModal");

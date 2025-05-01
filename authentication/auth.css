@@ -20,7 +20,7 @@
     input {
       width: 100%;
       border: none;
-      border-bottom: 1px solid var(--taxt-bg);
+      border-bottom: 1px solid var(--text-bg);
       padding: 5px;
     }
     .form-control {
