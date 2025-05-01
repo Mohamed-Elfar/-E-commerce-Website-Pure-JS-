@@ -15,10 +15,14 @@
     <link rel="stylesheet" href="../assets/css/style.css" />
   </head>
   <body>
+    <div class="toast"></div>
+
     <exclusive-header></exclusive-header>
     <main role="main">
       <div class="container w-65">
-        <ul class="list-unstyled gap-2 d-flex flex-wrap text--secondary my-5 fs-8">
+        <ul
+          class="list-unstyled gap-2 d-flex flex-wrap text--secondary my-5 fs-8"
+        >
           <li class="list-item">
             <a href="" class="border-0">my account</a> /
           </li>
@@ -49,7 +53,7 @@
                 </div>
                 <span class="text-muted product__price">$12</span>
               </li> -->
-             <!-- <li
+              <!-- <li
                 class="list-group-item d-flex justify-content-between bg-light"
               >
                 <div class="text-success">
@@ -81,6 +85,7 @@
             <button
               class="btn btn--primary btn-sm w-100 btn-block rounded-1"
               type="submit"
+              id="externalSubmit"
             >
               Continue to checkout
             </button>
@@ -89,13 +94,14 @@
             <h4 class="mb-3">Billing address</h4>
             <form class="needs-validation" novalidate>
               <div class="mb-3">
-                <label for="firstName "
-                  >First name <span class="text-danger">*</span></label
-                >
+                <label for="firstName">
+                  First name <span class="text-danger">*</span>
+                </label>
                 <input
                   type="text"
                   class="form-control"
                   id="firstName"
+                  name="firstName"
                   placeholder="please enter your first name"
                   required
                 />
@@ -112,6 +118,7 @@
                   type="text"
                   class="form-control"
                   id="lastName"
+                  name="lastName"
                   placeholder="please enter your last name"
                   required
                 />
@@ -126,6 +133,7 @@
                   type="email"
                   class="form-control"
                   id="email"
+                  name="email"
                   placeholder="you@example.com"
                   required
                 />
@@ -135,12 +143,13 @@
               </div>
               <div class="mb-3">
                 <label for="phone"
-                  >Email <span class="text-danger">*</span></label
+                  >Phone Number <span class="text-danger">*</span></label
                 >
                 <input
                   type="tel"
                   class="form-control"
                   id="phone"
+                  name="phone"
                   placeholder="01060493174"
                   required
                 />
@@ -157,6 +166,7 @@
                   type="text"
                   class="form-control"
                   id="address"
+                  name="address"
                   placeholder="1234 Main St"
                   required
                 />
@@ -174,18 +184,21 @@
                   type="text"
                   class="form-control"
                   id="address2"
+                  name="address2"
                   placeholder="Apartment or suite"
                 />
               </div>
               <div class="mb-3">
-                <label for="address2"
+                <label for="city"
                   >town/city <span class="text-danger">*</span></label
                 >
                 <input
                   type="text"
                   class="form-control"
                   id="city"
+                  name="city"
                   placeholder="tanta"
+                  required
                 />
                 <div class="invalid-feedback">
                   Please enter a your city for shipping .
