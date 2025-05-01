@@ -1,0 +1,79 @@
+ 
+  input {
+    text-transform: none;
+  }
+  :root {
+    --taxt-bg: rgb(200, 198, 198);
+    --text-primary:#db4444;
+    --text-secondary: rgb(0, 0, 0);
+    --button-secondary: #db4444;
+  }
+  body {
+    font-family: "Volkhov", serif;
+  }
+  a {
+    text-decoration: none;
+    border-bottom: 2px solid #7d8184;
+    color: var(--text-secondary);
+  }
+  
+  .invalid-feedback {
+    min-height: 1.5em;
+    font-size: 15px;
+  }
+  
+  .toast-success,
+  .toast-error {
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, -100px);
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    z-index: 1000;
+    width: fit-content;
+    padding: 15px 30px;
+    width: 30%;
+    border-radius: 15px;
+    opacity: 0;
+    pointer-events: none;
+    text-align: center;
+    font-size: 17px;
+  }
+
+  .toast-success {
+    color: green;
+    background-color: #d4edda;
+  }
+  .toast-error {
+    background-color: red;
+    color: white;
+  }
+  
+  .toast.show {
+    transform: translate(-50%, 20px);
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  .btn--secondary {
+    background-color: var(--button-secondary);
+    color: white;
+  }
+  .btn--secondary:hover,
+  .btn--secondary:active,
+  .btn--secondary:visited {
+    background-color: #ee3838;
+  }
+  
+  .text--primary {
+    color: var(--text-primary);
+  }
+  .form-control::placeholder {
+    font-size: 12px;
+  }
+  .no-outline:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  exclusive-header p {
+    color: rgb(200,198,198);
+  }
