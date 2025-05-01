@@ -597,6 +597,7 @@ hr {
 
 .grid__overlay-description {
     font-size: 14px;
+    width: 90%;
 }
 
 @media (max-width: 992px) {

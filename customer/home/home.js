@@ -24,3 +24,8 @@ function closeOnClickOutside(event) {
         new bootstrap.Collapse(sidebar).hide();
     }
 }
+
+// ------------------------------------------------------------------------------ //
+
+
+

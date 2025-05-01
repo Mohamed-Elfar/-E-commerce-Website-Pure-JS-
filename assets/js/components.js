@@ -1,6 +1,8 @@
 class SectionHeaderComponent extends HTMLElement {
-
     connectedCallback() {
+        const section_title = this.getAttribute('title');
+        const section_pin = this.getAttribute('pin');
+
         this.innerHTML = `
             <link rel="stylesheet" href="/assets/css/fontawesome.min.css">
             <link rel="stylesheet" href="/assets/css/style.css">
@@ -9,23 +11,21 @@ class SectionHeaderComponent extends HTMLElement {
             <div class="section__header">
                 <div class="section__pin">
                     <div class="section__pin-icon background-primary"></div>
-                    <p class="section__pin-text color-primary">Today's</p>
+                    <p class="section__pin-text color-primary">${section_pin}</p>
                 </div>
                 <div class="section__highlights">
-                    <p class="section__title">Best Selling Products</p>
+                    <p class="section__title">${section_title}</p>
                     <button class="section__button background-primary secondary-color" type="button" id="viewall">View All</button>
                 </div>
             </div>
       `;
 
-        // Product categories button special case
-        const viewallBtn = this.querySelector('#viewall');
-        if (this.hasAttribute('noviewall')) {
-            viewallBtn.style.display = 'none';
-        }
+        // Check if the 'noviewall' attribute exists to hide the View All button
+        this.hasAttribute('noviewall') ? 'display: none;' : '';
     }
 }
 customElements.define('section-header', SectionHeaderComponent);
+
 
 class ProductCardComponent extends HTMLElement {
     connectedCallback() {
@@ -77,7 +77,7 @@ class ProductCardComponent extends HTMLElement {
         // Product discount special case
         const productDiscount = this.querySelector('#discount');
         if (this.hasAttribute('discount')) {
-            productDiscount.classList.add('product__discount', 'background-primary','secondary-color');
+            productDiscount.classList.add('product__discount', 'background-primary', 'secondary-color');
             productDiscount.textContent = '-40%';
         }
     }
@@ -86,13 +86,15 @@ customElements.define('product-card', ProductCardComponent);
 
 class TimerComponent extends HTMLElement {
     connectedCallback() {
+        const timer_text = this.getAttribute('text');
+        const timer_number = this.getAttribute('number');
         this.innerHTML = `
             <link rel="stylesheet" href="/assets/css/fontawesome.min.css">
             <link rel="stylesheet" href="/assets/css/style.css">
             <link rel="stylesheet" href="/customer/home/home.css">
             <div class="banner-timer">
-                <p class="banner-timer-number">23h</p>
-                <p class="banner-timer-text">Hours</p>
+                <p class="banner-timer-number">${timer_number}</p>
+                <p class="banner-timer-text">${timer_text}</p>
             </div>
       `;
     }
