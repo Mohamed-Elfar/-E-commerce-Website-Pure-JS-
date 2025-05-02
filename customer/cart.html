@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cart Page</title>
   <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../assets/css/fontawesome.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
 
   <style>
     .quantity {
@@ -14,17 +16,18 @@
 
     }
 
-    .delete-btn {
+    /* .delete-btn {
       background: none;
       border: none;
       color: #8f0404;
       padding: 5px;
       border-radius: 5px;
-    }
+    } */
   </style>
 </head>
 
 <body>
+  <exclusive-header></exclusive-header>
   <div class="container my-5">
     <div class="mb-4 d-flex align-items-center">
       <p class="mb-0 text-muted">Home / </p>
@@ -89,7 +92,7 @@
   <script>
     const processButton = document.querySelector('.button--process');
     processButton.addEventListener('click', () => {
-      window.location.href = 'checkout.html';
+      window.location.href = 'checkout/checkout.html';
     });
 
     const returnButton = document.querySelector('.button--return');
@@ -119,11 +122,11 @@
             const row = document.createElement('tr');
 
             row.innerHTML = `
-              <td><img src="${productData.image}" width="50"> <p>${productData.name}</p></td>
+              <td ><img src="${productData.image}" width="50"> <p>${productData.name}</p></td>
               <td class="price">${productData.price}</td>
               <td><input type="number" class="quantity form-control" min="1" value="1"></td>
               <td class="subtotal">$${productData.price}</td>
-              <td><button class="btn btn-sm btn-danger delete-btn">X</button></td>
+              <td><button class="btn btn-sm  border-0  delete-btn">X</button></td>
             `;
 
             tbody.appendChild(row);
@@ -137,7 +140,7 @@
 
             quantityInput.addEventListener('input', () => {
               const quantity = parseInt(quantityInput.value) || 1;
-              subtotalCell.innerText = $${ (quantity * price).toFixed(2) };
+              subtotalCell.innerText = `$${(quantity * price).toFixed(2) }`;
               updateCartTotal();
             });
 
@@ -158,9 +161,9 @@
           });
 
           const discountedSubtotal = subtotalSum * (1 - discount);
-          subtotalInCart.innerText = $${ subtotalSum.toFixed(2) };
-          shipping.innerText = $${ shippingCost };
-          total.innerText = $${ (discountedSubtotal + shippingCost).toFixed(2) };
+          subtotalInCart.innerText = `$${ subtotalSum.toFixed(2) }`;
+          shipping.innerText = `$${ shippingCost }`;
+          total.innerText = `$${ (discountedSubtotal + shippingCost).toFixed(2) }`;
         }
 
         couponButton.addEventListener('click', () => {
@@ -187,6 +190,9 @@
         console.error("❌ Error:", error);
       });
   </script>
+  <exclusive-footer></exclusive-footer>
+  <script src="/assets/js/components/exclusive-header.js" defer></script>
+  <script src="/assets/js/components/exclusive-footer.js" defer></script>
 </body>
 
 </html>
