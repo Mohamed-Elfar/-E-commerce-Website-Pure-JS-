@@ -6,7 +6,7 @@
     <title>Product Details</title>
 
     <!-- icon -->
-    <link rel="icon" href="../../assets/images/E-icon.png" />
+    <link rel="icon" href="../../assets/images/icon.png" type="image/png" />
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../../assets/css/bootstrap.min.css" />
@@ -15,10 +15,12 @@
     <link rel="stylesheet" href="../../assets/css/fontawesome.min.css" />
 
     <!-- Your Custom Styles -->
-    <link rel="stylesheet" href="product-details.css" />
+    <link rel="stylesheet" href="productDtails.css" />
     <link rel="stylesheet" href="../../assets/css/style.css" />
   </head>
   <body>
+    <exclusive-header></exclusive-header>
+
     <!-- start product details section -->
     <section class="product-details">
       <div class="container py-5">
@@ -44,10 +46,10 @@
               <h3 class="product-info__heading" id="productName"></h3>
               <div class="porduct-info__rate d-flex align-items-center">
                 <div class="product-info__star">
-                  <i class="fa-solid fa-star gold"></i>
-                  <i class="fa-solid fa-star gold"></i>
-                  <i class="fa-solid fa-star gold"></i>
-                  <i class="fa-solid fa-star gold"></i>
+                  <i class="fa-solid fa-star gold" araia-hidden="true"></i>
+                  <i class="fa-solid fa-star gold" araia-hidden="true"></i>
+                  <i class="fa-solid fa-star gold" araia-hidden="true"></i>
+                  <i class="fa-solid fa-star gold" araia-hidden="true"></i>
                   <i class="fa-regular fa-star text-muted"></i>
                 </div>
                 <div class="product-info__review text-muted mx-2">
@@ -179,11 +181,11 @@
                     class="qty d-flex justify-content-between align-items-center"
                   >
                     <button class="btn btn-outline-danger">
-                      <i class="fa-solid fa-minus"></i>
+                      <i class="fa-solid fa-minus" araia-hidden="true"></i>
                     </button>
                     <span class="fs-5">2</span>
                     <button class="btn btn-outline-danger">
-                      <i class="fa-solid fa-plus"></i>
+                      <i class="fa-solid fa-plus" araia-hidden="true"></i>
                     </button>
                   </div>
                 </div>
@@ -213,7 +215,10 @@
                 <div
                   class="product-info__delivery--return-delivery p-2 d-flex align-items-center"
                 >
-                  <i class="fa-solid fa-arrows-rotate fs-3 mx-4"></i>
+                  <i
+                    class="fa-solid fa-arrows-rotate fs-3 mx-4"
+                    araia-hidden="true"
+                  ></i>
                   <div class="return-info ms-2">
                     <h6>Return Delivery</h6>
                     <small>Free 30-day Delivery Returns Details</small>
@@ -232,7 +237,13 @@
     </section>
     <!-- end product details section -->
 
-    <script src="../../assets/js/bootstrap.bundle.min.js"></script>
-    <script src="product-details.js"></script>
+    <exclusive-footer></exclusive-footer>
+
+    <!-- Exclusive Components -->
+    <script src="/assets/js/components/exclusive-header.js" defer></script>
+    <script src="/assets/js/components/exclusive-footer.js" defer></script>
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="productDtails.js"></script>
   </body>
 </html>

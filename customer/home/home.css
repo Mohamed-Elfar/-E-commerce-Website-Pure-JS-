@@ -13,11 +13,6 @@ XL: ≥ 1200px
 XXL: ≥ 1400px
 */
 
-body {
-    padding: 0 5vw;
-    /* was 135px */
-}
-
 * {
     margin: 0;
     padding: 0;

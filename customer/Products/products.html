@@ -3,25 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Products</title>
+    <link rel="icon" href="/assets/images/icon.png" type="image/png">
+
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
     <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="../../assets/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="/assets/css/fontawesome.min.css" />
     <!-- products Styles -->
-    <link rel="stylesheet" href="./products.css">
+    <link rel="stylesheet" href="products.css" />
     <!-- Your Custom Styles -->
-    <link rel="stylesheet" href="../../assets/css/style.css" />
-    <script src="../../assets/js/components/exclusive-header.js" defer></script>
+    <link rel="stylesheet" href="/assets/css/style.css" />
   </head>
   <body>
     <div class="toast"></div>
 
-      <exclusive-header></exclusive-header>
+    <exclusive-header></exclusive-header>
 
-<div class="container mt-5">
-  <div id="product-container" class="row g-4"></div>
-</div>
- <script src="./products.js" type="module"></script>
+    <div class="container mt-5">
+      <div id="product-container" class="row g-4"></div>
+    </div>
+    <exclusive-footer></exclusive-footer>
+
+    <script src="../../assets/js/components/exclusive-header.js" defer></script>
+    <script src="../../assets/js/components/exclusive-footer.js" defer></script>
+    <script src="products.js" type="module"></script>
   </body>
 </html>

@@ -2,7 +2,7 @@ class ExclusiveFooter extends HTMLElement {
   constructor() {
     super();
     this.innerHTML = `
-        <footer class="footer bg-black text-white">
+        <footer class="footer bg-black text-white mt-5">
           <div class="container py-5">
             <div class="outer__grid d-flex flex-wrap gap-3 mx-4 mx-md-0">
               <div class="col">
@@ -44,16 +44,16 @@ class ExclusiveFooter extends HTMLElement {
                     <a href="#" class="border-0">my account</a>
                   </li>
                   <li class="nav-item mb-2">
-                    <a href="#" class="border-0">login / register</a>
+                    <a href="/authentication/login.html" class="border-0">login / register</a>
                   </li>
                   <li class="nav-item mb-2">
-                    <a href="#" class="border-0">cart</a>
+                    <a href="/customer/cart/cart.html" class="border-0">cart</a>
                   </li>
                   <li class="nav-item mb-2">
-                    <a href="#" class="border-0">wishlist</a>
+                    <a href="/customer/wishlist/wishlist.html" class="border-0">wishlist</a>
                   </li>
                   <li class="nav-item mb-2">
-                    <a href="#" class="border-0">shop</a>
+                    <a href="/customer/products/products.html" class="border-0">shop</a>
                   </li>
                 </ul>
               </div>
@@ -70,7 +70,7 @@ class ExclusiveFooter extends HTMLElement {
                     <a href="#" class="border-0">FAQ</a>
                   </li>
                   <li class="nav-item mb-2">
-                    <a href="#" class="border-0">contact</a>
+                    <a href="/customer/contact/contact.html" class="border-0">contact</a>
                   </li>
                 </ul>
               </div>

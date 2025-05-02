@@ -1,135 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
-  <!-- Bootstrap CSS -->
-  <!-- <link rel="stylesheet" href="../assets/css/bootstrap.min.css" /> -->
-  <!-- FontAwesome Icons -->
-  <link rel="stylesheet" href="assets/css/fontawesome.min.css" />
-  <!-- Your Custom Styles -->
-  <link rel="stylesheet" href="assets/css/style.css" />
-  <link rel="stylesheet" href="cart.css">
+    <!-- icon -->
+    <link rel="icon" href="assets/images/icon.png" type="image/png" />
+    <!-- Bootstrap CSS -->
+    <!-- <link rel="stylesheet" href="../assets/css/bootstrap.min.css" /> -->
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="assets/css/fontawesome.min.css" />
+    <!-- Your Custom Styles -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="cart.css" />
+  </head>
 
-</head>
+  <body>
+    <exclusive-header></exclusive-header>
 
-<body>
-
-
-
-  <div class="cart_container">
-    <div class="cart_title">
-      <p class="cart_title--home">Home / </p>
-      <p class="cart_title--type"> Cart</p>
-    </div>
-
-
-    <div class="cart">
-      <div class="cart_content">
-        <div class="cart_content cart_content--view">
-          <table>
-            <tr>
-              <td>Product</td>
-              <td>Price</td>
-              <td>Quantity</td>
-              <td>Subtotal</td>
-            </tr>
-            <tr>
-              <td id="product">
-                <p>LCD Moniter</p>
-              </td>
-              <td id="price">$650</td>
-              <td><input type="number" id="quantity" min="1" value="2" name="quantity"></td>
-              <td id="subtotal"></td>
-            </tr>
-
-          </table>
-        </div>
-        <div class="cart_content cart_content--control">
-          <button class="button button--return">Return To Shop</button>
-          <button class="button button--update"> Update Cart</button>
-
-        </div>
-      </div>
-      <div class="cart_checkout">
-        <div class="cart_checkout--coupon">
-          <input type="text" name="coupon" id="coupon" placeholder="Coupon Code">
-          <button class="button button--coupon">Aplly Coupon</button>
-        </div>
-        <div class="cart_checkout--total">
-          <p><b>Cart Total</b></p>
-          <div class="cart_checkout--total---details">
-            <p>Subtotal:</p>
-            <p id="subtotalincart"></p>
-          </div>
-          <hr>
-          <div class="cart_checkout--total---details">
-            <p>Shipping:</p>
-            <p id="shipping"></p>
-          </div>
-          <hr>
-          <div class="cart_checkout--total---details">
-            <p>Total:</p>
-            <p id="Total">$1750</p>
-          </div>
-          <div class="cart_checkout--total---done"> <button class="button button--process">Process To Checkout</button>
-          </div>
-        </div>
+    <div class="cart_container">
+      <div class="cart_title">
+        <p class="cart_title--home">Home /</p>
+        <p class="cart_title--type">Cart</p>
       </div>
 
+      <div class="cart">
+        <div class="cart_content">
+          <div class="cart_content cart_content--view">
+            <table>
+              <tr>
+                <td>Product</td>
+                <td>Price</td>
+                <td>Quantity</td>
+                <td>Subtotal</td>
+              </tr>
+              <tr>
+                <td id="product">
+                  <p>LCD Moniter</p>
+                </td>
+                <td id="price">$650</td>
+                <td>
+                  <input
+                    type="number"
+                    id="quantity"
+                    min="1"
+                    value="2"
+                    name="quantity"
+                  />
+                </td>
+                <td id="subtotal"></td>
+              </tr>
+            </table>
+          </div>
+          <div class="cart_content cart_content--control">
+            <button class="button button--return">Return To Shop</button>
+            <button class="button button--update">Update Cart</button>
+          </div>
+        </div>
+        <div class="cart_checkout">
+          <div class="cart_checkout--coupon">
+            <input
+              type="text"
+              name="coupon"
+              id="coupon"
+              placeholder="Coupon Code"
+            />
+            <button class="button button--coupon">Aplly Coupon</button>
+          </div>
+          <div class="cart_checkout--total">
+            <p><b>Cart Total</b></p>
+            <div class="cart_checkout--total---details">
+              <p>Subtotal:</p>
+              <p id="subtotalincart"></p>
+            </div>
+            <hr />
+            <div class="cart_checkout--total---details">
+              <p>Shipping:</p>
+              <p id="shipping"></p>
+            </div>
+            <hr />
+            <div class="cart_checkout--total---details">
+              <p>Total:</p>
+              <p id="Total">$1750</p>
+            </div>
+            <div class="cart_checkout--total---done">
+              <button class="button button--process">
+                Process To Checkout
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-  </div>
+    <script>
+      const product = document.getElementById("product");
+      const price = document.getElementById("price");
+      const quantity = document.getElementById("quantity");
+      const subtotal = document.getElementById("subtotal");
+      const subtotalincart = document.getElementById("subtotalincart");
+      const Total = document.getElementById("Total");
+      const shipping = document.getElementById("shipping");
+      const coupon = document.getElementById("coupon");
+      const buttoncoupon = document.querySelector(".button--coupon");
+      const buttonreturn = document.querySelector(".button--return");
+      const buttonupdate = document.querySelector(".button--update");
+      const buttonprocess = document.querySelector(".button--process");
+      buttonreturn.addEventListener("click", function () {
+        window.location.href = "../index.html";
+      });
+      buttonprocess.addEventListener("click", function () {
+        window.location.href = "checkout.html";
+      });
 
-  <script>
-    const product = document.getElementById('product');
-    const price = document.getElementById('price');
-    const quantity = document.getElementById('quantity');
-    const subtotal = document.getElementById('subtotal');
-    const subtotalincart = document.getElementById('subtotalincart');
-    const Total = document.getElementById('Total');
-    const shipping = document.getElementById('shipping');
-    const coupon = document.getElementById('coupon');
-    const buttoncoupon = document.querySelector('.button--coupon');
-    const buttonreturn = document.querySelector('.button--return');
-    const buttonupdate = document.querySelector('.button--update');
-    const buttonprocess = document.querySelector('.button--process');
-    buttonreturn.addEventListener('click', function () {
-      window.location.href = "../index.html";
-    })
-    buttonprocess.addEventListener('click', function () {
-      window.location.href = "checkout.html";
-    })
+      price.value = 650;
+      function UpdatePrice() {
+        subTotal = price.value * quantity.value;
+        subtotal.innerHTML = subtotalincart.innerHTML = "$" + subTotal;
+        let shippingcost = 30;
+        shipping.innerHTML = "$" + shippingcost;
+        Total.innerHTML = "$" + (price.value * quantity.value + shippingcost);
+        buttoncoupon.addEventListener("click", function () {
+          if (coupon.value == "Group6-300") {
+            Total.innerHTML =
+              "$" + (price.value * quantity.value + (shippingcost - 300));
+            coupon.style.border = "3px solid green";
+            coupon.innerHTML = "";
+          } else {
+            coupon.style.border = "3px solid red";
+            coupon.value = "";
+            Total.innerHTML =
+              "$" + (price.value * quantity.value + shippingcost);
+          }
+        });
+      }
+      UpdatePrice();
+      quantity.addEventListener("change", UpdatePrice);
+    </script>
+    <exclusive-footer></exclusive-footer>
 
-    price.value = 650;
-    function UpdatePrice() {
-      subTotal = price.value * quantity.value;
-      subtotal.innerHTML = subtotalincart.innerHTML = "$" + subTotal;
-      let shippingcost = 30;
-      shipping.innerHTML = "$" + shippingcost;
-      Total.innerHTML = "$" + (price.value * quantity.value + shippingcost);
-      buttoncoupon.addEventListener('click', function () {
-        if (coupon.value == "Group6-300") {
-          Total.innerHTML = "$" + (price.value * quantity.value + (shippingcost - 300));
-          coupon.style.border = "3px solid green";
-          coupon.innerHTML = "";
-        }
-        else {
-          coupon.style.border = "3px solid red";
-          coupon.value = "";
-          Total.innerHTML = "$" + (price.value * quantity.value + shippingcost);
-        }
-      })
-    }
-    UpdatePrice();
-    quantity.addEventListener('change', UpdatePrice);
-
-
-  </script>
-
-
-</body>
-
+    <script src="../../assets/js/components/exclusive-header.js" defer></script>
+    <script src="../../assets/js/components/exclusive-footer.js" defer></script>
+  </body>
 </html>

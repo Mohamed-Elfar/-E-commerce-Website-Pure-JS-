@@ -1,27 +1,27 @@
 .notfound__heading {
-    font-size: 90px;
+  font-size: 90px;
 }
 
-@media screen and (max-width:768px) {
-    .notfound__heading {
-        font-size: 75px;
-    }
+@media screen and (max-width: 768px) {
+  .notfound__heading {
+    font-size: 75px;
+  }
 }
 
-@media screen and (max-width:576px) {
-    .notfound__heading {
-        font-size: 60px;
-    }
-    .notfound__text {
-        font-size: 14px;
-    }
+@media screen and (max-width: 576px) {
+  .notfound__heading {
+    font-size: 60px;
+  }
+  .notfound__text {
+    font-size: 14px;
+  }
 }
 
-@media screen and (max-width:400px) {
-    .notfound__heading {
-        font-size: 50px;
-    }
-    .notfound__text {
-        margin-left: 0 !important;
-    }
+@media screen and (max-width: 400px) {
+  .notfound__heading {
+    font-size: 50px;
+  }
+  .notfound__text {
+    margin-left: 0 !important;
+  }
 }

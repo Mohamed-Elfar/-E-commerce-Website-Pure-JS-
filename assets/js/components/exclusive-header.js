@@ -17,9 +17,9 @@ class ExclusiveHeader extends HTMLElement {
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav m-auto mb-2 mb-lg-0 text-center">
                 <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">contact</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">about</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">products</a></li>
+                <li class="nav-item"><a class="nav-link" href="/customer/contact/contact.html">contact</a></li>
+                <li class="nav-item"><a class="nav-link" href="/customer/about/about.html">about</a></li>
+                <li class="nav-item"><a class="nav-link" href="/customer/products/products.html">products</a></li>
               </ul>
               <form class="d-flex column-gap-1" id="searchForm">
                 <div class="input-group">
@@ -69,6 +69,3 @@ class ExclusiveHeader extends HTMLElement {
 }
 
 customElements.define("exclusive-header", ExclusiveHeader);
-
-
-
