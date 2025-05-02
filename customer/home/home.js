@@ -50,3 +50,49 @@ function fetchFlashSalesData() {
         .catch(error => console.error('Error loading JSON:', error));
 };
 fetchFlashSalesData();
+
+
+function fetchBestSellingData() {
+    var productsSection = document.getElementById('best-selling');
+    console.log(productsSection);
+    fetch('/assets/data/products.json')
+        .then(response => response.json())
+        .then(products => {
+            products.slice(0, 4).forEach(product => {
+                var productCard = document.createElement('product-card');
+                productCard.className = 'col-12 col-sm-6 col-md-5 col-xl-3';
+                productCard.setAttribute('name', product.name);
+                productCard.setAttribute('price', product.price);
+                productCard.setAttribute('image', product.image);
+                productCard.setAttribute('ratingCount', product.ratingCount);
+                productsSection.appendChild(productCard);
+            });
+
+            return products;
+        })
+        .catch(error => console.error('Error loading JSON:', error));
+};
+fetchBestSellingData();
+
+
+function fetchOurProductsData() {
+    var productsSection = document.getElementById('our-products');
+    console.log(productsSection);
+    fetch('/assets/data/products.json')
+        .then(response => response.json())
+        .then(products => {
+            products.slice(0, 4).forEach(product => {
+                var productCard = document.createElement('product-card');
+                productCard.className = 'col-12 col-sm-6 col-md-5 col-xl-3';
+                productCard.setAttribute('name', product.name);
+                productCard.setAttribute('price', product.price);
+                productCard.setAttribute('image', product.image);
+                productCard.setAttribute('ratingCount', product.ratingCount);
+                productsSection.appendChild(productCard);
+            });
+
+            return products;
+        })
+        .catch(error => console.error('Error loading JSON:', error));
+};
+fetchOurProductsData();
