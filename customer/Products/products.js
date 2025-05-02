@@ -54,9 +54,9 @@ fetch("../../assets/data/products.json")
       </div>
     `;
       const addBtn = card.querySelector(".cartBTn");
-      addBtn.addEventListener("click", () => addToCart(elem.id));
+      addBtn.addEventListener("click", () => addToCart(elem));
       const wishBtn = card.querySelector(".fa-heart");
-      wishBtn.addEventListener("click", () => addToWishList(elem.id));
+      wishBtn.addEventListener("click", () => addToWishList(elem));
       container.appendChild(card);
     });
   })
