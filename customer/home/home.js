@@ -29,3 +29,23 @@ function closeOnClickOutside(event) {
 
 
 
+function fetchFlashSalesData() {
+    var productsSection = document.getElementById('flash-sales');
+    console.log(productsSection);
+    fetch('/assets/data/products.json')
+        .then(response => response.json())
+        .then(products => {
+            products.slice(0, 4).forEach(product => {
+                var productCard = document.createElement('product-card');
+                productCard.setAttribute('name', product.name);
+                productCard.setAttribute('price', product.price);
+                productCard.setAttribute('image', product.image);
+                productCard.setAttribute('ratingCount', product.ratingCount);
+                productsSection.appendChild(productCard);
+            });
+
+            return products;
+        })
+        .catch(error => console.error('Error loading JSON:', error));
+};
+fetchFlashSalesData();
