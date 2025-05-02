@@ -9,7 +9,33 @@
     "Rating": 4,
     "ratingPeople": 100,
     "sale": "",
-    "category": "Smartphones"
+    "category": "Smartphones",
+    "reviews": [
+      {
+        "userId": "user789",
+        "username": "TechEnthusiast",
+        "rating": 5,
+        "date": "2023-11-15",
+        "title": "Worth every penny!",
+        "comment": "The A17 chip is incredibly fast and the camera quality is outstanding. Battery life could be better though."
+      },
+      {
+        "userId": "user234",
+        "username": "MobilePhotographer",
+        "rating": 4,
+        "date": "2023-10-28",
+        "title": "Great upgrade from 13 Pro",
+        "comment": "Noticeable improvement in performance and camera. Dynamic Island is more useful than I expected."
+      },
+      {
+        "userId": "user567",
+        "username": "CasualUser",
+        "rating": 3,
+        "date": "2023-12-02",
+        "title": "Good but expensive",
+        "comment": "It's a great phone but not sure it's worth the premium over last year's model."
+      }
+    ]
   },
   {
     "id": 2,
@@ -21,7 +47,33 @@
     "Rating": 3,
     "ratingPeople": 140,
     "sale": "10%",
-    "category": "Smartphones"
+    "category": "Smartphones",
+    "reviews": [
+      {
+        "userId": "user123",
+        "username": "AndroidFan",
+        "rating": 4,
+        "date": "2024-01-10",
+        "title": "AI features are game-changing",
+        "comment": "The real-time translation and photo editing tools are incredible. Battery lasts all day with moderate use."
+      },
+      {
+        "userId": "user456",
+        "username": "TechReviewer",
+        "rating": 2,
+        "date": "2024-01-25",
+        "title": "Overheating issues",
+        "comment": "Gets uncomfortably warm during extended camera use. AI features are impressive when they work."
+      },
+      {
+        "userId": "user789",
+        "username": "BusinessUser",
+        "rating": 5,
+        "date": "2024-02-05",
+        "title": "Perfect for productivity",
+        "comment": "The DeX mode combined with AI scheduling makes this my perfect work companion."
+      }
+    ]
   },
   {
     "id": 3,
@@ -33,7 +85,25 @@
     "Rating": 2,
     "ratingPeople": 10,
     "sale": "15%",
-    "category": "Smartphones"
+    "category": "Smartphones",
+    "reviews": [
+      {
+        "userId": "user111",
+        "username": "PhotographyLover",
+        "rating": 5,
+        "date": "2023-12-15",
+        "title": "Best smartphone camera",
+        "comment": "The computational photography is unmatched. Night Sight works miracles in low light."
+      },
+      {
+        "userId": "user222",
+        "username": "StockAndroidFan",
+        "rating": 1,
+        "date": "2024-01-08",
+        "title": "Battery life terrible",
+        "comment": "Great camera but can't make it through a full day. Had to return it."
+      }
+    ]
   },
   {
     "id": 4,
@@ -45,7 +115,25 @@
     "Rating": 4,
     "ratingPeople": 50,
     "sale": "",
-    "category": "Smartphones"
+    "category": "Smartphones",
+    "reviews": [
+      {
+        "userId": "user333",
+        "username": "EarlyAdopter",
+        "rating": 5,
+        "date": "2024-02-20",
+        "title": "Future-proof device",
+        "comment": "The 120Hz display makes everything so smooth. Fast charging is a game changer."
+      },
+      {
+        "userId": "user444",
+        "username": "ValueShopper",
+        "rating": 3,
+        "date": "2024-02-25",
+        "title": "Overpriced",
+        "comment": "Great phone but not enough new features to justify the price jump from last year."
+      }
+    ]
   },
   {
     "id": 5,
@@ -57,7 +145,25 @@
     "Rating": 4,
     "ratingPeople": 60,
     "sale": "20%",
-    "category": "Smartphones"
+    "category": "Smartphones",
+    "reviews": [
+      {
+        "userId": "user555",
+        "username": "CameraExpert",
+        "rating": 5,
+        "date": "2024-01-30",
+        "title": "Leica partnership delivers",
+        "comment": "The camera system rivals dedicated point-and-shoots. The 1-inch sensor makes a huge difference."
+      },
+      {
+        "userId": "user666",
+        "username": "MIUIFan",
+        "rating": 4,
+        "date": "2024-02-10",
+        "title": "Almost perfect",
+        "comment": "Hardware is top-notch but MIUI still has some software quirks that need ironing out."
+      }
+    ]
   },
   {
     "id": 6,
@@ -69,7 +175,25 @@
     "Rating": 4,
     "ratingPeople": 80,
     "sale": "",
-    "category": "Smartphones"
+    "category": "Smartphones",
+    "reviews": [
+      {
+        "userId": "user777",
+        "username": "Audiophile",
+        "rating": 5,
+        "date": "2023-11-15",
+        "title": "Best audio quality",
+        "comment": "The headphone jack with high-res audio support is amazing. Camera pro controls are fantastic."
+      },
+      {
+        "userId": "user888",
+        "username": "CompactPhoneLover",
+        "rating": 4,
+        "date": "2023-12-05",
+        "title": "Perfect size",
+        "comment": "Finally a flagship that fits comfortably in one hand. Battery life is surprisingly good."
+      }
+    ]
   },
   {
     "id": 7,
@@ -81,7 +205,25 @@
     "Rating": 3,
     "ratingPeople": 90,
     "sale": "10%",
-    "category": "Smartphones"
+    "category": "Smartphones",
+    "reviews": [
+      {
+        "userId": "user999",
+        "username": "MobileGamer",
+        "rating": 5,
+        "date": "2023-10-20",
+        "title": "Ultimate gaming phone",
+        "comment": "165Hz display and shoulder buttons make this unbeatable for gaming. Cooling system works great."
+      },
+      {
+        "userId": "user101",
+        "username": "DailyDriver",
+        "rating": 2,
+        "date": "2023-11-12",
+        "title": "Too bulky",
+        "comment": "Great for gaming but too heavy and thick for everyday use. Camera is mediocre."
+      }
+    ]
   },
   {
     "id": 8,
@@ -93,7 +235,33 @@
     "Rating": 5,
     "ratingPeople": 60,
     "sale": "",
-    "category": "Laptops"
+    "category": "Laptops",
+    "reviews": [
+      {
+        "userId": "user890",
+        "username": "VideoEditorPro",
+        "rating": 5,
+        "date": "2023-12-15",
+        "title": "Absolute beast of a machine",
+        "comment": "Renders 4K video like it's nothing. The display is stunning and the battery life is unreal for this performance."
+      },
+      {
+        "userId": "user345",
+        "username": "SoftwareDev",
+        "rating": 5,
+        "date": "2024-01-05",
+        "title": "Perfect for development work",
+        "comment": "Compiles code in seconds and can handle dozens of Chrome tabs plus Docker containers without breaking a sweat."
+      },
+      {
+        "userId": "user678",
+        "username": "StudentUser",
+        "rating": 4,
+        "date": "2023-11-30",
+        "title": "Overkill for most students",
+        "comment": "Incredible machine but probably more power than most students need. Gets warm during intensive tasks."
+      }
+    ]
   },
   {
     "id": 9,
@@ -105,7 +273,25 @@
     "Rating": 4,
     "ratingPeople": 70,
     "sale": "",
-    "category": "Laptops"
+    "category": "Laptops",
+    "reviews": [
+      {
+        "userId": "user112",
+        "username": "DesignerPro",
+        "rating": 5,
+        "date": "2023-11-10",
+        "title": "Stunning display",
+        "comment": "The 4K touchscreen is perfect for design work. Keyboard takes some getting used to but is excellent."
+      },
+      {
+        "userId": "user113",
+        "username": "Traveler",
+        "rating": 4,
+        "date": "2024-01-15",
+        "title": "Ultra-portable power",
+        "comment": "Incredibly light yet powerful. Battery lasts through international flights."
+      }
+    ]
   },
   {
     "id": 10,
@@ -117,7 +303,25 @@
     "Rating": 3,
     "ratingPeople": 20,
     "sale": "50%",
-    "category": "Laptops"
+    "category": "Laptops",
+    "reviews": [
+      {
+        "userId": "user114",
+        "username": "Artist",
+        "rating": 5,
+        "date": "2023-12-05",
+        "title": "Great for digital art",
+        "comment": "The pen support and convertible form factor make this ideal for sketching and note-taking."
+      },
+      {
+        "userId": "user115",
+        "username": "BusinessUser",
+        "rating": 2,
+        "date": "2024-02-01",
+        "title": "Overheats under load",
+        "comment": "Gets uncomfortably hot during video calls. Fan noise is distracting in quiet environments."
+      }
+    ]
   },
   {
     "id": 11,
@@ -129,7 +333,25 @@
     "Rating": 2,
     "ratingPeople": 30,
     "sale": "",
-    "category": "Laptops"
+    "category": "Laptops",
+    "reviews": [
+      {
+        "userId": "user116",
+        "username": "Gamer",
+        "rating": 5,
+        "date": "2023-10-25",
+        "title": "Portable powerhouse",
+        "comment": "Plays all modern games at high settings despite its compact size. AniMe Matrix display is a fun bonus."
+      },
+      {
+        "userId": "user117",
+        "username": "Student",
+        "rating": 1,
+        "date": "2023-11-30",
+        "title": "Battery life terrible",
+        "comment": "Lasts less than 2 hours when gaming. Keyboard backlighting is inconsistent."
+      }
+    ]
   },
   {
     "id": 12,
@@ -141,7 +363,25 @@
     "Rating": 3,
     "ratingPeople": 70,
     "sale": "",
-    "category": "Laptops"
+    "category": "Laptops",
+    "reviews": [
+      {
+        "userId": "user118",
+        "username": "CorporateUser",
+        "rating": 5,
+        "date": "2024-01-10",
+        "title": "Best business laptop",
+        "comment": "Keyboard is unmatched. Lightweight yet durable. Battery easily lasts a full workday."
+      },
+      {
+        "userId": "user119",
+        "username": "TechWriter",
+        "rating": 3,
+        "date": "2023-12-20",
+        "title": "Good but overpriced",
+        "comment": "Excellent build quality but performance doesn't justify the premium price."
+      }
+    ]
   },
   {
     "id": 13,
@@ -153,7 +393,25 @@
     "Rating": 4,
     "ratingPeople": 90,
     "sale": "",
-    "category": "Laptops"
+    "category": "Laptops",
+    "reviews": [
+      {
+        "userId": "user120",
+        "username": "CollegeStudent",
+        "rating": 5,
+        "date": "2023-09-15",
+        "title": "Perfect for students",
+        "comment": "Weighs nothing yet handles all my coursework. Charges quickly too."
+      },
+      {
+        "userId": "user121",
+        "username": "FrequentTraveler",
+        "rating": 4,
+        "date": "2024-01-05",
+        "title": "Great travel companion",
+        "comment": "Light enough to carry all day. Screen could be brighter for outdoor use."
+      }
+    ]
   },
   {
     "id": 14,
@@ -165,9 +423,26 @@
     "Rating": 5,
     "ratingPeople": 30,
     "sale": "",
-    "category": "Laptops"
+    "category": "Laptops",
+    "reviews": [
+      {
+        "userId": "user122",
+        "username": "ContentCreator",
+        "rating": 5,
+        "date": "2023-11-25",
+        "title": "Perfect balance",
+        "comment": "Powerful enough for gaming and video editing, yet portable enough to carry daily."
+      },
+      {
+        "userId": "user123",
+        "username": "GamerGirl",
+        "rating": 4,
+        "date": "2024-02-10",
+        "title": "Almost perfect",
+        "comment": "Runs all my games smoothly but gets loud under heavy load."
+      }
+    ]
   },
-
   {
     "id": 15,
     "name": "Sony WH-1000XM5",
@@ -178,7 +453,25 @@
     "Rating": 4,
     "ratingPeople": 50,
     "sale": "5%",
-    "category": "Headphones"
+    "category": "Headphones",
+    "reviews": [
+      {
+        "userId": "user901",
+        "username": "FrequentFlyer",
+        "rating": 5,
+        "date": "2023-10-12",
+        "title": "Best ANC headphones I've owned",
+        "comment": "Completely eliminates airplane noise. Comfortable for long flights. Sound quality is excellent."
+      },
+      {
+        "userId": "user234",
+        "username": "Audiophile",
+        "rating": 4,
+        "date": "2023-11-18",
+        "title": "Great but not perfect",
+        "comment": "Noise cancellation is top-notch but the bass could be tighter. Very comfortable for extended wear."
+      }
+    ]
   },
   {
     "id": 16,
@@ -190,7 +483,25 @@
     "Rating": 3,
     "ratingPeople": 120,
     "sale": "30%",
-    "category": "Headphones"
+    "category": "Headphones",
+    "reviews": [
+      {
+        "userId": "user124",
+        "username": "iPhoneUser",
+        "rating": 5,
+        "date": "2023-12-10",
+        "title": "Perfect for Apple ecosystem",
+        "comment": "Seamless switching between devices. Transparency mode is incredibly natural sounding."
+      },
+      {
+        "userId": "user125",
+        "username": "AndroidUser",
+        "rating": 2,
+        "date": "2024-01-15",
+        "title": "Limited functionality",
+        "comment": "Many features don't work properly with Android. Sound quality is good but not great for the price."
+      }
+    ]
   },
   {
     "id": 17,
@@ -202,7 +513,25 @@
     "Rating": 4,
     "ratingPeople": 11,
     "sale": "",
-    "category": "Headphones"
+    "category": "Headphones",
+    "reviews": [
+      {
+        "userId": "user126",
+        "username": "MusicLover",
+        "rating": 5,
+        "date": "2023-11-05",
+        "title": "Most comfortable headphones",
+        "comment": "Can wear these for hours without discomfort. Sound signature is balanced and pleasant."
+      },
+      {
+        "userId": "user127",
+        "username": "TechReviewer",
+        "rating": 3,
+        "date": "2024-01-20",
+        "title": "Good but dated",
+        "comment": "Sound quality is excellent but lacks modern features like wear detection or multi-point pairing."
+      }
+    ]
   },
   {
     "id": 18,
@@ -214,7 +543,25 @@
     "Rating": 3,
     "ratingPeople": 140,
     "sale": "5%",
-    "category": "Headphones"
+    "category": "Headphones",
+    "reviews": [
+      {
+        "userId": "user128",
+        "username": "Audiophile",
+        "rating": 5,
+        "date": "2023-10-30",
+        "title": "Best sound quality",
+        "comment": "The most natural sounding wireless headphones I've tried. Battery life is incredible."
+      },
+      {
+        "userId": "user129",
+        "username": "CommutEr",
+        "rating": 2,
+        "date": "2023-12-15",
+        "title": "ANC could be better",
+        "comment": "Sound is amazing but noise cancellation isn't as strong as competitors."
+      }
+    ]
   },
   {
     "id": 19,
@@ -226,7 +573,25 @@
     "Rating": 4,
     "ratingPeople": 170,
     "sale": "",
-    "category": "Headphones"
+    "category": "Headphones",
+    "reviews": [
+      {
+        "userId": "user130",
+        "username": "DesignLover",
+        "rating": 5,
+        "date": "2024-01-05",
+        "title": "Unique and great",
+        "comment": "Love the transparent design. Sound quality is surprisingly good for the price."
+      },
+      {
+        "userId": "user131",
+        "username": "TechEnthusiast",
+        "rating": 3,
+        "date": "2024-02-10",
+        "title": "Good but not perfect",
+        "comment": "Cool design but fit could be better. Touch controls are sometimes unresponsive."
+      }
+    ]
   },
   {
     "id": 20,
@@ -238,7 +603,25 @@
     "Rating": 3,
     "ratingPeople": 30,
     "sale": "",
-    "category": "Headphones"
+    "category": "Headphones",
+    "reviews": [
+      {
+        "userId": "user132",
+        "username": "BusinessUser",
+        "rating": 5,
+        "date": "2023-11-20",
+        "title": "Best for calls",
+        "comment": "Microphone quality is unmatched. Perfect for work calls and meetings."
+      },
+      {
+        "userId": "user133",
+        "username": "MusicFan",
+        "rating": 2,
+        "date": "2023-12-25",
+        "title": "Average sound",
+        "comment": "Great for calls but music sounds flat compared to competitors."
+      }
+    ]
   },
   {
     "id": 21,
@@ -250,20 +633,55 @@
     "Rating": 4,
     "ratingPeople": 60,
     "sale": "",
-    "category": "Headphones"
+    "category": "Headphones",
+    "reviews": [
+      {
+        "userId": "user134",
+        "username": "BassLover",
+        "rating": 5,
+        "date": "2024-01-15",
+        "title": "Powerful bass",
+        "comment": "If you love bass-heavy music, these are perfect. Very comfortable too."
+      },
+      {
+        "userId": "user135",
+        "username": "Audiophile",
+        "rating": 2,
+        "date": "2023-12-05",
+        "title": "Not balanced",
+        "comment": "Too much bass overwhelms mids and highs. Better options at this price."
+      }
+    ]
   },
   {
     "id": 22,
     "name": "iPad Pro M2",
-    "description": "Apple’s most powerful tablet.",
+    "description": "Apple's most powerful tablet.",
     "image": "../../assets/images/products/download (18).jpeg",
     "price": 1099.0,
     "quantity": 13,
     "Rating": 3,
     "ratingPeople": 10,
-
     "sale": "",
-    "category": "Tablets"
+    "category": "Tablets",
+    "reviews": [
+      {
+        "userId": "user136",
+        "username": "DigitalArtist",
+        "rating": 5,
+        "date": "2023-11-10",
+        "title": "Perfect for artists",
+        "comment": "Apple Pencil experience is unmatched. Display is gorgeous and performance is flawless."
+      },
+      {
+        "userId": "user137",
+        "username": "CasualUser",
+        "rating": 2,
+        "date": "2024-01-20",
+        "title": "Overkill for most",
+        "comment": "Too expensive for just browsing and streaming. iPad Air is better value."
+      }
+    ]
   },
   {
     "id": 23,
@@ -274,9 +692,26 @@
     "quantity": 27,
     "Rating": 2,
     "ratingPeople": 50,
-
     "sale": "",
-    "category": "Tablets"
+    "category": "Tablets",
+    "reviews": [
+      {
+        "userId": "user138",
+        "username": "AndroidFan",
+        "rating": 5,
+        "date": "2023-12-15",
+        "title": "Best Android tablet",
+        "comment": "AMOLED screen is stunning. Dex mode makes it almost laptop-replacement capable."
+      },
+      {
+        "userId": "user139",
+        "username": "TabletUser",
+        "rating": 1,
+        "date": "2024-02-05",
+        "title": "Software issues",
+        "comment": "Hardware is great but Android still isn't optimized well for tablets."
+      }
+    ]
   },
   {
     "id": 24,
@@ -288,7 +723,25 @@
     "Rating": 4,
     "ratingPeople": 137,
     "sale": "",
-    "category": "Tablets"
+    "category": "Tablets",
+    "reviews": [
+      {
+        "userId": "user140",
+        "username": "ProductivityUser",
+        "rating": 5,
+        "date": "2023-10-25",
+        "title": "Great for work",
+        "comment": "Keyboard cover makes this a legit laptop alternative. Screen is huge and beautiful."
+      },
+      {
+        "userId": "user141",
+        "username": "MediaConsumer",
+        "rating": 3,
+        "date": "2023-11-30",
+        "title": "Too big",
+        "comment": "Excellent for media consumption but awkward to hold for long periods."
+      }
+    ]
   },
   {
     "id": 25,
@@ -300,7 +753,25 @@
     "Rating": 4,
     "ratingPeople": 158,
     "sale": "",
-    "category": "Tablets"
+    "category": "Tablets",
+    "reviews": [
+      {
+        "userId": "user142",
+        "username": "BudgetBuyer",
+        "rating": 5,
+        "date": "2024-01-10",
+        "title": "Amazing value",
+        "comment": "Perfect for reading and streaming. Can't beat it at this price."
+      },
+      {
+        "userId": "user143",
+        "username": "TechUser",
+        "rating": 2,
+        "date": "2023-12-20",
+        "title": "Limited by Fire OS",
+        "comment": "Hardware is decent but the software is too locked down."
+      }
+    ]
   },
   {
     "id": 26,
@@ -311,9 +782,26 @@
     "quantity": 9,
     "Rating": 3,
     "ratingPeople": 19,
-
     "sale": "",
-    "category": "Tablets"
+    "category": "Tablets",
+    "reviews": [
+      {
+        "userId": "user144",
+        "username": "BusinessProfessional",
+        "rating": 5,
+        "date": "2023-11-15",
+        "title": "Perfect hybrid",
+        "comment": "Runs full Windows apps with tablet convenience. Type Cover is excellent."
+      },
+      {
+        "userId": "user145",
+        "username": "Artist",
+        "rating": 3,
+        "date": "2024-01-25",
+        "title": "Good but expensive",
+        "comment": "Pen experience is good but not as good as iPad. Battery life could be better."
+      }
+    ]
   },
   {
     "id": 27,
@@ -324,9 +812,26 @@
     "quantity": 6,
     "Rating": 5,
     "ratingPeople": 13,
-
     "sale": "",
-    "category": "Tablets"
+    "category": "Tablets",
+    "reviews": [
+      {
+        "userId": "user146",
+        "username": "ValueSeeker",
+        "rating": 5,
+        "date": "2023-12-10",
+        "title": "Best budget tablet",
+        "comment": "Incredible performance for the price. Screen is much better than expected."
+      },
+      {
+        "userId": "user147",
+        "username": "MediaLover",
+        "rating": 4,
+        "date": "2024-02-15",
+        "title": "Great for media",
+        "comment": "Perfect for Netflix and YouTube. Speakers are surprisingly good."
+      }
+    ]
   },
   {
     "id": 28,
@@ -338,7 +843,25 @@
     "Rating": 3,
     "ratingPeople": 170,
     "sale": "",
-    "category": "Tablets"
+    "category": "Tablets",
+    "reviews": [
+      {
+        "userId": "user148",
+        "username": "Designer",
+        "rating": 5,
+        "date": "2023-10-20",
+        "title": "Beautiful device",
+        "comment": "The design and build quality are premium. M-Pencil works great for sketching."
+      },
+      {
+        "userId": "user149",
+        "username": "AppUser",
+        "rating": 2,
+        "date": "2023-11-30",
+        "title": "App limitations",
+        "comment": "Hardware is excellent but lack of Google services is a dealbreaker for many apps."
+      }
+    ]
   },
   {
     "id": 29,
@@ -355,6 +878,24 @@
       "https://smartkoshk.com/cdn/shop/files/800_800_8f39403155d135055e7c22c83df4e833.png?v=1699582538&width=1946",
       "https://smartkoshk.com/cdn/shop/files/800_800_fa7f39967740efd0f556f5581b8addd5.png?v=1699582539&width=1946",
       "https://allsport.mu/cdn/shop/files/MKT_Phoinix_ProductImage_Green_01_EN_HQ_PNG_20230720_300x300.png?v=1744124111"
+    ],
+    "reviews": [
+      {
+        "userId": "user150",
+        "username": "FitnessEnthusiast",
+        "rating": 5,
+        "date": "2023-11-05",
+        "title": "Best battery life",
+        "comment": "Lasts 2 weeks with always-on display. GPS tracking is accurate and health metrics are comprehensive."
+      },
+      {
+        "userId": "user151",
+        "username": "TechUser",
+        "rating": 3,
+        "date": "2023-12-20",
+        "title": "Limited smart features",
+        "comment": "Great fitness tracker but lacks advanced smartwatch capabilities."
+      }
     ]
   },
   {
@@ -372,6 +913,24 @@
       "https://m.media-amazon.com/images/I/51kVXSehruL.jpg",
       "https://cdn.shopify.com/s/files/1/0406/4500/1379/files/6-2.png?v=1667821164",
       "https://m.media-amazon.com/images/I/51AEp3q-ulL.jpg"
+    ],
+    "reviews": [
+      {
+        "userId": "user152",
+        "username": "BudgetBuyer",
+        "rating": 5,
+        "date": "2024-01-15",
+        "title": "Incredible value",
+        "comment": "AMOLED screen at this price is amazing. Battery life is as advertised."
+      },
+      {
+        "userId": "user153",
+        "username": "Runner",
+        "rating": 4,
+        "date": "2023-12-05",
+        "title": "Great for running",
+        "comment": "Lightweight and accurate GPS. Screen is bright enough for outdoor use."
+      }
     ]
   },
   {
@@ -389,6 +948,24 @@
       "https://m.media-amazon.com/images/I/61sh9XHS93L.jpg",
       "https://eshop.hkcsl.com/on/demandware.static/-/Sites-master-hkt-hk/default/dwc559ac1d/images/4223061scol/4223061.jpg",
       "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//catalog-image/100/MTA-138624408/samsung_samsung_galaxy_watch_6_-44mm-_-_garansi_resmi_full01_in1212af.jpg"
+    ],
+    "reviews": [
+      {
+        "userId": "user154",
+        "username": "AndroidUser",
+        "rating": 5,
+        "date": "2023-10-10",
+        "title": "Best Android smartwatch",
+        "comment": "Seamless integration with Samsung phones. Health tracking is comprehensive and accurate."
+      },
+      {
+        "userId": "user155",
+        "username": "iPhoneUser",
+        "rating": 2,
+        "date": "2023-11-25",
+        "title": "Limited with iPhone",
+        "comment": "Many features don't work properly when paired with an iPhone."
+      }
     ]
   },
   {
@@ -406,126 +983,24 @@
       "https://btech.com/media/catalog/product/cache/62b531a6a95dad9307c3d613e4bc3dfa/2/7/273783263909e8c1cd2e5eaacc3334c29ba6f4cb14ec966d0b7c812097174754.jpeg",
       "https://i0.wp.com/i02.appmifile.com/mi-com-product/fly-birds/redmi-watch-3-active/pc/d85881ab842f063a1ca4cef8e5fc7f1a.png?ssl=1",
       "https://i02.appmifile.com/mi-com-product/fly-birds/redmi-watch-3-active/m/1c42dc958e03c4fa62fa4d37a7143c73.png"
-    ]
-  },
-  {
-    "id": 33,
-    "name": "Garmin Venu Sq 2",
-    "description": "AMOLED display, advanced sleep monitoring, stress tracking, GPS, 11-day battery, animated workouts, women's health tracking, contactless payments.",
-    "image": "https://www.garmin.com.my/m/my/g/products/venu-sq-2-music-black-cf-lg.jpg",
-    "price": 7999.0,
-    "quantity": 6,
-    "Rating": 5,
-    "ratingPeople": 89,
-    "sale": "",
-    "category": "Smartwatches",
-    "images": [
-      "https://images-cdn.ubuy.co.id/63bfd431fb21980f22488a07-garmin-venu-sq-2-slateblack-music.jpg",
-      "https://res.garmin.com/transform/image/upload/b_rgb:FFFFFF,c_pad,dpr_2.0,f_auto,h_400,q_auto,w_400/c_pad,h_400,w_400/v1/Product_Images/en/products/010-02701-00/v/pd-02-xl?pgw=1",
-      "https://ph.garmin.com/m/ph/g/products/venu-sq-2-gray-pd-04-lg.jpg"
-    ]
-  },
-  {
-    "id": 34,
-    "name": "Fitbit Versa 4",
-    "description": "Built-in GPS, 40+ exercise modes, sleep score, SpO2 tracking, 6+ day battery, Amazon Alexa, water resistant to 50m, health metrics dashboard.",
-    "image": "https://lh3.googleusercontent.com/yStrNz7l0aUnjKWo7jyJYXHfSLZmg6TyseayaF61NneZBOSfSKilQ-o3LoYZB-ucPnq7qUVmla6ARmrwiw-8eQTeWjU64xHd_g=s0",
-    "price": 5999.0,
-    "quantity": 10,
-    "Rating": 4,
-    "ratingPeople": 210,
-    "sale": "",
-    "category": "Smartwatches",
-    "images": [
-      "https://fonepro.pk/wp-content/uploads/2022/09/versa4-black-device-front-380x380.png",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLdwVcqThCTpWK8aKixTgS8-Clag5IyZ63F03ms05Q6JzooecwN-Eer8F_EsTgCRMi9oM&usqp=CAU",
-      "https://m.media-amazon.com/images/I/71QqE06f4+L.AC_SL1500.jpg"
-    ]
-  },
-  {
-    "id": 35,
-    "name": "Apple Watch SE (2nd Gen)",
-    "description": "Retina OLED display, crash detection, heart rate notifications, water resistant 50m, GPS/GNSS, 18hr battery, iOS compatible, aluminum case.",
-    "image": "https://istore.ph/cdn/shop/files/Apple_Watch_SE_40mm_GPS_Midnight_Aluminum_Sport_Loop_Ink_PDP_Image_Position_1__PH-EN.jpg?v=1728113835",
-    "price": 10999.0,
-    "quantity": 7,
-    "Rating": 5,
-    "ratingPeople": 512,
-    "sale": "",
-    "category": "Smartwatches",
-    "images": [
-      "https://cdsassets.apple.com/live/SZLF0YNV/images/sp/111853_apple-watch-se-2nd-gen.png",
-      "https://estore.jawwal.ps/storage/product/2732/eTgssXUjuvjn2Big6wzRRxlld5a68SPG9Ya4VPEI.jpg",
-      "https://www.apple.com/v/apple-watch-se/k/images/overview/lighter/lighter__m02ijcqqneaq_large.jpg"
-    ]
-  },
-
-  {
-    "id": 29,
-    "name": "HUAWEI Watch GT 4",
-    "description": "46mm AMOLED display, up to 14-day battery life, TruSeen 5.5+ heart rate monitoring, 100+ workout modes, Bluetooth calling, compatible with Android/iOS.",
-    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSO2jRalIQhsYmGOQnwtgzi99_PML754AiNiQ&s",
-    "price": 6999.0,
-    "quantity": 15,
-    "Rating": 4,
-    "ratingPeople": 342,
-    "sale": "",
-    "category": "Smartwatches",
-    "images": [
-      "https://smartkoshk.com/cdn/shop/files/800_800_8f39403155d135055e7c22c83df4e833.png?v=1699582538&width=1946",
-      "https://smartkoshk.com/cdn/shop/files/800_800_fa7f39967740efd0f556f5581b8addd5.png?v=1699582539&width=1946",
-      "https://allsport.mu/cdn/shop/files/MKT_Phoinix_ProductImage_Green_01_EN_HQ_PNG_20230720_300x300.png?v=1744124111"
-    ]
-  },
-  {
-    "id": 30,
-    "name": "Amazfit GTS 4 Mini",
-    "description": "1.65\" AMOLED display, 200+ watch faces, GPS, 5ATM waterproof, 15-day battery life, blood oxygen/heart rate monitoring, 120+ sports modes.",
-    "image": "https://2b.com.eg/media/catalog/product/cache/661473ab953cdcdf4c3b607144109b90/w/t/wt410-1-min.jpg",
-    "price": 3499.0,
-    "quantity": 8,
-    "Rating": 4,
-    "ratingPeople": 187,
-    "sale": "",
-    "category": "Smartwatches",
-    "images": [
-      "https://m.media-amazon.com/images/I/51kVXSehruL.jpg",
-      "https://cdn.shopify.com/s/files/1/0406/4500/1379/files/6-2.png?v=1667821164",
-      "https://m.media-amazon.com/images/I/51AEp3q-ulL.jpg"
-    ]
-  },
-  {
-    "id": 31,
-    "name": "Samsung Galaxy Watch6",
-    "description": "44mm Bluetooth, sapphire crystal glass, 3-in-1 bio sensor (heart rate/ECG/blood pressure), sleep coaching, 40+ workout tracking, IP68 waterproof.",
-    "image": "https://images.samsung.com/is/image/samsung/p6pim/africa_en/2307/gallery/africa-en-galaxy-watch6-r945-sm-r940nzkamea-537401503?$684_547_PNG$",
-    "price": 9999.0,
-    "quantity": 12,
-    "Rating": 5,
-    "ratingPeople": 421,
-    "sale": "",
-    "category": "Smartwatches",
-    "images": [
-      "https://m.media-amazon.com/images/I/61sh9XHS93L.jpg",
-      "https://eshop.hkcsl.com/on/demandware.static/-/Sites-master-hkt-hk/default/dwc559ac1d/images/4223061scol/4223061.jpg",
-      "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//catalog-image/100/MTA-138624408/samsung_samsung_galaxy_watch_6_-44mm-_-_garansi_resmi_full01_in1212af.jpg"
-    ]
-  },
-  {
-    "id": 32,
-    "name": "Xiaomi Redmi Watch 3 Active",
-    "description": "1.83\" LCD display, SpO2 monitoring, 5ATM waterproof, 121 sports modes, 12-day battery life, Bluetooth 5.3, lightweight design (37g).",
-    "image": "https://down-tw.img.susercontent.com/file/sg-11134201-7rdvl-m19dgjqaxjcu56",
-    "price": 2299.0,
-    "quantity": 20,
-    "Rating": 4,
-    "ratingPeople": 156,
-    "sale": "",
-    "category": "Smartwatches",
-    "images": [
-      "https://btech.com/media/catalog/product/cache/62b531a6a95dad9307c3d613e4bc3dfa/2/7/273783263909e8c1cd2e5eaacc3334c29ba6f4cb14ec966d0b7c812097174754.jpeg",
-      "https://i0.wp.com/i02.appmifile.com/mi-com-product/fly-birds/redmi-watch-3-active/pc/d85881ab842f063a1ca4cef8e5fc7f1a.png?ssl=1",
-      "https://i02.appmifile.com/mi-com-product/fly-birds/redmi-watch-3-active/m/1c42dc958e03c4fa62fa4d37a7143c73.png"
+    ],
+    "reviews": [
+      {
+        "userId": "user156",
+        "username": "BudgetUser",
+        "rating": 5,
+        "date": "2024-01-05",
+        "title": "Amazing for the price",
+        "comment": "Tracks all my workouts accurately. Screen is big and bright."
+      },
+      {
+        "userId": "user157",
+        "username": "TechLover",
+        "rating": 3,
+        "date": "2023-12-15",
+        "title": "Basic but good",
+        "comment": "Doesn't have advanced smart features but great as a fitness tracker."
+      }
     ]
   },
   {
@@ -543,6 +1018,24 @@
       "https://images-cdn.ubuy.co.id/63bfd431fb21980f22488a07-garmin-venu-sq-2-slateblack-music.jpg",
       "https://res.garmin.com/transform/image/upload/b_rgb:FFFFFF,c_pad,dpr_2.0,f_auto,h_400,q_auto,w_400/c_pad,h_400,w_400/v1/Product_Images/en/products/010-02701-00/v/pd-02-xl?pgw=1",
       "https://ph.garmin.com/m/ph/g/products/venu-sq-2-gray-pd-04-lg.jpg"
+    ],
+    "reviews": [
+      {
+        "userId": "user158",
+        "username": "OutdoorEnthusiast",
+        "rating": 5,
+        "date": "2023-11-20",
+        "title": "Perfect for active lifestyle",
+        "comment": "GPS is incredibly accurate. Battery lasts through multi-day hikes."
+      },
+      {
+        "userId": "user159",
+        "username": "FitnessNewbie",
+        "rating": 4,
+        "date": "2024-01-10",
+        "title": "Great health insights",
+        "comment": "Helped me understand my sleep and stress patterns. Animated workouts are helpful."
+      }
     ]
   },
   {
@@ -560,6 +1053,24 @@
       "https://fonepro.pk/wp-content/uploads/2022/09/versa4-black-device-front-380x380.png",
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLdwVcqThCTpWK8aKixTgS8-Clag5IyZ63F03ms05Q6JzooecwN-Eer8F_EsTgCRMi9oM&usqp=CAU",
       "https://m.media-amazon.com/images/I/71QqE06f4+L._AC_SL1500_.jpg"
+    ],
+    "reviews": [
+      {
+        "userId": "user160",
+        "username": "HealthConscious",
+        "rating": 5,
+        "date": "2023-10-05",
+        "title": "Best health tracking",
+        "comment": "Sleep tracking is incredibly accurate. Love the readiness score feature."
+      },
+      {
+        "userId": "user161",
+        "username": "TechUser",
+        "rating": 3,
+        "date": "2023-12-25",
+        "title": "Limited smart features",
+        "comment": "Great fitness tracker but not a full smartwatch. Alexa integration is spotty."
+      }
     ]
   },
   {
@@ -577,6 +1088,24 @@
       "https://cdsassets.apple.com/live/SZLF0YNV/images/sp/111853_apple-watch-se-2nd-gen.png",
       "https://estore.jawwal.ps/storage/product/2732/eTgssXUjuvjn2Big6wzRRxlld5a68SPG9Ya4VPEI.jpg",
       "https://www.apple.com/v/apple-watch-se/k/images/overview/lighter/lighter__m02ijcqqneaq_large.jpg"
+    ],
+    "reviews": [
+      {
+        "userId": "user162",
+        "username": "iPhoneUser",
+        "rating": 5,
+        "date": "2023-09-15",
+        "title": "Perfect iPhone companion",
+        "comment": "Seamless integration with iOS. Crash detection gives peace of mind."
+      },
+      {
+        "userId": "user163",
+        "username": "FitnessUser",
+        "rating": 4,
+        "date": "2023-11-30",
+        "title": "Great starter Apple Watch",
+        "comment": "Does everything I need at a more affordable price than the Series 9."
+      }
     ]
   },
   {
@@ -594,6 +1123,24 @@
       "https://planetgate.net/cdn/shop/files/REDRAGON-M711-COBRA-GAMING-MOUSE-5.jpg?v=1706053474&width=1445",
       "https://content.rozetka.com.ua/goods/images/big/390423515.jpg",
       "https://ccimg.canadacomputers.com/Products/800x800/276/367/118356/94418.jpg"
+    ],
+    "reviews": [
+      {
+        "userId": "user164",
+        "username": "PCGamer",
+        "rating": 5,
+        "date": "2024-01-10",
+        "title": "Best budget gaming mouse",
+        "comment": "Precise tracking and comfortable grip. RGB lighting is customizable."
+      },
+      {
+        "userId": "user165",
+        "username": "MMOPlayer",
+        "rating": 4,
+        "date": "2023-12-20",
+        "title": "Great for MMOs",
+        "comment": "Extra buttons are perfectly placed. Cable is durable and doesn't tangle."
+      }
     ]
   },
   {
@@ -611,6 +1158,24 @@
       "https://cf-images.dustin.eu/cdn-cgi/image/fit=contain,format=auto,quality=75,width=828,fit=contain/image/d2000010011415163/logitech-g-pro-mechanical-gaming-keyboard-kabel-logitech-gx-blue-nordic.png ",
       "https://down-th.img.susercontent.com/file/sg-11134201-22110-vdezn9dir9jv1c",
       "https://hardwaremarket.net/wp-content/uploads/2021/03/51IvcfqRLVL._AC_SL1000_.jpg.webp"
+    ],
+    "reviews": [
+      {
+        "userId": "user166",
+        "username": "EsportsPlayer",
+        "rating": 5,
+        "date": "2023-11-15",
+        "title": "Tournament-grade keyboard",
+        "comment": "Responsive switches and rock-solid build quality. Perfect for competitive gaming."
+      },
+      {
+        "userId": "user167",
+        "username": "OfficeWorker",
+        "rating": 2,
+        "date": "2024-01-25",
+        "title": "Too loud for office",
+        "comment": "Great for gaming but the clicky switches are too noisy for shared spaces."
+      }
     ]
   },
   {
@@ -628,6 +1193,24 @@
       "https://egyptlaptop.com/images/detailed/73/laptop-gaming-asus.webp",
       "https://www.laptopsdirect.co.uk/Images/G513QY-HF002W_13_Supersize.jpg?v=28",
       "https://www.notebookcheck.com/fileadmin/Notebooks/News/_nc3/11_StrixG_15_HotPink_1.jpg"
+    ],
+    "reviews": [
+      {
+        "userId": "user168",
+        "username": "GamingEnthusiast",
+        "rating": 5,
+        "date": "2023-10-20",
+        "title": "Powerful and portable",
+        "comment": "Runs all modern games at high settings. Cooling system keeps temps reasonable."
+      },
+      {
+        "userId": "user169",
+        "username": "Student",
+        "rating": 3,
+        "date": "2023-12-15",
+        "title": "Good but heavy",
+        "comment": "Great performance but not ideal to carry around campus daily."
+      }
     ]
   },
   {
@@ -645,6 +1228,24 @@
       "hhttps://www.samma3a.com/media/catalog/product/cache/53bce20d7ffd193e694a37d8959f20c7/n/o/nova_pro_w_1_.jpg",
       "https://media.s-bol.com/JxvnLnLKR5L2/R61YELq/550x620.jpg",
       "https://m.media-amazon.com/images/S/aplus-media-library-service-media/84466fbb-2f64-49e2-8e4c-87e10e0441f2.__CR0,0,600,450_PT0_SX600_V1___.png"
+    ],
+    "reviews": [
+      {
+        "userId": "user170",
+        "username": "AudiophileGamer",
+        "rating": 5,
+        "date": "2024-01-05",
+        "title": "Best gaming headset",
+        "comment": "Incredible sound quality and comfort. Battery lasts through marathon gaming sessions."
+      },
+      {
+        "userId": "user171",
+        "username": "ConsoleGamer",
+        "rating": 4,
+        "date": "2023-11-30",
+        "title": "Great for PS5",
+        "comment": "Works flawlessly with PlayStation. Mic quality is crystal clear."
+      }
     ]
   },
   {
@@ -662,6 +1263,24 @@
       "https://stickietech.com/cdn/shop/products/DeepPurple1_cd2c95fd-34da-4761-957d-ab1c27071b0b.png?v=1636679063&width=2048",
       "https://images-cdn.ubuy.co.in/634d11fe7db916290e5415c7-microsoft-xbox-controller-shock-blue-for.jpg",
       "https://media.gamestop.com/i/gamestop/11108369-41085cba_ALT17?$pdp$"
+    ],
+    "reviews": [
+      {
+        "userId": "user172",
+        "username": "ConsoleGamer",
+        "rating": 5,
+        "date": "2023-12-10",
+        "title": "Perfect controller",
+        "comment": "Comfortable for long sessions. Buttons have perfect tension. Works great with PC too."
+      },
+      {
+        "userId": "user173",
+        "username": "CasualPlayer",
+        "rating": 4,
+        "date": "2024-01-20",
+        "title": "Great but drifts",
+        "comment": "Love the feel but developed stick drift after 6 months of heavy use."
+      }
     ]
   },
   {
@@ -679,6 +1298,24 @@
       "https://m.media-amazon.com/images/I/51CDFUWWmdL.jpg",
       "https://m.media-amazon.com/images/I/61ZFTf0lnaL.jpg",
       "https://m.media-amazon.com/images/I/71g7y91qVNL._AC_SL1500_.jpg"
+    ],
+    "reviews": [
+      {
+        "userId": "user174",
+        "username": "CompetitiveGamer",
+        "rating": 5,
+        "date": "2023-11-25",
+        "title": "Game changer",
+        "comment": "170Hz makes everything so smooth. Colors are vibrant and response time is instant."
+      },
+      {
+        "userId": "user175",
+        "username": "ContentCreator",
+        "rating": 4,
+        "date": "2024-01-15",
+        "title": "Great for work and play",
+        "comment": "Perfect for both gaming and photo editing. HDR could be better though."
+      }
     ]
   },
   {
@@ -696,6 +1333,24 @@
       "https://delenordic.com/cdn/shop/products/3049743_2e7339b38f82_900x.webp?v=1674566312",
       "https://au.hyperx.com/cdn/shop/files/hyperx_cloud_alpha_s_blue_9_packaging_back.jpg?v=1724865830&width=1946",
       "https://img.mvideo.ru/Pdb/50175813b2.jpg"
+    ],
+    "reviews": [
+      {
+        "userId": "user176",
+        "username": "LongSessionGamer",
+        "rating": 5,
+        "date": "2023-10-15",
+        "title": "Most comfortable headset",
+        "comment": "Can wear these for 8+ hours without discomfort. Sound quality is excellent for the price."
+      },
+      {
+        "userId": "user177",
+        "username": "ConsolePlayer",
+        "rating": 4,
+        "date": "2023-12-30",
+        "title": "Great for PS5 and Switch",
+        "comment": "Works perfectly with all my consoles. Mic quality is clear according to my teammates."
+      }
     ]
   }
 ]
