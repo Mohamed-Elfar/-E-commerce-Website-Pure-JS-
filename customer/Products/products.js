@@ -43,7 +43,7 @@ fetch("../../assets/data/products.json")
                   } fa-star" aria-hidden="true"></i>`
               )
               .join("")}
-            <p class="product__rating-count">(${elem.ratingPeople})</p>
+            <p class="product__rating-count">(${elem.ratingCount})</p>
           </div>
           <div class="col-md-12">
             <button class="btn btn-dark w-100 cartBTn" data-id="${
