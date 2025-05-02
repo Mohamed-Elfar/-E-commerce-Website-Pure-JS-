@@ -7,7 +7,7 @@
     "price": 1199.99,
     "quantity": 2,
     "Rating": 4,
-    "ratingPeople": 100,
+    "ratingCount": 100,
     "sale": "",
     "category": "Smartphones",
     "reviews": [
@@ -45,7 +45,7 @@
     "price": 1099.99,
     "quantity": 5,
     "Rating": 3,
-    "ratingPeople": 140,
+    "ratingCount": 140,
     "sale": "10%",
     "category": "Smartphones",
     "reviews": [
@@ -83,7 +83,7 @@
     "price": 999.99,
     "quantity": 7,
     "Rating": 2,
-    "ratingPeople": 10,
+    "ratingCount": 10,
     "sale": "15%",
     "category": "Smartphones",
     "reviews": [
@@ -113,7 +113,7 @@
     "price": 40000,
     "quantity": 12,
     "Rating": 4,
-    "ratingPeople": 50,
+    "ratingCount": 50,
     "sale": "",
     "category": "Smartphones",
     "reviews": [
@@ -143,7 +143,7 @@
     "price": 899.99,
     "quantity": 6,
     "Rating": 4,
-    "ratingPeople": 60,
+    "ratingCount": 60,
     "sale": "20%",
     "category": "Smartphones",
     "reviews": [
@@ -173,7 +173,7 @@
     "price": 849.99,
     "quantity": 9,
     "Rating": 4,
-    "ratingPeople": 80,
+    "ratingCount": 80,
     "sale": "",
     "category": "Smartphones",
     "reviews": [
@@ -203,7 +203,7 @@
     "price": 999.0,
     "quantity": 6,
     "Rating": 3,
-    "ratingPeople": 90,
+    "ratingCount": 90,
     "sale": "10%",
     "category": "Smartphones",
     "reviews": [
@@ -233,7 +233,7 @@
     "price": 2499.0,
     "quantity": 20,
     "Rating": 5,
-    "ratingPeople": 60,
+    "ratingCount": 60,
     "sale": "",
     "category": "Laptops",
     "reviews": [
@@ -271,7 +271,7 @@
     "price": 1399.99,
     "quantity": 3,
     "Rating": 4,
-    "ratingPeople": 70,
+    "ratingCount": 70,
     "sale": "",
     "category": "Laptops",
     "reviews": [
@@ -301,7 +301,7 @@
     "price": 1299.0,
     "quantity": 7,
     "Rating": 3,
-    "ratingPeople": 20,
+    "ratingCount": 20,
     "sale": "50%",
     "category": "Laptops",
     "reviews": [
@@ -331,7 +331,7 @@
     "price": 1599.0,
     "quantity": 6,
     "Rating": 2,
-    "ratingPeople": 30,
+    "ratingCount": 30,
     "sale": "",
     "category": "Laptops",
     "reviews": [
@@ -361,7 +361,7 @@
     "price": 1699.99,
     "quantity": 12,
     "Rating": 3,
-    "ratingPeople": 70,
+    "ratingCount": 70,
     "sale": "",
     "category": "Laptops",
     "reviews": [
@@ -391,7 +391,7 @@
     "price": 999.0,
     "quantity": 21,
     "Rating": 4,
-    "ratingPeople": 90,
+    "ratingCount": 90,
     "sale": "",
     "category": "Laptops",
     "reviews": [
@@ -421,7 +421,7 @@
     "price": 1399.0,
     "quantity": 5,
     "Rating": 5,
-    "ratingPeople": 30,
+    "ratingCount": 30,
     "sale": "",
     "category": "Laptops",
     "reviews": [
@@ -451,7 +451,7 @@
     "price": 399.99,
     "quantity": 20,
     "Rating": 4,
-    "ratingPeople": 50,
+    "ratingCount": 50,
     "sale": "5%",
     "category": "Headphones",
     "reviews": [
@@ -481,7 +481,7 @@
     "price": 249.99,
     "quantity": 16,
     "Rating": 3,
-    "ratingPeople": 120,
+    "ratingCount": 120,
     "sale": "30%",
     "category": "Headphones",
     "reviews": [
@@ -511,7 +511,7 @@
     "price": 329.0,
     "quantity": 11,
     "Rating": 4,
-    "ratingPeople": 11,
+    "ratingCount": 11,
     "sale": "",
     "category": "Headphones",
     "reviews": [
@@ -541,7 +541,7 @@
     "price": 379.0,
     "quantity": 6,
     "Rating": 3,
-    "ratingPeople": 140,
+    "ratingCount": 140,
     "sale": "5%",
     "category": "Headphones",
     "reviews": [
@@ -571,7 +571,7 @@
     "price": 149.0,
     "quantity": 7,
     "Rating": 4,
-    "ratingPeople": 170,
+    "ratingCount": 170,
     "sale": "",
     "category": "Headphones",
     "reviews": [
@@ -601,7 +601,7 @@
     "price": 199.0,
     "quantity": 9,
     "Rating": 3,
-    "ratingPeople": 30,
+    "ratingCount": 30,
     "sale": "",
     "category": "Headphones",
     "reviews": [
@@ -631,7 +631,7 @@
     "price": 349.0,
     "quantity": 6,
     "Rating": 4,
-    "ratingPeople": 60,
+    "ratingCount": 60,
     "sale": "",
     "category": "Headphones",
     "reviews": [
@@ -661,7 +661,7 @@
     "price": 1099.0,
     "quantity": 13,
     "Rating": 3,
-    "ratingPeople": 10,
+    "ratingCount": 10,
     "sale": "",
     "category": "Tablets",
     "reviews": [
@@ -691,7 +691,7 @@
     "price": 899.0,
     "quantity": 27,
     "Rating": 2,
-    "ratingPeople": 50,
+    "ratingCount": 50,
     "sale": "",
     "category": "Tablets",
     "reviews": [
@@ -721,7 +721,7 @@
     "price": 699.0,
     "quantity": 3,
     "Rating": 4,
-    "ratingPeople": 137,
+    "ratingCount": 137,
     "sale": "",
     "category": "Tablets",
     "reviews": [
@@ -751,7 +751,7 @@
     "price": 149.0,
     "quantity": 8,
     "Rating": 4,
-    "ratingPeople": 158,
+    "ratingCount": 158,
     "sale": "",
     "category": "Tablets",
     "reviews": [
@@ -781,7 +781,7 @@
     "price": 1199.0,
     "quantity": 9,
     "Rating": 3,
-    "ratingPeople": 19,
+    "ratingCount": 19,
     "sale": "",
     "category": "Tablets",
     "reviews": [
@@ -811,7 +811,7 @@
     "price": 349.0,
     "quantity": 6,
     "Rating": 5,
-    "ratingPeople": 13,
+    "ratingCount": 13,
     "sale": "",
     "category": "Tablets",
     "reviews": [
@@ -841,7 +841,7 @@
     "price": 799.0,
     "quantity": 20,
     "Rating": 3,
-    "ratingPeople": 170,
+    "ratingCount": 170,
     "sale": "",
     "category": "Tablets",
     "reviews": [
@@ -871,7 +871,7 @@
     "price": 6999.0,
     "quantity": 15,
     "Rating": 4,
-    "ratingPeople": 342,
+    "ratingCount": 342,
     "sale": "",
     "category": "Smartwatches",
     "images": [
@@ -906,7 +906,7 @@
     "price": 3499.0,
     "quantity": 8,
     "Rating": 4,
-    "ratingPeople": 187,
+    "ratingCount": 187,
     "sale": "",
     "category": "Smartwatches",
     "images": [
@@ -941,7 +941,7 @@
     "price": 9999.0,
     "quantity": 12,
     "Rating": 5,
-    "ratingPeople": 421,
+    "ratingCount": 421,
     "sale": "",
     "category": "Smartwatches",
     "images": [
@@ -976,7 +976,7 @@
     "price": 2299.0,
     "quantity": 20,
     "Rating": 4,
-    "ratingPeople": 156,
+    "ratingCount": 156,
     "sale": "",
     "category": "Smartwatches",
     "images": [
@@ -1011,7 +1011,7 @@
     "price": 7999.0,
     "quantity": 6,
     "Rating": 5,
-    "ratingPeople": 89,
+    "ratingCount": 89,
     "sale": "40%",
     "category": "Smartwatches",
     "images": [
@@ -1046,7 +1046,7 @@
     "price": 5999.0,
     "quantity": 10,
     "Rating": 4,
-    "ratingPeople": 210,
+    "ratingCount": 210,
     "sale": "",
     "category": "Smartwatches",
     "images": [
@@ -1081,7 +1081,7 @@
     "price": 10999.0,
     "quantity": 7,
     "Rating": 5,
-    "ratingPeople": 512,
+    "ratingCount": 512,
     "sale": "10%",
     "category": "Smartwatches",
     "images": [
@@ -1116,7 +1116,7 @@
     "price": 899.0,
     "quantity": 18,
     "Rating": 4,
-    "ratingPeople": 356,
+    "ratingCount": 356,
     "sale": "",
     "category": "Gaming",
     "images": [
@@ -1151,7 +1151,7 @@
     "price": 3499.0,
     "quantity": 10,
     "Rating": 4,
-    "ratingPeople": 287,
+    "ratingCount": 287,
     "sale": "",
     "category": "Gaming",
     "images": [
@@ -1186,7 +1186,7 @@
     "price": 24999.0,
     "quantity": 5,
     "Rating": 5,
-    "ratingPeople": 156,
+    "ratingCount": 156,
     "sale": "",
     "category": "Gaming",
     "images": [
@@ -1221,7 +1221,7 @@
     "price": 5999.0,
     "quantity": 8,
     "Rating": 4,
-    "ratingPeople": 198,
+    "ratingCount": 198,
     "sale": "",
     "category": "Gaming",
     "images": [
@@ -1256,7 +1256,7 @@
     "price": 2199.0,
     "quantity": 30,
     "Rating": 5,
-    "ratingPeople": 512,
+    "ratingCount": 512,
     "sale": "",
     "category": "Gaming",
     "images": [
@@ -1291,7 +1291,7 @@
     "price": 12999.0,
     "quantity": 4,
     "Rating": 4,
-    "ratingPeople": 76,
+    "ratingCount": 76,
     "sale": "",
     "category": "Gaming",
     "images": [
@@ -1326,7 +1326,7 @@
     "price": 2999.0,
     "quantity": 18,
     "Rating": 5,
-    "ratingPeople": 643,
+    "ratingCount": 643,
     "sale": "",
     "category": "Gaming",
     "images": [

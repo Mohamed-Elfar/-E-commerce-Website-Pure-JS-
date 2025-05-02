@@ -8,7 +8,7 @@ class ProductCardComponent extends HTMLElement {
             <link rel="stylesheet" href="/assets/css/fontawesome.min.css">
             <link rel="stylesheet" href="/assets/css/style.css">
             <link rel="stylesheet" href="/customer/home/home.css">
-            <div class="product col-12 col-sm-6 col-md-5 col-xl-3">
+            <div class="product">
                 <div class="product__badge">
                     <div class="product__actions">
                         <div id="productDiscount" class="product__discount product__discount--hidden"></div>

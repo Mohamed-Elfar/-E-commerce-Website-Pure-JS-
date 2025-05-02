@@ -37,6 +37,7 @@ function fetchFlashSalesData() {
         .then(products => {
             products.slice(0, 4).forEach(product => {
                 var productCard = document.createElement('product-card');
+                productCard.className = 'col-12 col-sm-6 col-md-5 col-xl-3';
                 productCard.setAttribute('name', product.name);
                 productCard.setAttribute('price', product.price);
                 productCard.setAttribute('image', product.image);
