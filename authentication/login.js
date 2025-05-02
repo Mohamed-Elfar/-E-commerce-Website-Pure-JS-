@@ -1,4 +1,3 @@
-// login.js
 import { showToast } from "../assets/js/utils.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -15,15 +14,24 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
     if (user) {
-      localStorage.setItem("token", generateToken());
+      const token = generateToken();
+      localStorage.setItem("token", token);
+      user.token = token;
+      const updatedUsers = users.map((u) =>
+        u.email === user.email ? { ...u, token } : u
+      );
+      console.log(updatedUsers);
+
+      localStorage.setItem("users", JSON.stringify(updatedUsers));
       showToast("success", "Login successful!");
-      open("../../index.html", "_self");
+      setTimeout(() => {
+        open("../../index.html", "_self");
+      }, 1500);
     } else {
       showToast("error", "please check your email or password.");
     }
   });
 });
-
 
 function generateToken() {
   const chars =
@@ -35,4 +43,3 @@ function generateToken() {
   }
   return token;
 }
-
