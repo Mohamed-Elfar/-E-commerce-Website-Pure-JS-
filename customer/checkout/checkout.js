@@ -1,32 +1,27 @@
-// Example starter JavaScript for disabling form submissions if there are invalid fields
 (function () {
   "use strict";
 
-  window.addEventListener(
-    "load",
-    function () {
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      var forms = document.getElementsByClassName("needs-validation");
+  window.addEventListener("load", function () {
+    var form = document.querySelector(".needs-validation");
 
-      // Loop over them and prevent submission
-      Array.prototype.filter.call(forms, function (form) {
-        form.addEventListener(
-          "submit",
-          function (event) {
-            if (form.checkValidity() === false) {
-              event.preventDefault();
-              event.stopPropagation();
-            }
+    // External submit button
+    var submitButton = document.getElementById("externalSubmit");
 
-            form.classList.add("was-validated");
-          },
-          false
-        );
+    if (submitButton && form) {
+      submitButton.addEventListener("click", function (event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        } else {
+          form.submit(); // Manually submit if valid
+        }
+
+        form.classList.add("was-validated");
       });
-    },
-    false
-  );
+    }
+  });
 })();
+
 
 async function loadInitialData() {
   try {
@@ -54,12 +49,14 @@ loadInitialData();
   badge.innerHTML = products.length;
 
   if (products) {
+    console.log(products);
+    
     products.forEach((product) => {
       const li = document.createElement("li");
       li.className =
         "list-group-item d-flex justify-content-between align-items-center";
 
-      total += parseFloat(product.price); // assuming product.price is a number (e.g., 12.99)
+      total += parseFloat(product.price);
 
       li.innerHTML = `
         <div class="d-flex align-items-center gap-2">

@@ -16,10 +16,10 @@ fetch("../../assets/data/products.json")
             }">-${elem.sale || ""}</div>
             <div class="product__icons">
               <a class="border-0">
-                <div class="product__icon-container"><i class="product__icon fa-regular fa-heart" araia-hidden="true"></i></div>
+                <div class="product__icon-container"><i class="product__icon fa-regular fa-heart" aria-hidden="true"></i></div>
               </a>
               <a href="product-details.html?id=${elem.id}"  class="border-0">
-                <div class="product__icon-container"><i class="product__icon fa-regular fa-eye" araia-hidden="true"></i></div>
+                <div class="product__icon-container"><i class="product__icon fa-regular fa-eye" aria-hidden="true"></i></div>
               </a>
             </div>
           </div>
@@ -40,7 +40,7 @@ fetch("../../assets/data/products.json")
                 (_, i) =>
                   `<i class="product__rating-star ${
                     i < elem.Rating ? "fa-solid" : "fa-regular"
-                  } fa-star" araia-hidden="true"></i>`
+                  } fa-star" aria-hidden="true"></i>`
               )
               .join("")}
             <p class="product__rating-count">(${elem.ratingPeople})</p>

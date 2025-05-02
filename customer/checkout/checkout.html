@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>checkout</title>
+    <title>Checkout</title>
 
-     <!-- icon -->
-     <link rel="icon" href="../../assets/images/icon.png" type="image/png"/>
+    <!-- icon -->
+    <link rel="icon" href="/assets/images/icon.png" type="image/png" />
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
 
@@ -17,10 +17,14 @@
     <link rel="stylesheet" href="/assets/css/style.css" />
   </head>
   <body>
+    <div class="toast"></div>
+
     <exclusive-header></exclusive-header>
     <main role="main">
       <div class="container w-65">
-        <ul class="list-unstyled gap-2 d-flex flex-wrap text--secondary my-5 fs-8">
+        <ul
+          class="list-unstyled gap-2 d-flex flex-wrap text--secondary my-5 fs-8"
+        >
           <li class="list-item">
             <a href="" class="border-0">my account</a> /
           </li>
@@ -37,6 +41,35 @@
               <span class="text-muted">Your cart</span>
               <span class="badge bg-secondary rounded-pill">0</span>
             </h4>
+            <ul class="list-group mb-3 pt-3 checkoutCard">
+              <!-- <li
+                class="list-group-item d-flex justify-content-between align-items-center"
+              >
+                <div class="d-flex align-items-center">
+                  <img
+                    src="../assets/images/footer/Qrcode 1.png"
+                    alt=""
+                    class="w-25"
+                  />
+                  <h6 class="my-0">Product name</h6>
+                </div>
+                <span class="text-muted product__price">$12</span>
+              </li> -->
+              <!-- <li
+                class="list-group-item d-flex justify-content-between bg-light"
+              >
+                <div class="text-success">
+                  <h6 class="my-0">Promo code</h6>
+                  <small>EXAMPLECODE</small>
+                </div>
+                <span class="text-success">-$5</span>
+              </li>
+               <li class="list-group-item d-flex justify-content-between">
+                <span>Total (USD)</span>
+                <strong>$20</strong>
+              </li> -->
+            </ul>
+
             <form>
               <div
                 class="form-group d-flex justify-content-between column-gap-2 mb-4"
@@ -54,6 +87,7 @@
             <button
               class="btn btn--primary btn-sm w-100 btn-block rounded-1"
               type="submit"
+              id="externalSubmit"
             >
               Continue to checkout
             </button>
@@ -62,13 +96,14 @@
             <h4 class="mb-3">Billing address</h4>
             <form class="needs-validation" novalidate>
               <div class="mb-3">
-                <label for="firstName "
-                  >First name <span class="text-danger">*</span></label
-                >
+                <label for="firstName">
+                  First name <span class="text-danger">*</span>
+                </label>
                 <input
                   type="text"
                   class="form-control"
                   id="firstName"
+                  name="firstName"
                   placeholder="please enter your first name"
                   required
                 />
@@ -85,6 +120,7 @@
                   type="text"
                   class="form-control"
                   id="lastName"
+                  name="lastName"
                   placeholder="please enter your last name"
                   required
                 />
@@ -99,6 +135,7 @@
                   type="email"
                   class="form-control"
                   id="email"
+                  name="email"
                   placeholder="you@example.com"
                   required
                 />
@@ -108,12 +145,13 @@
               </div>
               <div class="mb-3">
                 <label for="phone"
-                  >Email <span class="text-danger">*</span></label
+                  >Phone Number <span class="text-danger">*</span></label
                 >
                 <input
                   type="tel"
                   class="form-control"
                   id="phone"
+                  name="phone"
                   placeholder="01060493174"
                   required
                 />
@@ -130,6 +168,7 @@
                   type="text"
                   class="form-control"
                   id="address"
+                  name="address"
                   placeholder="1234 Main St"
                   required
                 />
@@ -147,18 +186,21 @@
                   type="text"
                   class="form-control"
                   id="address2"
+                  name="address2"
                   placeholder="Apartment or suite"
                 />
               </div>
               <div class="mb-3">
-                <label for="address2"
+                <label for="city"
                   >town/city <span class="text-danger">*</span></label
                 >
                 <input
                   type="text"
                   class="form-control"
                   id="city"
+                  name="city"
                   placeholder="tanta"
+                  required
                 />
                 <div class="invalid-feedback">
                   Please enter a your city for shipping .
@@ -331,7 +373,7 @@
     <exclusive-footer></exclusive-footer>
     <script src="/assets/js/components/exclusive-header.js" defer></script>
     <script src="/assets/js/components/exclusive-footer.js" defer></script>
-    <script src="/assets/js/form-validation.js"></script>
+    <script src="checkout.js"></script>
     <script src="/assets/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
