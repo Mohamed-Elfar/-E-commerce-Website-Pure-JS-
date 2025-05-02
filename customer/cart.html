@@ -1,20 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cart Page</title>
+  <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
+
+  <style>
+    .quantity {
+      width: 60px;
+      height: 40px;
+      
+    }
+
+    .delete-btn {
+      background: none;
+      border: none;
+      color: #8f0404;
+      padding: 5px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container my-5">
+    <div class="mb-4 d-flex align-items-center">
+      <p class="mb-0 text-muted">Home / </p>
+      <p class="mb-0 ms-2 fw-bold">Cart</p>
+    </div>
+
+    <div class="row">
+      <!-- Cart Content -->
+      <div class="col-lg-8">
+        <div class="table-responsive mb-4 shadow-sm rounded bg-white p-3">
+          <table class="table">
+            <thead class="table-light">
+              <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Items inserted here -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="d-flex justify-content-between mb-4">
+          <button class="btn btn-outline-secondary button--return">Return To Shop</button>
+          <button class="btn btn-danger button--clear">Clear Cart</button>
+        </div>
+      </div>
+
+      <!-- Cart Checkout -->
+      <div class="col-lg-4">
+        <div class="shadow-sm rounded bg-white p-4">
+          <div class="mb-3">
+            <input type="text" class="form-control mb-2" id="coupon" placeholder="Coupon Code">
+            <button class="btn btn-outline-dark w-100 button--coupon">Apply Coupon</button>
+          </div>
+
+          <div class="border-top pt-3">
+            <h5>Cart Total</h5>
+            <div class="d-flex justify-content-between">
+              <p>Subtotal:</p><p id="subtotalincart">$0</p>
+            </div>
+            <div class="d-flex justify-content-between">
+              <p>Shipping:</p><p id="shipping">$0</p>
+            </div>
+            <div class="d-flex justify-content-between border-top pt-2 fw-bold">
+              <p>Total:</p><p id="Total">$0</p>
+            </div>
+            <button class="btn btn-success w-100 mt-3 button--process">Process To Checkout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const processButton = document.querySelector('.button--process');
+    processButton.addEventListener('click', () => {
+      window.location.href = 'checkout.html';
+    });
+
+    const returnButton = document.querySelector('.button--return');
+    returnButton.addEventListener('click', () => {
+      window.location.href = '../index.html';
+    });
+
+    fetch('../assets/data/products.json')
+      .then(response => response.json())
+      .then(data => {
+        const ids = [1, 2, 5];
+        const tbody = document.querySelector('tbody');
+        const subtotalInCart = document.getElementById('subtotalincart');
+        const shipping = document.getElementById('shipping');
+        const total = document.getElementById('Total');
+        const couponInput = document.getElementById('coupon');
+        const couponButton = document.querySelector('.button--coupon');
+        const clearButton = document.querySelector('.button--clear');
+
+        let discount = 0;
+        let shippingCost = 30;
+        const cartItems = [];
+
+        ids.forEach(id => {
+          const productData = data.find(product => product.id === id);
+          if (productData) {
+            const row = document.createElement('tr');
+
+            row.innerHTML = `
+              <td><img src="${productData.image}" width="50"> <p>${productData.name}</p></td>
+              <td class="price">${productData.price}</td>
+              <td><input type="number" class="quantity form-control" min="1" value="1"></td>
+              <td class="subtotal">$${productData.price}</td>
+              <td><button class="btn btn-sm btn-danger delete-btn">X</button></td>
+            `;
+
+            tbody.appendChild(row);
+
+            const quantityInput = row.querySelector('.quantity');
+            const subtotalCell = row.querySelector('.subtotal');
+            const deleteButton = row.querySelector('.delete-btn');
+            const price = productData.price;
+
+            cartItems.push({ quantityInput, subtotalCell, price, row });
+
+            quantityInput.addEventListener('input', () => {
+              const quantity = parseInt(quantityInput.value) || 1;
+              subtotalCell.innerText = `$${(quantity * price).toFixed(2)}`;
+              updateCartTotal();
+            });
+
+            deleteButton.addEventListener('click', () => {
+              row.remove();
+              const index = cartItems.findIndex(item => item.quantityInput === quantityInput);
+              if (index !== -1) cartItems.splice(index, 1);
+              updateCartTotal();
+            });
+          }
+        });
+
+        function updateCartTotal() {
+          let subtotalSum = 0;
+          cartItems.forEach(item => {
+            const quantity = parseInt(item.quantityInput.value) || 1;
+            subtotalSum += quantity * item.price;
+          });
+
+          const discountedSubtotal = subtotalSum * (1 - discount);
+          subtotalInCart.innerText = `$${subtotalSum.toFixed(2)}`;
+          shipping.innerText = `$${shippingCost}`;
+          total.innerText = `$${(discountedSubtotal + shippingCost).toFixed(2)}`;
+        }
+
+        couponButton.addEventListener('click', () => {
+          const couponCode = couponInput.value.trim();
+          if (couponCode === "Group6-30") {
+            discount = 0.3;
+            couponInput.style.border = "3px solid green";
+          } else {
+            discount = 0;
+            couponInput.style.border = "3px solid red";
+          }
+          updateCartTotal();
+        });
+
+        clearButton.addEventListener('click', () => {
+          tbody.innerHTML = '';
+          cartItems.length = 0;
+          updateCartTotal();
+        });
+
+        updateCartTotal();
+      })
+      .catch(error => {
+        console.error("❌ Error:", error);
+      });
+  </script>
+</body>
+</html>
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <!-- Bootstrap CSS -->
-    <!-- <link rel="stylesheet" href="../assets/css/bootstrap.min.css" /> -->
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="assets/css/fontawesome.min.css" />
-    <!-- Your Custom Styles -->
-    <link rel="stylesheet" href="assets/css/style.css" />
+    
     <link rel="stylesheet" href="cart.css">
+    
+    
     
   </head>
   <body>
-    
+
+
+
+
+ 
       
     
     <div class="cart_container">
@@ -28,20 +220,25 @@
         <div class="cart_content">
           <div class="cart_content cart_content--view">
             <table>
-              <tr>
-                <td>Product</td>
-                <td>Price</td>
-                <td>Quantity</td>
-                <td>Subtotal</td>
-              </tr>
-              <tr>
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                  <th>Subtotal</th>
+                </tr>
+              </thead>
+              <tbody>
+
+              </tbody>
+               <tr>
                 <td id="product"><p>LCD Moniter</p></td>
                 <td id="price" >$650</td>
-                <td><input type="number" id="quantity" min="1" value="2" name="quantity"></td>
+                <td><input type="number" id="quantity" min="1" value="1" name="quantity"></td>
                 <td id="subtotal"></td>
-              </tr>
+              </tr> 
               
-            </table>
+             </table>
           </div>
           <div class="cart_content cart_content--control">
             <button class="button button--return">Return To Shop</button>
@@ -72,55 +269,105 @@
         </div>
   
       </div>
-      
-    </div>
-  
-    <script>
-      const product = document.getElementById('product');
-      const price = document.getElementById('price');
-      const quantity = document.getElementById('quantity');
-      const subtotal = document.getElementById('subtotal');
-      const subtotalincart = document.getElementById('subtotalincart');
-      const Total = document.getElementById('Total');
-      const shipping = document.getElementById('shipping');
-      const coupon = document.getElementById('coupon');
-      const buttoncoupon = document.querySelector('.button--coupon');
-      const buttonreturn = document.querySelector('.button--return');
-      const buttonupdate = document.querySelector('.button--update');
-      const buttonprocess = document.querySelector('.button--process');
-      buttonreturn.addEventListener('click',function(){
-        window.location.href = "../index.html";
+      </div> 
+      <script>
+      processButton = document.querySelector('.button--process');
+      processButton.addEventListener('click', () => {
+        window.location.href = 'checkout.html';
       })
-      buttonprocess.addEventListener('click',function(){
-        window.location.href = "checkout.html";
-      }) 
       
-      price.value = 650;  
-      function UpdatePrice(){
-      subTotal = price.value * quantity.value;
-      subtotal.innerHTML = subtotalincart.innerHTML ="$" + subTotal ;
-      let shippingcost = 30;
-      shipping.innerHTML = "$" + shippingcost;
-      Total.innerHTML = "$" + (price.value * quantity.value + shippingcost);
-      buttoncoupon.addEventListener('click',function(){
-        if(coupon.value == "Group6-300"){
-          Total.innerHTML = "$" + (price.value * quantity.value + (shippingcost - 300));
-          coupon.style.border = "3px solid green";
-          coupon.innerHTML = "";
-        }
-        else{
-          coupon.style.border = "3px solid red";
-          coupon.value = "";
-          Total.innerHTML = "$" + (price.value * quantity.value + shippingcost);
-        }
+      returnButton = document.querySelector('.button--return');
+      returnButton.addEventListener('click', () => {
+        window.location.href = '../index.html';
       })
-      }
-      UpdatePrice();
-      quantity.addEventListener('change',UpdatePrice);
+      
+      
+      fetch('../assets/data/products.json')
+        .then(response => response.json())
+        .then(data => {
+          const ids = [1, 2, 5, 6];
+          const tbody = document.querySelector('tbody');
+          const subtotalInCart = document.getElementById('subtotalincart');
+          const shipping = document.getElementById('shipping');
+          const total = document.getElementById('Total');
+      
+          let shippingCost = 30;
+      
+          // عشان نخزن كل المنتجات اللي في السلة
+          const cartItems = [];
+      
+          ids.forEach((id) => {
+            const productData = data.find(product => product.id === id);
+            if (productData) {
+              const row = document.createElement('tr');
+      
+              // HTML لكل صف منتج
+              row.innerHTML = `
+                <td><img src="${productData.image}" width="50"> <p>${productData.name}</p></td>
+                <td class="price">${productData.price}</td>
+                <td><input type="number" class="quantity" min="1" value="1"></td>
+                <td class="subtotal">$${productData.price}</td>
+              `;
+      
+              tbody.appendChild(row);
+      
+              const quantityInput = row.querySelector('.quantity');
+              const subtotalCell = row.querySelector('.subtotal');
+              const price = productData.price;
+      
+              // نحطهم في array عشان نقدر نحسب الإجمالي بعدين
+              cartItems.push({ quantityInput, subtotalCell, price });
+      
+              quantityInput.addEventListener('input', () => {
+                const quantity = parseInt(quantityInput.value) || 1;
+                const subTotal = quantity * price;
+                subtotalCell.innerText = `$${subTotal}`;
+      
+                updateCartTotal();
+              });
+            }
+          });
+          const couponInput = document.getElementById('coupon');
+const couponButton = document.querySelector('.button--coupon');
 
+let discount = 0;
+          function updateCartTotal() {
+  let subtotalSum = 0;
+  cartItems.forEach(item => {
+    const quantity = parseInt(item.quantityInput.value) || 1;
+    subtotalSum += quantity * item.price;
+  });
+
+  const discountedSubtotal = subtotalSum * (1 - discount);
+
+  subtotalInCart.innerText = `$${subtotalSum.toFixed(2)}`;
+  shipping.innerText = `$${shippingCost}`;
+  total.innerText = `$${(discountedSubtotal + shippingCost).toFixed(2)}`;
+}
       
-    </script>
-  
+          // أول مرة بعد تحميل الصفحة
+          updateCartTotal();
+           // النسبة المئوية للخصم (مثلاً 0.3 تعني 30%)
+
+couponButton.addEventListener('click', () => {
+  const couponCode = couponInput.value.trim();
+  if (couponCode === "Group6-30") {
+    discount = 0.3;
+    couponInput.style.border = "3px solid green";
+  } else {
+    discount = 0;
+    couponInput.style.border = "3px solid red";
+  }
+  updateCartTotal(); // نعيد حساب المجموع بعد الكوبون
+});
+        })
+        .catch(error => {
+          console.error("❌ Error:", error);
+        });
+      
+      </script>
+   
    
   </body>
 </html>
+ -->
