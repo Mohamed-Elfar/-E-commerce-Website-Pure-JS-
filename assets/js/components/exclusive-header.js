@@ -129,7 +129,7 @@ class ExclusiveHeader extends HTMLElement {
         userButton.classList.remove("d-none");
         userButton.addEventListener("click", () => {
           userButton.classList.toggle("bg-danger");
-        })
+        });
       }
     }
   }
@@ -147,6 +147,12 @@ class ExclusiveHeader extends HTMLElement {
       logoutBtn.addEventListener("click", (e) => {
         e.preventDefault();
         localStorage.removeItem("token");
+        const users = JSON.parse(localStorage.getItem("users") || []);
+        const updatedUsers = users.map((user) => {
+          const { token, ...rest } = user;
+          return rest;
+        });
+        localStorage.setItem("users", JSON.stringify(updatedUsers));
         window.location.reload();
       });
     }

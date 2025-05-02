@@ -132,7 +132,9 @@ exclusive-header {
     backdrop-filter: blur(5px) !important;
     color: #fff !important;
   }
-
+  a {
+    border-bottom: 2px solid #7d8184;
+  }
   .dropdown-item:hover {
     background: rgba(0, 0, 0, 0.05);
   }
