@@ -31,7 +31,6 @@ function closeOnClickOutside(event) {
 
 function fetchFlashSalesData() {
     var productsSection = document.getElementById('flash-sales');
-    console.log(productsSection);
     fetch('/assets/data/products.json')
         .then(response => response.json())
         .then(products => {
@@ -42,6 +41,9 @@ function fetchFlashSalesData() {
                 productCard.setAttribute('price', product.price);
                 productCard.setAttribute('image', product.image);
                 productCard.setAttribute('ratingCount', product.ratingCount);
+                product.sale == ""
+                    ? productCard.setAttribute('sale', "")
+                    : productCard.setAttribute('sale', product.sale);
                 productsSection.appendChild(productCard);
             });
 
@@ -54,17 +56,21 @@ fetchFlashSalesData();
 
 function fetchBestSellingData() {
     var productsSection = document.getElementById('best-selling');
-    console.log(productsSection);
     fetch('/assets/data/products.json')
         .then(response => response.json())
         .then(products => {
             products.slice(0, 4).forEach(product => {
+                // console.log(product.sale);
                 var productCard = document.createElement('product-card');
                 productCard.className = 'col-12 col-sm-6 col-md-5 col-xl-3';
                 productCard.setAttribute('name', product.name);
                 productCard.setAttribute('price', product.price);
                 productCard.setAttribute('image', product.image);
                 productCard.setAttribute('ratingCount', product.ratingCount);
+                product.sale == ""
+                    ? productCard.setAttribute('sale', "")
+                    : productCard.setAttribute('sale', product.sale);
+
                 productsSection.appendChild(productCard);
             });
 
@@ -77,7 +83,6 @@ fetchBestSellingData();
 
 function fetchOurProductsData() {
     var productsSection = document.getElementById('our-products');
-    console.log(productsSection);
     fetch('/assets/data/products.json')
         .then(response => response.json())
         .then(products => {
@@ -88,6 +93,9 @@ function fetchOurProductsData() {
                 productCard.setAttribute('price', product.price);
                 productCard.setAttribute('image', product.image);
                 productCard.setAttribute('ratingCount', product.ratingCount);
+                product.sale == ""
+                    ? productCard.setAttribute('sale', "")
+                    : productCard.setAttribute('sale', product.sale);
                 productsSection.appendChild(productCard);
             });
 

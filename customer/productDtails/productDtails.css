@@ -37,9 +37,9 @@ input[type=radio] {
     cursor: pointer;
 }
 
-.related-items {
+/* .related-items {
     margin-block: 50px 30px;
-}
+} */
 
 /* media query */
 @media screen and (max-width:992px) {
@@ -80,7 +80,7 @@ input[type=radio] {
     .product-info__delivery {
         margin-right: 15px;
     }
-    .related-items {
+    /* .related-items {
         margin-left: 35px;
-    }
+    } */
 } 

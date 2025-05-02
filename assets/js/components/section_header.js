@@ -8,11 +8,8 @@ class SectionHeaderComponent extends HTMLElement {
             <link rel="stylesheet" href="/assets/css/style.css">
             <link rel="stylesheet" href="/customer/home/home.css">
             <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+            <h6 class="section__pin">${section_pin}</h6>
             <div class="section__header">
-                <div class="section__pin">
-                    <div class="section__pin-icon background-primary"></div>
-                    <p class="section__pin-text color-primary">${section_pin}</p>
-                </div>
                 <div class="section__highlights">
                     <p class="section__title">${section_title}</p>
                     <button class="section__button background-primary secondary-color" type="button" id="viewall">View All</button>
