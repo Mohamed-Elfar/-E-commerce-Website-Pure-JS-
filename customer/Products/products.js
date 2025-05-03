@@ -1,7 +1,7 @@
 import {
-  showToast,
   addToCart,
   search,
+  addToWishList,
   filterProductsByStoredCategory,
 } from "../../assets/js/utils.js";
 fetch("../../assets/data/products.json")
@@ -75,12 +75,4 @@ fetch("../../assets/data/products.json")
     console.error("Error loading products:", error);
   });
 
-function addToWishList(productId) {
-  let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-  if (!wishlist.includes(productId)) {
-    wishlist.push(productId);
-    localStorage.setItem("wishlist", JSON.stringify(wishlist));
-    showToast("success", "Product Added to Your Wish List");
-  }
-}
 search("product__title", ".col-md-4");

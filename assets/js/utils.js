@@ -84,16 +84,31 @@ export function validatePasswordMatch(password, confirmPassword) {
 }
 
 export function addToCart(productId) {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  if (!cart.includes(productId)) {
-    cart.push(productId);
-    localStorage.setItem("cart", JSON.stringify(cart));
-    showToast("success", "Added to cart!");
+  if (localStorage.getItem("token")) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    if (!cart.includes(productId)) {
+      cart.push(productId);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      showToast("success", "Added to cart!");
+    } else {
+      showToast("success", "Added to cart!");
+    }
   } else {
-    showToast("success", "Added to cart!");
+    showToast("error", "Please Login First");
   }
 }
-
+export function addToWishList(productId) {
+  if (localStorage.getItem("token")) {
+    let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+    if (!wishlist.includes(productId)) {
+      wishlist.push(productId);
+      localStorage.setItem("wishlist", JSON.stringify(wishlist));
+      showToast("success", "Product Added to Your Wish List");
+    }
+  } else {
+    showToast("error", "Please Login First");
+  }
+}
 export function search(title, parent) {
   const search = document.getElementById("navSearch");
   const searchBtn = document.getElementById("searchBtn");
