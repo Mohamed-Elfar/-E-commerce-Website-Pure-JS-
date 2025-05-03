@@ -19,23 +19,28 @@
     <link rel="stylesheet" href="/assets/css/style.css" />
   </head>
   <body>
-    <!-- start product details section -->
+
+    <exclusive-header></exclusive-header>
 
     <div
       class="container vh-100 d-flex justify-content-center align-items-center"
     >
       <section class="notfound text-center">
         <h1 class="notfound__heading">404 Not Found</h1>
-        <p class="notfound__text text-black ms-4 my-4">
+        <p class="notfound__text text-black my-4">
           Your visited page not found. you may go home page
         </p>
-        <a href="" class="notfound__btn btn btn-danger mt-3 ms-3 px-5">
+        <a
+          href="customer/home/home.html"
+          class="notfound__btn btn btn-danger mt-3 ms-3 px-5"
+        >
           Back to home page
         </a>
       </section>
     </div>
-
-    <!-- end product details section -->
+    <exclusive-footer></exclusive-footer>
+    <script src="/assets/js/components/exclusive-header.js" defer></script>
+    <script src="/assets/js/components/exclusive-footer.js" defer></script>
     <script src="/assets/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
