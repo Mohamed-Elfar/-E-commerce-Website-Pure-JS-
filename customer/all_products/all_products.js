@@ -11,6 +11,7 @@ function fetchAllProducts() {
                 productCard.setAttribute('name', product.name || 'Unknown Product');
                 productCard.setAttribute('price', product.price || '0.00');
                 productCard.setAttribute('image', product.image || '');
+                productCard.setAttribute('rating', product.rating || '0');
                 productCard.setAttribute('ratingCount', `(${product.ratingCount})` || '0');
                 productCard.setAttribute('sale', product.sale || '');
                 productsTitle.textContent = "All Products";
@@ -36,6 +37,7 @@ function fetchBestSellingProducts() {
                 productCard.setAttribute('name', product.name || 'Unknown Product');
                 productCard.setAttribute('price', product.price || '0.00');
                 productCard.setAttribute('image', product.image || '');
+                productCard.setAttribute('rating', product.rating || '0');
                 productCard.setAttribute('ratingCount', `(${product.ratingCount})` || '0');
                 productCard.setAttribute('sale', product.sale || '');
                 productsTitle.textContent = "Best Selling Products";
@@ -62,6 +64,7 @@ function fetchFlashSalesProducts() {
                 productCard.setAttribute('name', product.name || 'Unknown Product');
                 productCard.setAttribute('price', product.price || '0.00');
                 productCard.setAttribute('image', product.image || '');
+                productCard.setAttribute('rating', product.rating || '0');
                 productCard.setAttribute('ratingCount', `(${product.ratingCount})` || '0');
                 productCard.setAttribute('sale', product.sale || '');
                 productsTitle.textContent = "Best Selling Products";

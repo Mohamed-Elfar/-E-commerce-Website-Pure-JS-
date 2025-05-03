@@ -28,12 +28,8 @@ class ProductCardComponent extends HTMLElement {
                     <p id="productOldPrice" class="product__price-old text-decoration-line-through opacity-50">$160</p>
                 </div>
                 <div class="product__rating mb-3">
-                    <div>
-                        <i class="product__rating-star fa-solid fa-star"></i>
-                        <i class="product__rating-star fa-solid fa-star"></i>
-                        <i class="product__rating-star fa-solid fa-star"></i>
-                        <i class="product__rating-star fa-solid fa-star"></i>
-                        <i class="product__rating-star fa-regular fa-star"></i>
+                    <div id="productRatingStar">
+                       
                     </div>
                     <p id="productRatingCount" class="product__rating-count fw-semibold opacity-50"></p>
                 </div>
@@ -43,7 +39,7 @@ class ProductCardComponent extends HTMLElement {
 
 
         // After rendering, apply attributes
-        ['name', 'price', 'image', 'ratingCount', 'sale'].forEach(attr => {
+        ['name', 'price', 'image', 'rating', 'ratingCount', 'sale'].forEach(attr => {
             if (this.hasAttribute(attr)) {
                 this.attributeChangedCallback(attr, null, this.getAttribute(attr));
             }
@@ -82,9 +78,9 @@ class ProductCardComponent extends HTMLElement {
                     saleBox.style.display = "block";
                     oldPriceBox.style.display = "block";
                     saleBox.innerText = `-${newValue}`;
-                    
+
                     //set the existing price as an old price
-                    let currentPrice = newPriceBox.innerText; 
+                    let currentPrice = newPriceBox.innerText;
                     oldPriceBox.innerText = currentPrice;
 
                     //extract the numbers
@@ -94,6 +90,16 @@ class ProductCardComponent extends HTMLElement {
                     //calculate the new price
                     newPriceBox.innerText = `$${(parseFloat(oldPriceText) * (1 - parseFloat(saleText) / 100)).toFixed(2)}`;
                 }
+                break;
+            case 'rating':
+                let ratingBox = this.querySelector('#productRatingStar');
+                ratingBox.innerHTML =
+                    `${[...Array(5)]
+                        .map((_, i) =>
+                            `<i class="product__rating-star ${i < newValue ? "fa-solid" : "fa-regular"} fa-star"></i>`
+                        ).join("")}`;
+
+
                 break;
         }
     }

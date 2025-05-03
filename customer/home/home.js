@@ -42,6 +42,7 @@ function fetchSliceBestSelling() {
                 productCard.setAttribute('name', product.name || 'Unknown Product');
                 productCard.setAttribute('price', product.price || '0.00');
                 productCard.setAttribute('image', product.image || '');
+                productCard.setAttribute('rating', product.rating || '0');
                 productCard.setAttribute('ratingCount', `(${product.ratingCount})` || '0');
                 productCard.setAttribute('sale', product.sale || '');
                 productsSection.appendChild(productCard);
@@ -66,6 +67,7 @@ function fetchSliceFlashSales() {
                 productCard.setAttribute('name', product.name || 'Unknown Product');
                 productCard.setAttribute('price', product.price || '0.00');
                 productCard.setAttribute('image', product.image || '');
+                productCard.setAttribute('rating', product.rating || '0');
                 productCard.setAttribute('ratingCount', `(${product.ratingCount})` || '0');
                 productCard.setAttribute('sale', product.sale || '');
                 productsSection.appendChild(productCard);
@@ -87,6 +89,7 @@ function fetchSliceAllProducts() {
                 productCard.setAttribute('name', product.name || 'Unknown Product');
                 productCard.setAttribute('price', product.price || '0.00');
                 productCard.setAttribute('image', product.image || '');
+                productCard.setAttribute('rating', product.rating || '0');
                 productCard.setAttribute('ratingCount', `(${product.ratingCount})` || '0');
                 productCard.setAttribute('sale', product.sale || '');
                 productsSection.appendChild(productCard);
