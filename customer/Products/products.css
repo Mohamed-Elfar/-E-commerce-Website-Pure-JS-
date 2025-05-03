@@ -293,4 +293,6 @@ font-size: 20px;
   gap: 30px;
 } */
 
- 
+.product__icon.fa-heart.active {
+color: red;
+}

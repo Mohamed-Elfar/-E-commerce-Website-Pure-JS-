@@ -205,53 +205,10 @@
                   Please enter a your city for shipping .
                 </div>
               </div>
-
-              <div class="row">
-                <div class="col-md-5 mb-3">
-                  <label for="country">Country</label>
-                  <select
-                    class="custom-select d-block w-100"
-                    id="country"
-                    required
-                  >
-                    <option value="">Choose...</option>
-                    <option>United States</option>
-                  </select>
-                  <div class="invalid-feedback">
-                    Please select a valid country.
-                  </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                  <label for="state">State</label>
-                  <select
-                    class="custom-select d-block w-100"
-                    id="state"
-                    required
-                  >
-                    <option value="">Choose...</option>
-                    <option>California</option>
-                  </select>
-                  <div class="invalid-feedback">
-                    Please provide a valid state.
-                  </div>
-                </div>
-                <div class="col-md-3 mb-3">
-                  <label for="zip">Zip</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="zip"
-                    placeholder=""
-                    required
-                  />
-                  <div class="invalid-feedback">Zip code required.</div>
-                </div>
-              </div>
-              <hr class="mb-4" />
-              <div class="custom-control custom-checkbox">
+              <!-- <div class="custom-control custom-checkbox">
                 <input
                   type="checkbox"
-                  class="custom-control-input"
+                  class="custom-control-input bg-danger"
                   id="same-address"
                 />
                 <label class="custom-control-label" for="same-address"
@@ -267,11 +224,9 @@
                 <label class="custom-control-label" for="save-info"
                   >Save this information for next time</label
                 >
-              </div>
+              </div> -->
               <hr class="mb-4" />
-
               <h4 class="mb-3">Payment</h4>
-
               <div class="d-block my-3">
                 <div class="custom-control custom-radio">
                   <input
@@ -311,6 +266,7 @@
                   >
                 </div>
               </div>
+
               <div class="row">
                 <div class="col-md-6 mb-3">
                   <label for="cc-name">Name on card</label>
@@ -318,7 +274,7 @@
                     type="text"
                     class="form-control"
                     id="cc-name"
-                    placeholder=""
+                    placeholder="John Doe"
                     required
                   />
                   <small class="text-muted"
@@ -332,7 +288,7 @@
                     type="text"
                     class="form-control"
                     id="cc-number"
-                    placeholder=""
+                    placeholder="1234 5678 9012 3456"
                     required
                   />
                   <div class="invalid-feedback">
@@ -340,6 +296,7 @@
                   </div>
                 </div>
               </div>
+
               <div class="row">
                 <div class="col-md-3 mb-3">
                   <label for="cc-expiration">Expiration</label>
@@ -347,7 +304,7 @@
                     type="text"
                     class="form-control"
                     id="cc-expiration"
-                    placeholder=""
+                    placeholder="MM/YY"
                     required
                   />
                   <div class="invalid-feedback">Expiration date required</div>
@@ -358,7 +315,7 @@
                     type="text"
                     class="form-control"
                     id="cc-cvv"
-                    placeholder=""
+                    placeholder="123"
                     required
                   />
                   <div class="invalid-feedback">Security code required</div>
