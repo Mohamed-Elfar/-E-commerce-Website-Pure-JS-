@@ -85,7 +85,7 @@
     "Rating": 2,
     "ratingCount": 10,
     "sale": "15%",
-    "category": "Smartphones",
+    "category": "Smartphones",   
     "reviews": [
       {
         "userId": "user111",
@@ -664,6 +664,11 @@
     "ratingCount": 10,
     "sale": "",
     "category": "Tablets",
+    "images":[
+      "../../assets/images/products/download (18).jpeg",
+      "https://btech.com/media/catalog/product/cache/22b1bed05f04d71c4a848d770186c3c4/c/7/c735d58ed4fc13d41b9dfc7469bf5a49ccab420806feb1e64e47eff9af586f33.webp",
+      "https://btech.com/media/catalog/product/cache/22b1bed05f04d71c4a848d770186c3c4/2/9/29a460b9cf20136a64df8901642ea5a6e6ef34efd7e9e7fd500f2fb5ff1f3d12.jpeg"
+    ],
     "reviews": [
       {
         "userId": "user136",
@@ -694,6 +699,11 @@
     "ratingCount": 50,
     "sale": "",
     "category": "Tablets",
+    "images":[
+      "../../assets/images/products/download (19).jpeg",
+      "https://telfonak.com/wp-content/uploads/2023/08/tabs9-sam.jpg",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxc7tRhNViAd2Si4V8BX7AkykPHvLX78eKEw&s"
+    ],
     "reviews": [
       {
         "userId": "user138",
@@ -724,6 +734,11 @@
     "ratingCount": 137,
     "sale": "",
     "category": "Tablets",
+    "images":[
+      "https://btech.com/media/catalog/product/cache/22b1bed05f04d71c4a848d770186c3c4/1/-/1-lenovo_tab_p12_8gb_ram_128gb_-_storm_grey_-_wifi-only-1706022249_11zon.webp",
+      "https://btech.com/media/catalog/product/cache/22b1bed05f04d71c4a848d770186c3c4/3/-/3-lenovo_tab_p12_8gb_ram_128gb_-_storm_grey_-_wifi-only-3-1706022356_11zon.jpg",
+      "https://btech.com/media/catalog/product/cache/22b1bed05f04d71c4a848d770186c3c4/2/-/2-lenovo_tab_p12_8gb_ram_128gb_-_storm_grey_-_wifi-only-1-1706022353_11zon.jpg"
+    ],
     "reviews": [
       {
         "userId": "user140",
@@ -754,6 +769,11 @@
     "ratingCount": 158,
     "sale": "",
     "category": "Tablets",
+    "images":[
+      "../../assets/images/products/download (21).jpeg",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSw7yJHFwBEfgWgzjkTqyVt70yGorrfizhGQ&s",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRD9wDicw06RYYrMD6afxi45UHmDeyDBqCz8Q&s"
+    ],
     "reviews": [
       {
         "userId": "user142",
@@ -784,6 +804,11 @@
     "ratingCount": 19,
     "sale": "",
     "category": "Tablets",
+    "images":[
+      "https://eg.pricenacdn.com/img?d=ax320&src=https%3A%2F%2Ff.nooncdn.com%2Fproducts%2Fpnsku%2FN70084726V%2F45%2F_%2F1718171360%2F12de58ab-2b8c-44ea-a093-900c550f1b09.jpg",
+      "https://eg.pricenacdn.com/img?d=ax320&src=https%3A%2F%2Fwww.circuits.com.eg%2Fwp-content%2Fuploads%2F2024%2F01%2Fmicrosoft_surface_circuits-1.jpg",
+      "https://eg.pricenacdn.com/img?d=ax320&src=https%3A%2F%2Fwww.circuits.com.eg%2Fwp-content%2Fuploads%2F2023%2F02%2Fsurface-pro-9-circuits.jpg"
+    ],
     "reviews": [
       {
         "userId": "user144",
@@ -814,6 +839,11 @@
     "ratingCount": 13,
     "sale": "",
     "category": "Tablets",
+    "images":[
+      "https://btech.com/media/catalog/product/cache/22b1bed05f04d71c4a848d770186c3c4/8/c/8c0128153e60a956e8aea9a8c10437ccf55c122a032ba96d58852c5bfa11c136.webp",
+      "https://btech.com/media/catalog/product/cache/22b1bed05f04d71c4a848d770186c3c4/c/3/c3a5b89f31085e8e968f24751cb2c6a99199cb22bfbd05dab8493ecebbacaa31.jpeg",
+      "https://btech.com/media/catalog/product/cache/22b1bed05f04d71c4a848d770186c3c4/6/1/61b758253c8176b35377f7004f7901aabcd923ef749932c8fc5d0acdc9979383.jpeg"
+    ],
     "reviews": [
       {
         "userId": "user146",
@@ -844,6 +874,11 @@
     "ratingCount": 170,
     "sale": "",
     "category": "Tablets",
+    "images":[
+      "https://btech.com/media/catalog/product/cache/22b1bed05f04d71c4a848d770186c3c4/h/u/huawei-matepad-pro-12-6-256gb-8gb-green_4.png",
+      "https://btech.com/media/catalog/product/cache/22b1bed05f04d71c4a848d770186c3c4/h/u/huawei-matepad-pro-12-6-256gb-8gb-green_1.png",
+      "https://btech.com/media/catalog/product/cache/22b1bed05f04d71c4a848d770186c3c4/h/u/huawei-matepad-pro-12-6-256gb-8gb-green-pen.png"
+    ],
     "reviews": [
       {
         "userId": "user148",

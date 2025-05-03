@@ -103,6 +103,19 @@ addReviewBtn.addEventListener("click", function () {
     return;
   }
 
+  //   const token = localStorage.getItem("token")
+  //   console.log(token);
+
+  //   if (comment === "") {
+  //     showToast("error", "please add a review before submitting!");
+  //     return;
+  //   }else if(!token){
+  //     showToast("error", "Please Login First");
+  //     return;
+  //   }
+  //   const user=localStorage.getItem('users').includes(token)
+  // console.log(user);
+
   const userName = "GuestUser";
   const today = new Date();
   const reviewDate = today.toLocaleDateString("en-CA");
@@ -141,10 +154,10 @@ addReviewBtn.addEventListener("click", function () {
 });
 
 /* add to cart */
-addToCartBtn.addEventListener("click", () => addToCart(product));
+addToCartBtn.addEventListener("click", () => addToCart(product.id));
 
 /* add to wishlist */
-wishListBtn.addEventListener("click", () => addToWishList(product));
+wishListBtn.addEventListener("click", () => addToWishList(product.id));
 
 /* product quantity */
 let currentQuantity = 1;
