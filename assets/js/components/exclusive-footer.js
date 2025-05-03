@@ -45,8 +45,9 @@ class ExclusiveFooter extends HTMLElement {
               </li>
               <li class="nav-item mb-2">
                 <a href="/authentication/login.html" class="border-0"
-                  >login / register</a
-                >
+                  >login</a
+                > /<a href="/authentication/register.html" class="border-0"
+                  >register</a>
               </li>
               <li class="nav-item mb-2">
                 <a href="/customer/cart/cart.html" class="border-0">cart</a>

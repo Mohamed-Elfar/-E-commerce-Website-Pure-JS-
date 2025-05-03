@@ -38,9 +38,27 @@
         >
           <div class="position-sticky">
             <div class="nav flex-column" id="sideMenu">
-              <a href="#" class="nav-item nav-link">Smartphones</a>
-              <a href="#" class="nav-item nav-link">Laptops</a>
-              <a href="#" class="nav-item nav-link">Tablets</a>
+              <a
+                href="/customer/products/products.html"
+                class="nav-item nav-link"
+                onclick="localStorage.setItem('category', 'Smartphones')"
+              >
+                Smartphones
+              </a>
+              <a
+                href="/customer/products/products.html"
+                class="nav-item nav-link"
+                onclick="localStorage.setItem('category', 'Laptops')"
+              >
+                Laptops
+              </a>
+              <a
+                href="/customer/products/products.html"
+                class="nav-item nav-link"
+                onclick="localStorage.setItem('category', 'Tablets')"
+              >
+                Tablets
+              </a>
               <a
                 href="/customer/products/products.html"
                 class="nav-item nav-link"
@@ -53,9 +71,15 @@
                 class="nav-item nav-link"
                 onclick="localStorage.setItem('category', 'Smartwatches')"
               >
-              Smartwatches
+                Smartwatches
               </a>
-              <a href="#" class="nav-item nav-link">HeadPhones</a>
+              <a
+                href="/customer/products/products.html"
+                class="nav-item nav-link"
+                onclick="localStorage.setItem('category', 'HeadPhones')"
+              >
+                HeadPhones
+              </a>
             </div>
           </div>
         </nav>

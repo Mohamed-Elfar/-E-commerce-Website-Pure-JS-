@@ -31,6 +31,9 @@ class ExclusiveHeader extends HTMLElement {
               <li class="nav-item">
                 <a class="nav-link" href="/customer/products/products.html">products</a>
               </li>
+              <li class="nav-item d-none" id="loginLink">
+                <a class="nav-link" href="/authentication/login.html">Login</a>
+              </li>
             </ul>
             <form class="d-flex column-gap-1" id="searchForm">
               <div class="input-group">
@@ -72,7 +75,6 @@ class ExclusiveHeader extends HTMLElement {
                   <li class="d-flex align-items-center mx-3">
                     <i class="fa fa-regular fa-user"></i>  <a class="dropdown-item text-white" href="/customer/profile/profile.html">Manage My Account</a>
                   </li>
-
                   <li class="d-flex align-items-center mx-3">
                     <i class="fa-regular fa-heart"></i> <a class="dropdown-item text-white" href="/customer/profile/profile.html">Manage Wishlist</a>
                   </li>
@@ -124,10 +126,12 @@ class ExclusiveHeader extends HTMLElement {
   loggedInUser() {
     const token = localStorage.getItem("token");
     const userButton = this.querySelector(".userIcon");
+    const loginLink = this.querySelector("#loginLink");
 
     if (userButton) {
       if (!token) {
         userButton.classList.add("d-none");
+        loginLink.classList.remove("d-none");
       } else {
         userButton.classList.remove("d-none");
         userButton.addEventListener("click", () => {
