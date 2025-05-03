@@ -2,7 +2,9 @@ import { showToast } from "../../assets/js/utils.js";
 fetch("../../assets/data/products.json")
   .then((res) => res.json())
   .then((data) => {
-    localStorage.setItem("allProducts", JSON.stringify(data));
+    if (!localStorage.getItem("allProducts")) {
+      localStorage.setItem("allProducts", JSON.stringify(data));
+    }
     const container = document.getElementById("product-container");
     data.forEach((elem) => {
       const card = document.createElement("div");
@@ -18,7 +20,9 @@ fetch("../../assets/data/products.json")
               <a class="border-0">
                 <div class="product__icon-container"><i class="product__icon fa-regular fa-heart" aria-hidden="true"></i></div>
               </a>
-              <a href="product-details.html?id=${elem.id}"  class="border-0">
+              <a href="../product-details/product-details.html?id=${
+                elem.id
+              }"  class="border-0">
                 <div class="product__icon-container"><i class="product__icon fa-regular fa-eye" aria-hidden="true"></i></div>
               </a>
             </div>
