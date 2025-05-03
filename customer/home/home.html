@@ -4,8 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>home</title>
-  <!-- icon -->
+  <title>Exclusive</title>
   <link rel="icon" href="../../assets/images/icon.png" type="image/png" />
   <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
   <link href="/assets/css/fontawesome.min.css" rel="stylesheet" />
@@ -14,75 +13,122 @@
 </head>
 
 <body>
-  <!--Exclusive Header-->
   <exclusive-header></exclusive-header>
 
-  <div class="container px-lg-5">
-    <!-------------------------- Toggle icon (Shown on ex-sm/sm/md) -------------------------->
-    <div class="btn d-lg-none my-3" data-bs-toggle="collapse" data-bs-target="#sidebar">
-      <i class="fa-solid fa-bars"></i>
-    </div>
-
-    <!-- Backdrop (Shown on ex-sm/sm/md) -->
-    <div class="sidebar-backdrop"></div>
-
-    <!------------------------ Main Section (sidebar + divider + promo)------------------------>
-    <div class="row g-3 mb-5">
-      <!------------------------ Side Menu Bar (Shown on lg/xl/xxl) ------------------------>
-      <nav id="sidebar" class="col-6 col-md-3 col-lg-2 d-lg-block sidebar collapse mt-lg-4 background-primary">
-        <div class="position-sticky">
-          <div class="nav flex-column" id="sideMenu">
-            <a href="#" class="nav-item nav-link">Smartphones</a>
-            <a href="#" class="nav-item nav-link">Laptops</a>
-            <a href="#" class="nav-item nav-link">Tablets</a>
-            <a href="#" class="nav-item nav-link">Gaming</a>
-            <a href="#" class="nav-item nav-link">Smartwatches</a>
-            <a href="#" class="nav-item nav-link">HeadPhones</a>
-          </div>
-        </div>
-      </nav>
-
-      <!-------------------------- Vertical Divider - Only shown on lg and up -------------------------->
-      <div class="col-auto d-none d-lg-block">
-        <div class="vertical-divider h-100 mx-3 bg-black"></div>
+    <div class="container px-lg-5">
+      <!-------------------------- Toggle icon (Shown on ex-sm/sm/md) -------------------------->
+      <div
+        class="btn d-lg-none my-3"
+        data-bs-toggle="collapse"
+        data-bs-target="#sidebar"
+      >
+        <i class="fa-solid fa-bars"></i>
       </div>
 
-      <!-------------------------- Promo Section -------------------------->
-      <div class="col-12 col-lg-9">
-        <div class="promo row mx-0 mt-3 mt-lg-4 p-4 ps-xl-5 rounded bg-black">
-          <div class="promo__content col-sm-6">
-            <div class="promo__header">
-              <i class="promo__icon-apple fa-brands fa-apple fs-1 secondary-color"></i>
-              <span class="promo__title">iPhone 14 Series</span>
-            </div>
-            <p class="promo__description fs-md-1 secondary-color">
-              Up to 10% <br />
-              off Voucher
-            </p>
-            <div class="promo__footer">
-              <a href="#" class="link">Shop Now</a>
-              <i class="promo__icon-arrow fa-solid fa-arrow-right fs-5 secondary-color"></i>
+      <!-- Backdrop (Shown on ex-sm/sm/md) -->
+      <div class="sidebar-backdrop"></div>
+
+      <!------------------------ Main Section (sidebar + divider + promo)------------------------>
+      <div class="row g-3 mb-5">
+        <!------------------------ Side Menu Bar (Shown on lg/xl/xxl) ------------------------>
+        <nav
+          id="sidebar"
+          class="col-6 col-md-3 col-lg-2 d-lg-block sidebar collapse mt-lg-4 background-primary"
+        >
+          <div class="position-sticky">
+            <div class="nav flex-column" id="sideMenu">
+              <a
+                href="/customer/products/products.html"
+                class="nav-item nav-link"
+                onclick="localStorage.setItem('category', 'Smartphones')"
+              >
+                Smartphones
+              </a>
+              <a
+                href="/customer/products/products.html"
+                class="nav-item nav-link"
+                onclick="localStorage.setItem('category', 'Laptops')"
+              >
+                Laptops
+              </a>
+              <a
+                href="/customer/products/products.html"
+                class="nav-item nav-link"
+                onclick="localStorage.setItem('category', 'Tablets')"
+              >
+                Tablets
+              </a>
+              <a
+                href="/customer/products/products.html"
+                class="nav-item nav-link"
+                onclick="localStorage.setItem('category', 'gaming')"
+              >
+                Gaming
+              </a>
+              <a
+                href="/customer/products/products.html"
+                class="nav-item nav-link"
+                onclick="localStorage.setItem('category', 'Smartwatches')"
+              >
+                Smartwatches
+              </a>
+              <a
+                href="/customer/products/products.html"
+                class="nav-item nav-link"
+                onclick="localStorage.setItem('category', 'HeadPhones')"
+              >
+                HeadPhones
+              </a>
             </div>
           </div>
-          <div class="col-sm-6">
-            <img
-              src="https://www.apple.com/newsroom/images/product/iphone/standard/Apple-iPhone-14-Pro-iPhone-14-Pro-Max-hero-220907_Full-Bleed-Image.jpg.large.jpg"
-              alt="iPhone Promo" class="promo__image" />
+        </nav>
+
+        <!-------------------------- Vertical Divider - Only shown on lg and up -------------------------->
+        <div class="col-auto d-none d-lg-block">
+          <div class="vertical-divider h-100 mx-3 bg-black"></div>
+        </div>
+
+        <!-------------------------- Promo Section -------------------------->
+        <div class="col-12 col-lg-9">
+          <div class="promo row mx-0 mt-3 mt-lg-4 p-4 ps-xl-5 rounded bg-black">
+            <div class="promo__content col-sm-6">
+              <div class="promo__header">
+                <i
+                  class="promo__icon-apple fa-brands fa-apple fs-1 secondary-color"
+                ></i>
+                <span class="promo__title">iPhone 14 Series</span>
+              </div>
+              <p class="promo__description fs-md-1 secondary-color">
+                Up to 10% <br />
+                off Voucher
+              </p>
+              <div class="promo__footer">
+                <a href="#" class="link">Shop Now</a>
+                <i
+                  class="promo__icon-arrow fa-solid fa-arrow-right fs-5 secondary-color"
+                ></i>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <img
+                src="https://www.apple.com/newsroom/images/product/iphone/standard/Apple-iPhone-14-Pro-iPhone-14-Pro-Max-hero-220907_Full-Bleed-Image.jpg.large.jpg"
+                alt="iPhone Promo"
+                class="promo__image"
+              />
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-------------------------- Flash Sales Section -------------------------->
-    <section-header title="Flash Sales" pin="Today’s"></section-header>
-    <div class="products__group row g-3 g-md-4" id="flash-sales">
-    </div>
+      <!-------------------------- Flash Sales Section -------------------------->
+      <section-header title="Flash Sales" pin="Today’s"></section-header>
+      <div class="products__group row g-3 g-md-4" id="flash-sales"></div>
 
-    <!-------------------------- Divider -------------------------->
-    <hr />
+      <!-------------------------- Divider -------------------------->
+      <hr />
 
     <!-------------------------- Browse By Category -------------------------->
-    <section-header noviewall title="Browse By Category" pin="Categories"></section-header>
+    <section-header noviewallbtn title="Browse By Category" pin="Categories"></section-header>
     <div class="products__categories">
       <div class="products__category">
         <i class="products__category-icon fas fa-mobile-alt"></i>
@@ -110,110 +156,126 @@
       </div>
     </div>
 
-    <!-- Divider -->
-    <hr />
+      <!-- Divider -->
+      <hr />
 
-    <!-------------------------- Best Selling Products -------------------------->
-    <section-header title="Best Selling Products" pin="This Month"></section-header>
-    <div class="products__group row g-3 g-md-4" id="best-selling"></div>
+      <!-------------------------- Best Selling Products -------------------------->
+      <section-header
+        title="Best Selling Products"
+        pin="This Month"
+      ></section-header>
+      <div class="products__group row g-3 g-md-4" id="best-selling"></div>
 
-    <!-------------------------- Divider -------------------------->
-    <hr />
-    
-    <!-------------------------- Enhance Your Experience -------------------------->
-    <div class="banner row">
-      <div class="banner-content col-sm-6 d-flex flex-column">
-        <p class="banner-pin">Categories</p>
-        <p class="banner-title secondary-color">Enhance Your Programming!</p>
-        <div class="banner-timers">
-          <banner-timer text="days" number="4"></banner-timer>
-          <banner-timer text="hours" number="22"></banner-timer>
-          <banner-timer text="minutes" number="57"></banner-timer>
-          <banner-timer text="seconds" number="29"></banner-timer>
+      <!-------------------------- Divider -------------------------->
+      <hr />
+
+      <!-------------------------- Enhance Your Experience -------------------------->
+      <div class="banner row">
+        <div class="banner-content col-sm-6 d-flex flex-column">
+          <p class="banner-pin">Categories</p>
+          <p class="banner-title secondary-color">Enhance Your Programming!</p>
+          <div class="banner-timers">
+            <banner-timer text="days" number="4"></banner-timer>
+            <banner-timer text="hours" number="22"></banner-timer>
+            <banner-timer text="minutes" number="57"></banner-timer>
+            <banner-timer text="seconds" number="29"></banner-timer>
+          </div>
+          <button class="banner-button secondary-color" type="button">
+            Buy Now!
+          </button>
         </div>
-        <button class="banner-button secondary-color" type="button">
-          Buy Now!
-        </button>
+        <img
+          class="banner-image col-sm-6"
+          src="https://cdn.pixabay.com/photo/2020/04/08/16/32/keyboard-5017973_1280.jpg"
+          alt="Labtop"
+        />
       </div>
-      <img class="banner-image col-sm-6" src="https://cdn.pixabay.com/photo/2020/04/08/16/32/keyboard-5017973_1280.jpg"
-        alt="Labtop" />
+
+      <!-------------------------- Explore Our Products -------------------------->
+      <section-header
+        title="Explore Our Products"
+        pin="Our Products"
+      ></section-header>
+      <div class="products__group row g-3 g-md-4" id="our-products"></div>
+
+      <br />
+      <br />
+      <br />
+      <!-------------------------- New Arrivals -------------------------->
+      <section-header title="New Arrivals" pin="Featured"></section-header>
+      <div class="grid row mb-3">
+        <div class="col-6 grid__image">
+          <img
+            src="https://cdn.pixabay.com/photo/2019/01/06/01/20/headphones-3916271_1280.jpg"
+            alt="HeadPhone"
+          />
+          <div class="grid__overlay">
+            <p class="grid__overlay-title">Headphones</p>
+            <p class="grid__overlay-description">
+              Stylish black headphones resting in perfect symmetry.
+            </p>
+            <a href="#" class="link grid__link">Shop Now</a>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="row">
+            <div class="col-12 mb-3 grid__image">
+              <img
+                src="https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                alt="Samsung Android Smartphone"
+              />
+              <div class="grid__overlay">
+                <p class="grid__overlay-title">Smartphone</p>
+                <p class="grid__overlay-description">
+                  Elegant black smartphone placed casually on a wooden surface.
+                </p>
+                <a href="#" class="link grid__link">Shop Now</a>
+              </div>
+            </div>
+            <div class="col-6 grid__image">
+              <img
+                src="https://cdn.pixabay.com/photo/2023/10/07/14/24/smartwatch-8300238_1280.jpg"
+                alt="Smartwatche"
+              />
+              <div class="grid__overlay">
+                <p class="grid__overlay-title">Smartwatch</p>
+                <p class="grid__overlay-description">
+                  Modern smartwatch with a clean and minimal look.
+                </p>
+                <a href="#" class="link grid__link">Shop Now</a>
+              </div>
+            </div>
+            <div class="col-6 grid__image">
+              <img
+                src="https://cdn.pixabay.com/photo/2021/03/13/15/56/controller-6092065_1280.jpg"
+                alt="controller"
+              />
+              <div class="grid__overlay">
+                <p class="grid__overlay-title">Game Controller</p>
+                <p class="grid__overlay-description">
+                  White wireless controller ready for a gaming session.
+                </p>
+                <a href="#" class="link grid__link">Shop Now</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-------------------------- Features -------------------------->
+      <features-section></features-section>
     </div>
 
-    <!-------------------------- Explore Our Products -------------------------->
-    <section-header title="Explore Our Products" pin="Our Products"></section-header>
-    <div class="products__group row g-3 g-md-4" id="our-products"></div>
+    <!-- Exclusive Components footer -->
+    <exclusive-footer></exclusive-footer>
 
-    <br />
-    <br />
-    <br />
-    <!-------------------------- New Arrivals -------------------------->
-    <section-header title="New Arrivals" pin="Featured"></section-header>
-    <div class="grid row mb-3">
-      <div class="col-6 grid__image">
-        <img src="https://cdn.pixabay.com/photo/2019/01/06/01/20/headphones-3916271_1280.jpg" alt="HeadPhone" />
-        <div class="grid__overlay">
-          <p class="grid__overlay-title">Headphones</p>
-          <p class="grid__overlay-description">
-            Stylish black headphones resting in perfect symmetry.
-          </p>
-          <a href="#" class="link grid__link">Shop Now</a>
-        </div>
-      </div>
-      <div class="col-6">
-        <div class="row">
-          <div class="col-12 mb-3 grid__image">
-            <img
-              src="https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-              alt="Samsung Android Smartphone" />
-            <div class="grid__overlay">
-              <p class="grid__overlay-title">Smartphone</p>
-              <p class="grid__overlay-description">
-                Elegant black smartphone placed casually on a wooden surface.
-              </p>
-              <a href="#" class="link grid__link">Shop Now</a>
-            </div>
-          </div>
-          <div class="col-6 grid__image">
-            <img src="https://cdn.pixabay.com/photo/2023/10/07/14/24/smartwatch-8300238_1280.jpg" alt="Smartwatche" />
-            <div class="grid__overlay">
-              <p class="grid__overlay-title">Smartwatch</p>
-              <p class="grid__overlay-description">
-                Modern smartwatch with a clean and minimal look.
-              </p>
-              <a href="#" class="link grid__link">Shop Now</a>
-            </div>
-          </div>
-          <div class="col-6 grid__image">
-            <img src="https://cdn.pixabay.com/photo/2021/03/13/15/56/controller-6092065_1280.jpg" alt="controller" />
-            <div class="grid__overlay">
-              <p class="grid__overlay-title">Game Controller</p>
-              <p class="grid__overlay-description">
-                White wireless controller ready for a gaming session.
-              </p>
-              <a href="#" class="link grid__link">Shop Now</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-------------------------- Features -------------------------->
-    <features-section></features-section>
-  </div>
-
-  <!-- Exclusive Components footer -->
-  <exclusive-footer></exclusive-footer>
-
-
-  <script src="/assets/js/components/exclusive-header.js" defer></script>
-  <script src="/assets/js/components/exclusive-footer.js" defer></script>
-  <script src="/assets/js/components/features_section.js"></script>
-  <script src="/assets/js/components/banner_timer.js"></script>
-  <script src="/assets/js/components/section_header.js"></script>
-  <script src="/assets/js/components/product_card.js"></script>
-
-  <script src="/assets/js/bootstrap.bundle.min.js"></script>
-  <script src="home.js"></script>
-</body>
-
+    <script src="/assets/js/components/exclusive-header.js" defer></script>
+    <script src="/assets/js/components/exclusive-footer.js" defer></script>
+    <script src="/assets/js/components/features_section.js"></script>
+    <script src="/assets/js/components/banner_timer.js"></script>
+    <script src="/assets/js/components/section_header.js"></script>
+    <script src="/assets/js/components/product_card.js"></script>
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="home.js"></script>
+  </body>
 </html>

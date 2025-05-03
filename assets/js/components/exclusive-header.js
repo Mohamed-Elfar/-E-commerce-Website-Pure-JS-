@@ -3,11 +3,14 @@ class ExclusiveHeader extends HTMLElement {
     super();
     this.innerHTML = `
       <header>
-      <p class="w-100 bg-black text-center .text--secondary py-2">
+      <marquee behavior="scroll" scrollamount="12" direction="right" class="w-100 bg-black text-center text--secondary py-2">
+      <i class="fa-solid fa-person-running text-white mx-5 moveAnimation fs-5"></i>
         summer sale for all swim suits and free express delivery-
         <span class="text-uppercase">OFF</span> 50%! &nbsp;
         <a href="#" class="text-white border-white"> shop now</a>
-      </p>
+        <i class="fa-solid fa-basket-shopping ms-2 fa-bounce text-white"></i>
+      </marquee>
+
       <nav class="navbar navbar-expand-lg navbar-light border-bottom">
         <div class="container">
           <a class="navbar-brand fw-bold border-0 fs-5" href="#">exclusive</a>
@@ -28,6 +31,9 @@ class ExclusiveHeader extends HTMLElement {
               <li class="nav-item">
                 <a class="nav-link" href="/customer/products/products.html">products</a>
               </li>
+              <li class="nav-item d-none" id="loginLink">
+                <a class="nav-link" href="/authentication/login.html">Login</a>
+              </li>
             </ul>
             <form class="d-flex column-gap-1" id="searchForm">
               <div class="input-group">
@@ -47,8 +53,8 @@ class ExclusiveHeader extends HTMLElement {
                 </button>
               </div>
               <datalist id="productSuggestions">
-                <option value="login" data-link="./authentication/login.html"></option>
-                <option value="register" data-link="./authentication/register.html"></option>
+                <option value="login" data-link="/authentication/login.html"></option>
+                <option value="register" data-link="/authentication/register.html"></option>
               </datalist>
               <button class="btn" type="button">
                 <i class="fa fa-heart"></i>
@@ -69,7 +75,6 @@ class ExclusiveHeader extends HTMLElement {
                   <li class="d-flex align-items-center mx-3">
                     <i class="fa fa-regular fa-user"></i>  <a class="dropdown-item text-white" href="/customer/profile/profile.html">Manage My Account</a>
                   </li>
-
                   <li class="d-flex align-items-center mx-3">
                     <i class="fa-regular fa-heart"></i> <a class="dropdown-item text-white" href="/customer/profile/profile.html">Manage Wishlist</a>
                   </li>
@@ -121,15 +126,17 @@ class ExclusiveHeader extends HTMLElement {
   loggedInUser() {
     const token = localStorage.getItem("token");
     const userButton = this.querySelector(".userIcon");
+    const loginLink = this.querySelector("#loginLink");
 
     if (userButton) {
       if (!token) {
         userButton.classList.add("d-none");
+        loginLink.classList.remove("d-none");
       } else {
         userButton.classList.remove("d-none");
         userButton.addEventListener("click", () => {
           userButton.classList.toggle("bg-danger");
-        })
+        });
       }
     }
   }
@@ -147,6 +154,12 @@ class ExclusiveHeader extends HTMLElement {
       logoutBtn.addEventListener("click", (e) => {
         e.preventDefault();
         localStorage.removeItem("token");
+        const users = JSON.parse(localStorage.getItem("users") || []);
+        const updatedUsers = users.map((user) => {
+          const { token, ...rest } = user;
+          return rest;
+        });
+        localStorage.setItem("users", JSON.stringify(updatedUsers));
         window.location.reload();
       });
     }

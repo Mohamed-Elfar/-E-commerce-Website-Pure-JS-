@@ -13,7 +13,6 @@ input {
   --text-bg: rgb(200, 198, 198);
   --text-primary: #db4444;
   --text-secondary: rgb(200, 198, 198);
-  --button-primary: #db4444;
 }
 
 @font-face {
@@ -44,9 +43,11 @@ body {
   margin: 0;
   font-family: "Poppins", sans-serif;
 }
+
 .no-caret::after {
   display: none !important;
 }
+
 a {
   text-decoration: none;
   /* border-bottom: 2px solid #7d8184; */
@@ -92,6 +93,7 @@ a {
 .w-65 {
   width: 65%;
 }
+
 .invalid-feedback {
   min-height: 1.2em;
   font-size: 12px;
@@ -128,7 +130,7 @@ a {
 }
 
 .btn--primary {
-  background-color: var(--button-primary);
+  background-color: var(--text-primary);
   color: white;
 }
 
@@ -154,15 +156,19 @@ a {
   outline: none;
   box-shadow: none;
 }
-
 exclusive-header {
   p {
     color: rgb(200, 198, 198);
   }
+
   .dropdown-menu {
     background: rgb(102 100 100 / 80%) !important;
     backdrop-filter: blur(5px) !important;
     color: #fff !important;
+  }
+
+  a {
+    border-bottom: 2px solid #7d8184;
   }
 
   .dropdown-item:hover {
@@ -171,6 +177,7 @@ exclusive-header {
 }
 
 .footer {
+
   .col {
     min-width: 245px;
   }
@@ -183,7 +190,7 @@ exclusive-header {
     place-items: center;
   }
 
-  .footer__rights > p {
+  .footer__rights>p {
     border-color: rgb(94, 93, 93);
     color: rgb(94, 93, 93);
   }
@@ -202,6 +209,7 @@ exclusive-header {
 }
 
 @media (max-width: 991px) {
+
   .toast-success,
   .toast-error {
     text-align: center;
@@ -211,4 +219,69 @@ exclusive-header {
   .container {
     width: 100% !important;
   }
+}
+
+
+.moveAnimation {
+  animation: move 1s infinite;
+}
+@keyframes move {
+  0% {
+    transform: translateX(0px);
+  }
+  25% {
+    transform: translateX(10px);
+  }
+  50% {
+    transform: translateX(20px);
+  }
+  75% {
+    transform: translateX(30px);
+  }
+  100% {
+    transform: translateX(40px);
+  }
+}
+
+.section__pin {
+  position: relative;
+  display: inline-block;
+  transition: all 0.5s;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-left: 35px;
+}
+
+.section__pin:hover {
+  color: white !important;
+  cursor: pointer;
+}
+
+.section__pin::before {
+  content: "";
+  width: 20px;
+  height: 40px;
+  background-color: var(--text-primary);
+  border-radius: 4px;
+  position: absolute;
+  left: -35px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: -1 !important;
+  transition: all 0.8s;
+}
+
+.section__pin:hover::before {
+  width: 150%;
+}
+.section__pin__alt:hover::before {
+  width: 220%;
+}
+
+
+.custom-control-input:checked + .custom-control-label {
+  background-color: var(--text-primary);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
 }
