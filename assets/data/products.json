@@ -42,7 +42,7 @@
       }
     ]
   },
- 
+
   {
     "id": 3,
     "name": "Google Pixel 8 Pro",
@@ -1331,7 +1331,7 @@
     "image": "https://cdn.shopify.com/s/files/1/0514/0270/3004/files/hyperx_cloud_alpha_s_blackblue_2_detachable_450x.jpg?v=1724860422",
     "price": 2999.0,
     "quantity": 18,
-    "rating": 5,
+    "rating": 3,
     "ratingCount": 643,
     "sale": "",
     "category": "Gaming",

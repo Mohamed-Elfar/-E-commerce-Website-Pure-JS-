@@ -177,6 +177,7 @@ exclusive-header {
 }
 
 .footer {
+
   .col {
     min-width: 245px;
   }
@@ -275,4 +276,12 @@ exclusive-header {
 }
 .section__pin__alt:hover::before {
   width: 220%;
+}
+
+
+.custom-control-input:checked + .custom-control-label {
+  background-color: var(--text-primary);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
 }

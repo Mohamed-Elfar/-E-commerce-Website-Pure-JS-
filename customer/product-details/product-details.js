@@ -87,9 +87,9 @@ function displayProductDetails() {
   ratingStars.innerHTML = [...Array(5)]
     .map((_, i) => {
       return `<i class="fa-${
-        i < product.Rating ? "solid" : "regular"
+        i < product.rating ? "solid" : "regular"
       } fa-star ${
-        i < product.Rating ? "gold" : "text-muted"
+        i < product.rating ? "gold" : "text-muted"
       }" aria-hidden="true"></i>`;
     })
     .join("");

@@ -84,16 +84,31 @@ export function validatePasswordMatch(password, confirmPassword) {
 }
 
 export function addToCart(productId) {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  if (!cart.includes(productId)) {
-    cart.push(productId);
-    localStorage.setItem("cart", JSON.stringify(cart));
-    showToast("success", "Added to cart!");
+  if (localStorage.getItem("token")) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    if (!cart.includes(productId)) {
+      cart.push(productId);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      showToast("success", "Added to cart!");
+    } else {
+      showToast("success", "Added to cart!");
+    }
   } else {
-    showToast("success", "Added to cart!");
+    showToast("error", "Please Login First");
   }
 }
-
+export function addToWishList(productId) {
+  if (localStorage.getItem("token")) {
+    let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+    if (!wishlist.includes(productId)) {
+      wishlist.push(productId);
+      localStorage.setItem("wishlist", JSON.stringify(wishlist));
+      showToast("success", "Product Added to Your Wish List");
+    }
+  } else {
+    showToast("error", "Please Login First");
+  }
+}
 export function search(title, parent) {
   const search = document.getElementById("navSearch");
   const searchBtn = document.getElementById("searchBtn");
@@ -132,7 +147,7 @@ export function filterProductsByStoredCategory() {
     for (let categoryElement of productCategories) {
       const productCard = categoryElement.closest(".col-md-4");
       if (!productCard) continue;
-      const elementText = categoryElement.textContent.toLowerCase();
+      const elementText = categoryElement.dataset.category.toLowerCase();
       const matchesCategory = elementText.includes(category.toLowerCase());
       productCard.style.display = matchesCategory ? "block" : "none";
       if (matchesCategory) anyMatches = true;
@@ -146,11 +161,33 @@ export function filterProductsByStoredCategory() {
     return;
   }
 }
-export function addToWishList(productId) {
+// export function addToWishList(productId) {
+//   let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+//   if (!wishlist.includes(productId)) {
+//     wishlist.push(productId);
+//     localStorage.setItem("wishlist", JSON.stringify(wishlist));
+//     showToast("success", "Product Added to Your Wish List");
+//   }
+// }
+
+export function toggleWishList(productId, icon) {
   let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-  if (!wishlist.includes(productId)) {
+
+  if (wishlist.includes(productId)) {
+    wishlist = wishlist.filter((id) => id !== productId);
+    icon.classList.remove("active", "fa-solid");
+    icon.classList.add("fa-regular");
+  } else {
     wishlist.push(productId);
-    localStorage.setItem("wishlist", JSON.stringify(wishlist));
-    showToast("success", "Product Added to Your Wish List");
+    icon.classList.add("active", "fa-solid");
+    icon.classList.remove("fa-regular");
+  }
+
+  localStorage.setItem("wishlist", JSON.stringify(wishlist));
+}
+
+export function redirectToNotFoundPage(condition) {
+  if (condition) {
+    window.location.href = "/404.html";
   }
 }
