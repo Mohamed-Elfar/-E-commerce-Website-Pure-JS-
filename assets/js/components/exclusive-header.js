@@ -3,11 +3,14 @@ class ExclusiveHeader extends HTMLElement {
     super();
     this.innerHTML = `
       <header>
-      <p class="w-100 bg-black text-center .text--secondary py-2">
+      <marquee behavior="scroll" scrollamount="12" direction="right" class="w-100 bg-black text-center text--secondary py-2">
+      <i class="fa-solid fa-person-running text-white mx-5 moveAnimation fs-5"></i>
         summer sale for all swim suits and free express delivery-
         <span class="text-uppercase">OFF</span> 50%! &nbsp;
         <a href="#" class="text-white border-white"> shop now</a>
-      </p>
+        <i class="fa-solid fa-basket-shopping ms-2 fa-bounce text-white"></i>
+      </marquee>
+
       <nav class="navbar navbar-expand-lg navbar-light border-bottom">
         <div class="container">
           <a class="navbar-brand fw-bold border-0 fs-5" href="#">exclusive</a>
@@ -47,8 +50,8 @@ class ExclusiveHeader extends HTMLElement {
                 </button>
               </div>
               <datalist id="productSuggestions">
-                <option value="login" data-link="./authentication/login.html"></option>
-                <option value="register" data-link="./authentication/register.html"></option>
+                <option value="login" data-link="/authentication/login.html"></option>
+                <option value="register" data-link="/authentication/register.html"></option>
               </datalist>
               <button class="btn" type="button">
                 <i class="fa fa-heart"></i>

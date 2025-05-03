@@ -1,4 +1,9 @@
-import { showToast } from "../../assets/js/utils.js";
+import {
+  showToast,
+  addToCart,
+  search,
+  filterProductsByStoredCategory,
+} from "../../assets/js/utils.js";
 fetch("../../assets/data/products.json")
   .then((res) => res.json())
   .then((data) => {
@@ -18,7 +23,9 @@ fetch("../../assets/data/products.json")
               <a class="border-0">
                 <div class="product__icon-container"><i class="product__icon fa-regular fa-heart" aria-hidden="true"></i></div>
               </a>
-              <a href="product-details.html?id=${elem.id}"  class="border-0">
+              <a href="/customer/productDetails/productDetails.html?id=${
+                elem.id
+              }"  class="border-0">
                 <div class="product__icon-container"><i class="product__icon fa-regular fa-eye" aria-hidden="true"></i></div>
               </a>
             </div>
@@ -30,6 +37,7 @@ fetch("../../assets/data/products.json")
         </div>
         <div>
           <p class="product__title">${elem.name}</p>
+          <p class="product__category">${elem.category}</p>
           <div class="product__price">
             <p class="product__price-new">$${elem.price}</p>
             <p class="product__price-old">$${(elem.price + 40).toFixed(2)}</p>
@@ -59,23 +67,13 @@ fetch("../../assets/data/products.json")
       wishBtn.addEventListener("click", () => addToWishList(elem));
       container.appendChild(card);
     });
+    filterProductsByStoredCategory();
   })
   .catch((error) => {
     document.getElementById("product-container").textContent =
       "Failed to load products.";
     console.error("Error loading products:", error);
   });
-
-function addToCart(productId) {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  if (!cart.includes(productId)) {
-    cart.push(productId);
-    localStorage.setItem("cart", JSON.stringify(cart));
-    showToast("success", "Added to cart!");
-  } else {
-    showToast("success", "Added to cart!");
-  }
-}
 
 function addToWishList(productId) {
   let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
@@ -85,3 +83,4 @@ function addToWishList(productId) {
     showToast("success", "Product Added to Your Wish List");
   }
 }
+search("product__title", ".col-md-4");
