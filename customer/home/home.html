@@ -30,30 +30,12 @@
       <nav id="sidebar" class="col-6 col-md-3 col-lg-2 d-lg-block sidebar collapse mt-lg-4 background-primary">
         <div class="position-sticky">
           <div class="nav flex-column" id="sideMenu">
-            <a href="/customer/products/products.html" class="nav-item nav-link"
-              onclick="localStorage.setItem('category', 'Smartphones')">
-              Smartphones
-            </a>
-            <a href="/customer/products/products.html" class="nav-item nav-link"
-              onclick="localStorage.setItem('category', 'Laptops')">
-              Laptops
-            </a>
-            <a href="/customer/products/products.html" class="nav-item nav-link"
-              onclick="localStorage.setItem('category', 'Tablets')">
-              Tablets
-            </a>
-            <a href="/customer/products/products.html" class="nav-item nav-link"
-              onclick="localStorage.setItem('category', 'Gaming')">
-              Gaming
-            </a>
-            <a href="/customer/products/products.html" class="nav-item nav-link"
-              onclick="localStorage.setItem('category', 'Smartwatches')">
-              Smartwatches
-            </a>
-            <a href="/customer/products/products.html" class="nav-item nav-link"
-              onclick="localStorage.setItem('category', 'HeadPhones')">
-              HeadPhones
-            </a>
+            <sidebar-category category="Smartphones"></sidebar-category>
+            <sidebar-category category="Tablets"></sidebar-category>
+            <sidebar-category category="Laptops"></sidebar-category>
+            <sidebar-category category="Gaming"></sidebar-category>
+            <sidebar-category category="SmartWatches"></sidebar-category>
+            <sidebar-category category="HeadPhones"></sidebar-category>
           </div>
         </div>
       </nav>
@@ -99,30 +81,12 @@
     <!-------------------------- Browse By Category -------------------------->
     <section-header noviewallbtn title="Browse By Category" pin="Categories"></section-header>
     <div class="products__categories">
-      <div class="products__category">
-        <i class="products__category-icon fas fa-mobile-alt"></i>
-        <p class="products__category-title">Smartphones</p>
-      </div>
-      <div class="products__category">
-        <i class="products__category-icon fas fa-laptop"></i>
-        <p class="products__category-title">Laptops</p>
-      </div>
-      <div class="products__category">
-        <i class="products__category-icon fas fa-tablet-alt"></i>
-        <p class="products__category-title">Tablets</p>
-      </div>
-      <div class="products__category">
-        <i class="products__category-icon fas fa-gamepad"></i>
-        <p class="products__category-title">Gaming</p>
-      </div>
-      <div class="products__category">
-        <i class="products__category-icon far fa-clock"></i>
-        <p class="products__category-title">Smartwatches</p>
-      </div>
-      <div class="products__category">
-        <i class="products__category-icon fas fa-headphones"></i>
-        <p class="products__category-title">HeadPhones</p>
-      </div>
+      <category-widget category="Smartphones" icon="fas fa-mobile-alt"></category-widget>
+      <category-widget category="Tablets" icon="fas fa-tablet-alt"></category-widget>
+      <category-widget category="Laptops" icon="fas fa-laptop"></category-widget>
+      <category-widget category="Gaming" icon="fas fa-gamepad"></category-widget>
+      <category-widget category="Smartwatches" icon="far fa-clock"></category-widget>
+      <category-widget category="HeadPhones" icon="fas fa-headphones"></category-widget>
     </div>
 
     <!-- Divider -->
@@ -228,6 +192,7 @@
   <script src="/assets/js/components/exclusive-footer.js" defer></script>
   <script src="/assets/js/components/features_section.js"></script>
   <script src="/assets/js/components/banner_timer.js"></script>
+  <script src="/assets/js/components/category-widget.js"></script>
   <script src="/assets/js/components/section_header.js"></script>
   <script src="/assets/js/components/product_card.js"></script>
   <script src="/assets/js/bootstrap.bundle.min.js"></script>

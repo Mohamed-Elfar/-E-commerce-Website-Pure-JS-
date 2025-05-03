@@ -25,12 +25,10 @@ class ProductCardComponent extends HTMLElement {
                 <h6 id="productName" class="product__title mb-2"></h6>
                 <div class="product__price d-flex gap-2 mt-2">
                     <h6 id="productPrice" class="product__price-new primary-color">$</h6>
-                    <p id="productOldPrice" class="product__price-old text-decoration-line-through opacity-50">$160</p>
+                    <p id="productOldPrice" class="product__price-old text-decoration-line-through opacity-50"></p>
                 </div>
                 <div class="product__rating mb-3">
-                    <div id="productRatingStar">
-                       
-                    </div>
+                    <div id="productRatingStar"></div>
                     <p id="productRatingCount" class="product__rating-count fw-semibold opacity-50"></p>
                 </div>
             </div>
@@ -39,14 +37,12 @@ class ProductCardComponent extends HTMLElement {
 
 
         // After rendering, apply attributes
-        ['name', 'price', 'image', 'rating', 'ratingCount', 'sale'].forEach(attr => {
+        ['name', 'price', 'image', 'rating', 'ratingCount', 'sale', 'category'].forEach(attr => {
             if (this.hasAttribute(attr)) {
                 this.attributeChangedCallback(attr, null, this.getAttribute(attr));
             }
         });
     }
-
-    static get observedAttributes() { return ['image', 'name', 'price', 'ratingCount', 'sale']; }
 
     attributeChangedCallback(name, oldValue, newValue) {
         // Wait until DOM is rendered
