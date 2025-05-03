@@ -30,7 +30,7 @@ function fetchBestSellingProducts() {
     fetch('/assets/data/products.json')
         .then(response => response.json())
         .then(products => {
-            products.sort((a, b) => (b.rating || 0) - (a.rating || 0)).forEach(product => {
+            products.sort((a, b) => (b.rating || 0) - (a.rating || 0)).sort(() => Math.random() - 0.5).forEach(product => {
                 var productCard = document.createElement('product-card');
                 productCard.className = 'col-12 col-sm-6 col-md-5 col-xl-3';
                 productCard.setAttribute('name', product.name || 'Unknown Product');
@@ -56,7 +56,7 @@ function fetchFlashSalesProducts() {
         .then(products => {
             products.filter(
                 product => product.sale != null && product.sale !== ''
-            ).forEach(product => {
+            ).sort(() => Math.random() - 0.5).forEach(product => {
                 var productCard = document.createElement('product-card');
                 productCard.className = 'col-12 col-sm-6 col-md-5 col-xl-3';
                 productCard.setAttribute('name', product.name || 'Unknown Product');

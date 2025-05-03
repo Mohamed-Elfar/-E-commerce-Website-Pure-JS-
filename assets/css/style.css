@@ -124,6 +124,7 @@ a {
   outline: none;
   box-shadow: none;
 }
+
 exclusive-header {
   p {
     color: rgb(200, 198, 198);
@@ -188,23 +189,27 @@ exclusive-header {
   }
 }
 
-
 .moveAnimation {
   animation: move 1s infinite;
 }
+
 @keyframes move {
   0% {
     transform: translateX(0px);
   }
+
   25% {
     transform: translateX(10px);
   }
+
   50% {
     transform: translateX(20px);
   }
+
   75% {
     transform: translateX(30px);
   }
+
   100% {
     transform: translateX(40px);
   }
@@ -241,6 +246,35 @@ exclusive-header {
 .section__pin:hover::before {
   width: 150%;
 }
+
 .section__pin__alt:hover::before {
   width: 220%;
+}
+
+.outer-circle {
+  width: 80px;
+  height: 80px;
+  background-color: lightgray;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+
+  .icon-circle {
+    width: 60px;
+    height: 60px;
+    background-color: #c1c0c1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    font-size: 24px;
+    background-color: #2F2E30;
+
+    i {
+      color: white;
+    }
+  }
 }

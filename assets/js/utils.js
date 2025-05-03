@@ -146,3 +146,23 @@ export function filterProductsByStoredCategory() {
     return;
   }
 }
+
+export function addToCart(productId) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  if (!cart.includes(productId)) {
+    cart.push(productId);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    showToast("success", "Added to cart!");
+  } else {
+    showToast("success", "Added to cart!");
+  }
+}
+
+export function addToWishList(productId) {
+  let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+  if (!wishlist.includes(productId)) {
+    wishlist.push(productId);
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+    showToast("success", "Product Added to Your Wish List");
+  }
+}

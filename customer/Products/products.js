@@ -3,7 +3,9 @@ import {
   addToCart,
   search,
   filterProductsByStoredCategory,
+  addToWishList
 } from "../../assets/js/utils.js";
+
 fetch("../../assets/data/products.json")
   .then((res) => res.json())
   .then((data) => {
@@ -16,23 +18,20 @@ fetch("../../assets/data/products.json")
       <div class="product bg-light">
         <div class="product__badge">
           <div class="product__actions">
-            <div class="product__discount" style="${
-              elem.sale ? "" : "visibility: hidden"
-            }">-${elem.sale || ""}</div>
+            <div class="product__discount" style="${elem.sale ? "" : "visibility: hidden"
+        }">-${elem.sale || ""}</div>
             <div class="product__icons">
               <a class="border-0">
                 <div class="product__icon-container"><i class="product__icon fa-regular fa-heart" aria-hidden="true"></i></div>
               </a>
-              <a href="/customer/productDetails/productDetails.html?id=${
-                elem.id
-              }"  class="border-0">
+              <a href="/customer/productDetails/productDetails.html?id=${elem.id
+        }"  class="border-0">
                 <div class="product__icon-container"><i class="product__icon fa-regular fa-eye" aria-hidden="true"></i></div>
               </a>
             </div>
           </div>
-          <img class="product__image" src="${elem.image}" alt="${
-        elem.name
-      }" loading="lazy">
+          <img class="product__image" src="${elem.image}" alt="${elem.name
+        }" loading="lazy">
           <a href="#"><div class="product__overlay">Add To Cart</div></a>
         </div>
         <div>
@@ -44,19 +43,17 @@ fetch("../../assets/data/products.json")
           </div>
           <div class="product__rating">
             ${[...Array(5)]
-              .map(
-                (_, i) =>
-                  `<i class="product__rating-star ${
-                    i < elem.Rating ? "fa-solid" : "fa-regular"
-                  } fa-star" aria-hidden="true"></i>`
-              )
-              .join("")}
+          .map(
+            (_, i) =>
+              `<i class="product__rating-star ${i < elem.Rating ? "fa-solid" : "fa-regular"
+              } fa-star" aria-hidden="true"></i>`
+          )
+          .join("")}
             <p class="product__rating-count">(${elem.ratingCount})</p>
           </div>
           <div class="col-md-12">
-            <button class="btn btn-dark w-100 cartBTn" data-id="${
-              elem.id
-            }">Add To Cart</button>
+            <button class="btn btn-dark w-100 cartBTn" data-id="${elem.id
+        }">Add To Cart</button>
           </div>
         </div>
       </div>

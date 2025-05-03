@@ -1,8 +1,7 @@
 class FeaturesComponent extends HTMLElement {
     connectedCallback() {
         this.innerHTML = ` 
-            <link rel="stylesheet" href="/customer/about/about.css" />
-            <section class="container py-5">
+            <section class="container">
                 <div class="row text-center g-4">
                     <div class="col-lg-4 col-md-6">
                         <div>
