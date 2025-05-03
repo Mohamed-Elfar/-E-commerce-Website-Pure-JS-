@@ -1,151 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Product Details</title>
 
-    <!-- icon -->
-    <link rel="icon" href="../../assets/images/icon.png" type="image/png" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Details</title>
+  <link rel="icon" href="../../assets/images/icon.png" type="image/png" />
+  <link rel="stylesheet" href="../../assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../../assets/css/fontawesome.min.css" />
+  <link rel="stylesheet" href="product_details.css" />
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+</head>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css" />
+<body>
+  <exclusive-header></exclusive-header>
 
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="../../assets/css/fontawesome.min.css" />
-
-    <!-- Your Custom Styles -->
-    <link rel="stylesheet" href="productDetails .css" />
-    <link rel="stylesheet" href="../../assets/css/style.css" />
-  </head>
-  <body>
-    <exclusive-header></exclusive-header>
-
-    <!-- start product details section -->
-    <section class="product-details">
-      <div class="container py-5">
-        <div class="row product-details__main-details g-4">
-          <div class="col-lg-1">
-            <div
-              class="side-imgs d-flex flex-column gap-2 mt-5"
-              id="sideImgs"
-            ></div>
+  <!-- start product details section -->
+  <section class="product-details">
+    <div class="container py-5">
+      <div class="row product-details__main-details g-4">
+        <div class="col-lg-1">
+          <div class="side-imgs d-flex flex-column gap-2 mt-5" id="sideImgs"></div>
+        </div>
+        <div class="col-lg-6">
+          <div class="main-img shadow d-flex justify-content-center ms-2">
+            <img class="main-img__img w-100" id="mainImg" src="" alt="main-img." />
           </div>
-          <div class="col-lg-6">
-            <div class="main-img shadow d-flex justify-content-center ms-2">
-              <img
-                class="main-img__img w-100"
-                id="mainImg"
-                src=""
-                alt="main-img."
-              />
-            </div>
-          </div>
-          <div class="col-lg-5">
-            <div class="product-info ms-5">
-              <h3 class="product-info__heading" id="productName"></h3>
-              <div class="porduct-info__rate d-flex align-items-center">
-                <div class="product-info__star">
-                  <i class="fa-solid fa-star gold" aria-hidden="true"></i>
-                  <i class="fa-solid fa-star gold" aria-hidden="true"></i>
-                  <i class="fa-solid fa-star gold" aria-hidden="true"></i>
-                  <i class="fa-solid fa-star gold" aria-hidden="true"></i>
-                  <i class="fa-regular fa-star text-muted"></i>
-                </div>
-                <div class="product-info__review text-muted mx-2">
-                  <!-- start modal -->
-                  <a
-                    href="#"
-                    class="text-muted"
-                    data-bs-toggle="modal"
-                    data-bs-target="#exampleModal"
-                    >(8 reviews)</a
-                  >
-                  <div
-                    class="modal fade"
-                    id="exampleModal"
-                    tabindex="-1"
-                    aria-labelledby="exampleModalLabel"
-                    aria-hidden="true"
-                  >
-                    <div class="modal-dialog modal-dialog-scrollable">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h1 class="modal-title fs-5" id="exampleModalLabel">
-                            Reviews:
-                          </h1>
-                          <button
-                            type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"
-                          ></button>
-                        </div>
-                        <div class="modal-body">
-                          <form>
-                            <div class="reviews">
-                              <ol>
-                                <li>good product 👍</li>
-                                <li>good product 👍</li>
-                                <li>good product 👍</li>
-                                <li>good product 👍</li>
-                                <li>good product 👍</li>
-                                <li>good product 👍</li>
-                                <li>good product 👍</li>
-                                <li>good product 👍</li>
-                              </ol>
-                            </div>
-                            <div class="form-floating">
-                              <textarea
-                                class="form-control"
-                                placeholder="Leave a feedback here"
-                                id="floatingTextarea"
-                              ></textarea>
-                              <label for="floatingTextarea">Add feedback</label>
-                            </div>
-                          </form>
-                        </div>
-                        <div class="modal-footer justify-content-center">
-                          <button type="button" class="btn btn-primary">
-                            Add review
-                          </button>
-                        </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="product-info ms-5">
+            <h3 class="product-info__heading" id="productName"></h3>
+            <div class="porduct-info__rate d-flex align-items-center">
+              <div class="product-info__star">
+                <i class="fa-solid fa-star gold" aria-hidden="true"></i>
+                <i class="fa-solid fa-star gold" aria-hidden="true"></i>
+                <i class="fa-solid fa-star gold" aria-hidden="true"></i>
+                <i class="fa-solid fa-star gold" aria-hidden="true"></i>
+                <i class="fa-regular fa-star text-muted"></i>
+              </div>
+              <div class="product-info__review text-muted mx-2">
+                <!-- start modal -->
+                <a href="#" class="text-muted" data-bs-toggle="modal" data-bs-target="#exampleModal">(8 reviews)</a>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                  aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">
+                          Reviews:
+                        </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <form>
+                          <div class="reviews">
+                            <ol>
+                              <li>good product 👍</li>
+                              <li>good product 👍</li>
+                              <li>good product 👍</li>
+                              <li>good product 👍</li>
+                              <li>good product 👍</li>
+                              <li>good product 👍</li>
+                              <li>good product 👍</li>
+                              <li>good product 👍</li>
+                            </ol>
+                          </div>
+                          <div class="form-floating">
+                            <textarea class="form-control" placeholder="Leave a feedback here"
+                              id="floatingTextarea"></textarea>
+                            <label for="floatingTextarea">Add feedback</label>
+                          </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer justify-content-center">
+                        <button type="button" class="btn btn-primary">
+                          Add review
+                        </button>
                       </div>
                     </div>
                   </div>
-                  <!-- end modal -->
                 </div>
-                <div
-                  class="product-info__stock text-muted"
-                  id="productQuantity"
-                >
-                  <span class="me-3">| </span>In Stock
-                </div>
+                <!-- end modal -->
               </div>
-              <div
-                class="product-info__price my-2 fs-4"
-                id="productPrice"
-              ></div>
-              <p
-                class="product-info__describtion text-secondary"
-                id="productDesc"
-              ></p>
-              <hr />
-              <div class="product-info__colors my-4">
-                <span class="fs-5 me-3">Colors:</span>
-                <input
-                  class="product-info__colors--blue me-2"
-                  type="radio"
-                  name="color"
-                  checked
-                />
-                <input
-                  class="product-info__colors--red"
-                  type="radio"
-                  name="color"
-                />
+              <div class="product-info__stock text-muted" id="productQuantity">
+                <span class="me-3">| </span>In Stock
               </div>
-              <!-- <div class="product-info__size d-flex my-4">
+            </div>
+            <div class="product-info__price my-2 fs-4" id="productPrice"></div>
+            <p class="product-info__describtion text-secondary" id="productDesc"></p>
+            <hr />
+            <div class="product-info__colors my-4">
+              <span class="fs-5 me-3">Colors:</span>
+              <input class="product-info__colors--blue me-2" type="radio" name="color" checked />
+              <input class="product-info__colors--red" type="radio" name="color" />
+            </div>
+            <!-- <div class="product-info__size d-flex my-4">
                 <span class="fs-5 fw-semibold me-3">Size:</span>
                 <div class="product-info__size--btn-gorup">
                   <button
@@ -175,75 +124,61 @@
                   </button>
                 </div>
               </div> -->
-              <div class="row product-info__quantity">
-                <div class="col-sm-4">
-                  <div
-                    class="qty d-flex justify-content-between align-items-center"
-                  >
-                    <button class="btn btn-outline-danger">
-                      <i class="fa-solid fa-minus" aria-hidden="true"></i>
-                    </button>
-                    <span class="fs-5">2</span>
-                    <button class="btn btn-outline-danger">
-                      <i class="fa-solid fa-plus" aria-hidden="true"></i>
-                    </button>
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <button id="addToCart" class="w-100 btn btn-danger">
-                    Add To Cart
+            <div class="row product-info__quantity">
+              <div class="col-sm-4">
+                <div class="qty d-flex justify-content-between align-items-center">
+                  <button class="btn btn-outline-danger">
+                    <i class="fa-solid fa-minus" aria-hidden="true"></i>
+                  </button>
+                  <span class="fs-5">2</span>
+                  <button class="btn btn-outline-danger">
+                    <i class="fa-solid fa-plus" aria-hidden="true"></i>
                   </button>
                 </div>
-                <div class="col-sm-2">
-                  <i
-                    class="fa-solid fa-heart wishlist-icon fs-4 text-muted"
-                  ></i>
+              </div>
+              <div class="col-sm-6">
+                <button id="addToCart" class="w-100 btn btn-danger">
+                  Add To Cart
+                </button>
+              </div>
+              <div class="col-sm-2">
+                <i class="fa-solid fa-heart wishlist-icon fs-4 text-muted"></i>
+              </div>
+            </div>
+            <div class="product-info__delivery border my-5 rounded">
+              <div class="product-info__delivery--free-delivery border-bottom p-2 d-flex align-items-center">
+                <i class="fa-solid fa-truck-fast fs-3 mx-4"></i>
+                <div class="free-info">
+                  <h6>Free Delivery</h6>
+                  <small>Enter your postal code for delivery availability</small>
                 </div>
               </div>
-              <div class="product-info__delivery border my-5 rounded">
-                <div
-                  class="product-info__delivery--free-delivery border-bottom p-2 d-flex align-items-center"
-                >
-                  <i class="fa-solid fa-truck-fast fs-3 mx-4"></i>
-                  <div class="free-info">
-                    <h6>Free Delivery</h6>
-                    <small
-                      >Enter your postal code for delivery availability</small
-                    >
-                  </div>
-                </div>
-                <div
-                  class="product-info__delivery--return-delivery p-2 d-flex align-items-center"
-                >
-                  <i
-                    class="fa-solid fa-arrows-rotate fs-3 mx-4"
-                    aria-hidden="true"
-                  ></i>
-                  <div class="return-info ms-2">
-                    <h6>Return Delivery</h6>
-                    <small>Free 30-day Delivery Returns Details</small>
-                  </div>
+              <div class="product-info__delivery--return-delivery p-2 d-flex align-items-center">
+                <i class="fa-solid fa-arrows-rotate fs-3 mx-4" aria-hidden="true"></i>
+                <div class="return-info ms-2">
+                  <h6>Return Delivery</h6>
+                  <small>Free 30-day Delivery Returns Details</small>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="related-items">
-          <h5 class="related-items__heading items-heading text-danger">
-            Related items
-          </h5>
-        </div>
       </div>
-    </section>
-    <!-- end product details section -->
+      <div class="related-items">
+        <h6 class="related-items__heading section__pin">
+          Related items
+        </h6>
+      </div>
+    </div>
+  </section>
+  <!-- end product details section -->
+  <exclusive-footer></exclusive-footer>
 
-    <exclusive-footer></exclusive-footer>
+  <!-- Exclusive Components -->
+  <script src="/assets/js/components/exclusive-header.js" defer></script>
+  <script src="/assets/js/components/exclusive-footer.js" defer></script>
+  <script src="/assets/js/bootstrap.bundle.min.js"></script>
+  <script src="product_details.js"></script>
+</body>
 
-    <!-- Exclusive Components -->
-    <script src="/assets/js/components/exclusive-header.js" defer></script>
-    <script src="/assets/js/components/exclusive-footer.js" defer></script>
-    <!-- Bootstrap JS Bundle with Popper -->
-    <script src="/assets/js/bootstrap.bundle.min.js"></script>
-    <script src="productDetails.js"></script>
-  </body>
 </html>

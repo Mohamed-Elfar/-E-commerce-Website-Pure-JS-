@@ -9,7 +9,7 @@ class ProductCardComponent extends HTMLElement {
             <div class="product mt-3 w-100">
                 <div class="product__badge position-relative overflow-hidden rounded mb-3">
                     <div class="product__actions d-flex position-absolute justify-content-between w-100 p-3">
-                        <div class="product__discount py-1 px-3 secondary-color background-primary rounded text-center position-absolute left-1 top-1"></div>
+                        <div id="productDiscount" class="product__discount py-1 px-3 secondary-color background-primary rounded text-center position-absolute left-1 top-1"></div>
                         <div class="product__icons d-flex flex-column position-absolute gap-1">
                             <a href="#"><div class="product__icon-container"><i class="product__icon fa-regular fa-heart"></i></div></a>
                             <a href="#"><div class="product__icon-container"><i class="product__icon fa-regular fa-eye"></i></div></a>
@@ -23,11 +23,11 @@ class ProductCardComponent extends HTMLElement {
                     </a>
                 </div>
                 <h6 id="productName" class="product__title mb-2"></h6>
-                <div class="product__price d-flex gap-2 my-2">
-                    <h6 id="productPrice" class="product__price-new color-primary"></h6>
+                <div class="product__price d-flex gap-2 mt-2">
+                    <h6 id="productPrice" class="product__price-new primary-color">$</h6>
                     <p id="productOldPrice" class="product__price-old text-decoration-line-through opacity-50">$160</p>
                 </div>
-                <div class="product__rating">
+                <div class="product__rating mb-3">
                     <div>
                         <i class="product__rating-star fa-solid fa-star"></i>
                         <i class="product__rating-star fa-solid fa-star"></i>
@@ -63,7 +63,7 @@ class ProductCardComponent extends HTMLElement {
                 break;
             case 'price':
                 this.querySelector('#productPrice')
-                    .textContent = newValue;
+                    .textContent += newValue;
                 break;
             case 'ratingCount':
                 this.querySelector('#productRatingCount')
@@ -73,14 +73,16 @@ class ProductCardComponent extends HTMLElement {
                 this.querySelector('#productImage')
                     .setAttribute('src', newValue);
                 break;
-            // case 'sale':
-            //     const el = this.querySelector('#productDiscount');
-            //     if (el) {
-            //         el.classList.remove('product__discount--hidden');
-            //         el.classList.add('background-primary', 'secondary-color');
-            //         el.textContent = newValue;
-            //     }
-            //     break;
+            case 'sale':
+                const saleBox = this.querySelector('#productDiscount');
+                const oldPrice = this.querySelector('#productOldPrice');
+
+                if (!newValue == "") {
+                    saleBox.style.display = "block";
+                    oldPrice.style.display = "block";
+                    saleBox.innerText = `-${newValue}`;
+                }
+                break;
         }
     }
 }
