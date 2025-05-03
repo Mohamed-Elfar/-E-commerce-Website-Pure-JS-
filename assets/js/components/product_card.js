@@ -23,11 +23,11 @@ class ProductCardComponent extends HTMLElement {
                     </a>
                 </div>
                 <h6 id="productName" class="product__title mb-2"></h6>
-                <div class="product__price d-flex gap-2 my-2">
-                    <h6 id="productPrice" class="product__price-new color-primary"></h6>
+                <div class="product__price d-flex gap-2 mt-2">
+                    <h6 id="productPrice" class="product__price-new primary-color">$</h6>
                     <p id="productOldPrice" class="product__price-old text-decoration-line-through opacity-50">$160</p>
                 </div>
-                <div class="product__rating">
+                <div class="product__rating mb-3">
                     <div>
                         <i class="product__rating-star fa-solid fa-star"></i>
                         <i class="product__rating-star fa-solid fa-star"></i>
@@ -63,7 +63,7 @@ class ProductCardComponent extends HTMLElement {
                 break;
             case 'price':
                 this.querySelector('#productPrice')
-                    .textContent = newValue;
+                    .textContent += newValue;
                 break;
             case 'ratingCount':
                 this.querySelector('#productRatingCount')
@@ -74,12 +74,13 @@ class ProductCardComponent extends HTMLElement {
                     .setAttribute('src', newValue);
                 break;
             case 'sale':
-                console.log(newValue);
-                console.log(this.querySelector('#productDiscount'));
                 const saleBox = this.querySelector('#productDiscount');
+                const oldPrice = this.querySelector('#productOldPrice');
+
                 if (!newValue == "") {
                     saleBox.style.display = "block";
-                    saleBox.innerText = newValue;
+                    oldPrice.style.display = "block";
+                    saleBox.innerText = `-${newValue}`;
                 }
                 break;
         }

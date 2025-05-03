@@ -195,6 +195,7 @@ exclusive-header {
   transition: all 0.5s;
   font-weight: 600;
   color: var(--text-primary);
+  margin-left: 35px;
 }
 
 .section__pin:hover {
@@ -218,4 +219,7 @@ exclusive-header {
 
 .section__pin:hover::before {
   width: 150%;
+}
+.section__pin__alt:hover::before {
+  width: 220%;
 }

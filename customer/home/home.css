@@ -291,9 +291,13 @@ hr {
 .product__price-new {
     line-height: 24px;
 }
+.product__price-old {
+    display: none;
+}
 
 .product__rating-count {
     line-height: 21px;
+    font-size: 14px;
 }
 
 .product__rating-star {
