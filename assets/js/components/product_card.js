@@ -61,10 +61,6 @@ class ProductCardComponent extends HTMLElement {
                 this.querySelector('#productName')
                     .textContent = newValue;
                 break;
-            case 'price':
-                this.querySelector('#productPrice')
-                    .textContent += newValue;
-                break;
             case 'ratingCount':
                 this.querySelector('#productRatingCount')
                     .textContent = newValue;
@@ -73,14 +69,30 @@ class ProductCardComponent extends HTMLElement {
                 this.querySelector('#productImage')
                     .setAttribute('src', newValue);
                 break;
+            case 'price':
+                this.querySelector('#productPrice')
+                    .textContent += newValue;
+                break;
             case 'sale':
                 const saleBox = this.querySelector('#productDiscount');
-                const oldPrice = this.querySelector('#productOldPrice');
+                const oldPriceBox = this.querySelector('#productOldPrice');
+                const newPriceBox = this.querySelector('#productPrice');
 
-                if (!newValue == "") {
+                if (newValue !== "") {
                     saleBox.style.display = "block";
-                    oldPrice.style.display = "block";
+                    oldPriceBox.style.display = "block";
                     saleBox.innerText = `-${newValue}`;
+                    
+                    //set the existing price as an old price
+                    let currentPrice = newPriceBox.innerText; 
+                    oldPriceBox.innerText = currentPrice;
+
+                    //extract the numbers
+                    const oldPriceText = currentPrice.replace(/[^0-9.]/g, '');
+                    const saleText = newValue.replace(/[^0-9.]/g, '');
+
+                    //calculate the new price
+                    newPriceBox.innerText = `$${(parseFloat(oldPriceText) * (1 - parseFloat(saleText) / 100)).toFixed(2)}`;
                 }
                 break;
         }
