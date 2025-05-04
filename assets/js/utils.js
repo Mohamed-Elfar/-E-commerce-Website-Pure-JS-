@@ -161,14 +161,6 @@ export function filterProductsByStoredCategory() {
     return;
   }
 }
-// export function addToWishList(productId) {
-//   let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-//   if (!wishlist.includes(productId)) {
-//     wishlist.push(productId);
-//     localStorage.setItem("wishlist", JSON.stringify(wishlist));
-//     showToast("success", "Product Added to Your Wish List");
-//   }
-// }
 
 export function toggleWishList(productId, icon) {
   let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
