@@ -9,7 +9,6 @@
     "rating": 4,
     "ratingCount": 100,
     "sale": "",
-    "count": 5,
     "category": "Smartphones",
     "count":7,
     "reviews": [
@@ -50,7 +49,6 @@
     "rating": 2,
     "ratingCount": 10,
     "sale": "15%",
-    "count": 1,
     "category": "Smartphones",
     "reviews": [
       {
