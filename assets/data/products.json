@@ -5,10 +5,11 @@
     "description": "Apple flagship phone with A17 Bionic chip.",
     "image": "../../assets/images/products/download.webp",
     "price": 1199.99,
-    "quantity": 2,
+    "quantity": 8,
     "rating": 4,
     "ratingCount": 100,
     "sale": "",
+    "count": 5,
     "category": "Smartphones",
     "images": [
       "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/iPhone_15_Pro_Black_Titanium_PDP_Image_Position-2__en-ME-2.png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
@@ -53,6 +54,7 @@
     "rating": 2,
     "ratingCount": 10,
     "sale": "15%",
+    "count": 1,
     "category": "Smartphones",
     "reviews": [
       {
@@ -1231,7 +1233,8 @@
     "sale": "",
     "category": "Gaming",
     "images": [
-      "hhttps://www.samma3a.com/media/catalog/product/cache/53bce20d7ffd193e694a37d8959f20c7/n/o/nova_pro_w_1_.jpg",
+      "https://media.steelseriescdn.com/thumbs/catalog/items/61520/c367fd1610724da98aeeaae10dba15cb.png.340x200_q100_crop-scale_optimize.png",
+      "https://www.samma3a.com/media/catalog/product/cache/53bce20d7ffd193e694a37d8959f20c7/n/o/nova_pro_w_1_.jpg",
       "https://media.s-bol.com/JxvnLnLKR5L2/R61YELq/550x620.jpg",
       "https://m.media-amazon.com/images/S/aplus-media-library-service-media/84466fbb-2f64-49e2-8e4c-87e10e0441f2.__CR0,0,600,450_PT0_SX600_V1___.png"
     ],
