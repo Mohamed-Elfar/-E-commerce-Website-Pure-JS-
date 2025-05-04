@@ -83,6 +83,9 @@ import { showToast } from "/assets/js/utils.js";
           const cart = JSON.parse(localStorage.getItem("cart"));
           const users = JSON.parse(localStorage.getItem("users"));
           const user = users.find((user) => user.token == authToken);
+          const address = document.getElementById("address").value;
+          const address2 = document.getElementById("address2").value;
+          const city = document.getElementById("city").value;
 
           if (user) {
             const updatedUsers = users.map((user) => {
@@ -91,16 +94,26 @@ import { showToast } from "/assets/js/utils.js";
                   orderId: user.orders?.length + 1 || 1,
                   products: cart,
                   date: new Date().toISOString(),
+                  userEmail: user.email,
+                  address,
+                  address2,
+                  city,
                 };
 
                 localStorage.setItem(
                   "orders",
                   JSON.stringify([...(user.orders || []), newOrder])
                 );
-
                 return {
                   ...user,
-                  orders: [...(user.orders || []), newOrder],
+                  orders: [
+                    ...(user.orders || []),
+                    {
+                      orderId: newOrder.orderId,
+                      products: newOrder.products,
+                      date: newOrder.date,
+                    },
+                  ],
                 };
               }
               return user;
