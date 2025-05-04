@@ -4,7 +4,6 @@ import {
   search,
   toggleWishList,
   filterProductsByStoredCategory,
-  addToWishList
 } from "../../assets/js/utils.js";
 
 fetch("../../assets/data/products.json")

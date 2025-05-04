@@ -1,29 +1,3 @@
-function fetchAllProducts() {
-    var productsTitle = document.getElementById('products-title');
-    var productsSection = document.getElementById('products-section');
-
-    fetch('/assets/data/products.json')
-        .then(response => response.json())
-        .then(products => {
-            products.sort(() => Math.random() - 0.5).forEach(product => {
-                var productCard = document.createElement('product-card');
-                productCard.className = 'product__card col-12 col-sm-6 col-md-5 col-xl-3';
-                productCard.setAttribute('name', product.name || 'Unknown Product');
-                productCard.setAttribute('price', product.price || '0.00');
-                productCard.setAttribute('image', product.image || '');
-                productCard.setAttribute('rating', product.rating || '0');
-                productCard.setAttribute('ratingCount', `(${product.ratingCount})` || '0');
-                productCard.setAttribute('sale', product.sale || '');
-                productCard.setAttribute('category', product.category || '');
-                productsTitle.textContent = "All Products";
-                productsSection.appendChild(productCard);
-            });
-            filterProductsByCategory();
-        })
-        .catch(error => console.error('Error loading JSON:', error));
-};
-fetchAllProducts();
-
 function filterProductsByCategory() {
     const savedCategory = localStorage.getItem("category");
     if (!savedCategory) return;
@@ -48,16 +22,36 @@ function filterProductsByCategory() {
     }
 }
 
+function fetchAllProducts() {
+    var productsTitle = document.getElementById('products-title');
+    var productsSection = document.getElementById('products-section');
+    productsTitle.textContent = "All Products";
 
-
-
-
-
-
+    fetch('/assets/data/products.json')
+        .then(response => response.json())
+        .then(products => {
+            products.sort(() => Math.random() - 0.5).forEach(product => {
+                var productCard = document.createElement('product-card');
+                productCard.className = 'product__card col-12 col-sm-6 col-md-5 col-xl-3';
+                productCard.setAttribute('name', product.name || 'Unknown Product');
+                productCard.setAttribute('price', product.price || '0.00');
+                productCard.setAttribute('image', product.image || '');
+                productCard.setAttribute('rating', product.rating || '0');
+                productCard.setAttribute('ratingCount', `(${product.ratingCount})` || '0');
+                productCard.setAttribute('sale', product.sale || '');
+                productCard.setAttribute('category', product.category || '');
+                productsSection.appendChild(productCard);
+            });
+            filterProductsByCategory();
+        })
+        .catch(error => console.error('Error loading JSON:', error));
+};
+// fetchAllProducts();
 
 function fetchBestSellingProducts() {
     var productsTitle = document.getElementById('products-title');
     var productsSection = document.getElementById('products-section');
+    productsTitle.textContent = "Best Selling";
 
     fetch('/assets/data/products.json')
         .then(response => response.json())
@@ -71,7 +65,6 @@ function fetchBestSellingProducts() {
                 productCard.setAttribute('rating', product.rating || '0');
                 productCard.setAttribute('ratingCount', `(${product.ratingCount})` || '0');
                 productCard.setAttribute('sale', product.sale || '');
-                productsTitle.textContent = "Best Selling Products";
                 productsSection.appendChild(productCard);
             });
         })
@@ -79,10 +72,10 @@ function fetchBestSellingProducts() {
 };
 // fetchBestSellingProducts();
 
-
 function fetchFlashSalesProducts() {
     var productsTitle = document.getElementById('products-title');
     var productsSection = document.getElementById('products-section');
+    productsTitle.textContent = "Flash Sales";
 
     fetch('/assets/data/products.json')
         .then(response => response.json())
@@ -98,7 +91,6 @@ function fetchFlashSalesProducts() {
                 productCard.setAttribute('rating', product.rating || '0');
                 productCard.setAttribute('ratingCount', `(${product.ratingCount})` || '0');
                 productCard.setAttribute('sale', product.sale || '');
-                productsTitle.textContent = "Best Selling Products";
                 productsSection.appendChild(productCard);
             });
         })

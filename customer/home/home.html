@@ -30,12 +30,15 @@
       <nav id="sidebar" class="col-6 col-md-3 col-lg-2 d-lg-block sidebar collapse mt-lg-4 background-primary">
         <div class="position-sticky">
           <div class="nav flex-column" id="sideMenu">
-            <sidebar-category category="Smartphones"></sidebar-category>
-            <sidebar-category category="Tablets"></sidebar-category>
-            <sidebar-category category="Laptops"></sidebar-category>
-            <sidebar-category category="Gaming"></sidebar-category>
-            <sidebar-category category="SmartWatches"></sidebar-category>
-            <sidebar-category category="HeadPhones"></sidebar-category>
+            <a href="/customer/all_products/all_products.html" class="nav-item nav-link" id="sidebarCategory" ">
+              Smartphones
+            </a>
+            <!-- <sidebar-category category=" Smartphones"></sidebar-category>
+              <sidebar-category category="Tablets"></sidebar-category>
+              <sidebar-category category="Laptops"></sidebar-category>
+              <sidebar-category category="Gaming"></sidebar-category>
+              <sidebar-category category="SmartWatches"></sidebar-category>
+              <sidebar-category category="HeadPhones"></sidebar-category> -->
           </div>
         </div>
       </nav>
@@ -72,7 +75,34 @@
     </div>
 
     <!-------------------------- Flash Sales Section -------------------------->
-    <section-header title="Flash Sales" pin="Today’s"></section-header>
+    <!-- Best Selling Products -->
+    <!-- <a href="/customer/all_products/all_products.html?type=best-selling"
+      class="section__button background-primary secondary-color" id="viewallBestSelling">
+      View All
+    </a> -->
+
+    <!-- Flash Sales -->
+    <!-- <a href="/customer/all_products/all_products.html?type=flash-sales"
+      class="section__button background-primary secondary-color" id="viewallFlashSales">
+      View All
+    </a> -->
+
+    <!-- All Products -->
+    <!-- <a href="/customer/all_products/all_products.html?type=all-products"
+      class="section__button background-primary secondary-color" id="viewallAllProducts">
+      View All
+    </a> -->
+    <!-- <section-header title="Flash Sales" pin="Today’s"></section-header> -->
+    <h6 class="section__pin section__pin__alt mb-4">Today’s</h6>
+    <div class="section__header">
+      <div class="section__highlights">
+        <p class="section__title">Flash Sales</p>
+        <a href="/customer/all_products/all_products.html?type=flash-sales"
+          class="section__button background-primary secondary-color" id="viewallFlashSales">
+          View All
+        </a>
+      </div>
+    </div>
     <div class="products__group row g-3 g-md-4" id="flash-sales"></div>
 
     <!-------------------------- Divider -------------------------->
@@ -93,7 +123,17 @@
     <hr />
 
     <!-------------------------- Best Selling Products -------------------------->
-    <section-header title="Best Selling Products" pin="This Month"></section-header>
+    <!-- <section-header title="Best Selling Products" pin="This Month"></section-header> -->
+    <h6 class="section__pin section__pin__alt mb-4">This Month</h6>
+    <div class="section__header">
+      <div class="section__highlights">
+        <p class="section__title">Best Selling Products</p>
+        <a href="/customer/all_products/all_products.html?type=best-selling"
+          class="section__button background-primary secondary-color" id="viewallBestSelling">
+          View All
+        </a>
+      </div>
+    </div>
     <div class="products__group row g-3 g-md-4" id="best-selling"></div>
 
     <!-------------------------- Divider -------------------------->
@@ -119,7 +159,17 @@
     </div>
 
     <!-------------------------- Explore Our Products -------------------------->
-    <section-header title="Explore Our Products" pin="Our Products"></section-header>
+    <!-- <section-header title="Explore Our Products" pin="Our Products"></section-header> -->
+    <h6 class="section__pin section__pin__alt mb-4">Our Products</h6>
+    <div class="section__header">
+      <div class="section__highlights">
+        <p class="section__title">Explore Our Products</p>
+        <a href="/customer/all_products/all_products.html?type=all-products"
+          class="section__button background-primary secondary-color" id="viewallAllProducts">
+          View All
+        </a>
+      </div>
+    </div>
     <div class="products__group row g-3 g-md-4" id="our-products"></div>
 
     <br />
@@ -177,12 +227,10 @@
     </div>
 
     <!-------------------------- Features -------------------------->
-    <br /><br /><br /><br /><br />
+    <br /><br /><br /><br />
     <features-section></features-section>
     <br /><br /><br />
   </div>
-  <!-------------------------- Features -------------------------->
-  <features-section></features-section>
   </div>
 
   <!-- Exclusive Components footer -->

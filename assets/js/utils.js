@@ -2,7 +2,7 @@ export function showToast(status, message) {
   var toast = document.querySelector(".toast");
   toast.classList.remove("toast-error", "toast-success");
   if (status == "success") {
-    toast.innerHTML = `<i class="fa-solid fa-circle-check"></i> ${message}`;
+    toast.innerHTML = ` <i class="fa-solid fa-circle-check"></i> ${message}`;
     toast.classList.add("show", "toast-success");
   } else if (status == "error") {
     toast.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> ${message} `;
@@ -14,14 +14,6 @@ export function showToast(status, message) {
     toast.innerHTML = `<i class="fa-solid fa-info "></i> ${message} `;
     toast.classList.add("show", "toast-info");
   } else {
-  } else if (status == "warning") {
-    toast.innerHTML = `<i class="fa-solid fa-warning"></i> ${message} `;
-    toast.classList.add("show", "toast-warning");
-  }else if (status == "info") {
-    toast.innerHTML = `<i class="fa-solid fa-info "></i> ${message} `;
-    toast.classList.add("show", "toast-info");
-  }
-  else {
     throw new Error("Invalid status");
   }
   setTimeout(function () {
@@ -60,8 +52,6 @@ export function validateEmail(input) {
 export function validatePhone(input) {
   const phone = /^(010|011|012|015)\d{8}$/;
   if (!phone.test(input.value)) {
-  const phone = /^(010|011|012|015)\d{8}$/;  
-  if (!phone.test(input.value)) {
     input.classList.add("is-invalid");
     input.classList.remove("is-valid");
 
@@ -73,10 +63,9 @@ export function validatePhone(input) {
   }
 }
 
-
 export function validatePassword(input) {
   var Password =
-    /^(?=.*[A-Z])(?=.*[a-zA-Z0-9])(?=.*[!@#$%^&*()_+={}\[\]:;"'<>,.?/\\|`~\-]).{6,}$/;
+    /^(?=.[A-Z])(?=.[a-zA-Z0-9])(?=.[!@#$%^&()_+={}\[\]:;"'<>,.?/\\|`~\-]).{6,}$/;
   if (!Password.test(input.value)) {
     input.classList.add("is-invalid");
     input.classList.remove("is-valid");
@@ -103,10 +92,10 @@ export function validatePasswordMatch(password, confirmPassword) {
 export function addToCart(product) {
   if (localStorage.getItem("token")) {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    
+
     // Check if the product already exists in the cart
-    const productExists = cart.some(item => item.id === product.id)
-    
+    const productExists = cart.some((item) => item.id === product.id);
+
     if (!productExists) {
       cart.push(product);
       localStorage.setItem("cart", JSON.stringify(cart));

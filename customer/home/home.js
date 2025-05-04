@@ -31,9 +31,7 @@ function closeOnClickOutside(event) {
 
 // ------------------------------------------------------------------------------ //
 function setCategory(category) {
-  console.log('Attempting to save:', category); // Debug
   localStorage.setItem('category', category);
-  console.log('Saved:', localStorage.getItem('category')); // Verify
 }
 
 // ------------------------------------------------------------------------------ //

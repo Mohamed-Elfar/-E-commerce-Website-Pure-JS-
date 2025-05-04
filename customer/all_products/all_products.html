@@ -27,7 +27,27 @@
     <script src="/assets/js/components/product_card.js"></script>
 
     <script src="/assets/js/bootstrap.bundle.min.js"></script>
-    <script src="all_products.js"></script>
+    <script src="/customer/all_products/all_products.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const type = urlParams.get('type');
+            switch (type) {
+                case 'flash-sales':
+                    fetchFlashSalesProducts();
+                    break;
+                case 'best-selling':
+                    fetchBestSellingProducts();
+                    break;
+                case 'all-products':
+                    fetchAllProducts();
+                    break;
+                default:
+                    document.getElementById('products-title').textContent = 'Products';
+                    document.getElementById('products-section').innerHTML = '<p>No products selected.</p>';
+            }
+        });
+    </script>
 </body>
 
 </html>
