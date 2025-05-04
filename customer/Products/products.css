@@ -4,12 +4,11 @@
 }
 
 :root {
-  --color-FA: #FAFAFA;
+  --color-FA: #fafafa;
   --color-black: #000000;
-  --color-DB: #DB4444;
-  --color-F5: #F5F5F5;
+  --color-DB: #db4444;
+  --color-F5: #f5f5f5;
 }
-
 .main-section {
   display: flex;
   margin-bottom: 140px;
@@ -21,7 +20,7 @@
   margin-top: 40px;
   width: 200px;
 }
-.side-menu  a {
+.side-menu a {
   text-decoration: none;
   display: block;
   color: var(--color-black);
@@ -129,8 +128,8 @@
   border: none;
 }
 
-.section__arrow{
-font-size: 20px;
+.section__arrow {
+  font-size: 20px;
 }
 
 .section__controls {
@@ -152,7 +151,6 @@ font-size: 20px;
   margin: 0;
   margin-bottom: 30px;
 }
- 
 
 .product__badge {
   height: 250px;
@@ -274,12 +272,11 @@ font-size: 20px;
 }
 
 .product__rating-star {
-  color: #FFAD33;
+  color: #ffad33;
 }
 
 .product__rating {
   display: flex;
-  
 }
 
 /* .products__section{
@@ -294,5 +291,5 @@ font-size: 20px;
 } */
 
 .product__icon.fa-heart.active {
-color: red;
+  color: red;
 }
