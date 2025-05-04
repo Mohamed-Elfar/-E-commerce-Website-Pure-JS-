@@ -1,17 +1,12 @@
-    const processButton = document.querySelector('.button--process');
-    processButton.addEventListener('click', () => {
-      window.location.href = '../checkout/checkout.html';
-    });
-
-    const returnButton = document.querySelector('.button--return');
-    returnButton.addEventListener('click', () => {
-      window.location.href = '/index.html';
-    });
-
-    fetch('/assets/data/products.json')
-      .then(response => response.json())
-      .then(data => {
-        const ids = [1, 14, 29];
+        const returnhome = document.querySelector('.button--return');
+        returnhome.addEventListener('click', () => {
+            window.location.href = '../home/home.html';
+        })
+        
+        
+        const productInCart = JSON.parse(localStorage.getItem('cart')) || [];
+        
+        console.log(productInCart);
         const tbody = document.querySelector('tbody');
         const subtotalInCart = document.getElementById('subtotalincart');
         const shipping = document.getElementById('shipping');
@@ -23,78 +18,114 @@
         let discount = 0;
         let shippingCost = 30;
         const cartItems = [];
+        productInCart.forEach(Element => {
+            const productquantity = Element.quantity; 
+            if (Element) {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                        <img src="${Element.image}" width="50" alt="${Element.name}">
+                        <p class="mb-0">${Element.name}</p>
+                    </div>
+                  </td>
+                  <td class="price"><div class="d-flex align-items-center" style="height:50px"> $${Element.price}</div></td>
+                  <td><div class="d-flex align-items-center" style="height:50px"> <input type="number" class="quantity form-control" min="1" max="${productquantity}" value="${Element.count}"> </div></td>
+                  <td class="subtotal"><div class="d-flex align-items-center" style="height:50px"> $${Element.price}</div> </td>
+                  <td><button class="btn btn-sm border-0 delete-btn">X</button></td>
+                `;
 
-        ids.forEach(id => {
-          const productData = data.find(product => product.id === id);
-          if (productData) {
-            const row = document.createElement('tr');
+                tbody.appendChild(row);
 
-            row.innerHTML = `
-              <td ><img src="${productData.image}" width="50"> <p>${productData.name}</p></td>
-              <td class="price">${productData.price}</td>
-              <td><input type="number" class="quantity form-control" min="1" value="1"></td>
-              <td class="subtotal">$${productData.price}</td>
-              <td><button class="btn btn-sm  border-0  delete-btn">X</button></td>
-            `;
+                const quantityInput = row.querySelector('.quantity');
+                const subtotalCell = row.querySelector('.subtotal');
+                const deleteButton = row.querySelector('.delete-btn');
+                const price = Element.price;
 
-            tbody.appendChild(row);
+                cartItems.push({ quantityInput, subtotalCell, price, row });
+                if(!(cartItems.length == 0)){
+                    const process = document.querySelector('.button--process');
+                    process.addEventListener('click', () => {
+                    window.location.href = '/customer/checkout/checkout.html';
+                })
+                }
 
-            const quantityInput = row.querySelector('.quantity');
-            const subtotalCell = row.querySelector('.subtotal');
-            const deleteButton = row.querySelector('.delete-btn');
-            const price = productData.price;
+                quantityInput.addEventListener('input', () => {
+                    const quantity = parseInt(quantityInput.value) || 1;
+                    subtotalCell.innerHTML = `<div class="d-flex align-items-center" style="height:50px"> $${(quantity * price).toFixed(2)} </div>`;
+                    Element.count = quantity;
+                    localStorage.setItem("cart", JSON.stringify(productInCart));
+                    updateCartTotal();
+                });
 
-            cartItems.push({ quantityInput, subtotalCell, price, row });
+                deleteButton.addEventListener('click', () => {
+                    row.remove();
+                    const index = cartItems.findIndex(item => item.quantityInput === quantityInput);
+                    if (index !== -1) cartItems.splice(index, 1);
 
-            quantityInput.addEventListener('input', () => {
-              const quantity = parseInt(quantityInput.value) || 1;
-              subtotalCell.innerText = `$${(quantity * price).toFixed(2) }`;
-              updateCartTotal();
-            });
-
-            deleteButton.addEventListener('click', () => {
-              row.remove();
-              const index = cartItems.findIndex(item => item.quantityInput === quantityInput);
-              if (index !== -1) cartItems.splice(index, 1);
-              updateCartTotal();
-            });
-          }
+                    const updatedCart = productInCart.filter(item => item.id !== Element.id);
+                    localStorage.setItem("cart", JSON.stringify(updatedCart));
+                    updateCartTotal();
+                });
+            }
         });
 
         function updateCartTotal() {
-          let subtotalSum = 0;
-          cartItems.forEach(item => {
-            const quantity = parseInt(item.quantityInput.value) || 1;
-            subtotalSum += quantity * item.price;
-          });
+            let subtotalSum = 0;
+            cartItems.forEach(item => {
+                const quantity = parseInt(item.quantityInput.value) || 1;
+                subtotalSum += quantity * item.price;
+            });
 
-          const discountedSubtotal = subtotalSum * (1 - discount);
-          subtotalInCart.innerText = `$${ subtotalSum.toFixed(2) }`;
-          shipping.innerText = `$${ shippingCost }`;
-          total.innerText = `$${ (discountedSubtotal + shippingCost).toFixed(2) }`;
+            const discountedSubtotal = subtotalSum * (1 - discount);
+            subtotalInCart.innerText = `$${subtotalSum.toFixed(2)}`;
+            shipping.innerText = `$${shippingCost}`;
+            total.innerText = `$${(discountedSubtotal + shippingCost).toFixed(2)}`;
+            // productInCart.subtotalCell = subtotalSum.toFixed(2);
+            // localStorage.setItem("cart", JSON.stringify(updatedCart));
+            // const updatedCart = cartItems.map((p) =>
+            //     p.id === cartItems.id ? { ...p, discount , total } : p
+            //   );
+            // localStorage.setItem("cart", JSON.stringify(updatedCart));
+
         }
 
         couponButton.addEventListener('click', () => {
-          const couponCode = couponInput.value.trim();
-          if (couponCode === "Group6-30") {
-            discount = 0.3;
-            couponInput.style.border = "3px solid green";
-          } else {
-            discount = 0;
-            couponInput.style.border = "3px solid red";
-          }
-          updateCartTotal();
+            const couponCode = couponInput.value.trim();
+            if (couponCode === "Group6-30") {
+                discount = 0.3;
+                couponInput.style.border = "3px solid green";
+                sendDiscount(discount);
+                
+            } else {
+
+                discount = 0;
+                couponInput.style.border = "3px solid red";
+                sendDiscount(discount);
+            }
+            updateCartTotal();
         });
 
         clearButton.addEventListener('click', () => {
-          tbody.innerHTML = '';
-          cartItems.length = 0;
-          updateCartTotal();
+            tbody.innerHTML = '';
+            cartItems.length = 0;
+            localStorage.removeItem("cart");
+            updateCartTotal();
+            window.location.reload();
         });
 
         updateCartTotal();
-      })
-      .catch(error => {
-        console.error("❌ Error:", error);
-      });
-  
+
+function sendDiscount(Discount) {
+  const cartJSON = localStorage.getItem("cart");
+  const cart = cartJSON ? JSON.parse(cartJSON) : [];
+
+  // أضف الخصم لكل عنصر وارجع مصفوفة جديدة
+  const updatedCart = cart.map(item => ({
+    ...item,
+    discount: Discount // أو `Discount[item.id]` لو الخصومات مختلفة
+  }));
+
+  // احفظ cart المعدلة
+  localStorage.setItem("cart", JSON.stringify(updatedCart));
+}

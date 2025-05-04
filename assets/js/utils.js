@@ -7,7 +7,14 @@ export function showToast(status, message) {
   } else if (status == "error") {
     toast.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> ${message} `;
     toast.classList.add("show", "toast-error");
-  } else {
+  } else if (status == "warning") {
+    toast.innerHTML = `<i class="fa-solid fa-warning"></i> ${message} `;
+    toast.classList.add("show", "toast-warning");
+  }else if (status == "info") {
+    toast.innerHTML = `<i class="fa-solid fa-info "></i> ${message} `;
+    toast.classList.add("show", "toast-info");
+  }
+  else {
     throw new Error("Invalid status");
   }
   setTimeout(function () {
@@ -16,8 +23,8 @@ export function showToast(status, message) {
 }
 
 export function validateName(input) {
-  var reName = /^[a-zA-Z ]{3,10}$/;
-  if (!reName.test(input.value)) {
+  var name = /^[a-zA-Z]{3,10}$/;
+  if (!name.test(input.value)) {
     input.classList.add("is-invalid");
     input.classList.remove("is-valid");
     return false;
@@ -44,8 +51,8 @@ export function validateEmail(input) {
 }
 
 export function validatePhone(input) {
-  var rePhone = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
-  if (!rePhone.test(input.value)) {
+  const phone = /^(010|011|012|015)\d{8}$/;  
+  if (!phone.test(input.value)) {
     input.classList.add("is-invalid");
     input.classList.remove("is-valid");
 
@@ -56,6 +63,7 @@ export function validatePhone(input) {
     return true;
   }
 }
+
 
 export function validatePassword(input) {
   var rePassword =
@@ -83,14 +91,22 @@ export function validatePasswordMatch(password, confirmPassword) {
   }
 }
 
-export function addToCart(productId) {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  if (!cart.includes(productId)) {
-    cart.push(productId);
-    localStorage.setItem("cart", JSON.stringify(cart));
-    showToast("success", "Added to cart!");
+export function addToCart(product) {
+  if (localStorage.getItem("token")) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    
+    // Check if the product already exists in the cart
+    const productExists = cart.some(item => item.id === product.id)
+    
+    if (!productExists) {
+      cart.push(product);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      showToast("success", "Added to cart!");
+    } else {
+      showToast("info", "Product is already in your cart");
+    }
   } else {
-    showToast("success", "Added to cart!");
+    showToast("warning", "Please Login First");
   }
 }
 

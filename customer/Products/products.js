@@ -60,6 +60,7 @@ fetch("../../assets/data/products.json")
     `;
       const addBtn = card.querySelector(".cartBTn");
       addBtn.addEventListener("click", () => addToCart(elem));
+      
       const wishBtn = card.querySelector(".fa-heart");
       wishBtn.addEventListener("click", () => addToWishList(elem));
       container.appendChild(card);

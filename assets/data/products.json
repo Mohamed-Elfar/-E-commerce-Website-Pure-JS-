@@ -5,11 +5,12 @@
     "description": "Apple flagship phone with A17 Bionic chip.",
     "image": "../../assets/images/products/download.webp",
     "price": 1199.99,
-    "quantity": 2,
+    "quantity": 15,
     "rating": 4,
     "ratingCount": 100,
     "sale": "",
     "category": "Smartphones",
+    "count":7,
     "reviews": [
       {
         "userId": "user789",
