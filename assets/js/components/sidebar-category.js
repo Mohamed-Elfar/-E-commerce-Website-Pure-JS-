@@ -3,7 +3,7 @@ class SidebarCategoryComponent extends HTMLElement {
         const category = this.getAttribute('category');
 
         this.innerHTML = `
-            <a href="/customer/all_products/all_products.html?type=${category}" class="nav-item nav-link" id="sidebarCategory">
+            <a href="/customer/all_products/all_products.html?type=${category}" class="nav-item nav-link"  id="sidebarCategory">
               ${category}
             </a>
         `;

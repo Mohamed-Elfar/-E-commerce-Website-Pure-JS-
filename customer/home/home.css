@@ -27,7 +27,7 @@ XXL: ≥ 1400px
 }
 
 .secondary-color {
-    color: var(--color-secondary);
+    color: var(--color-secondary) !important;
 }
 
 
@@ -52,6 +52,7 @@ hr {
 .product__overlay:hover {
     opacity: 0.8;
     transition: opacity 0.3s ease;
+    color: var(--color-secondary) !important;
 }
 
 /* Sidebar */
@@ -60,7 +61,6 @@ hr {
     z-index: 1040;
     top: 0;
     left: -250px;
-    margin: 0 !important;
     padding-top: 10px;
     transition: left 0.3s ease;
     border-radius: 0px 10px 10px 0px;
@@ -207,6 +207,9 @@ hr {
     line-height: 24px;
     border-radius: 4px;
     border: none;
+    text-align: center;
+    align-content: center;
+    cursor: pointer;
 }
 
 .section__highlights {
@@ -291,6 +294,7 @@ hr {
 .product__price-new {
     line-height: 24px;
 }
+
 .product__price-old {
     display: none;
 }
@@ -570,4 +574,3 @@ hr {
         }
     }
 }
-

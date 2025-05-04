@@ -30,11 +30,6 @@ function closeOnClickOutside(event) {
 }
 
 // ------------------------------------------------------------------------------ //
-function setCategory(category) {
-  localStorage.setItem('category', category);
-}
-
-// ------------------------------------------------------------------------------ //
 
 function fetchSliceBestSelling() {
   var productsSection = document.getElementById('best-selling');
