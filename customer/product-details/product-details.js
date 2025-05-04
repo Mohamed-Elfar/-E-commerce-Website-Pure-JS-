@@ -1,7 +1,6 @@
 import {
   showToast,
   addToCart,
-  addToWishList,
   redirectToNotFoundPage,
 } from "/assets/js/utils.js";
 

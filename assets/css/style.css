@@ -4,11 +4,14 @@
   box-sizing: border-box;
   text-transform: capitalize;
 }
-
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 input {
   text-transform: none;
 }
-
 :root {
   --text-bg: rgb(200, 198, 198);
   --text-primary: #db4444;
@@ -101,6 +104,7 @@ a {
 .toast-success,
 .toast-error,
 .toast-warning,
+.toast-warning,
 .toast-info {
   position: fixed;
   left: 50%;
@@ -186,6 +190,10 @@ exclusive-header {
   }
 }
 
+exclusive-footer {
+  margin-top: auto; /* Pushes footer to bottom */
+}
+
 .footer {
   .col {
     min-width: 245px;
@@ -199,6 +207,7 @@ exclusive-header {
     place-items: center;
   }
 
+  .footer__rights > p {
   .footer__rights > p {
     border-color: rgb(94, 93, 93);
     color: rgb(94, 93, 93);
@@ -312,6 +321,7 @@ exclusive-header {
     color: #000;
     font-size: 24px;
     background-color: #2f2e30;
+    background-color: #2f2e30;
 
     i {
       color: white;
@@ -325,3 +335,4 @@ exclusive-header {
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
 }
+
