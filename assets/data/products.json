@@ -5,17 +5,13 @@
     "description": "Apple flagship phone with A17 Bionic chip.",
     "image": "../../assets/images/products/download.webp",
     "price": 1199.99,
-    "quantity": 8,
+    "quantity": 15,
     "rating": 4,
     "ratingCount": 100,
     "sale": "",
     "count": 5,
     "category": "Smartphones",
-    "images": [
-      "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/iPhone_15_Pro_Black_Titanium_PDP_Image_Position-2__en-ME-2.png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
-      "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/iPhone_15_Pro_Black_Titanium_PDP_Image_Position-4__en-ME-2.png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
-      "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/iPhone_15_Pro_Max_Black-1.png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D"
-    ],
+    "count":7,
     "reviews": [
       {
         "userId": "user789",

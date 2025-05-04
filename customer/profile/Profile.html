@@ -7,7 +7,7 @@
   <!-- Bootstrap CSS -->
   <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
   <link href="/assets/css/fontawesome.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="auth.css">
+  <link rel="stylesheet" href="/authentication/auth.css">
   <link rel="stylesheet" href="/assets/css/style.css">
 
   <style>
@@ -44,7 +44,7 @@
             <!-- اليمين -->
             <div class="d-flex">
               <p class="mb-0 me-1">Welcome!</p>
-              <p class="mb-0 text-danger">Mr Omar</p>
+              <p id="username" class="mb-0 text-danger">Mr Omar</p>
             </div>
           </div>
         </div>
@@ -75,35 +75,98 @@
         <form>
           <div class="row mb-3">
             <div class="col-md-6">
-              <label class="form-label">First Name</label>
-              <input type="text" class="form-control" placeholder="Your First Name">
+              <label for="firstName" class="form-label">First Name</label>
+              <input
+                  type="text"
+                  id="firstName"
+                  placeholder="First Name"
+                  name="firstname"
+                  class="form-control"
+                />
+                <div class="invalid-feedback">
+                  Please enter a valid first name.(please no Spaces)
+                </div>
             </div>
             <div class="col-md-6">
-              <label class="form-label">Last Name</label>
-              <input type="text" class="form-control" placeholder="Your Last Name">
+              <label for="lastName" class="form-label">Last Name</label>
+              <input
+                  type="text"
+                  id="lastName"
+                  placeholder="Last Name"
+                  name="lastname"
+                  class="form-control"
+                />
+                <div class="invalid-feedback">
+                  Please enter a valid last name.(please no Spaces)
+                </div>
             </div>
           </div>
 
           <div class="row mb-3">
             <div class="col-md-6">
-              <label class="form-label">Email</label>
-              <input type="email" class="form-control" placeholder="example@gmail.com">
+              <label for="email" class="form-label">Email</label>
+              <input
+                  type="email"
+                  id="email"
+                  placeholder="Email Address"
+                  name="email"
+                  class="form-control"
+                />
+                <div class="invalid-feedback">
+                  Please enter a valid email address.
+                </div>
             </div>
             <div class="col-md-6">
-              <label class="form-label">Phone</label>
-              <input type="tel" class="form-control" placeholder="+(20) 123 456 789">
+              <label for="phonenumber" class="form-label">Phone</label>
+              <input
+                  type="tel"
+                  id="phonenumber"
+                  placeholder="Phone Number"
+                  name="phonenumber"
+                  class="form-control"
+                />
+                <div class="invalid-feedback">
+                  Please enter a valid phone number.
+                </div>
             </div>
           </div>
 
           <h6 class="fw-bold mt-4 mb-3">Password Changes</h6>
           <div class="mb-3">
-            <input type="password" class="form-control" placeholder="Current Password">
+            <input
+                  type="password"
+                  id="currentpassword"
+                  placeholder="Password"
+                  name="password"
+                  class="form-control"
+                  autocomplete="new-password"
+                />
+                <div class="invalid-feedback">
+                  Please enter Your password.
+                </div>
           </div>
           <div class="mb-3">
-            <input type="password" class="form-control" placeholder="New Password">
+            <input
+                  type="password"
+                  id="newpassword"
+                  placeholder="Password"
+                  name="password"
+                  class="form-control"
+                  autocomplete="new-password"
+                />
+                <div class="invalid-feedback">
+                  at least 6 chars & include (@, #, $,..).
+                </div>
           </div>
           <div class="mb-4">
-            <input type="password" class="form-control" placeholder="Confirm New Password">
+            <input
+                  type="password"
+                  id="confirmpassword"
+                  placeholder="Confirm Password"
+                  name="confirmpassword"
+                  class="form-control"
+                />
+                <div class="invalid-feedback">Passwords do not match.</div>
           </div>
 
           <div class="d-flex justify-content-end">
@@ -118,7 +181,7 @@
 </div>
 
 <!-- Bootstrap JS -->
-<script src="profile.js"></script>
+<script src="profile.js" type="module"></script>
 <exclusive-footer></exclusive-footer>
   <script src="/assets/js/components/exclusive-header.js" defer></script>
   <script src="/assets/js/components/exclusive-footer.js" defer></script>

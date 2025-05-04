@@ -98,8 +98,10 @@ a {
   min-height: 1.2em;
   font-size: 12px;
 }
-
 .toast-success,
+.toast-error,
+.toast-warning ,
+.toast-info {
 .toast-error,
 .toast-warning ,
 .toast-info {
@@ -122,6 +124,7 @@ a {
   background-color: #d1ecf1;
   color: #664d03;
 }
+
 .toast-success {
   color: green;
   background-color: #d4edda;
