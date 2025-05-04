@@ -1,18 +1,13 @@
-// class SidebarCategoryComponent extends HTMLElement {
-//     connectedCallback() {
-//         const category = this.getAttribute('category');
+class SidebarCategoryComponent extends HTMLElement {
+    connectedCallback() {
+        const category = this.getAttribute('category');
 
-//         this.innerHTML = `
-//             <a href="/customer/all_products/all_products.html" class="nav-item nav-link" id="sidebarCategory">
-//               ${category}
-//             </a>
-//         `;
+        this.innerHTML = `
+            <a href="/customer/all_products/all_products.html?type=${category}" class="nav-item nav-link" id="sidebarCategory">
+              ${category}
+            </a>
+        `;
+    }
+}
 
-//         this.querySelector('#sidebarCategory').addEventListener('click', (e) => {
-//             window.setCategory(category);
-//             window.fetchAllProducts();
-//         });
-//     }
-// }
-
-// customElements.define('sidebar-category', SidebarCategoryComponent);
+customElements.define('sidebar-category', SidebarCategoryComponent);

@@ -29,6 +29,15 @@
     <script src="/assets/js/bootstrap.bundle.min.js"></script>
     <script src="/customer/all_products/all_products.js"></script>
     <script>
+        const validCategories = [
+            'Smartphones',
+            'Tablets',
+            'Laptops',
+            'Gaming',
+            'SmartWatches',
+            'HeadPhones'
+        ];
+
         window.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
             const type = urlParams.get('type');
@@ -43,8 +52,12 @@
                     fetchAllProducts();
                     break;
                 default:
-                    document.getElementById('products-title').textContent = 'Products';
-                    document.getElementById('products-section').innerHTML = '<p>No products selected.</p>';
+                    if (validCategories.includes(type)) {
+                        fetchCategoryProducts(type);
+                    } else {
+                        document.getElementById('products-title').textContent = 'Products';
+                        document.getElementById('products-section').innerHTML = '<p>No products selected.</p>';
+                    }
             }
         });
     </script>
