@@ -1,5 +1,4 @@
 import { showToast } from "/assets/js/utils.js";
-
 (function () {
   "use strict";
 
@@ -106,9 +105,9 @@ import { showToast } from "/assets/js/utils.js";
               }
               return user;
             });
+
             localStorage.setItem("users", JSON.stringify(updatedUsers));
             localStorage.removeItem("cart");
-
             showToast("success", "Order placed successfully!");
           }
 
@@ -145,6 +144,8 @@ import { showToast } from "/assets/js/utils.js";
   const products = JSON.parse(localStorage.getItem("cart"));
 
   let total = 0;
+  let discount;
+  let shippingCost = 30;
   badge.innerHTML = products?.length || 0;
 
   if (products) {
@@ -162,8 +163,12 @@ import { showToast } from "/assets/js/utils.js";
       `;
       checkoutCard.prepend(li);
     });
-    const discount = 5;
-    total -= discount;
+    console.log(total);
+
+    discount = (1 - products[0].discount) * total || total;
+    total = discount;
+    console.log(total);
+
     const promoLi = document.createElement("li");
     promoLi.className =
       "list-group-item d-flex justify-content-between align-items-center bg-light";
@@ -172,15 +177,24 @@ import { showToast } from "/assets/js/utils.js";
         <h6 class="my-0">Promo code</h6>
         <small>EXAMPLECODE</small>
       </div>
-      <span class="text-success">-${discount}$</span>
+      <span class="text-success">${products[0].discount * 10 || 0}%</span>
     `;
     checkoutCard.appendChild(promoLi);
 
+    const shippingLi = document.createElement("li");
+    shippingLi.className = "list-group-item d-flex justify-content-between";
+    shippingLi.innerHTML = `
+      <span>Shipping (USD)</span>
+      <strong>${shippingCost}$</strong>
+    `;
+    checkoutCard.appendChild(shippingLi);
     const totalLi = document.createElement("li");
     totalLi.className = "list-group-item d-flex justify-content-between";
     totalLi.innerHTML = `
       <span>Total (USD)</span>
-      <strong>${total.toFixed(2)}$</strong>
+      <strong>${
+        parseFloat(shippingCost) + parseFloat(total.toFixed(2))
+      }$</strong>
     `;
     checkoutCard.appendChild(totalLi);
   } else {
