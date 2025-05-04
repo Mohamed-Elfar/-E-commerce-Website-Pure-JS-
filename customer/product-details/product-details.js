@@ -1,7 +1,6 @@
 import {
   showToast,
   addToCart,
-  addToWishList,
   redirectToNotFoundPage,
 } from "/assets/js/utils.js";
 
@@ -152,7 +151,15 @@ function updateQuantityAndPrice() {
 
   decreaseBtn.disabled = currentQuantity <= 1;
   increaseBtn.disabled = currentQuantity >= product.quantity;
-
+  if(product.quantity === 0){
+    increaseBtn.disabled = true;
+    decreaseBtn.disabled = true;
+    addToCartBtn.disabled = true;
+    addToCartBtn.textContent = "Sold Out";
+  }else{
+    addToCartBtn.disabled = false;
+    addToCartBtn.textContent = "Add To Cart";
+  }
   const total = currentQuantity * product.price;
   totalPrice.textContent = `$${total.toFixed(2)}`;
 }
