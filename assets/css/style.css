@@ -100,7 +100,9 @@ a {
 }
 
 .toast-success,
-.toast-error {
+.toast-error,
+.toast-warning ,
+.toast-info {
   position: fixed;
   left: 50%;
   transform: translate(-50%, -100px);
@@ -111,6 +113,14 @@ a {
   border-radius: 15px;
   opacity: 0;
   pointer-events: none;
+}
+.toast-warning {
+  background-color: #fff3cd;
+  color: #664d03;
+}
+.toast-info {
+  background-color: #d1ecf1;
+  color: #664d03;
 }
 
 .toast-success {

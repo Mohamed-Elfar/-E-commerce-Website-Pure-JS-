@@ -7,7 +7,7 @@ import {
 
 const productId = parseInt(new URLSearchParams(location.search).get("id"));
 
-const products = JSON.parse(localStorage.getItem("allProducts"));
+const products = JSON.parse(localStorage.getItem("allProducts") || []);
 const product = products.find((p) => p.id === productId);
 
 /* not found page */
@@ -96,6 +96,7 @@ function displayProductDetails() {
 }
 displayProductDetails();
 
+/* add review */
 addReviewBtn.addEventListener("click", function () {
   const comment = reviewInput.value.trim();
   if (comment === "") {
@@ -103,29 +104,30 @@ addReviewBtn.addEventListener("click", function () {
     return;
   }
 
-  //   const token = localStorage.getItem("token")
-  //   console.log(token);
+  const token = localStorage.getItem("token");
+  console.log(token);
+  if (!token) {
+    showToast("error", "please login first to add review");
+    return;
+  }
 
-  //   if (comment === "") {
-  //     showToast("error", "please add a review before submitting!");
-  //     return;
-  //   }else if(!token){
-  //     showToast("error", "Please Login First");
-  //     return;
-  //   }
-  //   const user=localStorage.getItem('users').includes(token)
-  // console.log(user);
+  const users = JSON.parse(localStorage.getItem("users") || []);
+  const currentUser = users.find((user) => user.token === token);
+  console.log(currentUser);
+  if (!currentUser) {
+    showToast("error", "invalid user, please login again !");
+    return;
+  }
 
-  const userName = "GuestUser";
+  const firstName = currentUser.firstName;
+  const lastName = currentUser.lastName;
+  const userName = firstName + " " + lastName;
   const today = new Date();
   const reviewDate = today.toLocaleDateString("en-CA");
 
   const newReview = {
-    userId: `user${Math.floor(Math.random() * 1000)}`,
     username: userName,
-    rating: 4,
     date: reviewDate,
-    title: "User Review",
     comment: comment,
   };
 
@@ -153,45 +155,55 @@ addReviewBtn.addEventListener("click", function () {
   reviewInput.value = "";
 });
 
-/* add to cart */
-addToCartBtn.addEventListener("click", () => addToCart(product.id));
-
-/* add to wishlist */
-wishListBtn.addEventListener("click", () => addToWishList(product.id));
-
 /* product quantity */
-let currentQuantity = 1;
+let currentCount = product.count;
 
 function updateQuantityAndPrice() {
-  quantity.textContent = currentQuantity;
+  quantity.textContent = currentCount;
+  decreaseBtn.disabled = currentCount <= 1;
+  increaseBtn.disabled = currentCount >= product.quantity;
 
-  decreaseBtn.disabled = currentQuantity <= 1;
-  increaseBtn.disabled = currentQuantity >= product.quantity;
+  productQuantity.classList.remove("text-success", "text-danger");
 
-  const total = currentQuantity * product.price;
+  if (product.quantity > 0) {
+    productQuantity.classList.add("text-success");
+    addToCartBtn.disabled = false;
+    addToCartBtn.textContent = "Buy Now";
+  } else {
+    productQuantity.classList.add("text-danger");
+    addToCartBtn.disabled = true;
+    addToCartBtn.textContent = "Sold Out";
+  }
+
+  const total = currentCount * product.price;
   totalPrice.textContent = `$${total.toFixed(2)}`;
 }
 updateQuantityAndPrice();
 
 decreaseBtn.addEventListener("click", function () {
-  if (currentQuantity > 1) {
-    currentQuantity--;
+  if (currentCount > 1) {
+    currentCount--;
+    product.count = currentCount;
     updateQuantityAndPrice();
   }
 });
 
 increaseBtn.addEventListener("click", function () {
-  if (currentQuantity < product.quantity) {
-    currentQuantity++;
+  if (currentCount < product.quantity) {
+    currentCount++;
+    product.count = currentCount;
     updateQuantityAndPrice();
   }
 });
 
-/* handling out of stock */
+/* add to cart */
+addToCartBtn.addEventListener("click", () => {
+  if (addToCartBtn.disabled) return;
+  const added = addToCart(product);
+  if (added) {
+    window.location.href = "../checkout/checkout.html";
+  }
+});
 
-// if (product.quantity === 0) {
-//   increaseBtn.disabled = true;
-//   decreaseBtn.disabled = true;
-//   addToCartBtn.disabled = true;
-//   addToCartBtn.textContent = "Sold Out";
-// }
+/* add to wishlist */
+wishListBtn.addEventListener("click", () => addToWishList(product.id));

@@ -2,11 +2,17 @@ export function showToast(status, message) {
   var toast = document.querySelector(".toast");
   toast.classList.remove("toast-error", "toast-success");
   if (status == "success") {
-    toast.innerHTML = `<i class="fa-solid fa-circle-check"></i> ${message}`;
+    toast.innerHTML = `<i class="fa-solid fa-circle-check"></i> ${message}`;
     toast.classList.add("show", "toast-success");
   } else if (status == "error") {
     toast.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> ${message} `;
     toast.classList.add("show", "toast-error");
+  } else if (status == "warning") {
+    toast.innerHTML = `<i class="fa-solid fa-warning"></i> ${message} `;
+    toast.classList.add("show", "toast-warning");
+  } else if (status == "info") {
+    toast.innerHTML = `<i class="fa-solid fa-info "></i> ${message} `;
+    toast.classList.add("show", "toast-info");
   } else {
     throw new Error("Invalid status");
   }
@@ -83,18 +89,25 @@ export function validatePasswordMatch(password, confirmPassword) {
   }
 }
 
-export function addToCart(productId) {
+export function addToCart(product) {
   if (localStorage.getItem("token")) {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    if (!cart.includes(productId)) {
-      cart.push(productId);
+
+    // Check if the product already exists in the cart
+    const productExists = cart.some((item) => item.id === product.id);
+
+    if (!productExists) {
+      cart.push(product);
       localStorage.setItem("cart", JSON.stringify(cart));
       showToast("success", "Added to cart!");
+      return true;
     } else {
-      showToast("success", "Added to cart!");
+      showToast("info", "Product is already in your cart");
+      return false;
     }
   } else {
-    showToast("error", "Please Login First");
+    showToast("warning", "Please Login First");
+    return false;
   }
 }
 export function addToWishList(productId) {
@@ -109,6 +122,21 @@ export function addToWishList(productId) {
     showToast("error", "Please Login First");
   }
 }
+// export function toggleWishList(productId, icon) {
+//   let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+//   if (wishlist.includes(productId)) {
+//     wishlist = wishlist.filter((id) => id !== productId);
+//     icon.classList.remove("active", "fa-solid");
+//     icon.classList.add("fa-regular");
+//   } else {
+//     wishlist.push(productId);
+//     icon.classList.add("active", "fa-solid");
+//     icon.classList.remove("fa-regular");
+//   }
+
+//   localStorage.setItem("wishlist", JSON.stringify(wishlist));
+// }
 export function search(title, parent) {
   const search = document.getElementById("navSearch");
   const searchBtn = document.getElementById("searchBtn");
