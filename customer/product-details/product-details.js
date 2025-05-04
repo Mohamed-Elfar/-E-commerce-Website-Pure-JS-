@@ -102,11 +102,9 @@ addReviewBtn.addEventListener("click", function () {
     showToast("error", "please add a review before submitting!");
     return;
   }
-
   const userName = "GuestUser";
   const today = new Date();
   const reviewDate = today.toLocaleDateString("en-CA");
-
   const newReview = {
     userId: `user${Math.floor(Math.random() * 1000)}`,
     username: userName,
