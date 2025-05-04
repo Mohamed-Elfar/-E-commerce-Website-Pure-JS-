@@ -13,6 +13,7 @@
 </head>
 
 <body>
+    <div class="toast"></div>
     <exclusive-header></exclusive-header>
 
     <div class="container px-5">
@@ -24,42 +25,13 @@
 
     <script src="/assets/js/components/exclusive-header.js" defer></script>
     <script src="/assets/js/components/exclusive-footer.js" defer></script>
-    <script src="/assets/js/components/product_card.js"></script>
+    <script src="/assets/js/components/product_card.js" type="module"></script>
 
     <script src="/assets/js/bootstrap.bundle.min.js"></script>
-    <script src="/customer/all_products/all_products.js"></script>
-    <script>
-        const validCategories = [
-            'Smartphones',
-            'Tablets',
-            'Laptops',
-            'Gaming',
-            'SmartWatches',
-            'HeadPhones'
-        ];
-
-        window.addEventListener('DOMContentLoaded', () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const type = urlParams.get('type');
-            switch (type) {
-                case 'flash-sales':
-                    fetchFlashSalesProducts();
-                    break;
-                case 'best-selling':
-                    fetchBestSellingProducts();
-                    break;
-                case 'all-products':
-                    fetchAllProducts();
-                    break;
-                default:
-                    if (validCategories.includes(type)) {
-                        fetchCategoryProducts(type);
-                    } else {
-                        document.getElementById('products-title').textContent = 'Products';
-                        document.getElementById('products-section').innerHTML = '<p>No products selected.</p>';
-                    }
-            }
-        });
+    <script src="/customer/all_products/all_products.js" type="module"></script>
+    <script type="module">
+        import { fetchFlashSalesProducts, fetchBestSellingProducts, fetchAllProducts, fetchCategoryProducts } from '/customer/all_products/all_products.js';
+       
     </script>
 </body>
 

@@ -240,6 +240,7 @@ hr {
 .product__overlay {
     height: 41px;
     align-content: center;
+    cursor: pointer;
 }
 
 .product__badge:hover .product__overlay {

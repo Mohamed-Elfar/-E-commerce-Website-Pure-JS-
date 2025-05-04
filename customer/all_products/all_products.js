@@ -1,4 +1,6 @@
-function fetchAllProducts() {
+import { addToCart } from "../../assets/js/utils.js";
+
+export function fetchAllProducts() {
     var productsTitle = document.getElementById('products-title');
     var productsSection = document.getElementById('products-section');
     productsTitle.textContent = "All Products";
@@ -17,6 +19,12 @@ function fetchAllProducts() {
                 productCard.setAttribute('ratingCount', `(${product.ratingCount})` || '0');
                 productCard.setAttribute('sale', product.sale || '');
                 productCard.setAttribute('category', product.category || '');
+                productCard.setAttribute('id', product.id || '');
+                productCard.addEventListener('click', function (e) {
+                    if (e.target.closest('.product__overlay')) {
+                        addToCart(product);
+                    }
+                });
                 productsSection.appendChild(productCard);
             });
         })
@@ -24,7 +32,7 @@ function fetchAllProducts() {
 };
 // fetchAllProducts();
 
-function fetchBestSellingProducts() {
+export function fetchBestSellingProducts() {
     var productsTitle = document.getElementById('products-title');
     var productsSection = document.getElementById('products-section');
     productsTitle.textContent = "Best Selling";
@@ -42,6 +50,11 @@ function fetchBestSellingProducts() {
                 productCard.setAttribute('rating', product.rating || '0');
                 productCard.setAttribute('ratingCount', `(${product.ratingCount})` || '0');
                 productCard.setAttribute('sale', product.sale || '');
+                productCard.addEventListener('click', function (e) {
+                    if (e.target.closest('.product__overlay')) {
+                        addToCart(product);
+                    }
+                });
                 productsSection.appendChild(productCard);
             });
         })
@@ -49,7 +62,7 @@ function fetchBestSellingProducts() {
 };
 // fetchBestSellingProducts();
 
-function fetchFlashSalesProducts() {
+export function fetchFlashSalesProducts() {
     var productsTitle = document.getElementById('products-title');
     var productsSection = document.getElementById('products-section');
     productsTitle.textContent = "Flash Sales";
@@ -69,6 +82,11 @@ function fetchFlashSalesProducts() {
                 productCard.setAttribute('rating', product.rating || '0');
                 productCard.setAttribute('ratingCount', `(${product.ratingCount})` || '0');
                 productCard.setAttribute('sale', product.sale || '');
+                productCard.addEventListener('click', function (e) {
+                    if (e.target.closest('.product__overlay')) {
+                        addToCart(product);
+                    }
+                });
                 productsSection.appendChild(productCard);
             });
         })
@@ -76,7 +94,7 @@ function fetchFlashSalesProducts() {
 };
 // fetchFlashSalesProducts();
 
-function fetchCategoryProducts(category) {
+export function fetchCategoryProducts(category) {
     const productsTitle = document.getElementById('products-title');
     const productsSection = document.getElementById('products-section');
     productsTitle.textContent = category;
@@ -107,4 +125,38 @@ function fetchCategoryProducts(category) {
             console.error('Error loading products:', error);
             productsSection.innerHTML = '<p>Error loading products. Please try again later.</p>';
         });
+}
+
+// import { search } from "/assets/js/utils.js";
+// search("product__title", ".product__card");
+
+
+const validCategories = [
+    'Smartphones',
+    'Tablets',
+    'Laptops',
+    'Gaming',
+    'SmartWatches',
+    'HeadPhones'
+];
+
+const urlParams = new URLSearchParams(window.location.search);
+const type = urlParams.get('type');
+switch (type) {
+    case 'flash-sales':
+        fetchFlashSalesProducts();
+        break;
+    case 'best-selling':
+        fetchBestSellingProducts();
+        break;
+    case 'all-products':
+        fetchAllProducts();
+        break;
+    default:
+        if (validCategories.includes(type)) {
+            fetchCategoryProducts(type);
+        } else {
+            document.getElementById('products-title').textContent = 'Products';
+            document.getElementById('products-section').innerHTML = '<p>No products selected.</p>';
+        }
 }

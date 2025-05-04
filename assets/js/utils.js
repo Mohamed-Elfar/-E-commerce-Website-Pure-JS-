@@ -2,7 +2,7 @@ export function showToast(status, message) {
   var toast = document.querySelector(".toast");
   toast.classList.remove("toast-error", "toast-success");
   if (status == "success") {
-    toast.innerHTML = ` <i class="fa-solid fa-circle-check"></i> ${message}`;
+    toast.innerHTML =` <i class="fa-solid fa-circle-check"></i> ${message}`;
     toast.classList.add("show", "toast-success");
   } else if (status == "error") {
     toast.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> ${message} `;

@@ -16,11 +16,10 @@ class ProductCardComponent extends HTMLElement {
                         </div>
                     </div>
                     <img id="productImage" class="product__image position-absolute top-50 start-50" src="" alt="">
-                    <a href="#">
-                        <div class="product__overlay bg-black secondary-color d-none position-absolute w-100 start-50 translate-middle-x text-center bottom-0 fw-medium rounded-bottom">
-                            Add To Cart
-                        </div>
-                    </a>
+                    
+                    <div class="product__overlay bg-black secondary-color d-none position-absolute w-100 start-50 translate-middle-x text-center bottom-0 fw-medium rounded-bottom">
+                        Add To Cart
+                    </div>
                 </div>
                 <h6 id="productName" class="product__title mb-2"></h6>
                 <div class="product__price d-flex gap-2 mt-2">
@@ -37,7 +36,7 @@ class ProductCardComponent extends HTMLElement {
 
 
         // After rendering, apply attributes
-        ['name', 'price', 'image', 'rating', 'ratingCount', 'sale', 'category'].forEach(attr => {
+        ['name', 'price', 'image', 'rating', 'ratingCount', 'sale', 'category', 'id'].forEach(attr => {
             if (this.hasAttribute(attr)) {
                 this.attributeChangedCallback(attr, null, this.getAttribute(attr));
             }
@@ -94,8 +93,6 @@ class ProductCardComponent extends HTMLElement {
                         .map((_, i) =>
                             `<i class="product__rating-star ${i < newValue ? "fa-solid" : "fa-regular"} fa-star"></i>`
                         ).join("")}`;
-
-
                 break;
         }
     }

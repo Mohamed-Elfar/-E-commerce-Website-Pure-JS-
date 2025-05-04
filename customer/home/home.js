@@ -1,3 +1,5 @@
+import { addToCart } from "../../assets/js/utils.js";
+
 const sidebar = document.getElementById("sidebar");
 const backdrop = document.querySelector(".sidebar-backdrop");
 
@@ -45,6 +47,11 @@ function fetchSliceBestSelling() {
         productCard.setAttribute('rating', product.rating || '0');
         productCard.setAttribute('ratingCount', `(${product.ratingCount})` || '0');
         productCard.setAttribute('sale', product.sale || '');
+        productCard.addEventListener('click', function (e) {
+          if (e.target.closest('.product__overlay')) {
+            addToCart(product);
+          }
+        });
         productsSection.appendChild(productCard);
       });
     })
@@ -70,6 +77,11 @@ function fetchSliceFlashSales() {
         productCard.setAttribute('rating', product.rating || '0');
         productCard.setAttribute('ratingCount', `(${product.ratingCount})` || '0');
         productCard.setAttribute('sale', product.sale || '');
+        productCard.addEventListener('click', function (e) {
+          if (e.target.closest('.product__overlay')) {
+            addToCart(product);
+          }
+        });
         productsSection.appendChild(productCard);
       });
     })
@@ -92,6 +104,11 @@ function fetchSliceAllProducts() {
         productCard.setAttribute('rating', product.rating || '0');
         productCard.setAttribute('ratingCount', `(${product.ratingCount})` || '0');
         productCard.setAttribute('sale', product.sale || '');
+        productCard.addEventListener('click', function (e) {
+          if (e.target.closest('.product__overlay')) {
+            addToCart(product);
+          }
+        });
         productsSection.appendChild(productCard);
       });
     })
