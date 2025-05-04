@@ -10,7 +10,9 @@ import {
 fetch("../../assets/data/products.json")
   .then((res) => res.json())
   .then((data) => {
-    localStorage.setItem("allProducts", JSON.stringify(data));
+    if (!localStorage.getItem("allProducts")) {
+      localStorage.setItem("allProducts", JSON.stringify(data));
+    }
     const container = document.getElementById("product-container");
     const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 

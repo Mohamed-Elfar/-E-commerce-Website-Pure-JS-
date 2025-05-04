@@ -102,9 +102,6 @@ a {
 .toast-error,
 .toast-warning ,
 .toast-info {
-.toast-error,
-.toast-warning ,
-.toast-info {
   position: fixed;
   left: 50%;
   transform: translate(-50%, -100px);
@@ -122,7 +119,7 @@ a {
 }
 .toast-info {
   background-color: #d1ecf1;
-  color: #664d03;
+  color: #664d03;
 }
 
 .toast-success {
