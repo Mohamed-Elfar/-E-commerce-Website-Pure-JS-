@@ -56,12 +56,12 @@ class ExclusiveHeader extends HTMLElement {
                 <option value="login" data-link="/authentication/login.html"></option>
                 <option value="register" data-link="/authentication/register.html"></option>
               </datalist>
-              <button class="btn" type="button">
+              <a class="btn" href="/customer/wishlist/wishlist.html">
                 <i class="fa fa-heart"></i>
-              </button>
-              <button class="btn" type="button">
+              </a>
+              <a class="btn" href="/customer/cart/cart.html">
                 <i class="fa fa-shopping-cart"></i>
-              </button>
+              </a>
               <div class="btn-group">
                 <button
                   class="btn userIcon border-0 rounded-circle"

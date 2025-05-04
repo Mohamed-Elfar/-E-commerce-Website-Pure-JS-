@@ -37,12 +37,12 @@ input[type="radio"] {
   font-weight: 600;
 }
 
-.wishlist-icon {
+/* .wishlist-icon {
   border: 1px solid #e07575;
   padding: 7px;
   border-radius: 6px;
   cursor: pointer;
-}
+} */
 
 /* .related-items {
     margin-block: 50px 30px;
@@ -90,11 +90,11 @@ input[type="radio"] {
   /* .related-items {
         margin-left: 35px;
     } */
-  .main-img__img {
-    height: 400px;
-  }
-
-  .side-imgs__img {
-    height: 60px;
-  }
+    .main-img__img {
+      height: 400px;
+    }
+    
+    .side-imgs__img {
+      height: 60px;
+    }
 }

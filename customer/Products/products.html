@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Products</title>
     <link rel="icon" href="/assets/images/icon.png" type="image/png" />
-
+    <!-- noUiSlider CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.0/nouislider.min.css" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
     <!-- FontAwesome Icons -->
@@ -14,6 +15,7 @@
     <link rel="stylesheet" href="products.css" />
     <!-- Your Custom Styles -->
     <link rel="stylesheet" href="/assets/css/style.css" />
+
   </head>
   <body>
     <div class="toast"></div>
@@ -21,10 +23,58 @@
     <exclusive-header></exclusive-header>
 
     <div class="container mt-5">
-      <div id="product-container" class="row g-4"></div>
-    </div>
-    <exclusive-footer></exclusive-footer>
+      <div class="row g-4"> 
+        <div class="col-12 col-lg-2 order-1 order-lg-2 tablet-mobile-margin">
+          <div class="card p-3 bg-light border-0">
+            <p class="mb-3 fw-bolder">Filter by Category</p>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="Smartphones" id="smartphones">
+              <label class="form-check-label" for="smartphones">Smartphones</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="Laptops" id="Laptops">
+              <label class="form-check-label" for="Laptops">Laptops</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="Tablets" id="Tablets">
+              <label class="form-check-label" for="Tablets">Tablets</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="Smartwatches" id="Smartwatches">
+              <label class="form-check-label" for="Smartwatches">Smartwatches</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="Gaming" id="Gaming">
+              <label class="form-check-label" for="Gaming">Gaming</label>
+            </div>
     
+            <p class="fw-bolder my-3">Filter by Price</p>
+            <div class="row g-2 align-items-center">
+              <div class="col-md-6">
+                <label for="minPrice" class="form-label">Min Price</label>
+                <input type="number" class="form-control" id="minPrice" placeholder="$10">
+              </div>
+              <div class="col-md-6">
+                <label for="maxPrice" class="form-label">Max Price</label>
+                <input type="number" class="form-control" id="maxPrice" placeholder="$1000">
+              </div>
+            </div>
+            <div class="col-md-12 mt-4">
+              <button id="filterPriceBtn" class="btn btn-dark w-100">Filter</button>
+            </div>
+          </div>
+        </div>
+    
+       
+        <div class="col-12 col-lg-10 order-2 order-lg-1">
+          <div class="row" id="product-container"></div>
+        </div>
+      </div>
+    </div>
+    
+    <exclusive-footer></exclusive-footer>
+    <!-- noUiSlider JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.0/nouislider.min.js"></script>
     <script src="../../assets/js/components/exclusive-header.js" defer></script>
     <script src="../../assets/js/components/exclusive-footer.js" defer></script>
     <script src="/assets/js/bootstrap.bundle.min.js"></script>

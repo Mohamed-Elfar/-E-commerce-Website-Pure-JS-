@@ -2,15 +2,21 @@
   {
     "id": 1,
     "name": "iPhone 15 Pro",
+    "count":1,
     "description": "Apple flagship phone with A17 Bionic chip.",
     "image": "../../assets/images/products/download.webp",
     "price": 1199.99,
-    "quantity": 15,
+    "quantity": 0,
     "rating": 4,
     "ratingCount": 100,
     "sale": "",
     "category": "Smartphones",
-    "count":7,
+    "images": [
+      "../../assets/images/products/download.webp",
+      "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/iPhone_15_Pro_Black_Titanium_PDP_Image_Position-2__en-ME-2.png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
+      "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/iPhone_15_Pro_Black_Titanium_PDP_Image_Position-4__en-ME-2.png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
+      "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/iPhone_15_Pro_Max_Black-1.png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D"
+    ],
     "reviews": [
       {
         "userId": "user789",
@@ -38,10 +44,55 @@
       }
     ]
   },
-
+  {
+    "id": 2,
+    "name": "Samsung Galaxy S24",
+    "count":1,
+    "description": "Latest Android with AI-enhanced features.",
+    "image": "../../assets/images/products/download (1).webp",
+    "price": 1099.99,
+    "quantity": 0,
+    "rating": 3,
+    "ratingCount": 140,
+    "sale": "10%",
+    "category": "Smartphones",
+    "images": [
+      "../../assets/images/products/download (1).webp",
+      "data:image/jpeg;base64,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",
+      "https://images.samsung.com/is/image/samsung/p6pim/ae_ar/2401/gallery/ae-ar-galaxy-s24-490006-sm-s921blbbmea-539371037?$720_576_JPG$",
+      "https://images.samsung.com/is/image/samsung/assets/sa/smartphones/galaxy-s24/buy/S24-Color-Marble_Grey_MO.jpg"
+    ],
+    "reviews": [
+      {
+        "userId": "user123",
+        "username": "AndroidFan",
+        "rating": 4,
+        "date": "2024-01-10",
+        "title": "AI features are game-changing",
+        "comment": "The real-time translation and photo editing tools are incredible. Battery lasts all day with moderate use."
+      },
+      {
+        "userId": "user456",
+        "username": "TechReviewer",
+        "rating": 2,
+        "date": "2024-01-25",
+        "title": "Overheating issues",
+        "comment": "Gets uncomfortably warm during extended camera use. AI features are impressive when they work."
+      },
+      {
+        "userId": "user789",
+        "username": "BusinessUser",
+        "rating": 5,
+        "date": "2024-02-05",
+        "title": "Perfect for productivity",
+        "comment": "The DeX mode combined with AI scheduling makes this my perfect work companion."
+      }
+    ]
+  },
   {
     "id": 3,
     "name": "Google Pixel 8 Pro",
+    "count":1,
     "description": "Pure Android experience with advanced camera.",
     "image": "../../assets/images/products/download (26).jpeg",
     "price": 999.99,
@@ -49,8 +100,13 @@
     "rating": 2,
     "ratingCount": 10,
     "sale": "15%",
-    "count": 1,
     "category": "Smartphones",
+    "images": [
+      "../../assets/images/products/download (26).jpeg",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfs247FTpZv__KNW8FjXLHLZvtlTTjmZ3Hsg&s",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuCsY8C4oMC1k1_O9oEvZTdU-xv4LnDv_YkA&s",
+      "https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc3/Google_Pixel_8_Pixel_8_Pro_staggered_HDR_Pixel_Tablet_Pro_drdNBC.jpg"
+    ],
     "reviews": [
       {
         "userId": "user111",
@@ -73,6 +129,7 @@
   {
     "id": 4,
     "name": "iphone 16",
+    "count":1,
     "description": "Fast charging and high refresh display.",
     "image": "../../assets/images/products/download (2).webp",
     "price": 40000,
@@ -81,6 +138,12 @@
     "ratingCount": 50,
     "sale": "",
     "category": "Smartphones",
+    "images": [
+      "../../assets/images/products/download (2).webp",
+      "https://www.google.com/imgres?q=iphone%2016&imgurl=https%3A%2F%2Ftechmartme.com%2Fwp-content%2Fuploads%2FMA6A4.jpeg&imgrefurl=https%3A%2F%2Ftechmartme.com%2Fproduct%2Fapple-clear-case-for-iphone-16-line-up%2F&docid=7DZlDIEJe3pySM&tbnid=vvV7sYUFKHtpOM&vet=12ahUKEwjH4-_q6oeNAxUeKvsDHbo5IRwQM3oECFkQAA..i&w=1144&h=1144&hcb=2&ved=2ahUKEwjH4-_q6oeNAxUeKvsDHbo5IRwQM3oECFkQAA",
+      "https://www.google.com/url?sa=i&url=https%3A%2F%2Falexreviewstech.com%2Fapple-iphone-16-review-a-good-update-for-some%2F&psig=AOvVaw2JY3o6vSM-Hkbk74doRZSd&ust=1746380063244000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCMDbrJLrh40DFQAAAAAdAAAAABAE",
+      "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pickr.com.au%2Fnews%2F2024%2Fapple-iphone-16-to-bring-camera-control-ai-and-then-some%2F&psig=AOvVaw2JY3o6vSM-Hkbk74doRZSd&ust=1746380063244000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCMDbrJLrh40DFQAAAAAdAAAAABAJ"
+    ],
     "reviews": [
       {
         "userId": "user333",
@@ -103,6 +166,7 @@
   {
     "id": 5,
     "name": "Xiaomi 14 Ultra",
+    "count":1,
     "description": "High-end phone with Leica camera.",
     "image": "../../assets/images/products/download (25).jpeg",
     "price": 899.99,
@@ -111,6 +175,12 @@
     "ratingCount": 60,
     "sale": "20%",
     "category": "Smartphones",
+    "images": [
+      "../../assets/images/products/download (25).jpeg",
+      "https://www.google.com/imgres?q=Xiaomi%2014%20Ultra%0D%0A%0D%0A&imgurl=https%3A%2F%2Fi02.appmifile.com%2Fmi-com-product%2Ffly-birds%2Fxiaomi-14-ultra%2Fm%2F1e1b0e82313bbcffd3269430707fb77c.jpg&imgrefurl=https%3A%2F%2Fwww.mi.com%2Fsa%2Fproduct%2Fxiaomi-14-ultra%2F&docid=mqG3lBJUES8vTM&tbnid=oZXQluqpiAoSoM&vet=12ahUKEwjmwq-67IeNAxVVU6QEHYr_OfQQM3oECGsQAA..i&w=1080&h=1928&hcb=2&ved=2ahUKEwjmwq-67IeNAxVVU6QEHYr_OfQQM3oECGsQAA",
+      "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.ubuy.com.eg%2Far%2Fproductuk%2FIRA7GQ5NW-original-xiaomi-14-ultra&psig=AOvVaw0JoGOSZgEDCH9jxMkT8sam&ust=1746380498516000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCODazc3sh40DFQAAAAAdAAAAABAE",
+      "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.amazon.ae%2F-%2Far%2F%25D8%25B4%25D8%25A7%25D9%2588%25D9%2585%25D9%258A-%25D9%2585%25D9%2588%25D8%25A8%25D8%25A7%25D9%258A%25D9%2584-14-%25D8%25AF%25D8%25B1%25D8%25A7%25D8%25AC%25D9%2588%25D9%2586-%25D9%2585%25D9%258A%25D8%25AC%25D8%25A7%25D8%25A8%25D9%2583%25D8%25B3%25D9%2584%2Fdp%2FB0CY2DXQJ7&psig=AOvVaw0JoGOSZgEDCH9jxMkT8sam&ust=1746380498516000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCODazc3sh40DFQAAAAAdAAAAABAJ"
+    ],
     "reviews": [
       {
         "userId": "user555",
@@ -133,6 +203,7 @@
   {
     "id": 6,
     "name": "Sony Xperia 5 V",
+    "count":1,
     "description": "Compact phone with excellent audio & camera.",
     "image": "../../assets/images/products/download (2).jpeg",
     "price": 849.99,
@@ -141,6 +212,12 @@
     "ratingCount": 80,
     "sale": "",
     "category": "Smartphones",
+    "images": [
+      "../../assets/images/products/download (2).jpeg",
+      "https://www.google.com/imgres?q=Sony%20Xperia%205%20V&imgurl=https%3A%2F%2Fwww.galaxus.be%2FFiles%2F7%2F5%2F3%2F2%2F5%2F9%2F5%2F2%2Fxperia%25205%2520V%2520teaser21.png&imgrefurl=https%3A%2F%2Fwww.galaxus.be%2Fen%2Fpage%2Fsony-xperia-5-v-the-compact-flagship-29374&docid=h0L0bZfZhs1jOM&tbnid=3c25IeEV2_RfDM&vet=12ahUKEwio_uH27IeNAxWIK_sDHSq2Nl0QM3oECE4QAA..i&w=2272&h=1136&hcb=2&itg=1&ved=2ahUKEwio_uH27IeNAxWIK_sDHSq2Nl0QM3oECE4QAA",
+      "https://www.google.com/imgres?q=Sony%20Xperia%205%20V&imgurl=https%3A%2F%2Fwww.ourfriday.co.uk%2Fimage%2Fcache%2Fcatalog%2FSamsung%2Fsony-xperia-5-v-blue-1-800x800.png&imgrefurl=https%3A%2F%2Fwww.ourfriday.co.uk%2Fsony-xperia-5-v-5g-smartphone-dual-sim-8256gb-blue&docid=yt9uppw84oHbxM&tbnid=bWfVgmA5hEhdlM&vet=12ahUKEwio_uH27IeNAxWIK_sDHSq2Nl0QM3oECHoQAA..i&w=800&h=800&hcb=2&ved=2ahUKEwio_uH27IeNAxWIK_sDHSq2Nl0QM3oECHoQAA",
+      "https://www.google.com/url?sa=i&url=https%3A%2F%2Fpdaplaza.ca%2Ffr%2Fproducts%2Fsony-xperia-5-v-5g-dual-sim-xq-de72-8gb-256gb-black-factory-unlocked-global&psig=AOvVaw0GDsjtiA9nUthTG7BUJ9T4&ust=1746380625274000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCICSu6Tth40DFQAAAAAdAAAAABAE"
+    ],
     "reviews": [
       {
         "userId": "user777",
@@ -163,14 +240,21 @@
   {
     "id": 7,
     "name": "Asus ROG Phone 7",
+    "count":1,
     "description": "Gaming smartphone with high refresh rate.",
-    "image": "../../assets/images/products/download (3).jpeg",
+    "image": "https://imei.org/storage/files/images/11201/preview/asus-rog-phone-7-ultimate-1.png",
     "price": 999.0,
     "quantity": 6,
     "rating": 3,
     "ratingCount": 90,
     "sale": "10%",
     "category": "Smartphones",
+    "images": [
+      "https://imei.org/storage/files/images/11201/preview/asus-rog-phone-7-ultimate-1.png",
+      "https://imei.org/storage/files/images/11201/preview/asus-rog-phone-7-ultimate-4.png",
+      "https://imei.org/storage/files/images/11201/preview/asus-rog-phone-7-ultimate-2.png",
+      "https://imei.org/storage/files/images/11201/preview/asus-rog-phone-7-ultimate-3.png"
+    ],
     "reviews": [
       {
         "userId": "user999",
@@ -193,6 +277,7 @@
   {
     "id": 8,
     "name": "MacBook Pro 16” M3",
+    "count":1,
     "description": "Powerful laptop for professionals.",
     "image": "../../assets/images/products/download (4).jpeg",
     "price": 2499.0,
@@ -201,6 +286,12 @@
     "ratingCount": 60,
     "sale": "",
     "category": "Laptops",
+    "images": [
+      "../../assets/images/products/download (4).jpeg",
+      "https://www.google.com/imgres?q=MacBook%20Pro%2016%E2%80%9D%20M3&imgurl=https%3A%2F%2Falephksa.com%2Fcdn%2Fshop%2Ffiles%2FMacBook_Pro_16_in_M3_Pro_Max_Space_Black_PDP_Image_Position-2__en-AE_25b32c04-8923-48fc-bffd-37ef667e98c1.jpg%3Fv%3D1698727990%26width%3D1445&imgrefurl=https%3A%2F%2Falephksa.com%2Fproducts%2F16-inch-macbook-pro-m3-max-mrw33ab-a&docid=mhrcrVgCl9yIaM&tbnid=5L_LWAaWTq1m3M&vet=12ahUKEwjCnunG-IeNAxWucaQEHSgcHYYQM3oECGAQAA..i&w=1445&h=1445&hcb=2&ved=2ahUKEwjCnunG-IeNAxWucaQEHSgcHYYQM3oECGAQAA",
+      "https://imei.org/storage/files/images/11201/preview/asus-rog-phone-7-ultimate-2.png",
+      "https://imei.org/storage/files/images/11201/preview/asus-rog-phone-7-ultimate-3.png"
+    ],
     "reviews": [
       {
         "userId": "user890",
@@ -231,6 +322,7 @@
   {
     "id": 9,
     "name": "Dell XPS 13 Plus",
+    "count":1,
     "description": "Premium ultrabook with edge-to-edge display.",
     "image": "../../assets/images/products/download (5).jpeg",
     "price": 1399.99,
@@ -239,6 +331,12 @@
     "ratingCount": 70,
     "sale": "",
     "category": "Laptops",
+    "images": [
+      "../../assets/images/products/download (5).jpeg",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuZGbNhn3U-Qxy7dndcUhqWYAlFMf7XTcrkA&s",
+      "https://microless.com/cdn/products/de3c8381e8bbb953ebd23327374f6bc0-hi.jpg",
+      "https://microless.com/cdn/products/46dcfd4054d66764b337efe8296bebc8-hi.jpg"
+    ],
     "reviews": [
       {
         "userId": "user112",
@@ -261,6 +359,7 @@
   {
     "id": 10,
     "name": "HP Spectre x360",
+    "count":1,
     "description": "Convertible laptop with touch screen.",
     "image": "../../assets/images/products/download (6).jpeg",
     "price": 1299.0,
@@ -269,6 +368,12 @@
     "ratingCount": 20,
     "sale": "50%",
     "category": "Laptops",
+    "images": [
+      "../../assets/images/products/download (6).jpeg",
+      "https://m.media-amazon.com/images/I/317IZF7+YjL.SS400.jpg",
+      "https://m.media-amazon.com/images/I/41WDRthnWAL.SS1000.jpg",
+      "https://m.media-amazon.com/images/I/41BqXcNCTHL.SS1000.jpg"
+    ],
     "reviews": [
       {
         "userId": "user114",
@@ -291,6 +396,7 @@
   {
     "id": 11,
     "name": "Asus ROG Zephyrus G14",
+    "count":1,
     "description": "Gaming laptop with AMD Ryzen chip.",
     "image": "../../assets/images/products/download (7).jpeg",
     "price": 1599.0,
@@ -299,6 +405,12 @@
     "ratingCount": 30,
     "sale": "",
     "category": "Laptops",
+    "images": [
+      "../../assets/images/products/download (7).jpeg",
+      "https://m.media-amazon.com/images/I/71+DAcqLZmL.AC_SL1500.jpg",
+      "https://m.media-amazon.com/images/I/31BZZ29oyJL.AC.jpg",
+      "https://m.media-amazon.com/images/I/71hf1kuZh8L.AC_SL1500.jpg"
+    ],
     "reviews": [
       {
         "userId": "user116",
@@ -321,6 +433,7 @@
   {
     "id": 12,
     "name": "Lenovo ThinkPad X1 Carbon",
+    "count":1,
     "description": "Business laptop with great battery life.",
     "image": "../../assets/images/products/download (8).jpeg",
     "price": 1699.99,
@@ -329,6 +442,12 @@
     "ratingCount": 70,
     "sale": "",
     "category": "Laptops",
+    "images": [
+      "../../assets/images/products/download (8).jpeg",
+      "https://m.media-amazon.com/images/I/41VO-Nc1OeL.AC_SX679.jpg",
+      "https://m.media-amazon.com/images/I/51Qzgki2PJL.AC_SX679.jpg",
+      "https://m.media-amazon.com/images/I/31ZDe7Y6gHL.AC_SX679.jpg"
+    ],
     "reviews": [
       {
         "userId": "user118",
@@ -351,6 +470,7 @@
   {
     "id": 13,
     "name": "Acer Swift 5",
+    "count":1,
     "description": "Lightweight and affordable ultrabook.",
     "image": "../../assets/images/products/download (9).jpeg",
     "price": 999.0,
@@ -359,6 +479,12 @@
     "ratingCount": 90,
     "sale": "",
     "category": "Laptops",
+    "images": [
+      "../../assets/images/products/download (9).jpeg",
+      "https://www.google.com/imgres?q=Acer%20Swift%205&imgurl=https%3A%2F%2Fcdn.uc.assets.prezly.com%2Fdd3391a1-e0c7-42e1-bb68-c30dcc210d29%2Fseahorse-02.png&imgrefurl=https%3A%2F%2Fnews.acer.com%2Facer-announces-the-new-swift-5-a-powerful-and-premium-ultraportable-laptop&docid=0Ekg6OVviGWcqM&tbnid=12ATy2Pz_tFYiM&vet=12ahUKEwjXj7ONhYiNAxXCTKQEHbdBH80QM3oECE8QAA..i&w=1818&h=1441&hcb=2&ved=2ahUKEwjXj7ONhYiNAxXCTKQEHbdBH80QM3oECE8QAA",
+      "https://www.google.com/imgres?q=Acer%20Swift%205&imgurl=https%3A%2F%2Fm.media-amazon.com%2Fimages%2FI%2F515ROYe6IRS.jpg&imgrefurl=https%3A%2F%2Fwww.amazon.eg%2FSF514-55TA-74EC%2Fdp%2FB08JQKMFFB&docid=IDI-hsxgj41cWM&tbnid=sraBlUIsBVt1VM&vet=12ahUKEwjXj7ONhYiNAxXCTKQEHbdBH80QM3oECBYQAA..i&w=1200&h=1200&hcb=2&itg=1&ved=2ahUKEwjXj7ONhYiNAxXCTKQEHbdBH80QM3oECBYQAA",
+      "https://www.google.com/imgres?q=Acer%20Swift%205&imgurl=https%3A%2F%2Fcdn.uc.assets.prezly.com%2F21568a99-ea8b-4513-95e2-f9a0228b5c1a%2FSwift_5_SF514-54T_SF514-54GT_01_recommended.jpg&imgrefurl=https%3A%2F%2Fnews.acer.com%2Facers-new-swift-5-maintains-the-worlds-lightest-14-inch-notebook-now-with-discrete-graphics-for-performance-on-the-go&docid=nNBK5Aeb5fc1WM&tbnid=fLHpm-UYdgsHOM&vet=12ahUKEwjXj7ONhYiNAxXCTKQEHbdBH80QM3oECG0QAA..i&w=3000&h=2553&hcb=2&ved=2ahUKEwjXj7ONhYiNAxXCTKQEHbdBH80QM3oECG0QAA"
+    ],
     "reviews": [
       {
         "userId": "user120",
@@ -379,46 +505,9 @@
     ]
   },
   {
-    "id": 2,
-    "name": "Samsung Galaxy S24",
-    "description": "Latest Android with AI-enhanced features.",
-    "image": "../../assets/images/products/download (1).webp",
-    "price": 1099.99,
-    "quantity": 5,
-    "rating": 3,
-    "ratingCount": 140,
-    "sale": "10%",
-    "category": "Smartphones",
-    "reviews": [
-      {
-        "userId": "user123",
-        "username": "AndroidFan",
-        "rating": 4,
-        "date": "2024-01-10",
-        "title": "AI features are game-changing",
-        "comment": "The real-time translation and photo editing tools are incredible. Battery lasts all day with moderate use."
-      },
-      {
-        "userId": "user456",
-        "username": "TechReviewer",
-        "rating": 2,
-        "date": "2024-01-25",
-        "title": "Overheating issues",
-        "comment": "Gets uncomfortably warm during extended camera use. AI features are impressive when they work."
-      },
-      {
-        "userId": "user789",
-        "username": "BusinessUser",
-        "rating": 5,
-        "date": "2024-02-05",
-        "title": "Perfect for productivity",
-        "comment": "The DeX mode combined with AI scheduling makes this my perfect work companion."
-      }
-    ]
-  },
-  {
     "id": 14,
     "name": "MSI Stealth 15",
+    "count":1,
     "description": "Slim gaming laptop with RTX graphics.",
     "image": "../../assets/images/products/download (10).jpeg",
     "price": 1399.0,
@@ -427,6 +516,12 @@
     "ratingCount": 30,
     "sale": "",
     "category": "Laptops",
+    "images": [
+      "../../assets/images/products/download (10).jpeg",
+      "https://m.media-amazon.com/images/I/71EqA7q8HoL.AC_SX679.jpg",
+      "https://m.media-amazon.com/images/I/61J-bf4XaRL.AC_SX679.jpg",
+      "https://m.media-amazon.com/images/I/519B+Q5nRRL.AC_SX679.jpg"
+    ],
     "reviews": [
       {
         "userId": "user122",
@@ -449,6 +544,7 @@
   {
     "id": 15,
     "name": "Sony WH-1000XM5",
+    "count":1,
     "description": "Noise-cancelling wireless headphones.",
     "image": "../../assets/images/products/download (11).jpeg",
     "price": 399.99,
@@ -457,6 +553,12 @@
     "ratingCount": 50,
     "sale": "5%",
     "category": "Headphones",
+    "images": [
+      "../../assets/images/products/download (11).jpeg",
+      "https://www.google.com/imgres?q=Sony%20WH-1000XM5&imgurl=https%3A%2F%2Fi5.walmartimages.com%2Fasr%2F1e32a0f9-1589-4497-9312-f0844eaaec33.5a154dfffb172c509d2caec7bde0aa48.jpeg&imgrefurl=https%3A%2F%2Fwww.ubuy.com.eg%2Far%2Fproduct%2F5493KUQKU-sony-wh-1000xm5-wireless-industry-leading-noise-canceling-headphones-black&docid=_y2i2AnO2LSNjM&tbnid=JZlhfCbAxU-maM&vet=12ahUKEwjPvIDO5omNAxU0RqQEHc4RMtsQM3oFCIABEAA..i&w=1200&h=1047&hcb=2&ved=2ahUKEwjPvIDO5omNAxU0RqQEHc4RMtsQM3oFCIABEAA",
+      "https://www.google.com/imgres?q=Sony%20WH-1000XM5&imgurl=https%3A%2F%2Fmanofmany.com%2F_next%2Fimage%3Furl%3Dhttps%253A%252F%252Fapi.manofmany.com%252Fwp-content%252Fuploads%252F2022%252F06%252FSony-WH-1000XM5-feature-2-1.jpg%26w%3D1200%26q%3D75&imgrefurl=https%3A%2F%2Fmanofmany.com%2Ftech%2Faudio%2Fsony-wh-1000xm5-review&docid=MpcGGvNyVRmT5M&tbnid=M8ckEvttyJwlJM&vet=12ahUKEwjPvIDO5omNAxU0RqQEHc4RMtsQM3oECBkQAA..i&w=1200&h=900&hcb=2&ved=2ahUKEwjPvIDO5omNAxU0RqQEHc4RMtsQM3oECBkQAA",
+      "https://www.google.com/imgres?q=Sony%20WH-1000XM5&imgurl=https%3A%2F%2Fmedia.hifi.lu%2Fsys-master%2Fproducts%2F9189968642078%2F1440x1440.33004401_01.webp&imgrefurl=https%3A%2F%2Fwww.hifi.lu%2Fen%2Fp%2F33004401-wh-1000xm5-wireless-headphones-black&docid=v54G-ANezJJ3qM&tbnid=3Dk_crZOAfFV9M&vet=12ahUKEwjPvIDO5omNAxU0RqQEHc4RMtsQM3oECFQQAA..i&w=1440&h=2217&hcb=2&ved=2ahUKEwjPvIDO5omNAxU0RqQEHc4RMtsQM3oECFQQAA"
+    ],
     "reviews": [
       {
         "userId": "user901",
@@ -479,6 +581,7 @@
   {
     "id": 16,
     "name": "Apple AirPods Pro 2",
+    "count":1,
     "description": "Wireless earbuds with active noise cancelling.",
     "image": "../../assets/images/products/download (12).jpeg",
     "price": 249.99,
@@ -487,6 +590,12 @@
     "ratingCount": 120,
     "sale": "30%",
     "category": "Headphones",
+    "images": [
+      "../../assets/images/products/download (12).jpeg",
+      "https://www.google.com/imgres?q=Apple%20AirPods%20Pro%202&imgurl=https%3A%2F%2Fm.media-amazon.com%2Fimages%2FI%2F618RLKDl86L.AC_UF894%2C1000_QL80.jpg&imgrefurl=https%3A%2F%2Fwww.amazon.eg%2F%25D8%25B3%25D9%2585%25D8%25A7%25D8%25B9%25D8%25A9-%25D9%2584%25D8%25A7%25D8%25B3%25D9%2584%25D9%2583%25D9%258A%25D8%25A9-%25D8%25A7%25D8%25A8%25D9%2584-%25D8%25A7%25D9%2584%25D8%25AB%25D8%25A7%25D9%2586%25D9%258A-%25E2%2596%25B6%25E2%2596%25B6%25E2%2596%25B6%25E2%2596%25B6%25E2%2596%25B6%25E2%2596%25B6%2Fdp%2FB0BDK4GJXC&docid=qp98CyaHlIdllM&tbnid=weBxhcqwViYt8M&vet=12ahUKEwjd6o_w5omNAxX2UaQEHVdGAKEQM3oECBkQAA..i&w=814&h=1000&hcb=2&ved=2ahUKEwjd6o_w5omNAxX2UaQEHVdGAKEQM3oECBkQAA",
+      "https://www.google.com/imgres?q=Apple%20AirPods%20Pro%202&imgurl=https%3A%2F%2Fennap.com%2Fcdn%2Fshop%2Ffiles%2Fairpods-pro-2nd-generation-with-magsafe-charging-case-usbc-airpods-pro-2nd-generation-with-magsafe-charging-case-usbc-ennap-com-5.jpg%3Fv%3D1697852900&imgrefurl=https%3A%2F%2Fennap.com%2Far%2Fproducts%2Fairpods-pro-2nd-generation-with-magsafe-charging-case-usb-c&docid=llOIkr5e_V5cwM&tbnid=G7PcKCjKl7d55M&vet=12ahUKEwjd6o_w5omNAxX2UaQEHVdGAKEQM3oECBgQAA..i&w=1144&h=1144&hcb=2&ved=2ahUKEwjd6o_w5omNAxX2UaQEHVdGAKEQM3oECBgQAA",
+      "https://www.google.com/imgres?q=Apple%20AirPods%20Pro%202&imgurl=https%3A%2F%2Fbtech.com%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F8e279240a6612e9579d3be696bac1c07%2F6%2F1%2F61suj2akoel.ac_sl1500.jpg&imgrefurl=https%3A%2F%2Fbtech.com%2Fen%2Fapple-airpods-pro-2nd-generation-white.html&docid=L3aRxZPMCE0kMM&tbnid=KCBUsaNnYz29yM&vet=12ahUKEwjd6o_w5omNAxX2UaQEHVdGAKEQM3oECHsQAA..i&w=1200&h=1200&hcb=2&ved=2ahUKEwjd6o_w5omNAxX2UaQEHVdGAKEQM3oECHsQAA"
+    ],
     "reviews": [
       {
         "userId": "user124",
@@ -509,6 +618,7 @@
   {
     "id": 17,
     "name": "Bose QuietComfort 45",
+    "count":1,
     "description": "Comfortable headphones with great sound.",
     "image": "../../assets/images/products/download (13).jpeg",
     "price": 329.0,
@@ -517,6 +627,12 @@
     "ratingCount": 11,
     "sale": "",
     "category": "Headphones",
+    "images": [
+      "../../assets/images/products/download (13).jpeg",
+      "https://www.google.com/imgres?q=Bose%20QuietComfort%2045&imgurl=https%3A%2F%2Fshop.ucom.am%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2Ff0d04c535eae714fecfa8deb2c47c63b%2Fq%2Fc%2Fqc45_whitesmoke_001_rgb_4.webp&imgrefurl=https%3A%2F%2Fshop.ucom.am%2Fen%2Fearphone-bose-quietcomfort-45-acoustic.html&docid=y3xArGjvFj70AM&tbnid=h8DDORzkxLCdrM&vet=12ahUKEwj9vaiw54mNAxXjdqQEHVAmFtEQM3oECDAQAA..i&w=700&h=700&hcb=2&ved=2ahUKEwj9vaiw54mNAxXjdqQEHVAmFtEQM3oECDAQAA",
+      "https://www.google.com/imgres?q=Bose%20QuietComfort%2045&imgurl=https%3A%2F%2Fcanada.crutchfieldonline.com%2FImageHandler%2Ftrim%2F750%2F457%2Fproducts%2F2021%2F35%2F018%2Fg018QC45WH-F.jpg&imgrefurl=https%3A%2F%2Fwww.crutchfield.ca%2Fp_018QC45WH%2FBose-QuietComfort-45-White.html&docid=_ARyxs7_63yqQM&tbnid=RXEjVFJZjea4mM&vet=12ahUKEwj9vaiw54mNAxXjdqQEHVAmFtEQM3oECGkQAA..i&w=750&h=457&hcb=2&ved=2ahUKEwj9vaiw54mNAxXjdqQEHVAmFtEQM3oECGkQAA",
+      "https://www.google.com/imgres?q=Bose%20QuietComfort%2045&imgurl=https%3A%2F%2Fmedia.extra.com%2Fi%2Faurora%2F100303831_100_03%3Ffmt%3Dauto%26w%3D720&imgrefurl=https%3A%2F%2Fwww.extra.com%2Far-sa%2Fmobiles-tablets%2Fportable-audio%2Fhead-phones%2Fbose-quietcomfort-45-wireless-headset-with-mic-noise-cancelling-smoke-white%2Fp%2F100303831&docid=MG4eUpjC5KpTVM&tbnid=tfJePV52DWC52M&vet=12ahUKEwits87D54mNAxW4RKQEHfV8O_YQM3oECHUQAA..i&w=720&h=569&hcb=2&ved=2ahUKEwits87D54mNAxW4RKQEHfV8O_YQM3oECHUQAA"
+    ],
     "reviews": [
       {
         "userId": "user126",
@@ -539,6 +655,7 @@
   {
     "id": 18,
     "name": "Sennheiser Momentum 4",
+    "count":1,
     "description": "High-quality wireless headphones.",
     "image": "../../assets/images/products/download (14).jpeg",
     "price": 379.0,
@@ -547,6 +664,12 @@
     "ratingCount": 140,
     "sale": "5%",
     "category": "Headphones",
+    "images": [
+      "../../assets/images/products/download (14).jpeg",
+      "https://canada.crutchfieldonline.com/ImageHandler/trim/750/457/products/2021/35/018/g018QC45WH-o_other10-1.jpg",
+      "https://image.u-car.com.tw/cartitleimage_75039.jpg",
+      "https://m.media-amazon.com/images/I/716++4xC2wL.AC_UF894,1000_QL80.jpg"
+    ],
     "reviews": [
       {
         "userId": "user128",
@@ -569,6 +692,7 @@
   {
     "id": 19,
     "name": "Nothing Ear (2)",
+    "count":1,
     "description": "Stylish transparent wireless earbuds.",
     "image": "../../assets/images/products/download (15).jpeg",
     "price": 149.0,
@@ -577,6 +701,12 @@
     "ratingCount": 170,
     "sale": "",
     "category": "Headphones",
+    "images": [
+      "../../assets/images/products/download (15).jpeg",
+      "https://toolmart.me/cdn/shop/files/xiaomi-6974434220607.jpg?v=1729096699",
+      "https://m.media-amazon.com/images/I/61XBRUuqg1L.AC_SL1500.jpg",
+      "https://m.media-amazon.com/images/I/515jpj-1AhL.AC_SL1500.jpg"
+    ],
     "reviews": [
       {
         "userId": "user130",
@@ -599,6 +729,7 @@
   {
     "id": 20,
     "name": "Jabra Elite 7 Pro",
+    "count":1,
     "description": "Earbuds with excellent mic quality.",
     "image": "../../assets/images/products/download (16).jpeg",
     "price": 199.0,
@@ -607,6 +738,12 @@
     "ratingCount": 30,
     "sale": "",
     "category": "Headphones",
+    "images": [
+      "../../assets/images/products/download (16).jpeg",
+      "https://i5.walmartimages.com/seo/Jabra-Elite-7-Pro-in-Ear-Bluetooth-Earbuds-Noise-Cancelling-Titanium-Black_abb4c354-3cc0-4f6a-b198-f8c2314ed0e4.3e33e7469247c5d5884447c5089adcd7.jpeg",
+      "https://i5.walmartimages.com/seo/Jabra-Elite-7-Pro-True-Wireless-Earbuds-Black_3d3b7e6c-287d-4645-be36-e9d2c611d8d0.e4a8fb561d976b576d52fb077fdcd6bd.jpeg",
+      "https://i5.walmartimages.com/asr/192c858f-e362-4d34-9df7-d47e4fe497d4.122feb99951d34bc476e27f3a9230f52.jpeg"
+    ],
     "reviews": [
       {
         "userId": "user132",
@@ -629,6 +766,7 @@
   {
     "id": 21,
     "name": "Beats Studio Pro",
+    "count":1,
     "description": "Bass-heavy over-ear headphones.",
     "image": "../../assets/images/products/download (17).jpeg",
     "price": 349.0,
@@ -637,6 +775,12 @@
     "ratingCount": 60,
     "sale": "",
     "category": "Headphones",
+    "images": [
+      "../../assets/images/products/download (17).jpeg",
+      "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxESEhASExIVEBASExUWFxgWGBARFRIaFRgWGBcVFxcYHiggGBonHRcVITEhJSkrLi4uFyAzODMtOCgtLisBCgoKDg0OFQ8PFSsZFh0tKysrKy0rLSsrKysrNzc3KystKy0tLTctNzcrLSsrKzctLTctKystKysrLSsrKysrK//AABEIAOEA4QMBIgACEQEDEQH/xAAbAAEAAgMBAQAAAAAAAAAAAAAAAwUCBAYBB//EADkQAAIBAgIHBgQFBAMBAQAAAAABAgMRBCEFEjFBUWFxgZGxwdHwBiIyoRMjUnLhM0JigkOSstIW/8QAFwEBAQEBAAAAAAAAAAAAAAAAAAECA//EABgRAQEBAQEAAAAAAAAAAAAAAAABEQJB/9oADAMBAAIRAxEAPwD7iAAAAAAAAAQ1MTBbX5gTAr6mlIrYm+uQjjKktkUl/lfwJosAaKr1OMP+sv8A6M4Ypr6o9sc/tt7rjRtgxhNNXTuuRkUAAAAAAAAAAAAAAAAAAAAAAAAAAAMKtRRVzKTsV+ImSiLE4mT32XBGlOZLUGDoa0uUfH+NvcZaS4XDb2ry2pfp5vmSVW1tyLKnBJW9s9nBPJq6NYmqZzfEyhXZLi8Hq/Ms14Gm2Qb1KpndZPfwl19TfpVFJX71wKSE7G5Qq53371xXr73iUqyB5F3zWxnppAAAAAAAAAAAAAAAAAAAAAAAPJOwGviam40Kkny8SWpUb3d79LmtNviu5+plpFUfv2y00VTtBPe/d/e6xUTi24xTzlJL1OjhFJJLYlYsSvQAVBlRjsNqu6+l/bkW5hVpqSae8ChM6U7M8qQabT3GBlpcYSpu7V5r3xNop8LU71mvTy7S3i75liV6ACoAAAAAAAAAAAAAAAAAAAQ4qVokxp6Ql9K6ko1JSIJSPZSIpSMtJtHx1qy/xi32vJeZeFToSOdWX7V3XfmWxqJQAFQAAFbpOlmpccmaBeYqnrRa95FK0Zqwpysy4wkrrp4PP+OwpSx0fPwt3ZrzBVgADSAAAAAAAAAAAAAAAAAAAFXpOXzLp5stCm0q/n/1XiyVY1ZSIpyEmRTZFXegV8k3xm/soryLI4efxHOg3SjqrO+abefbY2aHxPW3xhJdGvMupjrwVGB09SnlL8uXPOPf6lsmVHoAAFLiIWk1zLorNIQ+bqiVY02T4KVn2r08GyFo9pOz7GRV6AgaZAAAAAAAAAAAAAAAAAAAKPSr/MfReBeFBpF3qS627lbyJVjTkyKTJJEUkRXPaXX565wXi/4NzDUrL3Y1PimDjGnWWbpSz/bK1/ul9yxwdWM4RlF60ZK6ZFEvfAt9EaUdO0ZNun3uHTlyK2SPIFR3cXfNZpnpS6Axf/G92cfNeZdGmQrdLVYx1W3ZWf2sWRU/ECvGP+y70iVYpaunqCajecpNXUYU61SUktrUYRba6GxRx8XqyUZq9spRlTkusZpSj0aR68VyZp1ZtyvsuyK7Ci/lj0XgZkWG+mP7V4EppkAAAAAAAAAAAAAAAAAAEdarqq/tt5Jd5R4hZstMdLOPBXk+6yv3t/6nKY3E67f6Ny482SrGxUxNNf3x71ZcbvYjyM4yV4tST3ppp9qNKx6lvWT5e8zKpMRSUk4yV1JNPtOZwinhqkoLNbbbpxeyS4S3dh0ynfbt8Sv0vhHUjrR/qQu48+Me3xsFbdOopJSWaZ7b3zX8FTofFLJf2z2cnw7UXESo2MNVcXGS2pp9eXkdhCSaTWxq67Ti6e8u8LpNQpxVryV1y25fYQq7KzTSbUOr8iqxGlpSf1WXLI13Ucv7m+1i3UkSOD5dz9SCcc1nvQlVlHffrmZKWs4223CutoL5Y/tXgSHiR6aZAAAAAAAAAAAAAAAAAABT/ENTVg+MrL7+lzmUdF8TR+WL6eNvM5/+PIy1E0qPywaTbetfbtT9GRNW9Dao1WoSs7NSV+Sf8oxqtyipPapat+KtfPpsAglHht3e/e08uZwRglt6+OfmBz2Jg6daolsdqkeV3mv+yfedFQndJrY0n3lNpyHz0XxU1/5a8yx0Q70ock13Noitvf2eq8jR0vjfw7LirlhLacl8a4lRnTV7fl375NeQojraXlfabWi9NPWSbybOOjKrVfyKy4v0Nyjoio7fPLWeStZZvZuJq4+nYnYnxRhg6lpXW1O/ceV8ko7dVJdbLMwwr2mmXb0KqlFSWxq5mVug53g1+mXjn6lkaZAAAAAAAAAAAAAAAAAABoaZoa9KXFZ+/HsOUS9+J3LRyulsE6c7r6ZbPfEzVjShNxfPvT9TKtVcrXyS2JKyCXaZxiuC+xFYwjl77iLe+vgkvInnKy5vYRJFFNp1/NSXBTf/AJS8yy0JD8mm+Kb722UukZurV1Y56zUI9Fe779ZnV06SjGMVsiku5EVA1mcRp7Cfj4ubf9OmoQS42V395SXYdniayhGU3sir9eC6t2Xac3hltb2ybb5t5vxFDD4OMVZKxZaLwy1vxH9MNnOW7u29xHhqLm+EVtfDkuLLCpUSSilZLYEeVp3ZsYdGpRjfM3aZRf6A2VP9fMtyr0DC0JPjLwS/ktCxKAAqAB5rAeg8TuegAAAAAAAAAAAIcVh1Ui4vf9nxRMAONxdB05OMsue58yLWfG3Ydbj8FGrGzye57beqOO0nov8AD2qcM9tOUop88mk/EzWtZSaV231bfmU+ktLx+in8zeV1e/RepJLQtOdm6lSa5yb8Tdwej6VP6IpPjtfeQQ6C0a4P8Sp/UayX6F6lxWluIlI1q2KW7vKKjTsq1ScaVOnJ045ylkoyluSb3Lx6EmE0da34j7E/F+hsTxJG5SZFTVKyWSyS3LceQg28xRoG7TpFRjTgbFON2kjxRLjQ2Du9d7Fs5vj0QFrg6OpCMeC++8nB42aZemOseSZG2XBm5GOsYXFy4JE7e/uSpmumZRlbp4EsEwAIAAAAAAAAAAAGNSCkrNJp7nmmZACtnoSi9icf2vLudzyOg6S260ur9EWYIKrSOiYyhaCUZRzX+XJs5KtQabTVmtzysfQjR0houFZZ3jLdKOrrLvTT7UxYsrh40iaFIvo/Dcl/yqWf6LO3Ozs33E1L4fW+pforeLJi6pIQJoQvZce2/RbWdDT0PSW5y6t+VjbpUIx+mKXRbe0uJqowOim85/LHhvfW2xffoXcYpKyyS2LgegqBjPYZACFTujBntaOr8y2b/UPiagxNFpwkrXk5OT/erX1Xf+5N/LyT2Zm8R1qakmn5O3NXyuBlTmpJNO6auiRMr8HGUJONstVfqcbrK8dbZdbY3fnLduBPCW4kNYlpz3EsEgAIAAAAAAAAAAAAAAAAAAAAAAAAAAANGo/ldtz2ehtmFWnrKxYIJIxPISd9V7V7uesoHlwNhcGSM0yvxmkYU9rz4Zb8kU9XH1q0lGnF7Vfala+ebWeXDLc2mXB10JXMjW0fh/w4KLd3tfVmycwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa+Lo3V19S+/IhhUUkbxVaXpTinKnFyb2pZvqka5vg8xOMhTV5O3mc1P4l/H144eSeq9XW+Zxcs8lJfVZrPVvbZkzH/8ANVMW4uvrxpq+tGbcYTvb66eTmln8rerm7p5W6/R2iqVFLVWaVru10uCtlFckavUg5TRPwdKco1sVN1KizWtkoPjTpXcae/5nrTzavuOzwuFhTVoRUV931e8mBi3QABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH//2Q==",
+      "https://i5.walmartimages.com/seo/Open-Box-Beats-Studio-Pro-Wireless-Bluetooth-Noise-Cancelling-Headphones-Deep-Brown_196beb96-0959-48b6-85a9-72480b7a344c.3796391c7a22f1710eb5ee73a61d0f22.jpeg",
+      "https://kaleidoscope.scene7.com/is/image/OttoUK/553w/beats-studio-pro-wireless-headphones---sandstone~28T062FRSP.jpg"
+    ],
     "reviews": [
       {
         "userId": "user134",
@@ -660,13 +804,20 @@
     "id": 22,
     "name": "iPad Pro M2",
     "description": "Apple's most powerful tablet.",
-    "image": "../../assets/images/products/download (18).jpeg",
+    "image": "https://btech.com/media/catalog/product/cache/22b1bed05f04d71c4a848d770186c3c4/c/7/c735d58ed4fc13d41b9dfc7469bf5a49ccab420806feb1e64e47eff9af586f33.webp",
     "price": 1099.0,
     "quantity": 13,
     "rating": 3,
     "ratingCount": 10,
     "sale": "",
     "category": "Tablets",
+    "count":1,
+    "images":[
+      "https://btech.com/media/catalog/product/cache/22b1bed05f04d71c4a848d770186c3c4/c/7/c735d58ed4fc13d41b9dfc7469bf5a49ccab420806feb1e64e47eff9af586f33.webp",
+      "https://btech.com/media/catalog/product/cache/22b1bed05f04d71c4a848d770186c3c4/2/9/29a460b9cf20136a64df8901642ea5a6e6ef34efd7e9e7fd500f2fb5ff1f3d12.jpeg",
+      "https://incredideals.co/cdn/shop/products/7BBF89CA-F1E2-4B3E-B1C8-8C4437FAA130.jpg?v=1691069857",
+      "https://applecenter.co.ke/wp-content/uploads/2023/02/iPad-Pro-M2-1024x1024.jpg"
+    ],
     "reviews": [
       {
         "userId": "user136",
@@ -697,6 +848,13 @@
     "ratingCount": 50,
     "sale": "",
     "category": "Tablets",
+    "count":1,
+    "images":[
+      "../../assets/images/products/download (19).jpeg",
+      "https://telfonak.com/wp-content/uploads/2023/08/tabs9-sam.jpg",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxc7tRhNViAd2Si4V8BX7AkykPHvLX78eKEw&s",
+      "https://mercurycomputerslimited.com/wp-content/uploads/2024/08/SAMSUNG-GALAXY-TAB-S9-BOOK-COVER-KEYBOARD-FOR-EF-DX710UBEGWW-jpg.webp"
+    ],
     "reviews": [
       {
         "userId": "user138",
@@ -727,6 +885,13 @@
     "ratingCount": 137,
     "sale": "",
     "category": "Tablets",
+    "count":1,
+    "images":[
+      "../../assets/images/products/download (20).jpeg",
+      "https://btech.com/media/catalog/product/cache/22b1bed05f04d71c4a848d770186c3c4/1/-/1-lenovo_tab_p12_8gb_ram_128gb_-_storm_grey_-_wifi-only-1706022249_11zon.webp",
+      "https://btech.com/media/catalog/product/cache/22b1bed05f04d71c4a848d770186c3c4/3/-/3-lenovo_tab_p12_8gb_ram_128gb_-_storm_grey_-_wifi-only-3-1706022356_11zon.jpg",
+      "https://btech.com/media/catalog/product/cache/22b1bed05f04d71c4a848d770186c3c4/2/-/2-lenovo_tab_p12_8gb_ram_128gb_-_storm_grey_-_wifi-only-1-1706022353_11zon.jpg"
+    ],
     "reviews": [
       {
         "userId": "user140",
@@ -757,6 +922,13 @@
     "ratingCount": 158,
     "sale": "",
     "category": "Tablets",
+    "count":1,
+    "images":[
+      "../../assets/images/products/download (21).jpeg",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSw7yJHFwBEfgWgzjkTqyVt70yGorrfizhGQ&s",
+      "https://imei.org/storage/files/images/668/preview/amazon-fire-hd-10-2017-1.png",
+      "https://api.runbazaar.com/media/__sized__/product_img/2023/09/14/RBIlFXV5/61vcaxtXTGL._AC_SL1500_-smart_crop-c0-5__0-5-750x750-70.jpg"
+    ],
     "reviews": [
       {
         "userId": "user142",
@@ -787,6 +959,13 @@
     "ratingCount": 19,
     "sale": "",
     "category": "Tablets",
+    "count":1,
+    "images":[
+      "../../assets/images/products/download (22).jpeg",
+      "https://eg.pricenacdn.com/img?d=ax320&src=https%3A%2F%2Ff.nooncdn.com%2Fproducts%2Fpnsku%2FN70084726V%2F45%2F_%2F1718171360%2F12de58ab-2b8c-44ea-a093-900c550f1b09.jpg",
+      "https://eg.pricenacdn.com/img?d=ax320&src=https%3A%2F%2Fwww.circuits.com.eg%2Fwp-content%2Fuploads%2F2024%2F01%2Fmicrosoft_surface_circuits-1.jpg",
+      "https://eg.pricenacdn.com/img?d=ax320&src=https%3A%2F%2Fwww.circuits.com.eg%2Fwp-content%2Fuploads%2F2023%2F02%2Fsurface-pro-9-circuits.jpg"
+    ],
     "reviews": [
       {
         "userId": "user144",
@@ -817,6 +996,13 @@
     "ratingCount": 13,
     "sale": "",
     "category": "Tablets",
+    "count":1,
+    "images":[
+      "../../assets/images/products/download (23).jpeg",
+      "https://btech.com/media/catalog/product/cache/22b1bed05f04d71c4a848d770186c3c4/8/c/8c0128153e60a956e8aea9a8c10437ccf55c122a032ba96d58852c5bfa11c136.webp",
+      "https://btech.com/media/catalog/product/cache/22b1bed05f04d71c4a848d770186c3c4/c/3/c3a5b89f31085e8e968f24751cb2c6a99199cb22bfbd05dab8493ecebbacaa31.jpeg",
+      "https://btech.com/media/catalog/product/cache/22b1bed05f04d71c4a848d770186c3c4/6/1/61b758253c8176b35377f7004f7901aabcd923ef749932c8fc5d0acdc9979383.jpeg"
+    ],
     "reviews": [
       {
         "userId": "user146",
@@ -847,6 +1033,13 @@
     "ratingCount": 170,
     "sale": "",
     "category": "Tablets",
+    "count":1,
+    "images":[
+      "../../assets/images/products/download (24).jpeg",
+      "https://btech.com/media/catalog/product/cache/22b1bed05f04d71c4a848d770186c3c4/h/u/huawei-matepad-pro-12-6-256gb-8gb-green_4.png",
+      "https://btech.com/media/catalog/product/cache/22b1bed05f04d71c4a848d770186c3c4/h/u/huawei-matepad-pro-12-6-256gb-8gb-green_1.png",
+      "https://btech.com/media/catalog/product/cache/22b1bed05f04d71c4a848d770186c3c4/h/u/huawei-matepad-pro-12-6-256gb-8gb-green-pen.png"
+    ],
     "reviews": [
       {
         "userId": "user148",
@@ -877,7 +1070,9 @@
     "ratingCount": 342,
     "sale": "",
     "category": "Smartwatches",
+    "count":1,
     "images": [
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSO2jRalIQhsYmGOQnwtgzi99_PML754AiNiQ&s",
       "https://smartkoshk.com/cdn/shop/files/800_800_8f39403155d135055e7c22c83df4e833.png?v=1699582538&width=1946",
       "https://smartkoshk.com/cdn/shop/files/800_800_fa7f39967740efd0f556f5581b8addd5.png?v=1699582539&width=1946",
       "https://allsport.mu/cdn/shop/files/MKT_Phoinix_ProductImage_Green_01_EN_HQ_PNG_20230720_300x300.png?v=1744124111"
@@ -912,7 +1107,9 @@
     "ratingCount": 187,
     "sale": "",
     "category": "Smartwatches",
+    "count":1,
     "images": [
+      "https://2b.com.eg/media/catalog/product/cache/661473ab953cdcdf4c3b607144109b90/w/t/wt410-1-min.jpg",
       "https://m.media-amazon.com/images/I/51kVXSehruL.jpg",
       "https://cdn.shopify.com/s/files/1/0406/4500/1379/files/6-2.png?v=1667821164",
       "https://m.media-amazon.com/images/I/51AEp3q-ulL.jpg"
@@ -947,7 +1144,9 @@
     "ratingCount": 421,
     "sale": "",
     "category": "Smartwatches",
+    "count":1,
     "images": [
+      "https://images.samsung.com/is/image/samsung/p6pim/africa_en/2307/gallery/africa-en-galaxy-watch6-r945-sm-r940nzkamea-537401503?$684_547_PNG$",
       "https://m.media-amazon.com/images/I/61sh9XHS93L.jpg",
       "https://eshop.hkcsl.com/on/demandware.static/-/Sites-master-hkt-hk/default/dwc559ac1d/images/4223061scol/4223061.jpg",
       "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//catalog-image/100/MTA-138624408/samsung_samsung_galaxy_watch_6_-44mm-_-_garansi_resmi_full01_in1212af.jpg"
@@ -982,7 +1181,9 @@
     "ratingCount": 156,
     "sale": "",
     "category": "Smartwatches",
+    "count":1,
     "images": [
+      "https://down-tw.img.susercontent.com/file/sg-11134201-7rdvl-m19dgjqaxjcu56",
       "https://btech.com/media/catalog/product/cache/62b531a6a95dad9307c3d613e4bc3dfa/2/7/273783263909e8c1cd2e5eaacc3334c29ba6f4cb14ec966d0b7c812097174754.jpeg",
       "https://i0.wp.com/i02.appmifile.com/mi-com-product/fly-birds/redmi-watch-3-active/pc/d85881ab842f063a1ca4cef8e5fc7f1a.png?ssl=1",
       "https://i02.appmifile.com/mi-com-product/fly-birds/redmi-watch-3-active/m/1c42dc958e03c4fa62fa4d37a7143c73.png"
@@ -1017,7 +1218,9 @@
     "ratingCount": 89,
     "sale": "40%",
     "category": "Smartwatches",
+    "count":1,
     "images": [
+      "https://www.garmin.com.my/m/my/g/products/venu-sq-2-music-black-cf-lg.jpg",
       "https://images-cdn.ubuy.co.id/63bfd431fb21980f22488a07-garmin-venu-sq-2-slateblack-music.jpg",
       "https://res.garmin.com/transform/image/upload/b_rgb:FFFFFF,c_pad,dpr_2.0,f_auto,h_400,q_auto,w_400/c_pad,h_400,w_400/v1/Product_Images/en/products/010-02701-00/v/pd-02-xl?pgw=1",
       "https://ph.garmin.com/m/ph/g/products/venu-sq-2-gray-pd-04-lg.jpg"
@@ -1052,7 +1255,9 @@
     "ratingCount": 210,
     "sale": "",
     "category": "Smartwatches",
+    "count":1,
     "images": [
+      "https://lh3.googleusercontent.com/yStrNz7l0aUnjKWo7jyJYXHfSLZmg6TyseayaF61NneZBOSfSKilQ-o3LoYZB-ucPnq7qUVmla6ARmrwiw-8eQTeWjU64xHd_g=s0",
       "https://fonepro.pk/wp-content/uploads/2022/09/versa4-black-device-front-380x380.png",
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLdwVcqThCTpWK8aKixTgS8-Clag5IyZ63F03ms05Q6JzooecwN-Eer8F_EsTgCRMi9oM&usqp=CAU",
       "https://m.media-amazon.com/images/I/71QqE06f4+L._AC_SL1500_.jpg"
@@ -1087,7 +1292,9 @@
     "ratingCount": 512,
     "sale": "10%",
     "category": "Smartwatches",
+    "count":1,
     "images": [
+      "https://istore.ph/cdn/shop/files/Apple_Watch_SE_40mm_GPS_Midnight_Aluminum_Sport_Loop_Ink_PDP_Image_Position_1__PH-EN.jpg?v=1728113835",
       "https://cdsassets.apple.com/live/SZLF0YNV/images/sp/111853_apple-watch-se-2nd-gen.png",
       "https://estore.jawwal.ps/storage/product/2732/eTgssXUjuvjn2Big6wzRRxlld5a68SPG9Ya4VPEI.jpg",
       "https://www.apple.com/v/apple-watch-se/k/images/overview/lighter/lighter__m02ijcqqneaq_large.jpg"
@@ -1122,7 +1329,9 @@
     "ratingCount": 356,
     "sale": "",
     "category": "Gaming",
+    "count":1,
     "images": [
+      "https://planetgate.net/cdn/shop/files/3_1b07a4a0-49e6-4738-9576-2a9d810caab0.jpg?v=1706053474&width=1946",
       "https://planetgate.net/cdn/shop/files/REDRAGON-M711-COBRA-GAMING-MOUSE-5.jpg?v=1706053474&width=1445",
       "https://content.rozetka.com.ua/goods/images/big/390423515.jpg",
       "https://ccimg.canadacomputers.com/Products/800x800/276/367/118356/94418.jpg"
@@ -1157,7 +1366,9 @@
     "ratingCount": 287,
     "sale": "",
     "category": "Gaming",
+    "count":1,
     "images": [
+      "https://resource.logitechg.com/d_transparent.gif/content/dam/gaming/en/products/pro-keyboard/pro-clicky-gallery-1.png",
       "https://cf-images.dustin.eu/cdn-cgi/image/fit=contain,format=auto,quality=75,width=828,fit=contain/image/d2000010011415163/logitech-g-pro-mechanical-gaming-keyboard-kabel-logitech-gx-blue-nordic.png ",
       "https://down-th.img.susercontent.com/file/sg-11134201-22110-vdezn9dir9jv1c",
       "https://hardwaremarket.net/wp-content/uploads/2021/03/51IvcfqRLVL._AC_SL1000_.jpg.webp"
@@ -1192,7 +1403,9 @@
     "ratingCount": 156,
     "sale": "",
     "category": "Gaming",
+    "count":1,
     "images": [
+      "https://m.media-amazon.com/images/I/51idcNv-lVL._AC_UF350,350_QL80_.jpg",
       "https://egyptlaptop.com/images/detailed/73/laptop-gaming-asus.webp",
       "https://www.laptopsdirect.co.uk/Images/G513QY-HF002W_13_Supersize.jpg?v=28",
       "https://www.notebookcheck.com/fileadmin/Notebooks/News/_nc3/11_StrixG_15_HotPink_1.jpg"
@@ -1227,9 +1440,10 @@
     "ratingCount": 198,
     "sale": "",
     "category": "Gaming",
+    "count":1,
     "images": [
       "https://media.steelseriescdn.com/thumbs/catalog/items/61520/c367fd1610724da98aeeaae10dba15cb.png.340x200_q100_crop-scale_optimize.png",
-      "https://www.samma3a.com/media/catalog/product/cache/53bce20d7ffd193e694a37d8959f20c7/n/o/nova_pro_w_1_.jpg",
+      "hhttps://www.samma3a.com/media/catalog/product/cache/53bce20d7ffd193e694a37d8959f20c7/n/o/nova_pro_w_1_.jpg",
       "https://media.s-bol.com/JxvnLnLKR5L2/R61YELq/550x620.jpg",
       "https://m.media-amazon.com/images/S/aplus-media-library-service-media/84466fbb-2f64-49e2-8e4c-87e10e0441f2.__CR0,0,600,450_PT0_SX600_V1___.png"
     ],
@@ -1263,7 +1477,9 @@
     "ratingCount": 512,
     "sale": "",
     "category": "Gaming",
+    "count":1,
     "images": [
+      "https://m.media-amazon.com/images/I/61d19lj1lRL._SL1200_.jpg",
       "https://stickietech.com/cdn/shop/products/DeepPurple1_cd2c95fd-34da-4761-957d-ab1c27071b0b.png?v=1636679063&width=2048",
       "https://images-cdn.ubuy.co.in/634d11fe7db916290e5415c7-microsoft-xbox-controller-shock-blue-for.jpg",
       "https://media.gamestop.com/i/gamestop/11108369-41085cba_ALT17?$pdp$"
@@ -1298,7 +1514,9 @@
     "ratingCount": 76,
     "sale": "",
     "category": "Gaming",
+    "count":1,
     "images": [
+      "https://i5.walmartimages.com/seo/Acer-27-170Hz-2K-Gaming-Monitor-1ms-AMD-FreeSync-Premium-WQHD-2560-x-1440-HDR-Support-1-x-Display-Port-1-2-2-x-HDMI-2-0-Ports-Nitro-KG271U-Pbiip_7e76c213-a027-40c6-9b45-b484568e3e1e.141903d008b947be56e184507a9e3534.png?odnHeight=768&odnWidth=768&odnBg=FFFFFF",
       "https://m.media-amazon.com/images/I/51CDFUWWmdL.jpg",
       "https://m.media-amazon.com/images/I/61ZFTf0lnaL.jpg",
       "https://m.media-amazon.com/images/I/71g7y91qVNL._AC_SL1500_.jpg"
@@ -1333,7 +1551,9 @@
     "ratingCount": 643,
     "sale": "",
     "category": "Gaming",
+    "count":1,
     "images": [
+      "https://cdn.shopify.com/s/files/1/0514/0270/3004/files/hyperx_cloud_alpha_s_blackblue_2_detachable_450x.jpg?v=1724860422",
       "https://delenordic.com/cdn/shop/products/3049743_2e7339b38f82_900x.webp?v=1674566312",
       "https://au.hyperx.com/cdn/shop/files/hyperx_cloud_alpha_s_blue_9_packaging_back.jpg?v=1724865830&width=1946",
       "https://img.mvideo.ru/Pdb/50175813b2.jpg"

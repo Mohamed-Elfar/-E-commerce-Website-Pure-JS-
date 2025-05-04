@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exclusive</title>
+    <link rel="icon" href="../../assets/images/icon.png" type="image/png" />
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/assets/css/fontawesome.min.css" rel="stylesheet" />
+    <link href="/assets/css/style.css" rel="stylesheet" />
+    <link href="/customer/home/home.css" rel="stylesheet" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Exclusive</title>
-  <link rel="icon" href="../../assets/images/icon.png" type="image/png" />
-  <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="/assets/css/fontawesome.min.css" rel="stylesheet" />
-  <link href="/assets/css/style.css" rel="stylesheet" />
-  <link href="/customer/home/home.css" rel="stylesheet" />
-</head>
+  <body>
+    <exclusive-header></exclusive-header>
 
-<body>
-  <exclusive-header></exclusive-header>
+    <div class="container px-lg-5">
+      <!-------------------------- Toggle icon (Shown on ex-sm/sm/md) -------------------------->
+      <div
+        class="btn d-lg-none my-3"
+        data-bs-toggle="collapse"
+        data-bs-target="#sidebar"
+      >
+        <i class="fa-solid fa-bars"></i>
+      </div>
 
-  <div class="container px-lg-5">
-    <!-------------------------- Toggle icon (Shown on ex-sm/sm/md) -------------------------->
-    <div class="btn d-lg-none my-3" data-bs-toggle="collapse" data-bs-target="#sidebar">
-      <i class="fa-solid fa-bars"></i>
-    </div>
-
-    <!-- Backdrop (Shown on ex-sm/sm/md) -->
-    <div class="sidebar-backdrop"></div>
+      <!-- Backdrop (Shown on ex-sm/sm/md) -->
+      <div class="sidebar-backdrop"></div>
 
     <!------------------------ Main Section (sidebar + divider + promo)------------------------>
     <div class="row g-3 mb-5">
@@ -40,43 +43,49 @@
         <!-- </div> -->
       </nav>
 
-      <!-------------------------- Vertical Divider - Only shown on lg and up -------------------------->
-      <div class="col-auto d-none d-lg-block">
-        <div class="vertical-divider h-100 mx-3 bg-black"></div>
-      </div>
+        <!-------------------------- Vertical Divider - Only shown on lg and up -------------------------->
+        <div class="col-auto d-none d-lg-block">
+          <div class="vertical-divider h-100 mx-3 bg-black"></div>
+        </div>
 
-      <!-------------------------- Promo Section -------------------------->
-      <div class="col-12 col-lg-9">
-        <div class="promo row mx-0 mt-3 mt-lg-4 p-4 ps-xl-5 rounded bg-black">
-          <div class="promo__content col-sm-6">
-            <div class="promo__header">
-              <i class="promo__icon-apple fa-brands fa-apple fs-1 secondary-color"></i>
-              <span class="promo__title">iPhone 14 Series</span>
+        <!-------------------------- Promo Section -------------------------->
+        <div class="col-12 col-lg-9">
+          <div class="promo row mx-0 mt-3 mt-lg-4 p-4 ps-xl-5 rounded bg-black">
+            <div class="promo__content col-sm-6">
+              <div class="promo__header">
+                <i
+                  class="promo__icon-apple fa-brands fa-apple fs-1 secondary-color"
+                ></i>
+                <span class="promo__title">iPhone 14 Series</span>
+              </div>
+              <p class="promo__description fs-md-1 secondary-color">
+                Up to 10% <br />
+                off Voucher
+              </p>
+              <div class="promo__footer">
+                <a href="#" class="link">Shop Now</a>
+                <i
+                  class="promo__icon-arrow fa-solid fa-arrow-right fs-5 secondary-color"
+                ></i>
+              </div>
             </div>
-            <p class="promo__description fs-md-1 secondary-color">
-              Up to 10% <br />
-              off Voucher
-            </p>
-            <div class="promo__footer">
-              <a href="#" class="link">Shop Now</a>
-              <i class="promo__icon-arrow fa-solid fa-arrow-right fs-5 secondary-color"></i>
+            <div class="col-sm-6">
+              <img
+                src="https://www.apple.com/newsroom/images/product/iphone/standard/Apple-iPhone-14-Pro-iPhone-14-Pro-Max-hero-220907_Full-Bleed-Image.jpg.large.jpg"
+                alt="iPhone Promo"
+                class="promo__image"
+              />
             </div>
-          </div>
-          <div class="col-sm-6">
-            <img
-              src="https://www.apple.com/newsroom/images/product/iphone/standard/Apple-iPhone-14-Pro-iPhone-14-Pro-Max-hero-220907_Full-Bleed-Image.jpg.large.jpg"
-              alt="iPhone Promo" class="promo__image" />
           </div>
         </div>
       </div>
-    </div>
 
     <!-------------------------- Flash Sales Section -------------------------->
     <section-header title="Flash Sales" pin="Today's" type="flash-sales"></section-header>
     <div class="products__group row g-3 g-md-4" id="flash-sales"></div>
 
-    <!-------------------------- Divider -------------------------->
-    <hr />
+      <!-------------------------- Divider -------------------------->
+      <hr />
 
     <!-------------------------- Browse By Category -------------------------->
     <section-header noviewallbtn title="Browse By Category" pin="Categories"></section-header>
@@ -89,8 +98,8 @@
       <category-widget category="HeadPhones" icon="fas fa-headphones"></category-widget>
     </div>
 
-    <!-- Divider -->
-    <hr />
+      <!-- Divider -->
+      <hr />
 
     <!-------------------------- Best Selling Products -------------------------->
     <section-header title="Best Selling Products" pin="Best Sellers" type="best-selling"></section-header>
@@ -189,8 +198,8 @@
   </div>
   </div>
 
-  <!-- Exclusive Components footer -->
-  <exclusive-footer></exclusive-footer>
+    <!-- Exclusive Components footer -->
+    <exclusive-footer></exclusive-footer>
 
   <script src="/assets/js/components/exclusive-header.js" defer></script>
   <script src="/assets/js/components/exclusive-footer.js" defer></script>
