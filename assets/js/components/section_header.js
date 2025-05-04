@@ -12,13 +12,13 @@ class SectionHeaderComponent extends HTMLElement {
             <div class="section__header">
                 <div class="section__highlights">
                     <p class="section__title">${section_title}</p>
-                    <button class="section__button background-primary secondary-color" type="button" id="viewall">View All</button>
+                    <button class="section__button background-primary secondary-color" type="button" id="viewallBtn">View All</button>
                 </div>
             </div>
       `;
 
-        // Check if the 'noviewall' attribute exists to hide the View All button
-        this.hasAttribute('noviewallbtn') ? 'display: none;' : '';
+        // Product categories button special case
+        if (this.hasAttribute('noviewallBtn')) this.querySelector('#viewallBtn').style.display = 'none'
     }
 }
 customElements.define('section-header', SectionHeaderComponent);

@@ -312,24 +312,5 @@ color: red;
  #product-container {
    row-gap: 24px;  
 }
-#price-slider .noUi-handle {
-  background-color: #007b8a;
-  border: none;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
-}
-#price-slider .noUi-connect {
-  background: #007b8a;
-}
-#price-slider {
-  margin-top: 10px;
-}
-@media (max-width: 767px) {
-  .mobile-margin {
-    margin-bottom: 1.5rem;
-  }
-}
-@media (max-width: 991px) {
-  .tablet-mobile-margin {
-    margin-bottom: 1.5rem;
-  }
-}
+
+ 

@@ -30,75 +30,81 @@ function closeOnClickOutside(event) {
 }
 
 // ------------------------------------------------------------------------------ //
-
-function fetchFlashSalesData() {
-  var productsSection = document.getElementById("flash-sales");
-  fetch("/assets/data/products.json")
-    .then((response) => response.json())
-    .then((products) => {
-      products.slice(0, 4).forEach((product) => {
-        var productCard = document.createElement("product-card");
-        productCard.className = "col-12 col-sm-6 col-md-5 col-xl-3";
-        productCard.setAttribute("name", product.name || "Unknown Product");
-        productCard.setAttribute("price", product.price || "0.00");
-        productCard.setAttribute("image", product.image || "");
-        productCard.setAttribute(
-          "ratingCount",
-          "(" + product.ratingCount + ") " || "0"
-        );
-        productCard.setAttribute("sale", product.sale || "");
-        productsSection.appendChild(productCard);
-      });
-
-      return products;
-    })
-    .catch((error) => console.error("Error loading JSON:", error));
+function setCategory(category) {
+  console.log('Attempting to save:', category); // Debug
+  localStorage.setItem('category', category);
+  console.log('Saved:', localStorage.getItem('category')); // Verify
 }
-fetchFlashSalesData();
 
-function fetchBestSellingData() {
-  var productsSection = document.getElementById("best-selling");
-  fetch("/assets/data/products.json")
-    .then((response) => response.json())
-    .then((products) => {
-      products.slice(0, 4).forEach((product) => {
-        var productCard = document.createElement("product-card");
-        productCard.className = "col-12 col-sm-6 col-md-5 col-xl-3";
-        productCard.setAttribute("name", product.name || "Unknown Product");
-        productCard.setAttribute("price", product.price || "0.00");
-        productCard.setAttribute("image", product.image || "");
-        productCard.setAttribute(
-          "ratingCount",
-          `(${product.ratingCount})` || "0"
-        );
-        productCard.setAttribute("sale", product.sale || "");
+// ------------------------------------------------------------------------------ //
 
+function fetchSliceBestSelling() {
+  var productsSection = document.getElementById('best-selling');
+  fetch('/assets/data/products.json')
+    .then(response => response.json())
+    .then(products => {
+      products.sort((a, b) => (b.rating || 0) - (a.rating || 0)).slice(0, 4).sort(() => Math.random() - 0.5).forEach(product => {
+        var productCard = document.createElement('product-card');
+        productCard.className = 'col-12 col-sm-6 col-md-5 col-xl-3';
+        productCard.setAttribute('name', product.name || 'Unknown Product');
+        productCard.setAttribute('price', product.price || '0.00');
+        productCard.setAttribute('image', product.image || '');
+        productCard.setAttribute('rating', product.rating || '0');
+        productCard.setAttribute('ratingCount', `(${product.ratingCount})` || '0');
+        productCard.setAttribute('sale', product.sale || '');
         productsSection.appendChild(productCard);
       });
     })
-    .catch((error) => console.error("Error loading JSON:", error));
-}
-fetchBestSellingData();
+    .catch(error => console.error('Error loading JSON:', error));
+};
+fetchSliceBestSelling();
 
-function fetchOurProductsData() {
-  var productsSection = document.getElementById("our-products");
-  fetch("/assets/data/products.json")
-    .then((response) => response.json())
-    .then((products) => {
-      products.slice(0, 4).forEach((product) => {
-        var productCard = document.createElement("product-card");
-        productCard.className = "col-12 col-sm-6 col-md-5 col-xl-3";
-        productCard.setAttribute("name", product.name || "Unknown Product");
-        productCard.setAttribute("price", product.price || "0.00");
-        productCard.setAttribute("image", product.image || "");
-        productCard.setAttribute(
-          "ratingCount",
-          `(${product.ratingCount})` || "0"
-        );
-        productCard.setAttribute("sale", product.sale || "");
+
+function fetchSliceFlashSales() {
+  var productsSection = document.getElementById('flash-sales');
+
+  fetch('/assets/data/products.json')
+    .then(response => response.json())
+    .then(products => {
+      products.filter(
+        product => product.sale != null && product.sale !== ''
+      ).slice(0, 4).sort(() => Math.random() - 0.5).forEach(product => {
+        var productCard = document.createElement('product-card');
+        productCard.className = 'col-12 col-sm-6 col-md-5 col-xl-3';
+        productCard.setAttribute('name', product.name || 'Unknown Product');
+        productCard.setAttribute('price', product.price || '0.00');
+        productCard.setAttribute('image', product.image || '');
+        productCard.setAttribute('rating', product.rating || '0');
+        productCard.setAttribute('ratingCount', `(${product.ratingCount})` || '0');
+        productCard.setAttribute('sale', product.sale || '');
         productsSection.appendChild(productCard);
       });
     })
-    .catch((error) => console.error("Error loading JSON:", error));
-}
-fetchOurProductsData();
+    .catch(error => console.error('Error loading JSON:', error));
+};
+fetchSliceFlashSales();
+
+
+function fetchSliceAllProducts() {
+  var productsSection = document.getElementById('our-products');
+  fetch('/assets/data/products.json')
+    .then(response => response.json())
+    .then(products => {
+      products.sort(() => Math.random() - 0.5).slice(0, 4).forEach(product => {
+        var productCard = document.createElement('product-card');
+        productCard.className = 'col-12 col-sm-6 col-md-5 col-xl-3';
+        productCard.setAttribute('name', product.name || 'Unknown Product');
+        productCard.setAttribute('price', product.price || '0.00');
+        productCard.setAttribute('image', product.image || '');
+        productCard.setAttribute('rating', product.rating || '0');
+        productCard.setAttribute('ratingCount', `(${product.ratingCount})` || '0');
+        productCard.setAttribute('sale', product.sale || '');
+        productsSection.appendChild(productCard);
+      });
+    })
+    .catch(error => console.error('Error loading JSON:', error));
+};
+fetchSliceAllProducts();
+
+
+

@@ -1,146 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cart</title>
 
-    <!-- icon -->
-    <link rel="icon" href="assets/images/icon.png" type="image/png" />
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" /> 
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="/assets/css/fontawesome.min.css" />
-    <!-- Your Custom Styles -->
-    <link rel="stylesheet" href="/assets/css/style.css" />
-    <link rel="stylesheet" href="cart.css" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cart Page</title>
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/assets/css/fontawesome.min.css" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
 
-  <body>
-    <exclusive-header></exclusive-header>
+  <style>
+    .quantity {
+      width: 60px;
+      height: 40px;
+    }
+  </style>
+</head>
 
-    <div class="cart_container">
-      <div class="cart_title">
-        <p class="cart_title--home">Home /</p>
-        <p class="cart_title--type">Cart</p>
+<body>
+  <exclusive-header></exclusive-header>
+  <div class="container my-5">
+    <div class="mb-4 d-flex align-items-center">
+      <p class="mb-0 text-muted">Home / </p>
+      <p class="mb-0 ms-2 fw-bold">Cart</p>
+    </div>
+
+    <div class="row">
+      <!-- Cart Content -->
+      <div class="col-lg-8">
+        <div class="table-responsive mb-4 shadow-sm rounded bg-white p-3">
+          <table class="table">
+            <thead class="table-light">
+              <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Items inserted here -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="d-flex justify-content-between mb-4">
+          <button class="btn btn-outline-secondary button--return">Return To Shop</button>
+          <button class="btn btn-danger button--clear">Clear Cart</button>
+        </div>
       </div>
 
-      <div class="cart">
-        <div class="cart_content">
-          <div class="cart_content cart_content--view">
-            <table>
-              <tr>
-                <td>Product</td>
-                <td>Price</td>
-                <td>Quantity</td>
-                <td>Subtotal</td>
-              </tr>
-              <tr>
-                <td id="product">
-                  <p>LCD Moniter</p>
-                </td>
-                <td id="price">$650</td>
-                <td>
-                  <input
-                    type="number"
-                    id="quantity"
-                    min="1"
-                    value="2"
-                    name="quantity"
-                  />
-                </td>
-                <td id="subtotal"></td>
-              </tr>
-            </table>
+      <!-- Cart Checkout -->
+      <div class="col-lg-4">
+        <div class="shadow-sm rounded bg-white p-4">
+          <div class="mb-3">
+            <input type="text" class="form-control mb-2" id="coupon" placeholder="Coupon Code">
+            <button class="btn btn-outline-dark w-100 button--coupon">Apply Coupon</button>
           </div>
-          <div class="cart_content cart_content--control">
-            <button class="button button--return">Return To Shop</button>
-            <button class="button button--update">Update Cart</button>
-          </div>
-        </div>
-        <div class="cart_checkout">
-          <div class="cart_checkout--coupon">
-            <input
-              type="text"
-              name="coupon"
-              id="coupon"
-              placeholder="Coupon Code"
-            />
-            <button class="button button--coupon">Aplly Coupon</button>
-          </div>
-          <div class="cart_checkout--total">
-            <p><b>Cart Total</b></p>
-            <div class="cart_checkout--total---details">
+
+          <div class="border-top pt-3">
+            <h5>Cart Total</h5>
+            <div class="d-flex justify-content-between">
               <p>Subtotal:</p>
-              <p id="subtotalincart"></p>
+              <p id="subtotalincart">$0</p>
             </div>
-            <hr />
-            <div class="cart_checkout--total---details">
+            <div class="d-flex justify-content-between">
               <p>Shipping:</p>
-              <p id="shipping"></p>
+              <p id="shipping">$0</p>
             </div>
-            <hr />
-            <div class="cart_checkout--total---details">
+            <div class="d-flex justify-content-between border-top pt-2 fw-bold">
               <p>Total:</p>
-              <p id="Total">$1750</p>
+              <p id="Total">$0</p>
             </div>
-            <div class="cart_checkout--total---done">
-              <button class="button button--process">
-                Process To Checkout
-              </button>
-            </div>
+            <button class="btn btn-success w-100 mt-3 button--process">Process To Checkout</button>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <script>
-      const product = document.getElementById("product");
-      const price = document.getElementById("price");
-      const quantity = document.getElementById("quantity");
-      const subtotal = document.getElementById("subtotal");
-      const subtotalincart = document.getElementById("subtotalincart");
-      const Total = document.getElementById("Total");
-      const shipping = document.getElementById("shipping");
-      const coupon = document.getElementById("coupon");
-      const buttoncoupon = document.querySelector(".button--coupon");
-      const buttonreturn = document.querySelector(".button--return");
-      const buttonupdate = document.querySelector(".button--update");
-      const buttonprocess = document.querySelector(".button--process");
-      buttonreturn.addEventListener("click", function () {
-        window.location.href = "../index.html";
-      });
-      buttonprocess.addEventListener("click", function () {
-        window.location.href = "checkout.html";
-      });
-
-      price.value = 650;
-      function UpdatePrice() {
-        subTotal = price.value * quantity.value;
-        subtotal.innerHTML = subtotalincart.innerHTML = "$" + subTotal;
-        let shippingcost = 30;
-        shipping.innerHTML = "$" + shippingcost;
-        Total.innerHTML = "$" + (price.value * quantity.value + shippingcost);
-        buttoncoupon.addEventListener("click", function () {
-          if (coupon.value == "Group6-300") {
-            Total.innerHTML =
-              "$" + (price.value * quantity.value + (shippingcost - 300));
-            coupon.style.border = "3px solid green";
-            coupon.innerHTML = "";
-          } else {
-            coupon.style.border = "3px solid red";
-            coupon.value = "";
-            Total.innerHTML =
-              "$" + (price.value * quantity.value + shippingcost);
-          }
-        });
-      }
-      UpdatePrice();
-      quantity.addEventListener("change", UpdatePrice);
-    </script>
-    <exclusive-footer></exclusive-footer>
-
-    <script src="../../assets/js/components/exclusive-header.js" defer></script>
-    <script src="../../assets/js/components/exclusive-footer.js" defer></script>
-  </body>
+  <script src="cart.js"></script>
+  <exclusive-footer></exclusive-footer>
+  <script src="/assets/js/components/exclusive-header.js" defer></script>
+  <script src="/assets/js/components/exclusive-footer.js" defer></script>
+</body>
 </html>

@@ -25,16 +25,10 @@ class ProductCardComponent extends HTMLElement {
                 <h6 id="productName" class="product__title mb-2"></h6>
                 <div class="product__price d-flex gap-2 mt-2">
                     <h6 id="productPrice" class="product__price-new primary-color">$</h6>
-                    <p id="productOldPrice" class="product__price-old text-decoration-line-through opacity-50">$160</p>
+                    <p id="productOldPrice" class="product__price-old text-decoration-line-through opacity-50"></p>
                 </div>
                 <div class="product__rating mb-3">
-                    <div>
-                        <i class="product__rating-star fa-solid fa-star"></i>
-                        <i class="product__rating-star fa-solid fa-star"></i>
-                        <i class="product__rating-star fa-solid fa-star"></i>
-                        <i class="product__rating-star fa-solid fa-star"></i>
-                        <i class="product__rating-star fa-regular fa-star"></i>
-                    </div>
+                    <div id="productRatingStar"></div>
                     <p id="productRatingCount" class="product__rating-count fw-semibold opacity-50"></p>
                 </div>
             </div>
@@ -43,14 +37,12 @@ class ProductCardComponent extends HTMLElement {
 
 
         // After rendering, apply attributes
-        ['name', 'price', 'image', 'ratingCount', 'sale'].forEach(attr => {
+        ['name', 'price', 'image', 'rating', 'ratingCount', 'sale', 'category'].forEach(attr => {
             if (this.hasAttribute(attr)) {
                 this.attributeChangedCallback(attr, null, this.getAttribute(attr));
             }
         });
     }
-
-    static get observedAttributes() { return ['image', 'name', 'price', 'ratingCount', 'sale']; }
 
     attributeChangedCallback(name, oldValue, newValue) {
         // Wait until DOM is rendered
@@ -61,10 +53,6 @@ class ProductCardComponent extends HTMLElement {
                 this.querySelector('#productName')
                     .textContent = newValue;
                 break;
-            case 'price':
-                this.querySelector('#productPrice')
-                    .textContent += newValue;
-                break;
             case 'ratingCount':
                 this.querySelector('#productRatingCount')
                     .textContent = newValue;
@@ -73,15 +61,41 @@ class ProductCardComponent extends HTMLElement {
                 this.querySelector('#productImage')
                     .setAttribute('src', newValue);
                 break;
+            case 'price':
+                this.querySelector('#productPrice')
+                    .textContent += newValue;
+                break;
             case 'sale':
                 const saleBox = this.querySelector('#productDiscount');
-                const oldPrice = this.querySelector('#productOldPrice');
+                const oldPriceBox = this.querySelector('#productOldPrice');
+                const newPriceBox = this.querySelector('#productPrice');
 
-                if (!newValue == "") {
+                if (newValue !== "") {
                     saleBox.style.display = "block";
-                    oldPrice.style.display = "block";
+                    oldPriceBox.style.display = "block";
                     saleBox.innerText = `-${newValue}`;
+
+                    //set the existing price as an old price
+                    let currentPrice = newPriceBox.innerText;
+                    oldPriceBox.innerText = currentPrice;
+
+                    //extract the numbers
+                    const oldPriceText = currentPrice.replace(/[^0-9.]/g, '');
+                    const saleText = newValue.replace(/[^0-9.]/g, '');
+
+                    //calculate the new price
+                    newPriceBox.innerText = `$${(parseFloat(oldPriceText) * (1 - parseFloat(saleText) / 100)).toFixed(2)}`;
                 }
+                break;
+            case 'rating':
+                let ratingBox = this.querySelector('#productRatingStar');
+                ratingBox.innerHTML =
+                    `${[...Array(5)]
+                        .map((_, i) =>
+                            `<i class="product__rating-star ${i < newValue ? "fa-solid" : "fa-regular"} fa-star"></i>`
+                        ).join("")}`;
+
+
                 break;
         }
     }

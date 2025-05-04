@@ -54,6 +54,38 @@ a {
   color: var(--text-secondary);
 }
 
+/* start item heading */
+.items-heading {
+  color: var(--text-primary);
+  position: relative;
+  display: inline-block;
+  transition: all 0.5s;
+}
+
+.items-heading:hover {
+  color: white !important;
+  cursor: pointer;
+}
+
+.items-heading::before {
+  content: "";
+  width: 18%;
+  height: 50px;
+  background-color: #dc3545;
+  border-radius: 6px;
+  position: absolute;
+  left: -28px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: -1 !important;
+  transition: all 0.8s;
+}
+
+.items-heading:hover::before {
+  width: 150%;
+}
+/* end item heading */
+
 .fs-8 {
   font-size: 13px;
 }
@@ -66,9 +98,10 @@ a {
   min-height: 1.2em;
   font-size: 12px;
 }
-
 .toast-success,
-.toast-error {
+.toast-error,
+.toast-warning,
+.toast-info {
   position: fixed;
   left: 50%;
   transform: translate(-50%, -100px);
@@ -79,6 +112,14 @@ a {
   border-radius: 15px;
   opacity: 0;
   pointer-events: none;
+}
+.toast-warning {
+  background-color: #fff3cd;
+  color: #664d03;
+}
+.toast-info {
+  background-color: #d1ecf1;
+  color: #664d03;
 }
 
 .toast-success {
@@ -124,9 +165,10 @@ a {
   outline: none;
   box-shadow: none;
 }
+
 exclusive-header {
   p {
-    color: rgb(200, 198, 198);
+    color: rgb(200,198,198);
   }
 
   .dropdown-menu {
@@ -157,7 +199,7 @@ exclusive-header {
     place-items: center;
   }
 
-  .footer__rights>p {
+  .footer__rights > p {
     border-color: rgb(94, 93, 93);
     color: rgb(94, 93, 93);
   }
@@ -176,7 +218,6 @@ exclusive-header {
 }
 
 @media (max-width: 991px) {
-
   .toast-success,
   .toast-error {
     text-align: center;
@@ -188,23 +229,27 @@ exclusive-header {
   }
 }
 
-
 .moveAnimation {
   animation: move 1s infinite;
 }
+
 @keyframes move {
   0% {
     transform: translateX(0px);
   }
+
   25% {
     transform: translateX(10px);
   }
+
   50% {
     transform: translateX(20px);
   }
+
   75% {
     transform: translateX(30px);
   }
+
   100% {
     transform: translateX(40px);
   }
@@ -241,6 +286,42 @@ exclusive-header {
 .section__pin:hover::before {
   width: 150%;
 }
-.section__pin__alt:hover::before {
+
+.section_pin_alt:hover::before {
   width: 220%;
+}
+
+.outer-circle {
+  width: 80px;
+  height: 80px;
+  background-color: lightgray;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+
+  .icon-circle {
+    width: 60px;
+    height: 60px;
+    background-color: #c1c0c1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    font-size: 24px;
+    background-color: #2f2e30;
+
+    i {
+      color: white;
+    }
+  }
+}
+
+.custom-control-input:checked + .custom-control-label {
+  background-color: var(--text-primary);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
 }
