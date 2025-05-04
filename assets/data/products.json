@@ -9,7 +9,6 @@
     "rating": 4,
     "ratingCount": 100,
     "sale": "",
-    "count": 5,
     "category": "Smartphones",
     "images": [
       "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/iPhone_15_Pro_Black_Titanium_PDP_Image_Position-2__en-ME-2.png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
@@ -54,7 +53,6 @@
     "rating": 2,
     "ratingCount": 10,
     "sale": "15%",
-    "count": 1,
     "category": "Smartphones",
     "reviews": [
       {
