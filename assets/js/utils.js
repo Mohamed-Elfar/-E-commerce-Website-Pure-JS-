@@ -7,6 +7,12 @@ export function showToast(status, message) {
   } else if (status == "error") {
     toast.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> ${message} `;
     toast.classList.add("show", "toast-error");
+  } else if (status == "warning") {
+    toast.innerHTML = `<i class="fa-solid fa-warning"></i> ${message} `;
+    toast.classList.add("show", "toast-warning");
+  } else if (status == "info") {
+    toast.innerHTML = `<i class="fa-solid fa-info "></i> ${message} `;
+    toast.classList.add("show", "toast-info");
   } else {
     throw new Error("Invalid status");
   }
@@ -16,8 +22,8 @@ export function showToast(status, message) {
 }
 
 export function validateName(input) {
-  var reName = /^[a-zA-Z ]{3,10}$/;
-  if (!reName.test(input.value)) {
+  var name = /^[a-zA-Z]{3,10}$/;
+  if (!name.test(input.value)) {
     input.classList.add("is-invalid");
     input.classList.remove("is-valid");
     return false;
@@ -44,8 +50,8 @@ export function validateEmail(input) {
 }
 
 export function validatePhone(input) {
-  var rePhone = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
-  if (!rePhone.test(input.value)) {
+  const phone = /^(010|011|012|015)\d{8}$/;
+  if (!phone.test(input.value)) {
     input.classList.add("is-invalid");
     input.classList.remove("is-valid");
 
@@ -58,9 +64,9 @@ export function validatePhone(input) {
 }
 
 export function validatePassword(input) {
-  var rePassword =
+  var Password =
     /^(?=.*[A-Z])(?=.*[a-zA-Z0-9])(?=.*[!@#$%^&*()_+={}\[\]:;"'<>,.?/\\|`~\-]).{6,}$/;
-  if (!rePassword.test(input.value)) {
+  if (!Password.test(input.value)) {
     input.classList.add("is-invalid");
     input.classList.remove("is-valid");
     return false;
@@ -83,18 +89,36 @@ export function validatePasswordMatch(password, confirmPassword) {
   }
 }
 
-export function addToCart(productId) {
+// export function addToCart(productId) {
+//   if (localStorage.getItem("token")) {
+//     let cart = JSON.parse(localStorage.getItem("cart")) || [];
+//     if (!cart.includes(productId)) {
+//       cart.push([{productId,count:1}]);
+//       localStorage.setItem("cart", JSON.stringify(cart));
+//       showToast("success", "Added to cart!");
+//     } else {
+//       showToast("success", "Added to cart!");
+//     }
+//   } else {
+//     showToast("error", "Please Login First");
+//   }
+// }
+export function addToCart(product) {
   if (localStorage.getItem("token")) {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    if (!cart.includes(productId)) {
-      cart.push(productId);
+
+    // Check if the product already exists in the cart
+    const productExists = cart.some((item) => item.id === product.id);
+
+    if (!productExists) {
+      cart.push(product);
       localStorage.setItem("cart", JSON.stringify(cart));
       showToast("success", "Added to cart!");
     } else {
-      showToast("success", "Added to cart!");
+      showToast("info", "Product is already in your cart");
     }
   } else {
-    showToast("error", "Please Login First");
+    showToast("warning", "Please Login First");
   }
 }
 export function addToWishList(productId) {

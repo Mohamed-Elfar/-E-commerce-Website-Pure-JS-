@@ -40,21 +40,17 @@
   if (localStorage.getItem("token")) {
     const checkoutCard = document.querySelector(".checkoutCard");
     const badge = document.querySelector(".badge");
-    const products = JSON.parse(localStorage.getItem("allProducts"));
+    const products = JSON.parse(localStorage.getItem("cart"));
 
     let total = 0;
     badge.innerHTML = products.length;
 
     if (products) {
-      console.log(products);
-
       products.forEach((product) => {
         const li = document.createElement("li");
         li.className =
           "list-group-item d-flex justify-content-between align-items-center";
-
         total += parseFloat(product.price);
-
         li.innerHTML = `
         <div class="d-flex align-items-center gap-2">
           <img src="${product.image}" alt="${product.name}" class="w-25 me-2" />
@@ -62,13 +58,10 @@
         </div>
         <span class="text-muted product__price">${product.price}$</span>
       `;
-
         checkoutCard.prepend(li);
       });
-
       const discount = 5;
       total -= discount;
-
       const promoLi = document.createElement("li");
       promoLi.className =
         "list-group-item d-flex justify-content-between align-items-center bg-light";
@@ -95,4 +88,3 @@
     showAuthAlert();
   }
 })();
-
