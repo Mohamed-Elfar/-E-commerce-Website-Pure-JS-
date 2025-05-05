@@ -1,7 +1,7 @@
 import {
   showToast,
   addToCart,
-  addToWishList,
+  toggleWishList,
   redirectToNotFoundPage,
 } from "/assets/js/utils.js";
 
@@ -27,6 +27,7 @@ const ratingCount = document.getElementById("ratingCount");
 const ratingStars = document.getElementById("ratingStars");
 const addToCartBtn = document.getElementById("addToCartBtn");
 const wishListBtn = document.getElementById("wishListBtn");
+const wishListIcon = document.querySelector(".wishlist-icon");
 const decreaseBtn = document.getElementById("decreaseBtn");
 const increaseBtn = document.getElementById("increaseBtn");
 const quantity = document.getElementById("quantity");
@@ -206,4 +207,12 @@ addToCartBtn.addEventListener("click", () => {
 });
 
 /* add to wishlist */
-wishListBtn.addEventListener("click", () => addToWishList(product.id));
+const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+if (wishlist.includes(product.id.toString())) {
+  wishListIcon.classList.add("active", "fa-solid");
+  wishListIcon.classList.remove("fa-regular");
+}
+wishListBtn.addEventListener("click", () => {
+  toggleWishList(product.id.toString(), wishListIcon);
+});
