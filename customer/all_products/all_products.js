@@ -1,4 +1,4 @@
-import { addToCart, search, toggleWishList, } from "/assets/js/utils.js";
+import { addToCart, search, toggleWishList} from "/assets/js/utils.js";
 
 export function fetchAllProducts() {
     var productsTitle = document.getElementById('products-title');
@@ -36,7 +36,6 @@ export function fetchAllProducts() {
         })
         .catch(error => console.error('Error loading JSON:', error));
 };
-// fetchAllProducts();
 
 export function fetchBestSellingProducts() {
     var productsTitle = document.getElementById('products-title');
@@ -73,7 +72,6 @@ export function fetchBestSellingProducts() {
         })
         .catch(error => console.error('Error loading products:', error));
 };
-// fetchBestSellingProducts();
 
 export function fetchFlashSalesProducts() {
     var productsTitle = document.getElementById('products-title');
@@ -112,7 +110,6 @@ export function fetchFlashSalesProducts() {
         })
         .catch(error => console.error('Error loading products:', error));
 };
-// fetchFlashSalesProducts();
 
 export function fetchCategoryProducts(category) {
     const productsTitle = document.getElementById('products-title');

@@ -5,7 +5,7 @@ class SectionHeaderComponent extends HTMLElement {
         const section_type = this.getAttribute('type');
 
         this.innerHTML = `
-            <h6 class="section__pin section__pin__alt mb-4">${section_pin}</h6>
+            <h6 class="section__pin section__pin-alt mb-4">${section_pin}</h6>
             <div class="section__header">
                 <div class="section__highlights">
                     <p class="section__title">${section_title}</p>

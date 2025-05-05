@@ -1,4 +1,4 @@
-import { addToCart, toggleWishList, } from "/assets/js/utils.js";
+import { addToCart, toggleWishList} from "/assets/js/utils.js";
 
 const sidebar = document.getElementById("sidebar");
 const backdrop = document.querySelector(".sidebar-backdrop");
@@ -38,7 +38,7 @@ export function fetchSliceBestSelling() {
   fetch('/assets/data/products.json')
     .then(response => response.json())
     .then(products => {
-      products.sort((a, b) => (b.rating || 0) - (a.rating || 0)).slice(0, 4).sort(() => Math.random() - 0.5).forEach(product => {
+      products.sort((a, b) => (b.ratingCount || 0) - (a.ratingCount || 0)).slice(0, 4).sort(() => Math.random() - 0.5).forEach(product => {
         var productCard = document.createElement('product-card');
         productCard.className = 'col-12 col-sm-6 col-md-5 col-xl-3';
         productCard.setAttribute('name', product.name || 'Unknown Product');

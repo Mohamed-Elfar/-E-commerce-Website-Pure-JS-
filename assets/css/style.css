@@ -306,8 +306,8 @@ exclusive-footer {
   width: 150%;
 }
 
-.section_pin_alt:hover::before {
-  width: 220%;
+.section__pin-alt:hover::before {
+  width: 200%;
 }
 
 .outer-circle {
