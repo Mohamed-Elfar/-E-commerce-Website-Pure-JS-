@@ -109,6 +109,12 @@ import { showToast } from "/assets/js/utils.js";
           const address = document.getElementById("address").value;
           const address2 = document.getElementById("address2").value;
           const city = document.getElementById("city").value;
+          function getSelectedPaymentMethod() {
+            const selected = document.querySelector(
+              'input[name="paymentMethod"]:checked'
+            );
+            return selected ? selected.id : null;
+          }
 
           if (user) {
             const newOrder = {
@@ -119,6 +125,7 @@ import { showToast } from "/assets/js/utils.js";
               address,
               address2,
               city,
+              paymentMethod: getSelectedPaymentMethod(),
             };
 
             const updatedUsers = users.map((user) => {
@@ -134,6 +141,7 @@ import { showToast } from "/assets/js/utils.js";
                       address,
                       address2,
                       city,
+                      paymentMethod: getSelectedPaymentMethod(),
                     },
                   ],
                 };
@@ -230,10 +238,6 @@ import { showToast } from "/assets/js/utils.js";
       : total;
     total = discount;
 
-    const promoLi = document.createElement("li");
-    promoLi.className =
-      "list-group-item d-flex justify-content-between align-items-center bg-light";
-    promoLi.innerHTML = `
     const promoLi = document.createElement("li");
     promoLi.className =
       "list-group-item d-flex justify-content-between align-items-center bg-light";

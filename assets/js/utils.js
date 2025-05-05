@@ -5,15 +5,13 @@ export function showToast(status, message) {
     return;
   }
 
-  // Reset classes
   toast.className = "toast";
-  
-  // Icons mapping
+
   const icons = {
     success: "fa-circle-check",
     error: "fa-triangle-exclamation",
     warning: "fa-warning",
-    info: "fa-info"
+    info: "fa-info",
   };
 
   if (!icons[status]) {
@@ -24,7 +22,6 @@ export function showToast(status, message) {
   toast.innerHTML = `<i class="fa-solid ${icons[status]}"></i> ${message}`;
   toast.classList.add("show", `toast-${status}`);
 
-  // Auto-hide after 3 seconds
   setTimeout(() => toast.classList.remove("show"), 3000);
 }
 
@@ -195,12 +192,12 @@ export function redirectToNotFoundPage(condition) {
 }
 
 export function loggout() {
-      localStorage.removeItem("token");
-      const users = JSON.parse(localStorage.getItem("users") || []);
-      const updatedUsers = users.map((user) => {
-        const { token, ...rest } = user;
-        return rest;
-      });
-      localStorage.setItem("users", JSON.stringify(updatedUsers));
-      window.location.href = "/customer/products/products.html"; 
+  localStorage.removeItem("token");
+  const users = JSON.parse(localStorage.getItem("users") || []);
+  const updatedUsers = users.map((user) => {
+    const { token, ...rest } = user;
+    return rest;
+  });
+  localStorage.setItem("users", JSON.stringify(updatedUsers));
+  window.location.href = "/customer/products/products.html";
 }
