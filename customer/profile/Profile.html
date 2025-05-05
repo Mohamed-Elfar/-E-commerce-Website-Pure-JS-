@@ -11,9 +11,11 @@
   <link rel="stylesheet" href="/assets/css/style.css">
 
   <style>
+    .sidebar-link{
+      color: black;
+    }
     .sidebar-link.active {
       color: red;
-      font-weight: bold;
     }
     .form-control{
       background-color: #f2f3f4;
@@ -32,41 +34,45 @@
 <body>
   <exclusive-header></exclusive-header>
 
-    <div class="container mt-3">
-        <div class="row">
-          <div class="col-12 d-flex justify-content-between align-items-center">
-            <!-- الشمال -->
-            <div class="d-flex">
-              <p class="mb-0 text-muted me-2">Home /</p>
-              <p class="mb-0">My Account</p>
-            </div>
-      
-            <!-- اليمين -->
-            <div class="d-flex">
-              <p class="mb-0 me-1">Welcome!</p>
-              <p id="username" class="mb-0 text-danger">Mr Omar</p>
-            </div>
-          </div>
+  <div class="container mt-3">
+    <div class="row">
+      <div class="col-12 d-flex justify-content-between align-items-center">
+        <!-- الشمال -->
+        <div class="d-flex">
+          <p class="mb-0 text-muted me-2">Home / </p>
+          <p class="mb-0">My Account </p>
+        </div>
+  
+        <!-- اليمين -->
+        <div class="d-flex">
+          <p class="mb-0 me-1">Welcome!</p>
+          <p id="username" class="mb-0 text-danger">My dear guest</p>
         </div>
       </div>
-      
+    </div>
+  </div>
+  
 
 <div class="container my-5">
-  <div class="row">
-    <!-- Sidebar -->
-    <div class="col-md-3 mb-4">
-      <h6 class="fw-bold mb-3">Manage My Account</h6>
-      <ul class="list-unstyled">
-        <li><p class="d-block sidebar-link active">My Profile</p></li>
-        <li><p class="d-block sidebar-link">Address Book</p></li>
-        <li><p class="d-block sidebar-link">My Payment Options</p></li>
-      </ul>
-      <h6 class="fw-bold mt-4 mb-3">My Orders</h6>
-      <ul class="list-unstyled">
-        <li><a href="history.html" class="nav-link text-reset text-decoration-none">History</a></li>
-      </ul>
-      <h6 class="fw-bold mt-4 mb-3">My Wishlist</h6>
-    </div>
+<div class="row">
+<!-- Sidebar -->
+<div class="col-md-3 mb-4">
+  <h6 class="fw-bold mb-3">Manage My Account</h6>
+  <ul class="list-unstyled">
+    <li><a href="../profile/profile.html" class="d-block sidebar-link active">My Profile</a></li>
+    <li><a class="d-block sidebar-link">Address Book</a></li>
+    <li><a class="d-block sidebar-link">My Payment Options</a></li>
+  </ul>
+  <h6 class="fw-bold mt-4 mb-3">History</h6>
+  <ul class="list-unstyled">
+    <li><a href="../orders/myorders.html" class="d-block sidebar-link">My Orders</a></li>
+    <li><a href="../orders/cancellation.html" class="d-block sidebar-link">Cancellation</a></li>
+
+  </ul>
+  <h6 class="fw-bold mt-4 mb-3">My Wishlist</h6>
+  <a class="d-block sidebar-link">Wishlist</a>
+
+</div>
 
     <!-- Profile Form -->
     <div class="col-md-9">
@@ -133,6 +139,7 @@
 
           <h6 class="fw-bold mt-4 mb-3">Password Changes</h6>
           <div class="mb-3">
+            <label for="currentpassword" class="form-label">Current Password</label>
             <input
                   type="password"
                   id="currentpassword"
@@ -146,6 +153,7 @@
                 </div>
           </div>
           <div class="mb-3">
+            <label for="newpassword" class="form-label">New Password</label>
             <input
                   type="password"
                   id="newpassword"
@@ -159,6 +167,7 @@
                 </div>
           </div>
           <div class="mb-4">
+            <label for="confirmpassword" class="form-label">Confirm Password</label>
             <input
                   type="password"
                   id="confirmpassword"

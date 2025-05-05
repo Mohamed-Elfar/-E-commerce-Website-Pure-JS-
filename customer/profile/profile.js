@@ -9,8 +9,11 @@ import {
   const currentToken = localStorage.getItem("token");
   const user = getUserByToken(currentToken);
   if(user){
-
     document.getElementById("username").innerHTML= user.firstName;
+    document.getElementById("firstName").value= user.firstName;
+    document.getElementById("lastName").value= user.lastName;
+    document.getElementById("email").value= user.email;
+    document.getElementById("phonenumber").value= user.phone;
   }else{
     document.getElementById("username").innerHTML= "Guest";
   }

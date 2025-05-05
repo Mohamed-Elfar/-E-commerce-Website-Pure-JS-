@@ -234,6 +234,10 @@ import { showToast } from "/assets/js/utils.js";
     promoLi.className =
       "list-group-item d-flex justify-content-between align-items-center bg-light";
     promoLi.innerHTML = `
+    const promoLi = document.createElement("li");
+    promoLi.className =
+      "list-group-item d-flex justify-content-between align-items-center bg-light";
+    promoLi.innerHTML = `
       <div class="text-success">
         <h6 class="my-0">Promo code</h6>
         <small>EXAMPLECODE</small>
