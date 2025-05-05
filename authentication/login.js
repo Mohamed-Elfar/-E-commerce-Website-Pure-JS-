@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem("users", JSON.stringify(updatedUsers));
       showToast("success", "Login successful!");
       setTimeout(() => {
-        open("../../index.html", "_self");
+        open("/customer/home/home.html", "_self");
       }, 1500);
     } else {
       showToast("error", "please check your email or password.");

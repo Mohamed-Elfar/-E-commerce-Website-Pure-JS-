@@ -246,12 +246,6 @@ exclusive-footer {
     }
   }
 }
-@media (max-width: 1400px) {
-  .container > .row {
-    place-content: center;
-    min-height: 615px;
-  }
-}
 .moveAnimation {
   animation: move 1s infinite;
 }

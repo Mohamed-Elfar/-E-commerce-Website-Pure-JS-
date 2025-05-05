@@ -7,7 +7,6 @@
   width: 70%;
 }
 .signup {
-
   .form {
     img {
       width: 20px;
@@ -53,10 +52,10 @@
     top: -20px;
   }
 }
-.flip{
+.flip {
   transform: rotateY(180deg);
-  transition: all .3s ease-in-out;
-  transform-origin: center;  
+  transition: all 0.3s ease-in-out;
+  transform-origin: center;
 }
 
 @media screen and (max-width: 768px) {
@@ -64,9 +63,15 @@
   .login {
     width: 100%;
   }
-  .signup{
-    .form__container{
+  .signup {
+    .form__container {
       max-height: fit-content;
     }
+  }
+}
+@media (max-width: 1400px) {
+  .container.signup > .row {
+    place-content: center;
+    min-height: 615px;
   }
 }
