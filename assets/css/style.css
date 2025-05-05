@@ -346,3 +346,21 @@ exclusive-footer {
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
 }
+
+
+
+
+
+
+
+
+
+/* Extra small devices (phones, 576px and down) */
+@media (max-width:1400px) {
+  .container>.row{
+    place-content: center;
+    min-height: 615px;
+  }
+  
+}
+

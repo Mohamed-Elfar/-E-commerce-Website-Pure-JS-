@@ -68,9 +68,9 @@ export function validatePhone(input) {
 }
 
 export function validatePassword(input) {
-  var Password =
-    /^(?=.[A-Z])(?=.[a-zA-Z0-9])(?=.[!@#$%^&()_+={}\[\]:;"'<>,.?/\\|`~\-]).{6,}$/;
-  if (!Password.test(input.value)) {
+  const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z0-9])(?=.*[!@#$%^&*()_+={}\[\]:;"'<>,.?\/\\|`~\-]).{6,}$/;
+  
+  if (!passwordRegex.test(input.value)) {
     input.classList.add("is-invalid");
     input.classList.remove("is-valid");
     return false;
