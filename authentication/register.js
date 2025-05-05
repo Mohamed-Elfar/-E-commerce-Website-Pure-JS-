@@ -13,7 +13,6 @@ function saveUserToLocal(userInstance) {
     const users = JSON.parse(localStorage.getItem("users")) || [];
     const newUser = userInstance.toJSON();
 
-    // Validate newUser
     if (!newUser || typeof newUser !== "object") {
       throw new Error("Invalid user data format");
     }
@@ -22,11 +21,14 @@ function saveUserToLocal(userInstance) {
       throw new Error("Missing required user fields");
     }
 
-    // Check for existing email
-    const exists = users.some((user) => user && user.email === newUser.email);
+    const existEmail = users.some((user) => user && user.email === newUser.email);
+    const existPhone = users.some((user) => user && user.phone === newUser.phone);
 
-    if (exists) {
+    if (existEmail) {
       throw new Error("This email already exists");
+    }
+    if (existPhone) {
+      throw new Error("This Phone Number already exists");
     }
 
     users.push(newUser);
@@ -63,7 +65,6 @@ class User {
       );
     }
 
-    // First assign all properties
     this.#firstName = first_name;
     this.#lastName = last_name;
     this.#email = email;
@@ -74,7 +75,6 @@ class User {
     User.totalUsers++;
     this.#userId = User.totalUsers;
 
-    // Then save to local storage
     if (typeof saveUserToLocal === "function") {
       saveUserToLocal(this);
     } else {
@@ -106,7 +106,6 @@ class User {
   }
 }
 
-// Customer class
 class Customer extends User {
   static customerCount = 0;
   #customerId;
@@ -123,10 +122,10 @@ class Customer extends User {
   }
 }
 
-// Seller class
 class Seller extends User {
   static sellerCount = 0;
   #sellerId;
+  #createdBy;
 
   constructor(userData) {
     super(userData);
@@ -140,7 +139,6 @@ class Seller extends User {
   }
 }
 
-// Admin class
 class Admin extends Seller {
   static adminCount = 0;
   #adminId;
@@ -155,24 +153,40 @@ class Admin extends Seller {
     super.print();
     console.log(`Admin ID: ${this.#adminId}`);
   }
+  static createAdmin() {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const existingAdmin = users.find(user => user.email === "mohamedsamiir252@gmail.com");
+    
+    if (!existingAdmin) {
+      const adminData = {
+        first_name: "Mohamed",  
+        last_name: "Samir",
+        email: "mohamedsamiir252@gmail.com",
+        phone_number: "01060493174",  
+        password: "Mohamed@123",  
+        want_to_be_seller: false
+      };
+      
+      const admin = new Admin(adminData);
+      users.push(admin);
+      localStorage.setItem("users", JSON.stringify(users));
+    }
+  }
 }
-
-// console.log(JSON.parse(localStorage.getItem("users")));
 
 let form = document.querySelector("form");
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  // Get form elements
   var firstName = form.firstname;
   var lastName = form.lastname;
   var email = form.email;
   var phone = form.phonenumber;
   var password = form.password;
   var confirmPassword = form.confirmpassword;
-  
+
   var sellerRadio = form.role;
-  // Validate all fields
+
   const isValid = validateForm(
     firstName,
     lastName,
@@ -192,12 +206,9 @@ form.addEventListener("submit", (event) => {
       want_to_be_seller: sellerRadio.checked ? true : false,
     };
 
-    // console.log("Form data:", data);
-
     try {
       new Customer(data);
       showToast("success", "Account created successfully!");
-      // Optionally redirect or reset form
     } catch (error) {
       showToast("error", error.message);
     }
@@ -224,7 +235,7 @@ document.getElementById("password").addEventListener("input", function () {
 document
   .getElementById("confirmpassword")
   .addEventListener("input", function () {
-    validatePasswordMatch(password,this);
+    validatePasswordMatch(password, this);
   });
 
 function validateForm(
@@ -247,18 +258,19 @@ function validateForm(
   return valid;
 }
 
-(async function loadInitialData() {
-  try {
-    const response = await fetch("../assets/data/users.json");
-    const users = await response.json();
+// (async function loadInitialData() {
+//   try {
+//     const response = await fetch("../assets/data/users.json");
+//     const users = await response.json();
+//     if (!localStorage.getItem("users")) {
+//       localStorage.setItem("users", JSON.stringify(users));
+//       console.log("Initial data loaded");
+//     } else {
+//       console.log("Initial data already loaded");
+//     }
+//   } catch (error) {
+//     console.error("Error loading initial data:", error);
+//   }
+// })();
 
-    if (!localStorage.getItem("users")) {
-      localStorage.setItem("users", JSON.stringify(users));
-      console.log("Initial data loaded");
-    } else {
-      console.log("Initial data already loaded");
-    }
-  } catch (error) {
-    console.error("Error loading initial data:", error);
-  }
-})();
+Admin.createAdmin();

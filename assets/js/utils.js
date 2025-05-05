@@ -4,21 +4,17 @@ export function showToast(status, message) {
     console.error("Toast element not found in DOM");
     return;
   }
-
   toast.className = "toast";
-
   const icons = {
     success: "fa-circle-check",
     error: "fa-triangle-exclamation",
     warning: "fa-warning",
     info: "fa-info",
   };
-
   if (!icons[status]) {
     console.error(`Invalid toast status: ${status}`);
     return;
   }
-
   toast.innerHTML = `<i class="fa-solid ${icons[status]}"></i> ${message}`;
   toast.classList.add("show", `toast-${status}`);
 
@@ -68,8 +64,8 @@ export function validatePhone(input) {
 }
 
 export function validatePassword(input) {
-  const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z0-9])(?=.*[!@#$%^&*()_+={}\[\]:;"'<>,.?\/\\|`~\-]).{6,}$/;
-  
+  const passwordRegex =
+    /^(?=.*[A-Z])(?=.*[a-z0-9])(?=.*[!@#$%^&*()_+={}\[\]:;"'<>,.?\/\\|`~\-]).{6,}$/;
   if (!passwordRegex.test(input.value)) {
     input.classList.add("is-invalid");
     input.classList.remove("is-valid");
@@ -92,7 +88,6 @@ export function validatePasswordMatch(password, confirmPassword) {
     return true;
   }
 }
-
 export function addToCart(product) {
   if (localStorage.getItem("token")) {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -113,10 +108,8 @@ export function addToCart(product) {
     return false;
   }
 }
-
 export function toggleWishList(productId, icon) {
   let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-
   if (wishlist.includes(productId)) {
     wishlist = wishlist.filter((id) => id !== productId);
     icon.classList.remove("active", "fa-solid");
