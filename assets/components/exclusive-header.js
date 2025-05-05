@@ -1,3 +1,5 @@
+import { loggout } from "/assets/js/utils.js";
+
 class ExclusiveHeader extends HTMLElement {
   constructor() {
     super();
@@ -20,7 +22,7 @@ class ExclusiveHeader extends HTMLElement {
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav m-auto mb-2 mb-lg-0 text-center">
               <li class="nav-item">
-                <a class="nav-link active" href="#">Home</a>
+                <a class="nav-link active" href="/customer/home/home.html">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/customer/contact/contact.html">contact</a>
@@ -72,6 +74,12 @@ class ExclusiveHeader extends HTMLElement {
                   <i class="fa-regular fa-user" aria-hidden="true"></i>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end bg-muted">
+                  <li class="d-flex align-items-center mx-3 d-none" id="adminLink">
+                    <i class="fa fa-regular fa-user"></i>  <a class="dropdown-item text-white" href="/admin/dashboard.html">Dashboard</a>
+                  </li>
+                  <li class="d-flex align-items-center mx-3 d-none" id="serllerLink">
+                    <i class="fa fa-regular fa-user"></i>  <a class="dropdown-item text-white" href="/seller/dashboard.html">Dashboard</a>
+                  </li>
                   <li class="d-flex align-items-center mx-3">
                     <i class="fa fa-regular fa-user"></i>  <a class="dropdown-item text-white" href="/customer/profile/profile.html">Manage My Account</a>
                   </li>
@@ -122,12 +130,25 @@ class ExclusiveHeader extends HTMLElement {
       });
     }
   }
-
   loggedInUser() {
     const token = localStorage.getItem("token");
     const userButton = this.querySelector(".userIcon");
     const loginLink = this.querySelector("#loginLink");
-
+    const adminLink = this.querySelector("#adminLink");
+    const serllerLink = this.querySelector("#serllerLink");
+    if (adminLink) {
+      const users = JSON.parse(localStorage.getItem("users"));
+      const user = users.find((user) => user.token === token);
+      if (user) {
+        user.role === "Admin"
+          ? adminLink.classList.remove("d-none")
+          : adminLink.classList.add("d-none");
+        user.role === "Seller"
+          ? serllerLink.classList.remove("d-none")
+          : serllerLink.classList.add("d-none");
+        console.log(user.role);
+      }
+    }
     if (userButton) {
       if (!token) {
         userButton.classList.add("d-none");
@@ -140,27 +161,18 @@ class ExclusiveHeader extends HTMLElement {
       }
     }
   }
-
   initDropdown() {
     const userButton = this.querySelector(".userIcon");
     if (userButton && typeof bootstrap !== "undefined" && bootstrap.Dropdown) {
       new bootstrap.Dropdown(userButton);
     }
   }
-
   setupLogout() {
     const logoutBtn = this.querySelector("#logoutBtn");
     if (logoutBtn) {
       logoutBtn.addEventListener("click", (e) => {
         e.preventDefault();
-        localStorage.removeItem("token");
-        const users = JSON.parse(localStorage.getItem("users") || []);
-        const updatedUsers = users.map((user) => {
-          const { token, ...rest } = user;
-          return rest;
-        });
-        localStorage.setItem("users", JSON.stringify(updatedUsers));
-        window.location.reload();
+        loggout();
       });
     }
   }

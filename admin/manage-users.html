@@ -15,4 +15,13 @@
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body></body>
+  <script>
+    const users=JSON.parse(localStorage.getItem("users"))||[]
+    const wantedYsers=users.filter(user=>user.want_to_be_seller==true)
+    console.log(wantedYsers);
+  console.log(wantedYsers.constructor.name);
+  
+    body.appendChild(wantedYsers)
+    
+  </script>
 </html>
