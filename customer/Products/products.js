@@ -95,11 +95,8 @@ fetch("../../assets/data/products.json")
       wishIcon.addEventListener("click", () =>
         toggleWishList(product.id.toString(), wishIcon)
       );
-
       container.appendChild(card);
     });
-
- 
 
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
     const productCards = document.querySelectorAll('#product-container .col-md-4');

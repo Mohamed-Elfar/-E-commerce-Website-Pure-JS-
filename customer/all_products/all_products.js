@@ -1,4 +1,4 @@
-import { addToCart } from "../../assets/js/utils.js";
+import { addToCart, search, toggleWishList, } from "/assets/js/utils.js";
 
 export function fetchAllProducts() {
     var productsTitle = document.getElementById('products-title');
@@ -19,10 +19,16 @@ export function fetchAllProducts() {
                 productCard.setAttribute('ratingCount', `(${product.ratingCount})` || '0');
                 productCard.setAttribute('sale', product.sale || '');
                 productCard.setAttribute('category', product.category || '');
-                productCard.setAttribute('id', product.id || '');
                 productCard.addEventListener('click', function (e) {
                     if (e.target.closest('.product__overlay')) {
                         addToCart(product);
+                    }
+                });
+                productCard.setAttribute('id', product.id || '');
+                productCard.addEventListener('click', function (e) {
+                    let wishIcon = e.target.closest('.fa-heart');
+                    if (wishIcon) {
+                        toggleWishList(product.id.toString(), wishIcon);
                     }
                 });
                 productsSection.appendChild(productCard);
@@ -55,6 +61,13 @@ export function fetchBestSellingProducts() {
                         addToCart(product);
                     }
                 });
+                productCard.setAttribute('id', product.id || '');
+                productCard.addEventListener('click', function (e) {
+                    let wishIcon = e.target.closest('.fa-heart');
+                    if (wishIcon) {
+                        toggleWishList(product.id.toString(), wishIcon);
+                    }
+                });
                 productsSection.appendChild(productCard);
             });
         })
@@ -74,7 +87,7 @@ export function fetchFlashSalesProducts() {
             products.filter(
                 product => product.sale != null && product.sale !== ''
             ).sort(() => Math.random() - 0.5).forEach(product => {
-                var productCard = document.createElement('product-card');
+                const productCard = document.createElement('product-card');
                 productCard.className = 'col-12 col-sm-6 col-md-5 col-xl-3';
                 productCard.setAttribute('name', product.name || 'Unknown Product');
                 productCard.setAttribute('price', product.price || '0.00');
@@ -85,6 +98,13 @@ export function fetchFlashSalesProducts() {
                 productCard.addEventListener('click', function (e) {
                     if (e.target.closest('.product__overlay')) {
                         addToCart(product);
+                    }
+                });
+                productCard.setAttribute('id', product.id || '');
+                productCard.addEventListener('click', function (e) {
+                    let wishIcon = e.target.closest('.fa-heart');
+                    if (wishIcon) {
+                        toggleWishList(product.id.toString(), wishIcon);
                     }
                 });
                 productsSection.appendChild(productCard);
@@ -118,6 +138,18 @@ export function fetchCategoryProducts(category) {
                 productCard.setAttribute('ratingCount', `(${product.ratingCount || 0})`);
                 productCard.setAttribute('sale', product.sale || '');
                 productCard.setAttribute('category', product.category || '');
+                productCard.addEventListener('click', function (e) {
+                    if (e.target.closest('.product__overlay')) {
+                        addToCart(product);
+                    }
+                });
+                productCard.setAttribute('id', product.id || '');
+                productCard.addEventListener('click', function (e) {
+                    let wishIcon = e.target.closest('.fa-heart');
+                    if (wishIcon) {
+                        toggleWishList(product.id.toString(), wishIcon);
+                    }
+                });
                 productsSection.appendChild(productCard);
             });
         })
@@ -127,8 +159,7 @@ export function fetchCategoryProducts(category) {
         });
 }
 
-// import { search } from "/assets/js/utils.js";
-// search("product__title", ".product__card");
+search("product__title", ".product__card");
 
 
 const validCategories = [

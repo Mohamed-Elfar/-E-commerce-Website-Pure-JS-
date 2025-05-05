@@ -4,6 +4,9 @@ class ProductCardComponent extends HTMLElement {
         this.hasConnected = false; // Flag to check if connectedCallback has been called
     }
     connectedCallback() {
+        let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+        let isAddToWishlist = wishlist.includes(this.getAttribute('id'));
+        
         this.innerHTML = `
             <link rel="stylesheet" href="/customer/home/home.css">
             <div class="product mt-3 w-100">
@@ -11,7 +14,7 @@ class ProductCardComponent extends HTMLElement {
                     <div class="product__actions d-flex position-absolute justify-content-between w-100 p-3">
                         <div id="productDiscount" class="product__discount py-1 px-3 secondary-color background-primary rounded text-center position-absolute left-1 top-1"></div>
                         <div class="product__icons d-flex flex-column position-absolute gap-1">
-                            <a href="#"><div class="product__icon-container"><i class="product__icon fa-regular fa-heart"></i></div></a>
+                            <div class="product__icon-container"><i class="product__icon ${isAddToWishlist ? "text-danger fa-solid" : "fa-regular"} fa-heart"></i></div>
                             <a href="#"><div class="product__icon-container"><i class="product__icon fa-regular fa-eye"></i></div></a>
                         </div>
                     </div>

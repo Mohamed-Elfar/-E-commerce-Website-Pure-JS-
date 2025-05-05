@@ -1,4 +1,4 @@
-import { addToCart } from "../../assets/js/utils.js";
+import { addToCart, toggleWishList, } from "/assets/js/utils.js";
 
 const sidebar = document.getElementById("sidebar");
 const backdrop = document.querySelector(".sidebar-backdrop");
@@ -20,7 +20,7 @@ backdrop.addEventListener("click", () => {
 });
 
 // Close when clicking outside
-function closeOnClickOutside(event) {
+export function closeOnClickOutside(event) {
   if (
     !sidebar.contains(event.target) &&
     !document
@@ -33,7 +33,7 @@ function closeOnClickOutside(event) {
 
 // ------------------------------------------------------------------------------ //
 
-function fetchSliceBestSelling() {
+export function fetchSliceBestSelling() {
   var productsSection = document.getElementById('best-selling');
   fetch('/assets/data/products.json')
     .then(response => response.json())
@@ -52,6 +52,14 @@ function fetchSliceBestSelling() {
             addToCart(product);
           }
         });
+        productCard.setAttribute('id', product.id || '');
+        productCard.addEventListener('click', function (e) {
+          let wishIcon =e.target.closest('.fa-heart');
+          if (wishIcon) {
+            toggleWishList(product.id.toString(), wishIcon);
+          }
+        });
+
         productsSection.appendChild(productCard);
       });
     })
@@ -60,7 +68,7 @@ function fetchSliceBestSelling() {
 fetchSliceBestSelling();
 
 
-function fetchSliceFlashSales() {
+export function fetchSliceFlashSales() {
   var productsSection = document.getElementById('flash-sales');
 
   fetch('/assets/data/products.json')
@@ -82,6 +90,13 @@ function fetchSliceFlashSales() {
             addToCart(product);
           }
         });
+        productCard.setAttribute('id', product.id || '');
+        productCard.addEventListener('click', function (e) {
+          let wishIcon =e.target.closest('.fa-heart');
+          if (wishIcon) {
+            toggleWishList(product.id.toString(), wishIcon);
+          }
+        });
         productsSection.appendChild(productCard);
       });
     })
@@ -90,7 +105,7 @@ function fetchSliceFlashSales() {
 fetchSliceFlashSales();
 
 
-function fetchSliceAllProducts() {
+export function fetchSliceAllProducts() {
   var productsSection = document.getElementById('our-products');
   fetch('/assets/data/products.json')
     .then(response => response.json())
@@ -109,12 +124,18 @@ function fetchSliceAllProducts() {
             addToCart(product);
           }
         });
+        productCard.setAttribute('id', product.id || '');
+        productCard.addEventListener('click', function (e) {
+          let wishIcon =e.target.closest('.fa-heart');
+          if (wishIcon) {
+            toggleWishList(product.id.toString(), wishIcon);
+          }
+        });
         productsSection.appendChild(productCard);
       });
     })
     .catch(error => console.error('Error loading JSON:', error));
 };
 fetchSliceAllProducts();
-
 
 

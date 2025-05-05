@@ -122,21 +122,7 @@ export function addToWishList(productId) {
     showToast("error", "Please Login First");
   }
 }
-// export function toggleWishList(productId, icon) {
-//   let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 
-//   if (wishlist.includes(productId)) {
-//     wishlist = wishlist.filter((id) => id !== productId);
-//     icon.classList.remove("active", "fa-solid");
-//     icon.classList.add("fa-regular");
-//   } else {
-//     wishlist.push(productId);
-//     icon.classList.add("active", "fa-solid");
-//     icon.classList.remove("fa-regular");
-//   }
-
-//   localStorage.setItem("wishlist", JSON.stringify(wishlist));
-// }
 export function search(title, parent) {
   const search = document.getElementById("navSearch");
   const searchBtn = document.getElementById("searchBtn");
@@ -195,11 +181,11 @@ export function toggleWishList(productId, icon) {
 
   if (wishlist.includes(productId)) {
     wishlist = wishlist.filter((id) => id !== productId);
-    icon.classList.remove("active", "fa-solid");
+    icon.classList.remove("text-danger", "fa-solid");
     icon.classList.add("fa-regular");
   } else {
     wishlist.push(productId);
-    icon.classList.add("active", "fa-solid");
+    icon.classList.add("text-danger", "fa-solid");
     icon.classList.remove("fa-regular");
   }
 

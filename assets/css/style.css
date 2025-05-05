@@ -4,14 +4,17 @@
   box-sizing: border-box;
   text-transform: capitalize;
 }
+
 body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
+
 input {
   text-transform: none;
 }
+
 :root {
   --text-bg: rgb(200, 198, 198);
   --text-primary: #db4444;
@@ -126,7 +129,7 @@ a {
 
 .toast-info {
   background-color: #d1ecf1;
-  color: #664d03;
+  color: #664d03;
 }
 
 .toast-success {
@@ -175,7 +178,7 @@ a {
 
 exclusive-header {
   p {
-    color: rgb(200,198,198);
+    color: rgb(200, 198, 198);
   }
 
   .dropdown-menu {
@@ -194,7 +197,8 @@ exclusive-header {
 }
 
 exclusive-footer {
-  margin-top: auto; /* Pushes footer to bottom */
+  margin-top: auto;
+  /* Pushes footer to bottom */
 }
 
 .footer {
@@ -210,31 +214,33 @@ exclusive-footer {
     place-items: center;
   }
 
-  .footer__rights > p {
-  .footer__rights > p {
-    border-color: rgb(94, 93, 93);
-    color: rgb(94, 93, 93);
-  }
+  .footer__rights>p {
+    .footer__rights>p {
+      border-color: rgb(94, 93, 93);
+      color: rgb(94, 93, 93);
+    }
 
-  @media screen and (max-width: 768px) {
-    .footer {
-      input[type="email"] {
-        width: 100% !important;
-      }
+    @media screen and (max-width: 768px) {
+      .footer {
+        input[type="email"] {
+          width: 100% !important;
+        }
 
-      /* ul>  .nav-item{
+        /* ul>  .nav-item{
         font-size: 13px;
       } */
+      }
     }
+
   }
 
+  @media (max-width: 991px) {
 
-@media (max-width: 991px) {
-  .toast-success,
-  .toast-error {
-    text-align: center;
-    width: 300px;
-  }
+    .toast-success,
+    .toast-error {
+      text-align: center;
+      width: 300px;
+    }
 
     .container {
       width: 100% !important;
@@ -339,4 +345,3 @@ exclusive-footer {
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
 }
-
