@@ -25,7 +25,10 @@
     <!-- start product details section -->
     <section class="product-details">
       <div class="container py-5">
-        <a href="../Products/products.html" class="btn btn-danger mb-5"
+        <a
+          href="../Products/products.html"
+          class="btn btn-danger mb-5 text-white"
+          id="backProductsBtn"
           ><i class="fa-solid fa-arrow-left me-2"></i>Back to Products</a
         >
         <div class="row product-details__main-details g-4">
@@ -36,8 +39,10 @@
             ></div>
           </div>
           <div class="col-lg-6">
-            <div class="main-img shadow d-flex justify-content-center ms-2">
-              <img class="main-img__img" id="mainImg" src="" alt="main-img." />
+            <div
+              class="main-img shadow d-flex justify-content-center ms-2 overflow-hidden"
+            >
+              <img class="main-img__img w-100" id="mainImg" src="" alt="main-img." />
             </div>
           </div>
           <div class="col-lg-5">
@@ -118,7 +123,7 @@
                 class="product-info__describtion text-secondary"
                 id="productDesc"
               ></p>
-              <hr />
+              <hr class="my-4" />
               <div class="row product-info__quantity">
                 <div class="col-sm-4">
                   <div
@@ -180,7 +185,7 @@
             </div>
           </div>
         </div>
-        <br><br><br>
+        <br /><br /><br />
         <h6 class="section__pin section__pin__alt mb-4">Related Products</h6>
         <div class="products__group row g-3 g-md-4" id="relatedProducts"></div>
       </div>
