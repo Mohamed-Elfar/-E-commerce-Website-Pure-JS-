@@ -1,24 +1,31 @@
 export function showToast(status, message) {
-  var toast = document.querySelector(".toast");
-  toast.classList.remove("toast-error", "toast-success");
-  if (status == "success") {
-    toast.innerHTML = `<i class="fa-solid fa-circle-check"></i> ${message}`;
-    toast.classList.add("show", "toast-success");
-  } else if (status == "error") {
-    toast.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> ${message} `;
-    toast.classList.add("show", "toast-error");
-  } else if (status == "warning") {
-    toast.innerHTML = `<i class="fa-solid fa-warning"></i> ${message} `;
-    toast.classList.add("show", "toast-warning");
-  } else if (status == "info") {
-    toast.innerHTML = `<i class="fa-solid fa-info "></i> ${message} `;
-    toast.classList.add("show", "toast-info");
-  } else {
-    throw new Error("Invalid status");
+  const toast = document.querySelector(".toast");
+  if (!toast) {
+    console.error("Toast element not found in DOM");
+    return;
   }
-  setTimeout(function () {
-    toast.classList.remove("show");
-  }, 3000);
+
+  // Reset classes
+  toast.className = "toast";
+  
+  // Icons mapping
+  const icons = {
+    success: "fa-circle-check",
+    error: "fa-triangle-exclamation",
+    warning: "fa-warning",
+    info: "fa-info"
+  };
+
+  if (!icons[status]) {
+    console.error(`Invalid toast status: ${status}`);
+    return;
+  }
+
+  toast.innerHTML = `<i class="fa-solid ${icons[status]}"></i> ${message}`;
+  toast.classList.add("show", `toast-${status}`);
+
+  // Auto-hide after 3 seconds
+  setTimeout(() => toast.classList.remove("show"), 3000);
 }
 
 export function validateName(input) {
@@ -180,4 +187,15 @@ export function redirectToNotFoundPage(condition) {
   if (condition) {
     window.location.href = "/404.html";
   }
+}
+
+export function loggout() {
+      localStorage.removeItem("token");
+      const users = JSON.parse(localStorage.getItem("users") || []);
+      const updatedUsers = users.map((user) => {
+        const { token, ...rest } = user;
+        return rest;
+      });
+      localStorage.setItem("users", JSON.stringify(updatedUsers));
+      window.location.href = "/customer/products/products.html"; 
 }
