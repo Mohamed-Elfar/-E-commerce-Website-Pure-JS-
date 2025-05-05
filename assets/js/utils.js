@@ -93,7 +93,6 @@ export function addToCart(product) {
   if (localStorage.getItem("token")) {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    // Check if the product already exists in the cart
     const productExists = cart.some((item) => item.id === product.id);
 
     if (!productExists) {
@@ -110,17 +109,23 @@ export function addToCart(product) {
     return false;
   }
 }
-export function addToWishList(productId) {
-  if (localStorage.getItem("token")) {
-    let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-    if (!wishlist.includes(productId)) {
-      wishlist.push(productId);
-      localStorage.setItem("wishlist", JSON.stringify(wishlist));
-      showToast("success", "Product Added to Your Wish List");
-    }
+
+export function toggleWishList(productId, icon) {
+  let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+  if (wishlist.includes(productId)) {
+    wishlist = wishlist.filter((id) => id !== productId);
+    icon.classList.remove("active", "fa-solid");
+    icon.classList.add("fa-regular");
+    showToast("error", "Removed from wishlist!");
   } else {
-    showToast("error", "Please Login First");
+    wishlist.push(productId);
+    icon.classList.add("active", "fa-solid");
+    icon.classList.remove("fa-regular");
+    showToast("success", "Added to wishlist");
   }
+
+  localStorage.setItem("wishlist", JSON.stringify(wishlist));
 }
 
 export function search(title, parent) {
@@ -174,22 +179,6 @@ export function filterProductsByStoredCategory() {
     }
     return;
   }
-}
-
-export function toggleWishList(productId, icon) {
-  let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-
-  if (wishlist.includes(productId)) {
-    wishlist = wishlist.filter((id) => id !== productId);
-    icon.classList.remove("text-danger", "fa-solid");
-    icon.classList.add("fa-regular");
-  } else {
-    wishlist.push(productId);
-    icon.classList.add("text-danger", "fa-solid");
-    icon.classList.remove("fa-regular");
-  }
-
-  localStorage.setItem("wishlist", JSON.stringify(wishlist));
 }
 
 export function redirectToNotFoundPage(condition) {
