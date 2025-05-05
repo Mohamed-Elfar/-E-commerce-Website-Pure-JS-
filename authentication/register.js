@@ -6,7 +6,10 @@ import {
   validatePasswordMatch,
   validateName,
 } from "../assets/js/utils.js";
-var existingUsers = JSON.parse(localStorage.getItem("users")) || [];
+// var existingUsers = JSON.parse(localStorage.getItem("users")) || [];
+if (localStorage.getItem("token")) {
+  location.href = "/customer/home/home.html";
+}
 
 function saveUserToLocal(userInstance) {
   try {

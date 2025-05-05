@@ -1,4 +1,8 @@
 import { showToast } from "../assets/js/utils.js";
+if (localStorage.getItem("token")) {
+  location.href = "../index.html";
+}
+
 
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector("form");
