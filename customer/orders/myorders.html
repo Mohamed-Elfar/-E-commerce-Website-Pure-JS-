@@ -17,6 +17,10 @@
     .sidebar-link.active {
       color: red;
     }
+    img{
+      width: 70px;
+      height: 70px;
+    }
     
   </style>
 </head>
@@ -69,9 +73,18 @@
         <form class="d-flex flex-column" style="height: 490px;">
           <h5 class="fw-bold text-danger mb-2">My orders</h5>
           <div class="overflow-auto" style="height: 100%;">
-            <div class="p-4 rounded bg-white shadow-sm mb-3" style="height: 140px;">
+            <div class="d-flex flex-column gap-3 p-4 rounded shadow-sm mb-3 " style="height: 140px;">
               <div class="d-flex justify-content-between">
-                <p class="fw-bold">Order:</p>
+                <div class="d-flex gap-2">
+                  <p class="fw-bold">Order:</p>
+                  <div class="d-flex gap-2">
+                    <img class="border" src="../../assets/images/E-icon.png" alt="">
+                    <img src="../../assets/images/E-icon.png" alt="">
+                    <img src="../../assets/images/E-icon.png" alt="">
+
+                  </div>
+
+                </div>
                 <div class="d-flex gap-2">
                   <h6>number:</h6>
                   <p>123456</p>
@@ -83,11 +96,22 @@
                   <p>01/01/2023</p>
                 </div>
                 <div class="d-flex gap-2">
-                  <p class="">Order Status:</p>
-                  <p>Delivered</p>
+                  
+                  <div class="d-flex">
+                    <div class="rounded-circle bg-success opacity-100 me-2 " style="width: 20px; height: 20px;"></div>
+                    <div class="rounded-circle bg-warning opacity-25 me-2" style="width: 20px; height: 20px;"></div>
+                    <div class="rounded-circle bg-danger opacity-25" style="width: 20px; height: 20px;"></div>
+                  </div>
+                  
+                  <div>
+                    <p>Delivered</p>
+                  </div>
                 </div>
               </div>
             </div>
+
+            
+            
             <div class="p-4 rounded bg-black shadow-sm mb-3" style="height: 140px;"></div>
             <div class="p-4 rounded bg-black shadow-sm mb-3" style="height: 140px;"></div>
             <div class="p-4 rounded bg-black shadow-sm mb-3" style="height: 140px;"></div>
