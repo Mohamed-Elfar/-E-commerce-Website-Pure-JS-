@@ -4,6 +4,8 @@ import {
   redirectToNotFoundPage,
   toggleWishList,
 } from "/assets/js/utils.js";
+import { creatProductCard, fetchResponse } from "/assets/js/main.js";
+
 
 const productId = parseInt(new URLSearchParams(location.search).get("id"));
 
@@ -208,42 +210,15 @@ wishListBtn.addEventListener("click", () => addToWishList(product.id));
 export function fetchSliceCategoryProducts() {
   const productsSection = document.getElementById('relatedProducts');
   productsSection.innerHTML = '';
-  fetch('/assets/data/products.json')
-    .then(response => response.json())
-    .then(products => {
-      products.filter(e => {
-        return (
-          e.category &&
-          e.category.toLowerCase() === product.category.toLowerCase()
-        );
-      }).slice(0, 4).sort(() => Math.random() - 0.5).forEach(product => {
-        const productCard = document.createElement('product-card');
-        productCard.className = 'col-12 col-sm-6 col-md-5 col-xl-3';
-        productCard.setAttribute('name', product.name || 'Unknown Product');
-        productCard.setAttribute('price', product.price || '0.00');
-        productCard.setAttribute('image', product.image || '');
-        productCard.setAttribute('rating', product.rating || '0');
-        productCard.setAttribute('ratingCount', `(${product.ratingCount || 0})`);
-        productCard.setAttribute('sale', product.sale || '');
-        productCard.setAttribute('category', product.category || '');
-        productCard.addEventListener('click', function (e) {
-          if (e.target.closest('.product__overlay')) {
-            addToCart(product);
-          }
-        });
-        productCard.setAttribute('id', product.id || '');
-        productCard.addEventListener('click', function (e) {
-          let wishIcon = e.target.closest('.fa-heart');
-          if (wishIcon) {
-            toggleWishList(product.id.toString(), wishIcon);
-          }
-        });
-        productsSection.appendChild(productCard);
-      });
-    })
-    .catch(error => {
-      console.error('Error loading products:', error);
-      productsSection.innerHTML = '<p>Error loading products. Please try again later.</p>';
+  fetchResponse().then(products => {
+    products.filter(e => {
+      return (
+        e.category &&
+        e.category.toLowerCase() === product.category.toLowerCase()
+      );
+    }).slice(0, 4).sort(() => Math.random() - 0.5).forEach(product => {
+      productsSection.appendChild(creatProductCard(product));
     });
+  }).catch(() => redirectToNotFoundPage(true));
 }
 fetchSliceCategoryProducts();

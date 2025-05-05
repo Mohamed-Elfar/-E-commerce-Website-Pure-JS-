@@ -276,6 +276,7 @@ hr {
     align-items: center;
     justify-content: center;
     transition: background-color 0.3s ease;
+    cursor: pointer;
 }
 
 .product__icon-container:hover {
