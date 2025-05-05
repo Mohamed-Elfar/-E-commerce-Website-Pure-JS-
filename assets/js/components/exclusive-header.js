@@ -22,7 +22,7 @@ class ExclusiveHeader extends HTMLElement {
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav m-auto mb-2 mb-lg-0 text-center">
               <li class="nav-item">
-                <a class="nav-link active" href="#">Home</a>
+                <a class="nav-link active" href="/customer/home/home.html">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/customer/contact/contact.html">contact</a>
