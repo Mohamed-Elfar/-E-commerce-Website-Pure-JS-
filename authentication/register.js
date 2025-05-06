@@ -10,7 +10,6 @@ import {
 if (localStorage.getItem("token")) {
   location.href = "/customer/home/home.html";
 }
-
 class Customer extends User {
   static get customerCount() {
     const users = JSON.parse(localStorage.getItem("users")) || [];
@@ -32,7 +31,6 @@ class Customer extends User {
     console.log(`Customer ID: ${this.#customerId}`);
   }
 }
-
 class Seller extends User {
   static get sellerCount() {
     const users = JSON.parse(localStorage.getItem("users")) || [];
@@ -55,7 +53,6 @@ class Seller extends User {
     return userData;
   }
 }
-
 class Admin extends User {
   static get adminCount() {
     const users = JSON.parse(localStorage.getItem("users")) || [];
@@ -103,20 +100,16 @@ class Admin extends User {
     }
   }
 }
-
 let form = document.querySelector("form");
 form.addEventListener("submit", (event) => {
   event.preventDefault();
-
   var firstName = form.firstname;
   var lastName = form.lastname;
   var email = form.email;
   var phone = form.phonenumber;
   var password = form.password;
   var confirmPassword = form.confirmpassword;
-
   var sellerRadio = form.role;
-
   const isValid = validateForm(
     firstName,
     lastName,
@@ -125,7 +118,6 @@ form.addEventListener("submit", (event) => {
     password,
     confirmPassword
   );
-
   if (isValid) {
     const data = {
       first_name: firstName.value.trim(),
