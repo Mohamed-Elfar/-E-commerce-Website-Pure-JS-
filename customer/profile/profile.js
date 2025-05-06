@@ -34,8 +34,6 @@ document.querySelector("#saveChanges").addEventListener("click", function (e) {
       showToast("error", "User not found");
       return;
     }
-
-    // تعديل بيانات المستخدم داخل مصفوفة المستخدمين
     const usersJSON = localStorage.getItem("users");
     const users = JSON.parse(usersJSON);
 

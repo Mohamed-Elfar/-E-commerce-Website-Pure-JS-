@@ -72,15 +72,14 @@ class ExclusiveHeader extends HTMLElement {
               data-link="/authentication/register.html"
             ></option>
           </datalist>
-          <a
-            class="btn"
-            id="wishlistLink"
-            href="/customer/wishlist/wishlist.html"
-          >
+          <a class="btn" id="wishlistLink" href="/customer/wishlist/wishlist.html">
             <i class="fa fa-heart"></i>
+            <span class="badge" id="wishlistCount">3</span>
           </a>
+
           <a class="btn" id="cartLink" href="/customer/cart/cart.html">
             <i class="fa fa-shopping-cart"></i>
+            <span class="badge" id="cartCount">5</span>
           </a>
           <a
             class="btn bg-black text-white"
@@ -179,6 +178,7 @@ class ExclusiveHeader extends HTMLElement {
     this.loggedInUser();
     this.initDropdown();
     this.setupLogout();
+    this.badges();
   }
 
   initBootstrapToggle() {
@@ -197,6 +197,18 @@ class ExclusiveHeader extends HTMLElement {
       toggler.addEventListener("click", () => {
         collapse.classList.toggle("show");
       });
+    }
+  }
+  badges() {
+    const wishlistCount = this.querySelector("#wishlistCount");
+    const cartCount = this.querySelector("#cartCount");
+    if (wishlistCount) {
+      const wishlistItems = JSON.parse(localStorage.getItem("wishlist")) || [];
+      wishlistCount.textContent = wishlistItems.length || 0;
+    }
+    if (cartCount) {
+      const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+      cartCount.textContent = cartItems.length || 0;
     }
   }
   loggedInUser() {

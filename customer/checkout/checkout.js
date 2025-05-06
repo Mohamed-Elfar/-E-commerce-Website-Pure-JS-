@@ -211,13 +211,13 @@ if (cart.length === 0) {
 
 (function appendProducts() {
   const checkoutCard = document.querySelector(".checkoutCard");
-  const badge = document.querySelector(".badge");
+  const badge = document.querySelector("#checkoutBadge");
   const products = JSON.parse(localStorage.getItem("cart")) || [];
 
   let total = 0;
   let discount;
   let shippingCost = 30;
-  badge.innerHTML = products.length;
+  badge.innerText = products.length;
 
   if (products.length > 0) {
     checkoutCard.innerHTML = "";
