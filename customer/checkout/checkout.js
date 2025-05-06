@@ -97,7 +97,7 @@ import { showToast } from "/assets/js/utils.js";
           const authToken = localStorage.getItem("token");
           if (!authToken) {
             showToast("warning", "Please Login First");
-            setTimeout(() => open("../../index.html", "_self"), 2000);
+            setTimeout(() => open("/customer/home/home.html", "_self"), 2000);
             return;
           }
 
@@ -106,6 +106,7 @@ import { showToast } from "/assets/js/utils.js";
             JSON.parse(localStorage.getItem("allProducts")) || [];
           const users = JSON.parse(localStorage.getItem("users")) || [];
           const user = users.find((user) => user.token == authToken);
+
           const address = document.getElementById("address").value;
           const address2 = document.getElementById("address2").value;
           const city = document.getElementById("city").value;
@@ -115,13 +116,12 @@ import { showToast } from "/assets/js/utils.js";
             );
             return selected ? selected.id : null;
           }
-
           if (user) {
             const newOrder = {
               orderId: user.orders?.length + 1 || 1,
               products: cart,
               date: new Date().toISOString(),
-              userEmail: user.email,
+              userId: user.userId,
               address,
               address2,
               city,

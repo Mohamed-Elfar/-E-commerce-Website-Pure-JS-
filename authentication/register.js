@@ -6,7 +6,7 @@ import {
   validatePasswordMatch,
   validateName,
 } from "../assets/js/utils.js";
-// var existingUsers = JSON.parse(localStorage.getItem("users")) || [];
+
 if (localStorage.getItem("token")) {
   location.href = "/customer/home/home.html";
 }
@@ -24,8 +24,12 @@ function saveUserToLocal(userInstance) {
       throw new Error("Missing required user fields");
     }
 
-    const existEmail = users.some((user) => user && user.email === newUser.email);
-    const existPhone = users.some((user) => user && user.phone === newUser.phone);
+    const existEmail = users.some(
+      (user) => user && user.email === newUser.email
+    );
+    const existPhone = users.some(
+      (user) => user && user.phone === newUser.phone
+    );
 
     if (existEmail) {
       throw new Error("This email already exists");
@@ -45,14 +49,14 @@ function saveUserToLocal(userInstance) {
   }
 }
 class User {
-  static totalUsers = 0;
+  static totalUsers = JSON.parse(localStorage.getItem("users"))?.length || 0;
+  #userId;
   #firstName;
   #lastName;
   #email;
   #phone;
   #password;
   #sellerRadio;
-  #userId;
 
   constructor({
     first_name,
@@ -118,7 +122,10 @@ class Customer extends User {
     Customer.customerCount++;
     this.#customerId = Customer.customerCount;
   }
-
+  toJSON() {
+    const userData = super.toJSON();
+    return userData;
+  }
   print() {
     super.print();
     console.log(`Customer ID: ${this.#customerId}`);
@@ -128,8 +135,6 @@ class Customer extends User {
 class Seller extends User {
   static sellerCount = 0;
   #sellerId;
-  #createdBy;
-
   constructor(userData) {
     super(userData);
     Seller.sellerCount++;
@@ -139,6 +144,10 @@ class Seller extends User {
   print() {
     super.print();
     console.log(`Seller ID: ${this.#sellerId}`);
+  }
+  toJSON() {
+    const userData = super.toJSON();
+    return userData;
   }
 }
 
@@ -156,20 +165,26 @@ class Admin extends Seller {
     super.print();
     console.log(`Admin ID: ${this.#adminId}`);
   }
+  toJSON() {
+    const userData = super.toJSON();
+    return userData;
+  }
   static createAdmin() {
     const users = JSON.parse(localStorage.getItem("users")) || [];
-    const existingAdmin = users.find(user => user.email === "mohamedsamiir252@gmail.com");
-    
+    const existingAdmin = users.find(
+      (user) => user.email === "mohamedsamiir252@gmail.com"
+    );
+
     if (!existingAdmin) {
       const adminData = {
-        first_name: "Mohamed",  
+        first_name: "Mohamed",
         last_name: "Samir",
         email: "mohamedsamiir252@gmail.com",
-        phone_number: "01060493174",  
-        password: "Mohamed@123",  
-        want_to_be_seller: false
+        phone_number: "01060493174",
+        password: "Mohamed@123",
+        want_to_be_seller: false,
       };
-      
+
       const admin = new Admin(adminData);
       users.push(admin);
       localStorage.setItem("users", JSON.stringify(users));
@@ -261,19 +276,8 @@ function validateForm(
   return valid;
 }
 
-// (async function loadInitialData() {
-//   try {
-//     const response = await fetch("../assets/data/users.json");
-//     const users = await response.json();
-//     if (!localStorage.getItem("users")) {
-//       localStorage.setItem("users", JSON.stringify(users));
-//       console.log("Initial data loaded");
-//     } else {
-//       console.log("Initial data already loaded");
-//     }
-//   } catch (error) {
-//     console.error("Error loading initial data:", error);
-//   }
-// })();
-
 Admin.createAdmin();
+console.log(User.totalUsers);
+console.log(Customer.customerCount);
+console.log(Seller.sellerCount);
+console.log(Admin.adminCount);
