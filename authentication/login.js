@@ -1,4 +1,7 @@
-import { showToast } from "../assets/js/utils.js";
+import { showToast, validateHashedPassword } from "../assets/js/utils.js";
+if (localStorage.getItem("token")) {
+  location.href = "../index.html";
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector("form");
@@ -9,23 +12,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const users = JSON.parse(localStorage.getItem("users")) || [];
     const email = form.email.value;
     const password = form.password.value;
-    const user = users.find(
-      (user) => user.email === email && user.password === password
-    );
-
-    if (user) {
+    const user = users.find((user) => user.email === email);
+    if (user && validateHashedPassword(password, user.password)) {
       const token = generateToken();
       localStorage.setItem("token", token);
       user.token = token;
       const updatedUsers = users.map((u) =>
         u.email === user.email ? { ...u, token } : u
       );
-      console.log(updatedUsers);
-
       localStorage.setItem("users", JSON.stringify(updatedUsers));
       showToast("success", "Login successful!");
       setTimeout(() => {
-        open("../../index.html", "_self");
+        open("/customer/home/home.html", "_self");
       }, 1500);
     } else {
       showToast("error", "please check your email or password.");

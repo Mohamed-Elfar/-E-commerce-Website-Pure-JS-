@@ -1,5 +1,8 @@
 import { showToast } from "/assets/js/utils.js";
-
+const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+if (cart.length === 0) {
+  location.href = "/customer/home/home.html";
+}
 (function () {
   "use strict";
 
@@ -96,8 +99,8 @@ import { showToast } from "/assets/js/utils.js";
         if (isNameValid && isNumberValid && isExpValid && isCvvValid) {
           const authToken = localStorage.getItem("token");
           if (!authToken) {
-            showToast("warning", "Please Login First");
-            setTimeout(() => open("../../index.html", "_self"), 2000);
+            showToast("error", "Please Login First");
+            setTimeout(() => open("/customer/home/home.html", "_self"), 2000);
             return;
           }
 
@@ -106,19 +109,26 @@ import { showToast } from "/assets/js/utils.js";
             JSON.parse(localStorage.getItem("allProducts")) || [];
           const users = JSON.parse(localStorage.getItem("users")) || [];
           const user = users.find((user) => user.token == authToken);
+
           const address = document.getElementById("address").value;
           const address2 = document.getElementById("address2").value;
           const city = document.getElementById("city").value;
-
+          function getSelectedPaymentMethod() {
+            const selected = document.querySelector(
+              'input[name="paymentMethod"]:checked'
+            );
+            return selected ? selected.id : null;
+          }
           if (user) {
             const newOrder = {
               orderId: user.orders?.length + 1 || 1,
               products: cart,
               date: new Date().toISOString(),
-              userEmail: user.email,
+              userId: user.userId,
               address,
               address2,
               city,
+              paymentMethod: getSelectedPaymentMethod(),
             };
 
             const updatedUsers = users.map((user) => {
@@ -134,6 +144,7 @@ import { showToast } from "/assets/js/utils.js";
                       address,
                       address2,
                       city,
+                      paymentMethod: getSelectedPaymentMethod(),
                     },
                   ],
                 };
@@ -165,9 +176,8 @@ import { showToast } from "/assets/js/utils.js";
               JSON.stringify(updatedProducts)
             );
             localStorage.removeItem("cart");
-
             showToast("success", "Order placed successfully!");
-            setTimeout(() => open("/index.html", "_self"), 1500);
+            setTimeout(() => open("/customer/home/home.html", "_self"), 1500);
           }
         }
       });
@@ -182,7 +192,6 @@ import { showToast } from "/assets/js/utils.js";
           }
           e.target.value = value;
         });
-
       document
         .getElementById("cc-expiration")
         .addEventListener("input", function (e) {
@@ -199,13 +208,13 @@ import { showToast } from "/assets/js/utils.js";
 
 (function appendProducts() {
   const checkoutCard = document.querySelector(".checkoutCard");
-  const badge = document.querySelector(".badge");
+  const badge = document.querySelector("#checkoutBadge");
   const products = JSON.parse(localStorage.getItem("cart")) || [];
 
   let total = 0;
   let discount;
   let shippingCost = 30;
-  badge.innerHTML = products.length;
+  badge.innerText = products.length;
 
   if (products.length > 0) {
     checkoutCard.innerHTML = "";
@@ -230,10 +239,6 @@ import { showToast } from "/assets/js/utils.js";
       : total;
     total = discount;
 
-    const promoLi = document.createElement("li");
-    promoLi.className =
-      "list-group-item d-flex justify-content-between align-items-center bg-light";
-    promoLi.innerHTML = `
     const promoLi = document.createElement("li");
     promoLi.className =
       "list-group-item d-flex justify-content-between align-items-center bg-light";
