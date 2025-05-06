@@ -1,21 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Orders</title>
 
-    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/assets/css/fontawesome.min.css" />
-    <link rel="stylesheet" href="/assets/css/style.css" />
-    <link rel="stylesheet" href="seller.css">
-  </head>
-  <body>
-    <side-bar></side-bar>
-    <div class="main-content">
-      <h1>Orders</h1>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orders</title>
+  <link rel="icon" href="/assets/images/icon.png" type="image/png" />
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/assets/css/fontawesome.min.css" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="seller.css">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar Column -->
+      <side-menu></side-menu>
+
+      <!-- Main Content Column -->
+      <div class="main-content col-12 col-lg-9 ms-lg-auto pt-3 px-4">
+        <side-toggler></side-toggler>
+        <h1>Orders</h1>
+      </div>
     </div>
-    <script src="side-bar.js"></script>
-    <script src="/assets/js/bootstrap.bundle.min.js"></script>
-  </body>
+  </div>
+  <script src="/assets/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/components/side-menu.js"></script>
+  <script src="/assets/components/side_toggler.js"></script>
+</body>
+
 </html>
