@@ -109,13 +109,17 @@ export function validatePasswordMatch(passwordInput, confirmPasswordInput) {
 }
 export function addToCart(product) {
   if (localStorage.getItem("token")) {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
+    // let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const users=JSON.parse(localStorage.getItem("users"))||[];
+    const user=users.find(user=>user.token===localStorage.getItem("token"));
+    const cart=user.cart||[];
+    localStorage.setItem("cart", JSON.stringify(cart));
     const productExists = cart.some((item) => item.id === product.id);
-
     if (!productExists) {
       cart.push(product);
       localStorage.setItem("cart", JSON.stringify(cart));
+      user.cart=cart;
+      localStorage.setItem("users",JSON.stringify(users));
       showToast("success", "Added to cart!");
       return true;
     } else {
