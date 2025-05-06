@@ -13,8 +13,71 @@
 </head>
 
 <body>
-    <!-- Sidebar -->
-   <side-bar></side-bar>    
+   <side-bar></side-bar>
+
+    <div class="main-content">
+        <div class="dashboard-header d-flex justify-content-between align-items-center">
+            <h2>Seller Dashboard</h2>
+            <div>
+                <span class="me-3">Welcome, <strong>Seller Name</strong></span>
+                <button class="btn btn-sm btn-outline-secondary">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted">Total Revenue</h6>
+                        <h3 class="card-title">$8,450</h3>
+                        <p class="card-text text-success">
+                            <i class="fas fa-arrow-up"></i> 12.5% from last month
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted">Total Orders</h6>
+                        <h3 class="card-title">124</h3>
+                        <p class="card-text text-success">
+                            <i class="fas fa-arrow-up"></i> 8.3% from last month
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted">Products</h6>
+                        <h3 class="card-title">42</h3>
+                        <p class="card-text text-danger">
+                            <i class="fas fa-arrow-down"></i> 2 items low stock
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-1">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span>Sales Analytics</span>
+                <select class="form-select form-select-sm w-auto">
+                    <option>Last 7 days</option>
+                    <option selected>Last 30 days</option>
+                    <option>Last 90 days</option>
+                </select>
+            </div>
+            <div class="card-body">
+                <canvas id="salesChart"></canvas>
+            </div>
+        </div>
+        
+    </div>
 
     <script src="/assets/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
