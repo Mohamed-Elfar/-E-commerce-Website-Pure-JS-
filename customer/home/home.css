@@ -27,7 +27,7 @@ XXL: ≥ 1400px
 }
 
 .secondary-color {
-    color: var(--color-secondary) !important;
+    color: var(--color-secondary);
 }
 
 
@@ -52,7 +52,8 @@ hr {
 .product__overlay:hover {
     opacity: 0.8;
     transition: opacity 0.3s ease;
-    color: var(--color-secondary) !important;
+    color: var(--color-secondary)!important;
+
 }
 
 /* Sidebar */
@@ -65,6 +66,7 @@ hr {
     transition: left 0.3s ease;
     border-radius: 0px 10px 10px 0px;
 
+    
     .nav-link {
         border-radius: 5px;
         margin-bottom: 5px;
@@ -74,7 +76,6 @@ hr {
     .nav-link:hover {
         background-color: rgba(255, 255, 255, 0.1);
     }
-
 }
 
 .sidebar-backdrop {
@@ -209,7 +210,6 @@ hr {
     border: none;
     text-align: center;
     align-content: center;
-    cursor: pointer;
 }
 
 .section__highlights {
@@ -230,7 +230,12 @@ hr {
 }
 
 /* ----------------------------------Product Card---------------------------------- */
-
+.product__title {
+    white-space: nowrap;      
+    overflow: hidden;         
+    text-overflow: ellipsis;  
+    width: 90%;
+  }
 
 .product__badge {
     padding-bottom: 94%;
@@ -240,7 +245,6 @@ hr {
 .product__overlay {
     height: 41px;
     align-content: center;
-    cursor: pointer;
 }
 
 .product__badge:hover .product__overlay {
@@ -276,7 +280,6 @@ hr {
     align-items: center;
     justify-content: center;
     transition: background-color 0.3s ease;
-    cursor: pointer;
 }
 
 .product__icon-container:hover {
@@ -296,7 +299,6 @@ hr {
 .product__price-new {
     line-height: 24px;
 }
-
 .product__price-old {
     display: none;
 }
@@ -498,81 +500,93 @@ hr {
 
 .grid__image {
     position: relative;
+}
 
-    img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+.grid__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
+.grid__overlay {
+    color: var(--color-secondary);
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    margin: 0px 0px 20px 28px;
+}
+.grid__overlay-title {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 0.72px;
+}
+
+.grid__overlay-description {
+    font-size: 14px;
+    width: 90%;
+}
+@media (max-width: 1200px) {
     .grid__overlay {
-        color: var(--color-secondary);
-        position: absolute;
-        bottom: 0px;
-        left: 0px;
-        margin: 0px 0px 20px 28px;
-
-        .grid__overlay-title {
-            font-size: 24px;
-            font-weight: 600;
-            letter-spacing: 0.72px;
-        }
-
-        .grid__overlay-description {
-            font-size: 14px;
-            width: 90%;
-        }
+        margin: 0px 0px 16px 24px;
+    }
+    .grid__overlay-title {
+        font-size: 20px;
     }
 
+    .grid__overlay-description {
+        font-size: 12px;
+    }
+
+    .grid__link {
+        font-size: 12px;
+    }
 }
 
 @media (max-width: 992px) {
+
     .grid__overlay {
-        margin: 0px 0px 16px 24px;
+        margin: 0px 0px 12px 20px;
 
-        .grid__overlay-title {
-            font-size: 20px;
-        }
+    }
+    .grid__overlay-title {
+        font-size: 12px;
+    }
 
-        .grid__overlay-description {
-            font-size: 12px;
-        }
+    .grid__overlay-description {
+        font-size: 10px;
+    }
 
-        .grid__link {
-            font-size: 12px;
-        }
+    .grid__link {
+        font-size: 10px;
     }
 }
-
 @media (max-width: 768px) {
 
     .grid__overlay {
         margin: 0px 0px 12px 20px;
 
-        .grid__overlay-title {
-            font-size: 12px;
-        }
+    }
+    .grid__overlay-title {
+        font-size: 10px;
+    }
 
-        .grid__overlay-description {
-            font-size: 10px;
-        }
+    .grid__overlay-description {
+        font-size: 8px;
+    }
 
-        .grid__link {
-            font-size: 10px;
-        }
+    .grid__link {
+        font-size: 8px;
     }
 }
 
 @media (max-width: 576px) {
-    .grid__overlay {
+    .grid__overlay-title,
+    .grid__overlay-description {
+        display: none;
+    }
 
-        .grid__overlay-title,
-        .grid__overlay-description {
-            display: none;
-        }
-
-        .grid__link {
-            font-size: 6px;
-        }
+    .grid__link {
+        font-size: 6px;
     }
 }
+
