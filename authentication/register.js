@@ -5,167 +5,10 @@ import {
   validatePhone,
   validatePasswordMatch,
   validateName,
-  hashPassword,
+  User,
 } from "../assets/js/utils.js";
 if (localStorage.getItem("token")) {
   location.href = "/customer/home/home.html";
-}
-
-function saveUserToLocal(userInstance) {
-  try {
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-    const newUser = userInstance.toJSON();
-
-    if (!newUser || typeof newUser !== "object") {
-      throw new Error("Invalid user data format");
-    }
-
-    if (!newUser.email || !newUser.firstName || !newUser.lastName) {
-      throw new Error("Missing required user fields");
-    }
-
-    const existEmail = users.some(
-      (user) => user && user.email === newUser.email
-    );
-    const existPhone = users.some(
-      (user) => user && user.phone === newUser.phone
-    );
-
-    if (existEmail) {
-      throw new Error("This email already exists");
-    }
-    if (existPhone) {
-      throw new Error("This Phone Number already exists");
-    }
-
-    users.push(newUser);
-    localStorage.setItem("users", JSON.stringify(users));
-
-    return true;
-  } catch (error) {
-    console.error("Failed to save user:", error);
-    showToast("error", error.message);
-    throw error;
-  }
-}
-class User {
-  static get totalUsers() {
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-    return users.length;
-  }
-
-  #firstName;
-  #lastName;
-  #email;
-  #phone;
-  #password;
-  #sellerRadio;
-  #userId;
-
-  constructor({
-    first_name,
-    last_name,
-    email,
-    phone_number,
-    password,
-    want_to_be_seller,
-  }) {
-    if (new.target === User) {
-      throw new Error(
-        "User is an abstract class and cannot be instantiated directly."
-      );
-    }
-
-    this.firstName = first_name;
-    this.lastName = last_name;
-    this.email = email;
-    this.phone = phone_number;
-    this.password = password;
-    this.#sellerRadio = want_to_be_seller;
-
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-    this.#userId =
-      users.length > 0 ? Math.max(...users.map((user) => user.userId)) + 1 : 1;
-
-    if (typeof saveUserToLocal === "function") {
-      saveUserToLocal(this);
-    } else {
-      throw new Error("Save functionality not available");
-    }
-
-    console.log("Created user:", this);
-  }
-
-  get userId() {
-    return this.#userId;
-  }
-  get password() {
-    return this.#password;
-  }
-  get firstName() {
-    return this.#firstName;
-  }
-  get lastName() {
-    return this.#lastName;
-  }
-  get email() {
-    return this.#email;
-  }
-  get phone() {
-    return this.#phone;
-  }
-  set firstName(value) {
-    if (!validateName(value)) {
-      showToast("error", "Invalid first Name");
-      throw new Error("Validation failed for first name");
-    }
-    this.#firstName = value;
-  }
-  set lastName(value) {
-    if (!validateName(value)) {
-      showToast("error", "Invalid last Name");
-      throw new Error("Validation failed for last name");
-    }
-    this.#lastName = value;
-  }
-  set email(value) {
-    if (!validateEmail(value)) {
-      showToast("error", "Invalid Email");
-      throw new Error("Validation failed for email");
-    }
-    this.#email = value;
-  }
-  set phone(value) {
-    if (!validatePhone(value)) {
-      showToast("error", "Invalid Phone");
-      throw new Error("Validation failed for phone");
-    }
-    this.#phone = value;
-  }
-  set password(value) {
-    if (!validatePassword(value)) {
-      showToast("error", "Invalid Password");
-      throw new Error("Validation failed for password");
-    }
-    this.#password = hashPassword(value);
-  }
-
-  toJSON() {
-    return {
-      userId: this.#userId,
-      firstName: this.#firstName,
-      lastName: this.#lastName,
-      email: this.#email,
-      phone: this.#phone,
-      password: this.#password,
-      want_to_be_seller: this.#sellerRadio,
-      role: this.constructor.name,
-    };
-  }
-
-  print() {
-    console.log(`User ID: ${this.#userId}`);
-  }
 }
 
 class Customer extends User {
@@ -296,6 +139,10 @@ form.addEventListener("submit", (event) => {
     try {
       new Customer(data);
       showToast("success", "Account created successfully!");
+
+      setTimeout(() => {
+        open("login.html", "_self");
+      }, 2000);
     } catch (error) {
       showToast("error", error.message);
     }

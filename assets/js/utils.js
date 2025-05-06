@@ -29,72 +29,83 @@ export function showToast(status, message) {
 
   setTimeout(() => toast.classList.remove("show"), 3000);
 }
-
-export function validateName(input) {
-  var name = /^[a-zA-Z]{3,10}$/;
-  if (!name.test(input.value)) {
-    input.classList.add("is-invalid");
-    input.classList.remove("is-valid");
-    return false;
-  } else {
-    input.classList.remove("is-invalid");
-    input.classList.add("is-valid");
-    return true;
+export function validateName(inputOrValue) {
+  if (inputOrValue?.classList) {
+    const value = inputOrValue.value.trim();
+    const isValid = /^[a-zA-Z]{2,30}$/.test(value);
+    inputOrValue.classList.toggle("is-invalid", !isValid);
+    inputOrValue.classList.toggle("is-valid", isValid);
+    return isValid;
+  } else if (typeof inputOrValue === "string") {
+    return /^[a-zA-Z]{2,30}$/.test(inputOrValue.trim());
   }
-}
-window.sha;
-export function validateEmail(input) {
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}$/;
-
-  if (!emailRegex.test(input.value.trim())) {
-    input.classList.add("is-invalid");
-    input.classList.remove("is-valid");
-    return false;
-  } else {
-    input.classList.remove("is-invalid");
-    input.classList.add("is-valid");
-    return true;
-  }
+  return false;
 }
 
-export function validatePhone(input) {
-  const phone = /^(010|011|012|015)\d{8}$/;
-  if (!phone.test(input.value)) {
-    input.classList.add("is-invalid");
-    input.classList.remove("is-valid");
-
-    return false;
-  } else {
-    input.classList.remove("is-invalid");
-    input.classList.add("is-valid");
-    return true;
+export function validateEmail(inputOrValue) {
+  if (inputOrValue?.classList) {
+    const value = inputOrValue.value.trim();
+    const isValid =
+      /^[a-zA-Z0-9._%+-]+@(gmail|outlook|yahoo|hotmail|icloud|protonmail)\.(com|net|org)$/i.test(
+        value
+      );
+    inputOrValue.classList.toggle("is-invalid", !isValid);
+    inputOrValue.classList.toggle("is-valid", isValid);
+    return isValid;
+  } else if (typeof inputOrValue === "string") {
+    return /^[a-zA-Z0-9._%+-]+@(gmail|outlook|yahoo|hotmail|icloud|protonmail)\.(com|net|org)$/i.test(
+      inputOrValue.trim()
+    );
   }
+  return false;
 }
 
-export function validatePassword(input) {
+export function validatePhone(inputOrValue) {
+  if (inputOrValue?.classList) {
+    const value = inputOrValue.value.trim();
+    const isValid = /^(010|011|012|015)\d{8}$/.test(value);
+    inputOrValue.classList.toggle("is-invalid", !isValid);
+    inputOrValue.classList.toggle("is-valid", isValid);
+    return isValid;
+  } else if (typeof inputOrValue === "string") {
+    return /^(010|011|012|015)\d{8}$/.test(inputOrValue.trim());
+  }
+  return false;
+}
+
+export function validatePassword(inputOrValue) {
+  const value = inputOrValue?.value || inputOrValue;
+  if (!value || typeof value !== "string") return false;
+
   const passwordRegex =
-    /^(?=.*[A-Z])(?=.*[a-z0-9])(?=.*[!@#$%^&*()_+={}\[\]:;"'<>,.?\/\\|`~\-]).{6,}$/;
-  if (!passwordRegex.test(input.value)) {
-    input.classList.add("is-invalid");
-    input.classList.remove("is-valid");
-    return false;
-  } else {
-    input.classList.remove("is-invalid");
-    input.classList.add("is-valid");
-    return true;
+    /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,}$/;
+
+  const isValid = passwordRegex.test(value);
+
+  if (inputOrValue?.classList) {
+    inputOrValue.classList.toggle("is-invalid", !isValid);
+    inputOrValue.classList.toggle("is-valid", isValid);
   }
+
+  return isValid;
 }
 
-export function validatePasswordMatch(password, confirmPassword) {
-  if (password.value !== confirmPassword.value) {
-    confirmPassword.classList.add("is-invalid");
-    confirmPassword.classList.remove("is-valid");
+export function validatePasswordMatch(passwordInput, confirmPasswordInput) {
+  const password = passwordInput?.value || passwordInput;
+  const confirmPassword = confirmPasswordInput?.value || confirmPasswordInput;
+
+  if (typeof password !== "string" || typeof confirmPassword !== "string") {
     return false;
-  } else {
-    confirmPassword.classList.remove("is-invalid");
-    confirmPassword.classList.add("is-valid");
-    return true;
   }
+
+  const isMatching = password === confirmPassword;
+
+  if (confirmPasswordInput?.classList) {
+    confirmPasswordInput.classList.toggle("is-invalid", !isMatching);
+    confirmPasswordInput.classList.toggle("is-valid", isMatching);
+  }
+
+  return isMatching;
 }
 export function addToCart(product) {
   if (localStorage.getItem("token")) {
@@ -201,4 +212,160 @@ export function loggout() {
   });
   localStorage.setItem("users", JSON.stringify(updatedUsers));
   window.location.href = "/customer/products/products.html";
+}
+export function saveUserToLocal(userInstance) {
+  try {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const newUser = userInstance.toJSON();
+
+    if (!newUser || typeof newUser !== "object") {
+      throw new Error("Invalid user data format");
+    }
+
+    if (!newUser.email || !newUser.firstName || !newUser.lastName) {
+      throw new Error("Missing required user fields");
+    }
+
+    const existEmail = users.some(
+      (user) => user && user.email === newUser.email
+    );
+    const existPhone = users.some(
+      (user) => user && user.phone === newUser.phone
+    );
+
+    if (existEmail) {
+      throw new Error("This email already exists");
+    }
+    if (existPhone) {
+      throw new Error("This Phone Number already exists");
+    }
+
+    users.push(newUser);
+    localStorage.setItem("users", JSON.stringify(users));
+
+    return true;
+  } catch (error) {
+    console.error("Failed to save user:", error);
+    showToast("error", error.message);
+    throw error;
+  }
+}
+export class User {
+  static get totalUsers() {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    return users.length;
+  }
+
+  #firstName;
+  #lastName;
+  #email;
+  #phone;
+  #password;
+  #sellerRadio;
+  #userId;
+
+  constructor({
+    first_name,
+    last_name,
+    email,
+    phone_number,
+    password,
+    want_to_be_seller,
+  }) {
+    if (new.target === User) {
+      throw new Error(
+        "User is an abstract class and cannot be instantiated directly."
+      );
+    }
+
+    this.firstName = first_name;
+    this.lastName = last_name;
+    this.email = email;
+    this.phone = phone_number;
+    this.password = password;
+    this.#sellerRadio = want_to_be_seller;
+
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    this.#userId =
+      users.length > 0 ? Math.max(...users.map((user) => user.userId)) + 1 : 1;
+
+    if (typeof saveUserToLocal === "function") {
+      saveUserToLocal(this);
+    } else {
+      throw new Error("Save functionality not available");
+    }
+
+    console.log("Created user:", this);
+  }
+
+  get userId() {
+    return this.#userId;
+  }
+  get password() {
+    return this.#password;
+  }
+  get firstName() {
+    return this.#firstName;
+  }
+  get lastName() {
+    return this.#lastName;
+  }
+  get email() {
+    return this.#email;
+  }
+  get phone() {
+    return this.#phone;
+  }
+  set firstName(value) {
+    if (!validateName(value)) {
+      showToast("error", "Invalid first Name");
+      throw new Error("Validation failed for first name");
+    }
+    this.#firstName = value;
+  }
+  set lastName(value) {
+    if (!validateName(value)) {
+      showToast("error", "Invalid last Name");
+      throw new Error("Validation failed for last name");
+    }
+    this.#lastName = value;
+  }
+  set email(value) {
+    if (!validateEmail(value)) {
+      showToast("error", "Invalid Email");
+      throw new Error("Validation failed for email");
+    }
+    this.#email = value;
+  }
+  set phone(value) {
+    if (!validatePhone(value)) {
+      showToast("error", "Invalid Phone");
+      throw new Error("Validation failed for phone");
+    }
+    this.#phone = value;
+  }
+  set password(value) {
+    if (!validatePassword(value)) {
+      showToast("error", "Invalid Password");
+      throw new Error("Validation failed for password");
+    }
+    this.#password = hashPassword(value);
+  }
+
+  toJSON() {
+    return {
+      userId: this.#userId,
+      firstName: this.#firstName,
+      lastName: this.#lastName,
+      email: this.#email,
+      phone: this.#phone,
+      password: this.#password,
+      want_to_be_seller: this.#sellerRadio,
+      role: this.constructor.name,
+    };
+  }
+
+  print() {
+    console.log(`User ID: ${this.#userId}`);
+  }
 }

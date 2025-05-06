@@ -1,5 +1,8 @@
 import { showToast } from "/assets/js/utils.js";
-
+const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+if (cart.length === 0) {
+  location.href = "/customer/home/home.html";
+}
 (function () {
   "use strict";
 
@@ -96,7 +99,7 @@ import { showToast } from "/assets/js/utils.js";
         if (isNameValid && isNumberValid && isExpValid && isCvvValid) {
           const authToken = localStorage.getItem("token");
           if (!authToken) {
-            showToast("warning", "Please Login First");
+            showToast("error", "Please Login First");
             setTimeout(() => open("/customer/home/home.html", "_self"), 2000);
             return;
           }
@@ -175,7 +178,7 @@ import { showToast } from "/assets/js/utils.js";
             localStorage.removeItem("cart");
 
             showToast("success", "Order placed successfully!");
-            setTimeout(() => open("/index.html", "_self"), 1500);
+            setTimeout(() => open("/customer/home/home.html", "_self"), 1500);
           }
         }
       });
