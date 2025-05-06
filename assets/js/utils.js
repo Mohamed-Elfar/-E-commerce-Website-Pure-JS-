@@ -1,3 +1,12 @@
+import { sha256 } from "https://esm.sh/js-sha256@0.9.0";
+const APP_SALT = "mohamedsamirelfar";
+
+export function hashPassword(password) {
+  return sha256(APP_SALT + password + APP_SALT);
+}
+export function validateHashedPassword(inputPassword, storedHash) {
+  return hashPassword(inputPassword) === storedHash;
+}
 export function showToast(status, message) {
   const toast = document.querySelector(".toast");
   if (!toast) {
@@ -33,14 +42,13 @@ export function validateName(input) {
     return true;
   }
 }
-
+window.sha;
 export function validateEmail(input) {
-  var reEmail =
-    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  if (!reEmail.test(input.value)) {
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}$/;
+
+  if (!emailRegex.test(input.value.trim())) {
     input.classList.add("is-invalid");
     input.classList.remove("is-valid");
-
     return false;
   } else {
     input.classList.remove("is-invalid");

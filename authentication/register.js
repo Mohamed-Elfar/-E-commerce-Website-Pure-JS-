@@ -5,8 +5,8 @@ import {
   validatePhone,
   validatePasswordMatch,
   validateName,
+  hashPassword,
 } from "../assets/js/utils.js";
-
 if (localStorage.getItem("token")) {
   location.href = "/customer/home/home.html";
 }
@@ -40,7 +40,7 @@ function saveUserToLocal(userInstance) {
 
     users.push(newUser);
     localStorage.setItem("users", JSON.stringify(users));
-    open("login.html", "_self");
+
     return true;
   } catch (error) {
     console.error("Failed to save user:", error);
@@ -49,14 +49,18 @@ function saveUserToLocal(userInstance) {
   }
 }
 class User {
-  static totalUsers = JSON.parse(localStorage.getItem("users"))?.length || 0;
-  #userId;
+  static get totalUsers() {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    return users.length;
+  }
+
   #firstName;
   #lastName;
   #email;
   #phone;
   #password;
   #sellerRadio;
+  #userId;
 
   constructor({
     first_name,
@@ -76,11 +80,12 @@ class User {
     this.#lastName = last_name;
     this.#email = email;
     this.#phone = phone_number;
-    this.#password = password;
+    this.#password = hashPassword(password);
     this.#sellerRadio = want_to_be_seller;
 
-    User.totalUsers++;
-    this.#userId = User.totalUsers;
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    this.#userId =
+      users.length > 0 ? Math.max(...users.map((user) => user.userId)) + 1 : 1;
 
     if (typeof saveUserToLocal === "function") {
       saveUserToLocal(this);
@@ -114,12 +119,15 @@ class User {
 }
 
 class Customer extends User {
-  static customerCount = 0;
+  static get customerCount() {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    return users.filter((user) => user.role === "Customer").length;
+  }
   #customerId;
 
   constructor(userData) {
     super(userData);
-    Customer.customerCount++;
+
     this.#customerId = Customer.customerCount;
   }
   toJSON() {
@@ -133,11 +141,15 @@ class Customer extends User {
 }
 
 class Seller extends User {
-  static sellerCount = 0;
+  static get sellerCount() {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    return users.filter((user) => user.role === "Seller").length;
+  }
   #sellerId;
+
   constructor(userData) {
     super(userData);
-    Seller.sellerCount++;
+
     this.#sellerId = Seller.sellerCount;
   }
 
@@ -151,13 +163,16 @@ class Seller extends User {
   }
 }
 
-class Admin extends Seller {
-  static adminCount = 0;
+class Admin extends User {
+  static get adminCount() {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    return users.filter((user) => user.role === "Admin").length;
+  }
   #adminId;
 
   constructor(userData) {
     super(userData);
-    Admin.adminCount++;
+
     this.#adminId = Admin.adminCount;
   }
 
@@ -171,9 +186,7 @@ class Admin extends Seller {
   }
   static createAdmin() {
     const users = JSON.parse(localStorage.getItem("users")) || [];
-    const existingAdmin = users.find(
-      (user) => user.email === "mohamedsamiir252@gmail.com"
-    );
+    const existingAdmin = users.some((user) => user.role === "Admin");
 
     if (!existingAdmin) {
       const adminData = {
@@ -185,8 +198,14 @@ class Admin extends Seller {
         want_to_be_seller: false,
       };
 
-      const admin = new Admin(adminData);
-      users.push(admin);
+      const newAdmin = {
+        ...adminData,
+        userId:
+          users.length > 0 ? Math.max(...users.map((u) => u.userId)) + 1 : 1,
+        role: "Admin",
+      };
+
+      users.push(newAdmin);
       localStorage.setItem("users", JSON.stringify(users));
     }
   }
