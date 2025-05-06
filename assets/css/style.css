@@ -186,7 +186,7 @@ exclusive-header {
   .badge {
     position: absolute !important;
     top: -5px !important;
-    right: -10px !important;
+    right: -7px !important;
     background: red;
     color: white;
     border-radius: 50%;
