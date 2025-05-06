@@ -76,11 +76,11 @@ class User {
       );
     }
 
-    this.#firstName = first_name;
-    this.#lastName = last_name;
-    this.#email = email;
-    this.#phone = phone_number;
-    this.#password = hashPassword(password);
+    this.firstName = first_name;
+    this.lastName = last_name;
+    this.email = email;
+    this.phone = phone_number;
+    this.password = password;
     this.#sellerRadio = want_to_be_seller;
 
     const users = JSON.parse(localStorage.getItem("users")) || [];
@@ -98,6 +98,56 @@ class User {
 
   get userId() {
     return this.#userId;
+  }
+  get password() {
+    return this.#password;
+  }
+  get firstName() {
+    return this.#firstName;
+  }
+  get lastName() {
+    return this.#lastName;
+  }
+  get email() {
+    return this.#email;
+  }
+  get phone() {
+    return this.#phone;
+  }
+  set firstName(value) {
+    if (!validateName(value)) {
+      showToast("error", "Invalid first Name");
+      throw new Error("Validation failed for first name");
+    }
+    this.#firstName = value;
+  }
+  set lastName(value) {
+    if (!validateName(value)) {
+      showToast("error", "Invalid last Name");
+      throw new Error("Validation failed for last name");
+    }
+    this.#lastName = value;
+  }
+  set email(value) {
+    if (!validateEmail(value)) {
+      showToast("error", "Invalid Email");
+      throw new Error("Validation failed for email");
+    }
+    this.#email = value;
+  }
+  set phone(value) {
+    if (!validatePhone(value)) {
+      showToast("error", "Invalid Phone");
+      throw new Error("Validation failed for phone");
+    }
+    this.#phone = value;
+  }
+  set password(value) {
+    if (!validatePassword(value)) {
+      showToast("error", "Invalid Password");
+      throw new Error("Validation failed for password");
+    }
+    this.#password = hashPassword(value);
   }
 
   toJSON() {
