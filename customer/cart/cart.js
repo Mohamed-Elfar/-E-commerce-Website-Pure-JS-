@@ -2,10 +2,12 @@ const returnhome = document.querySelector(".button--return");
 returnhome.addEventListener("click", () => {
   window.location.href = "../home/home.html";
 });
+const users = JSON.parse(localStorage.getItem("users")) || [];
+const user = users.find((user) => user.token === localStorage.getItem("token"));
+const cart = user.cart || [];
+localStorage.setItem("cart", JSON.stringify(cart));
+const productInCart = JSON.parse(localStorage.getItem("cart"));
 
-const productInCart = JSON.parse(localStorage.getItem("cart")) || [];
-
-console.log(productInCart);
 const tbody = document.querySelector("tbody");
 const subtotalInCart = document.getElementById("subtotalincart");
 const shipping = document.getElementById("shipping");
@@ -106,11 +108,13 @@ clearButton.addEventListener("click", () => {
   tbody.innerHTML = "";
   cartItems.length = 0;
   localStorage.removeItem("cart");
+  delete user.cart;
+  localStorage.setItem("users", JSON.stringify(users));
   updateCartTotal();
   window.location.reload();
 });
 
-        updateCartTotal();
+updateCartTotal();
 
 function sendDiscount(Discount) {
   const cartJSON = localStorage.getItem("cart");
