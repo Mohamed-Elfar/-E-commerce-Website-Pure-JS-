@@ -176,8 +176,6 @@ if (cart.length === 0) {
               JSON.stringify(updatedProducts)
             );
             localStorage.removeItem("cart");
-            delete user.cart;
-            localStorage.setItem("users", JSON.stringify(users));
             showToast("success", "Order placed successfully!");
             setTimeout(() => open("/customer/home/home.html", "_self"), 1500);
           }
@@ -194,7 +192,6 @@ if (cart.length === 0) {
           }
           e.target.value = value;
         });
-
       document
         .getElementById("cc-expiration")
         .addEventListener("input", function (e) {
