@@ -10,10 +10,30 @@
     <link href="/assets/css/fontawesome.min.css" rel="stylesheet" />
     <link href="/assets/css/style.css" rel="stylesheet" />
     <link href="seller.css" rel="stylesheet" />
+    <!-- <style>
+        .side-bar {
+            height: 100vh;
+        }
+    </style> -->
 </head>
 
 <body>
     <side-bar></side-bar>
+    <div class="main-content">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span>Sales Analytics</span>
+                    <select class="form-select form-select-sm w-auto">
+                        <option>Last 7 days</option>
+                        <option selected>Last 30 days</option>
+                        <option>Last 90 days</option>
+                    </select>
+                </div>
+                <div class="card-body">
+                    <canvas id="salesChart"></canvas>
+                </div>
+            </div>
+    </div>
 
     <script src="/assets/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
