@@ -12,7 +12,6 @@ class SideMenuComponent extends HTMLElement {
                 position: fixed;
                 z-index: 1040;
                 left: -250px;
-                transition: left 0.3s ease;
                 background-color: #2c3e50 !important;
                 color: white;
                 height: 100vh;
@@ -95,7 +94,7 @@ class SideMenuComponent extends HTMLElement {
             }
         </style>
         <div class="sidemenu-backdrop"></div>
-        <div class="col-6 col-md-4 col-lg-3 d-lg-block sidemenu collapse p-0" id="sidemenu">
+        <div class="col-6 col-md-4 col-lg-3 sidemenu collapse p-0" id="sidemenu">
             <div class="nav flex-column">
                 <div class="text-center my-4">
                     <h4>Exclusive</h4>
