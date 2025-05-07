@@ -1,5 +1,4 @@
 import { creatProductCard, fetchResponse } from "/assets/js/main.js";
-import { redirectToNotFoundPage } from "/assets/js/utils.js";
 
 const sidebar = document.getElementById("sidebar");
 const backdrop = document.querySelector(".sidebar-backdrop");
@@ -37,10 +36,10 @@ export function closeOnClickOutside(event) {
 export function fetchSliceBestSelling() {
   var productsSection = document.getElementById('best-selling');
   fetchResponse().then(products => {
-    products.sort((a, b) => (b.ratingCount || 0) - (a.ratingCount || 0)).slice(0, 4).sort(() => Math.random() - 0.5).forEach(product => {
+    products.sort((a, b) => (b.ratingCount || 0) - (a.ratingCount || 0)).slice(0, 4).forEach(product => {
       productsSection.appendChild(creatProductCard(product));
     });
-  }).catch(() => redirectToNotFoundPage(true));
+  });
 };
 fetchSliceBestSelling();
 
@@ -54,8 +53,9 @@ export function fetchSliceFlashSales() {
     ).slice(0, 4).sort(() => Math.random() - 0.5).forEach(product => {
       productsSection.appendChild(creatProductCard(product));
     });
-  }).catch(() => redirectToNotFoundPage(true));
+  });
 };
+
 fetchSliceFlashSales();
 
 
@@ -65,7 +65,7 @@ export function fetchSliceAllProducts() {
     products.sort(() => Math.random() - 0.5).slice(0, 4).forEach(product => {
       productsSection.appendChild(creatProductCard(product));
     });
-  }).catch(() => redirectToNotFoundPage(true));
+  });
 };
 fetchSliceAllProducts();
 

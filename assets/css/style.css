@@ -9,6 +9,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 input {
@@ -180,9 +181,11 @@ exclusive-header {
   p {
     color: rgb(200, 198, 198);
   }
+
   .btn {
     position: relative;
   }
+
   .badge {
     position: absolute !important;
     top: -5px !important;
@@ -193,6 +196,7 @@ exclusive-header {
     padding: 2px 6px;
     font-size: 12px;
   }
+
   .dropdown-menu,
   .userIcon--Style {
     background: rgb(102 100 100 / 80%) !important;
@@ -227,8 +231,8 @@ exclusive-footer {
     place-items: center;
   }
 
-  .footer__rights > p {
-    .footer__rights > p {
+  .footer__rights>p {
+    .footer__rights>p {
       border-color: rgb(94, 93, 93);
       color: rgb(94, 93, 93);
     }
@@ -247,6 +251,7 @@ exclusive-footer {
   }
 
   @media (max-width: 991px) {
+
     .toast-success,
     .toast-error {
       text-align: center;
@@ -258,6 +263,7 @@ exclusive-footer {
     }
   }
 }
+
 .moveAnimation {
   animation: move 1s infinite;
 }
@@ -349,9 +355,32 @@ exclusive-footer {
   }
 }
 
-.custom-control-input:checked + .custom-control-label {
+.custom-control-input:checked+.custom-control-label {
   background-color: var(--text-primary);
   color: white;
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
+}
+
+/* -------------------dashboard------------------- */
+
+.dashboard-header {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.card {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+}
+
+.card-header {
+  background-color: white;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  font-weight: 600;
 }

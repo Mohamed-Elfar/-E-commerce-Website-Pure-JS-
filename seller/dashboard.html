@@ -2,87 +2,102 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="icon" href="/assets/images/icon.png" type="image/png" />
-    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/assets/css/fontawesome.min.css" />
-    <link rel="stylesheet" href="/assets/css/style.css" />
-    <link rel="stylesheet" href="seller.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="icon" href="/assets/images/icon.png" type="image/png" />
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/assets/css/fontawesome.min.css" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="seller.css">
 </head>
 
 <body>
-   <side-bar></side-bar>
-
-    <div class="main-content">
-        <div class="dashboard-header d-flex justify-content-between align-items-center">
-            <h2>Seller Dashboard</h2>
-            <div>
-                <span class="me-3">Welcome, <strong>Seller Name</strong></span>
-                <button class="btn btn-sm btn-outline-secondary">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </button>
+  <!-- best to place before sidemenu for all content of your page -->
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar Column -->
+      <side-menu></side-menu>
+      
+      <!-- Main Content Column -->
+      <!-- These sizes must be placed after sidemenu for main content of your page -->
+      <div class="main-content col-12 col-lg-9 ms-lg-auto pt-3 px-4">
+        <div class="d-flex align-items-center justify-content-between">
+          <!-- Sidebar Toggler Button (Don't forget to add this) -->
+          <side-toggler></side-toggler>
+          <div
+            class="dashboard-header col-lg-12 col-11 mx-2 d-flex justify-content-between align-items-center flex-column flex-sm-row">
+            <h2>Dashboard</h2>
+            <div class="d-flex flex-column flex-md-row gap-2">
+              <span class="me-3">Welcome, <strong>Name</strong></span>
+              <button class="btn btn-sm btn-outline-secondary">
+                <i class="fas fa-sign-out-alt"></i> Logout
+              </button>
             </div>
+          </div>
         </div>
 
         <!-- Stats Cards -->
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h6 class="card-subtitle mb-2 text-muted">Total Revenue</h6>
-                        <h3 class="card-title">$8,450</h3>
-                        <p class="card-text text-success">
-                            <i class="fas fa-arrow-up"></i> 12.5% from last month
-                        </p>
-                    </div>
-                </div>
+        <div class="row mt-4">
+          <div class="col-md-4 mb-3">
+            <div class="card h-100">
+              <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">Total Revenue</h6>
+                <h3 class="card-title">$8,450</h3>
+                <p class="card-text text-success">
+                  <i class="fas fa-arrow-up"></i> 12.5% from last month
+                </p>
+              </div>
             </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h6 class="card-subtitle mb-2 text-muted">Total Orders</h6>
-                        <h3 class="card-title">124</h3>
-                        <p class="card-text text-success">
-                            <i class="fas fa-arrow-up"></i> 8.3% from last month
-                        </p>
-                    </div>
-                </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <div class="card h-100">
+              <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">Total Orders</h6>
+                <h3 class="card-title">124</h3>
+                <p class="card-text text-success">
+                  <i class="fas fa-arrow-up"></i> 8.3% from last month
+                </p>
+              </div>
             </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h6 class="card-subtitle mb-2 text-muted">Products</h6>
-                        <h3 class="card-title">42</h3>
-                        <p class="card-text text-danger">
-                            <i class="fas fa-arrow-down"></i> 2 items low stock
-                        </p>
-                    </div>
-                </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <div class="card h-100">
+              <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">Products</h6>
+                <h3 class="card-title">42</h3>
+                <p class="card-text text-danger">
+                  <i class="fas fa-arrow-down"></i> 2 items low stock
+                </p>
+              </div>
             </div>
+          </div>
         </div>
 
-        <div class="card mt-1">
-            <div class="card-header d-flex justify-content-between align-items-center">
-                <span>Sales Analytics</span>
-                <select class="form-select form-select-sm w-auto">
-                    <option>Last 7 days</option>
-                    <option selected>Last 30 days</option>
-                    <option>Last 90 days</option>
-                </select>
-            </div>
-            <div class="card-body">
-                <canvas id="salesChart"></canvas>
-            </div>
+        <div class="card mt-4">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <span>Sales Analytics</span>
+            <select class="form-select form-select-sm w-auto">
+              <option>Last 7 days</option>
+              <option selected>Last 30 days</option>
+              <option>Last 90 days</option>
+            </select>
+          </div>
+          <div class="card-body">
+            <canvas id="salesChart"></canvas>
+          </div>
         </div>
-        
+      </div>
     </div>
+  </div>
 
-    <script src="/assets/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="analytics.js"></script>
-    <script src="side-bar.js"></script>
+  <script src="/assets/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="analytics.js"></script>
+  <!-- side menu components -->
+  <script src="/assets/components/side-menu.js"></script>
+  <script src="/assets/components/side_toggler.js"></script>
+
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-import { addToCart, search, toggleWishList, redirectToNotFoundPage } from "/assets/js/utils.js";
+import { search } from "/assets/js/utils.js";
 import { creatProductCard, fetchResponse } from "/assets/js/main.js";
 
 const productsTitle = document.getElementById('products-title');
@@ -16,8 +16,9 @@ export function fetchAllProducts() {
         products.forEach(product => {
             productsSection.appendChild(creatProductCard(product));
         });
-    }).catch(() => redirectToNotFoundPage(true));
+    });
 };
+
 
 export function fetchBestSellingProducts() {
     clearAndSetTitle("Best Selling");
@@ -25,8 +26,9 @@ export function fetchBestSellingProducts() {
         products.sort((a, b) => (b.ratingCount || 0) - (a.ratingCount || 0)).slice(0, 20).forEach(product => {
             productsSection.appendChild(creatProductCard(product));
         });
-    }).catch(() => redirectToNotFoundPage(true));
+    });
 };
+
 
 export function fetchFlashSalesProducts() {
     clearAndSetTitle("Flash Sales");
@@ -36,8 +38,9 @@ export function fetchFlashSalesProducts() {
         ).sort(() => Math.random() - 0.5).forEach(product => {
             productsSection.appendChild(creatProductCard(product));
         });
-    }).catch(() => redirectToNotFoundPage(true));
+    });
 };
+
 
 export function fetchCategoryProducts(category) {
     clearAndSetTitle(category);
@@ -50,7 +53,7 @@ export function fetchCategoryProducts(category) {
         }).forEach(product => {
             productsSection.appendChild(creatProductCard(product));
         });
-    }).catch(() => redirectToNotFoundPage(true));
+    });
 }
 
 search("product__title", ".product__card");
