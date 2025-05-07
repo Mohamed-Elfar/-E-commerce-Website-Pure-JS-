@@ -219,13 +219,15 @@ wishListBtn.addEventListener("click", () => {
 export function fetchSliceCategoryProducts() {
   const productsSection = document.getElementById('relatedProducts');
   productsSection.innerHTML = '';
-  fetchResponse().filter(e => {
-    return (
-      e.category &&
-      e.category.toLowerCase() === product.category.toLowerCase()
-    );
-  }).slice(0, 4).sort(() => Math.random() - 0.5).forEach(product => {
-    productsSection.appendChild(creatProductCard(product));
+  fetchResponse().then(products => {
+    products.filter(e => {
+      return (
+        e.category &&
+        e.category.toLowerCase() === product.category.toLowerCase()
+      );
+    }).slice(0, 4).sort(() => Math.random() - 0.5).forEach(product => {
+      productsSection.appendChild(creatProductCard(product));
+    });
   });
 };
 fetchSliceCategoryProducts();

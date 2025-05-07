@@ -29,7 +29,7 @@ export function fetchResponse() {
     const storedProducts = localStorage.getItem("allProducts");
 
     if (storedProducts) {
-        return JSON.parse(storedProducts);
+        return Promise.resolve(JSON.parse(storedProducts));
     }
 
     return fetch('/assets/data/products.json')

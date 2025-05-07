@@ -35,8 +35,10 @@ export function closeOnClickOutside(event) {
 
 export function fetchSliceBestSelling() {
   var productsSection = document.getElementById('best-selling');
-  fetchResponse().sort((a, b) => (b.ratingCount || 0) - (a.ratingCount || 0)).slice(0, 4).sort(() => Math.random() - 0.5).forEach(product => {
-    productsSection.appendChild(creatProductCard(product));
+  fetchResponse().then(products => {
+    products.sort((a, b) => (b.ratingCount || 0) - (a.ratingCount || 0)).slice(0, 4).forEach(product => {
+      productsSection.appendChild(creatProductCard(product));
+    });
   });
 };
 fetchSliceBestSelling();
@@ -45,10 +47,12 @@ fetchSliceBestSelling();
 export function fetchSliceFlashSales() {
   var productsSection = document.getElementById('flash-sales');
 
-  fetchResponse().filter(
-    product => product.sale != null && product.sale !== ''
-  ).slice(0, 4).sort(() => Math.random() - 0.5).forEach(product => {
-    productsSection.appendChild(creatProductCard(product));
+  fetchResponse().then(products => {
+    products.filter(
+      product => product.sale != null && product.sale !== ''
+    ).slice(0, 4).sort(() => Math.random() - 0.5).forEach(product => {
+      productsSection.appendChild(creatProductCard(product));
+    });
   });
 };
 
@@ -57,11 +61,12 @@ fetchSliceFlashSales();
 
 export function fetchSliceAllProducts() {
   var productsSection = document.getElementById('our-products');
-  fetchResponse().sort(() => Math.random() - 0.5).slice(0, 4).forEach(product => {
-    productsSection.appendChild(creatProductCard(product));
+  fetchResponse().then(products => {
+    products.sort(() => Math.random() - 0.5).slice(0, 4).forEach(product => {
+      productsSection.appendChild(creatProductCard(product));
+    });
   });
 };
-
 fetchSliceAllProducts();
 
 
