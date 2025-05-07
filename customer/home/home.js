@@ -1,5 +1,4 @@
 import { creatProductCard, fetchResponse } from "/assets/js/main.js";
-import { redirectToNotFoundPage } from "/assets/js/utils.js";
 
 const sidebar = document.getElementById("sidebar");
 const backdrop = document.querySelector(".sidebar-backdrop");
@@ -36,11 +35,9 @@ export function closeOnClickOutside(event) {
 
 export function fetchSliceBestSelling() {
   var productsSection = document.getElementById('best-selling');
-  fetchResponse().then(products => {
-    products.sort((a, b) => (b.ratingCount || 0) - (a.ratingCount || 0)).slice(0, 4).sort(() => Math.random() - 0.5).forEach(product => {
-      productsSection.appendChild(creatProductCard(product));
-    });
-  }).catch(() => redirectToNotFoundPage(true));
+  fetchResponse().sort((a, b) => (b.ratingCount || 0) - (a.ratingCount || 0)).slice(0, 4).sort(() => Math.random() - 0.5).forEach(product => {
+    productsSection.appendChild(creatProductCard(product));
+  });
 };
 fetchSliceBestSelling();
 
@@ -48,25 +45,23 @@ fetchSliceBestSelling();
 export function fetchSliceFlashSales() {
   var productsSection = document.getElementById('flash-sales');
 
-  fetchResponse().then(products => {
-    products.filter(
-      product => product.sale != null && product.sale !== ''
-    ).slice(0, 4).sort(() => Math.random() - 0.5).forEach(product => {
-      productsSection.appendChild(creatProductCard(product));
-    });
-  }).catch(() => redirectToNotFoundPage(true));
+  fetchResponse().filter(
+    product => product.sale != null && product.sale !== ''
+  ).slice(0, 4).sort(() => Math.random() - 0.5).forEach(product => {
+    productsSection.appendChild(creatProductCard(product));
+  });
 };
+
 fetchSliceFlashSales();
 
 
 export function fetchSliceAllProducts() {
   var productsSection = document.getElementById('our-products');
-  fetchResponse().then(products => {
-    products.sort(() => Math.random() - 0.5).slice(0, 4).forEach(product => {
-      productsSection.appendChild(creatProductCard(product));
-    });
-  }).catch(() => redirectToNotFoundPage(true));
+  fetchResponse().sort(() => Math.random() - 0.5).slice(0, 4).forEach(product => {
+    productsSection.appendChild(creatProductCard(product));
+  });
 };
+
 fetchSliceAllProducts();
 
 

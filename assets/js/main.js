@@ -1,4 +1,5 @@
 import { addToCart, toggleWishList } from "/assets/js/utils.js";
+import { redirectToNotFoundPage } from "/assets/js/utils.js";
 
 export function creatProductCard(product) {
     const productCard = document.createElement('product-card');
@@ -25,6 +26,16 @@ export function creatProductCard(product) {
 }
 
 export function fetchResponse() {
+    const storedProducts = localStorage.getItem("allProducts");
+
+    if (storedProducts) {
+        return JSON.parse(storedProducts);
+    }
+
     return fetch('/assets/data/products.json')
-        .then(response => response.json());
+        .then(response => response.json())
+        .then(products => {
+            localStorage.setItem("allProducts", JSON.stringify(products));
+            return products;
+        }).catch(() => redirectToNotFoundPage(true));
 }

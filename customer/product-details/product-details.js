@@ -122,7 +122,7 @@ addReviewBtn.addEventListener("click", function () {
 
   const firstName = currentUser.firstName;
   const lastName = currentUser.lastName;
-  const userName = firstName +" "+ lastName;
+  const userName = firstName + " " + lastName;
   const today = new Date();
   const reviewDate = today.toLocaleDateString("en-CA");
   const newReview = {
@@ -219,15 +219,13 @@ wishListBtn.addEventListener("click", () => {
 export function fetchSliceCategoryProducts() {
   const productsSection = document.getElementById('relatedProducts');
   productsSection.innerHTML = '';
-  fetchResponse().then(products => {
-    products.filter(e => {
-      return (
-        e.category &&
-        e.category.toLowerCase() === product.category.toLowerCase()
-      );
-    }).slice(0, 4).sort(() => Math.random() - 0.5).forEach(product => {
-      productsSection.appendChild(creatProductCard(product));
-    });
-  }).catch(() => redirectToNotFoundPage(true));
-}
+  fetchResponse().filter(e => {
+    return (
+      e.category &&
+      e.category.toLowerCase() === product.category.toLowerCase()
+    );
+  }).slice(0, 4).sort(() => Math.random() - 0.5).forEach(product => {
+    productsSection.appendChild(creatProductCard(product));
+  });
+};
 fetchSliceCategoryProducts();
