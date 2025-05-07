@@ -12,28 +12,34 @@ function clearAndSetTitle(title) {
 
 export function fetchAllProducts() {
     clearAndSetTitle("All Products");
-    fetchResponse().forEach(product => {
-        productsSection.appendChild(creatProductCard(product));
+    fetchResponse().then(products => {
+        products.forEach(product => {
+            productsSection.appendChild(creatProductCard(product));
+        });
     });
 };
 
 
 export function fetchBestSellingProducts() {
     clearAndSetTitle("Best Selling");
-    fetchResponse().sort((a, b) => (b.ratingCount || 0) - (a.ratingCount || 0)).slice(0, 20).forEach(product => {
-        productsSection.appendChild(creatProductCard(product));
+    fetchResponse().then(products => {
+        products.sort((a, b) => (b.ratingCount || 0) - (a.ratingCount || 0)).slice(0, 20).forEach(product => {
+            productsSection.appendChild(creatProductCard(product));
+        });
     });
 };
 
 
 export function fetchFlashSalesProducts() {
     clearAndSetTitle("Flash Sales");
-    fetchResponse().filter(
+    fetchResponse().then(products => {
+        products.filter(
             product => product.sale != null && product.sale !== ''
         ).sort(() => Math.random() - 0.5).forEach(product => {
             productsSection.appendChild(creatProductCard(product));
         });
-    };
+    });
+};
 
 
 export function fetchCategoryProducts(category) {
