@@ -27,6 +27,11 @@
               </a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="/admin/manage-user/manage-user.html">
+                <i class="fas fa-box-open"></i> users
+              </a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="#">
                 <i class="fas fa-box-open"></i> Products
               </a>
@@ -106,9 +111,7 @@
             <div class="card-body">
               <h6 class="card-subtitle mb-2 text-muted">Total Revenue</h6>
               <h3 class="card-title TotalRevenue">$8,450</h3>
-              <p class="card-text text-success">
-                <i class="fas fa-arrow-up"></i> 12.5% from last month
-              </p>
+              <p class="card-text text-success TotalRevenueRate"></p>
             </div>
           </div>
         </div>
@@ -117,9 +120,9 @@
             <div class="card-body">
               <h6 class="card-subtitle mb-2 text-muted">Total Orders</h6>
               <h3 class="card-title totalOrders">124</h3>
-              <p class="card-text text-success">
+              <!-- <p class="card-text text-success">
                 <i class="fas fa-arrow-up"></i> 8.3% from last month
-              </p>
+              </p> -->
             </div>
           </div>
         </div>
@@ -129,7 +132,7 @@
               <h6 class="card-subtitle mb-2 text-muted">Products</h6>
               <h3 class="card-title">42</h3>
               <p class="card-text text-danger inStock d-none">
-                <i class="fas fa-arrow-down"></i> 
+                <i class="fas fa-arrow-down"></i>
               </p>
             </div>
           </div>
@@ -137,11 +140,11 @@
         <div class="col-md-6 col-lg-3 mb-4">
           <div class="card h-100">
             <div class="card-body">
-              <h6 class="card-subtitle mb-2 text-muted">Conversion Rate</h6>
-              <h3 class="card-title">3.2%</h3>
-              <p class="card-text text-success">
-                <i class="fas fa-arrow-up"></i> 0.5% from last month
-              </p>
+              <h6 class="card-subtitle mb-2 text-muted">total users</h6>
+              <h3 class="card-title totalUsers">0</h3>
+              <!-- <p class="card-text text-success totalUsersRate">
+                 <i class="fas fa-arrow-up"></i> 0.5% from last month 
+              </p>-->
             </div>
           </div>
         </div>
@@ -205,28 +208,7 @@
                       <th>Revenue</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr>
-                      <td>HXRT Wired Gaming</td>
-                      <td><span class="badge bg-danger">20%</span></td>
-                      <td>56</td>
-                      <td>$4,480</td>
-                    </tr>
-                    <tr>
-                      <td>AC-500 Wired Explosive</td>
-                      <td><span class="badge bg-danger">20%</span></td>
-                      <td>42</td>
-                      <td>$3,360</td>
-                    </tr>
-                    <tr>
-                      <td>WELCO Gaming Monitor</td>
-                      <td>
-                        <span class="badge bg-warning text-dark">10%</span>
-                      </td>
-                      <td>28</td>
-                      <td>$2,520</td>
-                    </tr>
-                  </tbody>
+                  <tbody></tbody>
                 </table>
               </div>
             </div>
@@ -236,8 +218,7 @@
           <div class="card h-100">
             <div class="card-header">Top Selling Products</div>
             <div class="card-body">
-              <div class="row topSellingProducts">
-              </div>
+              <div class="row topSellingProducts"></div>
             </div>
           </div>
         </div>

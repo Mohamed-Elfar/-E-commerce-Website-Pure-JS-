@@ -217,7 +217,7 @@ class ExclusiveHeader extends HTMLElement {
         token: localStorage.getItem("token"),
         userButton: this.querySelector(".userIcon"),
         adminLink: this.querySelector("#adminLink"),
-        sellerLink: this.querySelector("#sellerLink"), // Fixed typo from "serllerLink"
+        sellerLink: this.querySelector("#sellerLink"), 
         wishlistLink: this.querySelector("#wishlistLink"),
         cartLink: this.querySelector("#cartLink"),
         loginBtn: this.querySelector("#loginBtn"),

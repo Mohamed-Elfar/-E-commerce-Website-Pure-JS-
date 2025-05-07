@@ -7,9 +7,14 @@ const openBtn = document.getElementById("openSidebar");
 const closeBtn = document.getElementById("closeSidebar");
 const userName = document.getElementById("userName");
 const totalRevenue = document.querySelector(".TotalRevenue");
+const TotalRevenueRate = document.querySelector(".TotalRevenueRate");
 const inStock = document.querySelector(".inStock");
 const totalOrders = document.querySelector(".totalOrders");
 const topSellingProducts = document.querySelector(".topSellingProducts");
+const flashTable = document.querySelector("table > tbody");
+const totalUsers = document.querySelector(".totalUsers");
+// const totalUsersRate = document.querySelector(".totalUsersRate");
+
 // Initial state
 if (sidebarContainer.classList.contains("collapsed")) {
   openBtn.style.display = "block";
@@ -38,64 +43,6 @@ closeBtn.addEventListener("click", () => {
 });
 
 /* main content */
-// Sales Chart
-const salesCtx = document.getElementById("salesChart").getContext("2d");
-window.salesChart = new Chart(salesCtx, {
-  type: "line",
-  data: {
-    labels: [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ],
-    datasets: [
-      {
-        label: "Sales",
-        data: [
-          1200, 1900, 1500, 2000, 1800, 2100, 2400, 2200, 2500, 2800, 3000,
-          3200,
-        ],
-        backgroundColor: "rgba(75, 192, 192, 0.2)",
-        borderColor: "rgba(75, 192, 192, 1)",
-        borderWidth: 2,
-        tension: 0.4,
-        fill: true,
-      },
-    ],
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        position: "top",
-      },
-      tooltip: {
-        mode: "index",
-        intersect: false,
-      },
-    },
-    scales: {
-      y: {
-        beginAtZero: true,
-        ticks: {
-          callback: function (value) {
-            return "$" + value;
-          },
-        },
-      },
-    },
-  },
-});
 
 // Category Chart
 const categoryCtx = document.getElementById("categoryChart").getContext("2d");
@@ -111,7 +58,7 @@ window.categoryChart = new Chart(categoryCtx, {
     ],
     datasets: [
       {
-        data: [35, 25, 20, 10, 10],
+        data: [0, 100, 0, 0, 0],
         backgroundColor: [
           "#3498db",
           "#2ecc71",
@@ -172,11 +119,12 @@ dashboardBtn.addEventListener("click", () => {
   loggout();
 });
 
-// console.log(loginUser());
 userName.textContent = loginUser().first_name + " " + loginUser().last_name;
 let sum = 0;
 let allOrders = 0;
 const users = JSON.parse(localStorage.getItem("users"));
+const allProducts = JSON.parse(localStorage.getItem("allProducts"));
+
 users.forEach((user) => {
   user.orders?.forEach((order) => {
     allOrders++;
@@ -185,8 +133,37 @@ users.forEach((user) => {
 });
 totalRevenue.textContent = "$" + sum.toFixed(2);
 totalOrders.innerHTML = allOrders;
+//---------------------totalRevenueRate---------------------
 
-const allProducts = JSON.parse(localStorage.getItem("allProducts"));
+const lastDayRevenue = parseFloat(localStorage.getItem("totalRevenuePrevDay"));
+
+let percentDifference;
+if (!lastDayRevenue) {
+  // First run: Initialize storage, show 0%
+  localStorage.setItem("totalRevenuePrevDay", sum.toFixed(2));
+  percentDifference = 0;
+} else {
+  // Normal case: Calculate percentage change
+  percentDifference =
+    lastDayRevenue === 0 ? 0 : ((sum - lastDayRevenue) / lastDayRevenue) * 100;
+
+  // Force zero if difference is negligible
+  if (Math.abs(percentDifference) < 0.001) percentDifference = 0;
+}
+percentDifference < sum
+  ? TotalRevenueRate.classList.add("text-success")
+  : TotalRevenueRate.classList.add("text-danger");
+TotalRevenueRate.innerHTML += `${
+  percentDifference < sum
+    ? `<i class="fas fa-arrow-up"></i> ${percentDifference.toFixed(
+        2
+      )}% from last day`
+    : `<i class="fas fa-arrow-down"></i> ${percentDifference.toFixed(
+        2
+      )}% from last day`
+}`;
+
+//---------------------totalRevenueRate-----End----------------
 const numOfpProducts = allProducts.length;
 const productsInStok = allProducts.filter(
   (product) => product.quantity > 0
@@ -214,6 +191,7 @@ users?.forEach((user) => {
           image: product.image,
           sale: product.sale,
           price: product.price,
+          data: product.date,
         };
       }
     });
@@ -232,8 +210,8 @@ topSellingProducts.innerHTML = top4Products
    <div class="col-sm-6 col-md-6 col-lg-6 mb-3">
                   <div class="card product-card h-100">
                     <img
-                      src=${product.image}
-                      class="card-img-top"
+                      src="${product.image}"
+                      class="card-img-top w-50"
                       alt="Product"
                     />
                     ${
@@ -248,10 +226,17 @@ topSellingProducts.innerHTML = top4Products
                       >
                         <div>
                           <span class="text-danger">$${product.price}</span>
-                          <span
+                          ${
+                            product.sale.trim() !== ""
+                              ? `<span
                             class="text-muted text-decoration-line-through ms-2"
-                            >$200</span
-                          >
+                            >$${(
+                              product.price *
+                              (1 - parseFloat(product.sale) / 100)
+                            ).toFixed(2)}</span
+                          >`
+                              : ""
+                          }
                         </div>
                         <span class="text-muted small">${
                           product.count
@@ -263,3 +248,148 @@ topSellingProducts.innerHTML = top4Products
   `
   )
   .join("");
+
+const flashSaleProducts = allProducts
+  .filter((product) => product.sale.trim() !== "")
+  .sort((a, b) => parseFloat(b.sale) - parseFloat(a.sale));
+
+flashTable.innerHTML = flashSaleProducts
+  .map(
+    (product) => ` <tr>
+                      <td>${product.name}</td>
+                      <td><span class="badge ${
+                        parseFloat(product.sale) > 15
+                          ? "bg-danger bg-opacity-10 text-danger"
+                          : "bg-success bg-opacity-10 text-success"
+                      }">${product.sale}</span></td>
+                      <td>${
+                        Object.keys(productCounts)
+                          .map(Number)
+                          .includes(product.id)
+                          ? productCounts[product.id].count
+                          : 0
+                      }</td>
+                      <td>$${product.price}</td>
+                    </tr>`
+  )
+  .join("");
+
+//   const monthlySales = Array(12).fill(0); // 12 months
+
+//   users.forEach((user) => {
+//     user.orders?.forEach((order) => {
+//       const month = new Date(order.date).getMonth();
+//       monthlySales[month] += Number(order.total) || 0;
+//       console.log(monthlySales);
+
+//     });
+//   });
+// // Sales Chart
+// const salesCtx = document.getElementById("salesChart").getContext("2d");
+// window.salesChart = new Chart(salesCtx, {
+//   type: "line",
+//   data: {
+//     labels: [
+//       "Jan",
+//       "Feb",
+//       "Mar",
+//       "Apr",
+//       "May",
+//       "Jun",
+//       "Jul",
+//       "Aug",
+//       "Sep",
+//       "Oct",
+//       "Nov",
+//       "Dec",
+//     ],
+//     datasets: [
+//       {
+//         label: "Sales",
+//         data: monthlySales,
+//         backgroundColor: "rgba(75, 192, 192, 0.2)",
+//         borderColor: "rgba(75, 192, 192, 1)",
+//         borderWidth: 2,
+//         tension: 0.4,
+//         fill: true,
+//       },
+//     ],
+//   },
+//   options: {
+//     responsive: true,
+//     maintainAspectRatio: false,
+//     plugins: {
+//       legend: {
+//         position: "top",
+//       },
+//       tooltip: {
+//         mode: "index",
+//         intersect: false,
+//       },
+//     },
+//     scales: {
+//       y: {
+//         beginAtZero: true,
+//         ticks: {
+//           callback: function (value) {
+//             return "$" + value;
+//           },
+//         },
+//       },
+//     },
+//   },
+// });
+
+const dailySales = Array(7).fill(0);
+
+users.forEach((user) => {
+  user.orders?.forEach((order) => {
+    const day = new Date(order.date).getDay();
+    dailySales[day + 1 > 6 ? 0 : day + 1] += Number(order.total) || 0;
+  });
+});
+// Sales Chart
+const salesCtx = document.getElementById("salesChart").getContext("2d");
+window.salesChart = new Chart(salesCtx, {
+  type: "line",
+  data: {
+    labels: ["sat", "sun", "mon", "Tue", "Wed", "Thu", "Fri"],
+
+    datasets: [
+      {
+        label: "Sales",
+        data: dailySales,
+        backgroundColor: "rgba(75, 192, 192, 0.2)",
+        borderColor: "rgba(75, 192, 192, 1)",
+        borderWidth: 2,
+        tension: 0.4,
+        fill: true,
+      },
+    ],
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: "top",
+      },
+      tooltip: {
+        mode: "index",
+        intersect: false,
+      },
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        ticks: {
+          callback: function (value) {
+            return "$" + value;
+          },
+        },
+      },
+    },
+  },
+});
+
+totalUsers.textContent = users.length;
