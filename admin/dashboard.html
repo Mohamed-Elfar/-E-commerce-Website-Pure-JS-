@@ -105,7 +105,7 @@
           <div class="card h-100">
             <div class="card-body">
               <h6 class="card-subtitle mb-2 text-muted">Total Revenue</h6>
-              <h3 class="card-title">$8,450</h3>
+              <h3 class="card-title TotalRevenue">$8,450</h3>
               <p class="card-text text-success">
                 <i class="fas fa-arrow-up"></i> 12.5% from last month
               </p>
@@ -116,7 +116,7 @@
           <div class="card h-100">
             <div class="card-body">
               <h6 class="card-subtitle mb-2 text-muted">Total Orders</h6>
-              <h3 class="card-title">124</h3>
+              <h3 class="card-title totalOrders">124</h3>
               <p class="card-text text-success">
                 <i class="fas fa-arrow-up"></i> 8.3% from last month
               </p>
@@ -128,8 +128,8 @@
             <div class="card-body">
               <h6 class="card-subtitle mb-2 text-muted">Products</h6>
               <h3 class="card-title">42</h3>
-              <p class="card-text text-danger">
-                <i class="fas fa-arrow-down"></i> 2 items low stock
+              <p class="card-text text-danger inStock d-none">
+                <i class="fas fa-arrow-down"></i> 
               </p>
             </div>
           </div>
@@ -236,107 +236,7 @@
           <div class="card h-100">
             <div class="card-header">Top Selling Products</div>
             <div class="card-body">
-              <div class="row">
-                <div class="col-sm-6 col-md-6 col-lg-6 mb-3">
-                  <div class="card product-card h-100">
-                    <img
-                      src="https://via.placeholder.com/300x200?text=Gaming+Headset"
-                      class="card-img-top"
-                      alt="Product"
-                    />
-                    <span class="discount-badge">20% OFF</span>
-                    <div class="card-body">
-                      <h6 class="card-title">HXRT Wired Gaming</h6>
-                      <div
-                        class="d-flex justify-content-between align-items-center"
-                      >
-                        <div>
-                          <span class="text-danger">$160</span>
-                          <span
-                            class="text-muted text-decoration-line-through ms-2"
-                            >$200</span
-                          >
-                        </div>
-                        <span class="text-muted small">16 sold</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-6 mb-3">
-                  <div class="card product-card h-100">
-                    <img
-                      src="https://via.placeholder.com/300x200?text=Gaming+Monitor"
-                      class="card-img-top"
-                      alt="Product"
-                    />
-                    <span class="discount-badge">10% OFF</span>
-                    <div class="card-body">
-                      <h6 class="card-title">WELCO Gaming Monitor</h6>
-                      <div
-                        class="d-flex justify-content-between align-items-center"
-                      >
-                        <div>
-                          <span class="text-danger">$360</span>
-                          <span
-                            class="text-muted text-decoration-line-through ms-2"
-                            >$400</span
-                          >
-                        </div>
-                        <span class="text-muted small">12 sold</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-6 mb-3">
-                  <div class="card product-card h-100">
-                    <img
-                      src="https://via.placeholder.com/300x200?text=Comfort+Chair"
-                      class="card-img-top"
-                      alt="Product"
-                    />
-                    <span class="discount-badge">10% OFF</span>
-                    <div class="card-body">
-                      <h6 class="card-title">Index Comfort Chair</h6>
-                      <div
-                        class="d-flex justify-content-between align-items-center"
-                      >
-                        <div>
-                          <span class="text-danger">$360</span>
-                          <span
-                            class="text-muted text-decoration-line-through ms-2"
-                            >$400</span
-                          >
-                        </div>
-                        <span class="text-muted small">8 sold</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-6 mb-3">
-                  <div class="card product-card h-100">
-                    <img
-                      src="https://via.placeholder.com/300x200?text=AC-500+Headset"
-                      class="card-img-top"
-                      alt="Product"
-                    />
-                    <span class="discount-badge">20% OFF</span>
-                    <div class="card-body">
-                      <h6 class="card-title">AC-500 Wired Explosive</h6>
-                      <div
-                        class="d-flex justify-content-between align-items-center"
-                      >
-                        <div>
-                          <span class="text-danger">$160</span>
-                          <span
-                            class="text-muted text-decoration-line-through ms-2"
-                            >$200</span
-                          >
-                        </div>
-                        <span class="text-muted small">14 sold</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              <div class="row topSellingProducts">
               </div>
             </div>
           </div>

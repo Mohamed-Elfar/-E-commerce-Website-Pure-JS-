@@ -6,7 +6,10 @@ const mainContent = document.getElementById("mainContent");
 const openBtn = document.getElementById("openSidebar");
 const closeBtn = document.getElementById("closeSidebar");
 const userName = document.getElementById("userName");
-
+const totalRevenue = document.querySelector(".TotalRevenue");
+const inStock = document.querySelector(".inStock");
+const totalOrders = document.querySelector(".totalOrders");
+const topSellingProducts = document.querySelector(".topSellingProducts");
 // Initial state
 if (sidebarContainer.classList.contains("collapsed")) {
   openBtn.style.display = "block";
@@ -169,7 +172,94 @@ dashboardBtn.addEventListener("click", () => {
   loggout();
 });
 
-console.log(loginUser());
+// console.log(loginUser());
 userName.textContent = loginUser().first_name + " " + loginUser().last_name;
+let sum = 0;
+let allOrders = 0;
+const users = JSON.parse(localStorage.getItem("users"));
+users.forEach((user) => {
+  user.orders?.forEach((order) => {
+    allOrders++;
+    sum += Number(order.total) || 0;
+  });
+});
+totalRevenue.textContent = "$" + sum.toFixed(2);
+totalOrders.innerHTML = allOrders;
 
+const allProducts = JSON.parse(localStorage.getItem("allProducts"));
+const numOfpProducts = allProducts.length;
+const productsInStok = allProducts.filter(
+  (product) => product.quantity > 0
+).length;
+const restInStock = numOfpProducts - productsInStok;
+if (restInStock > 0) {
+  inStock.classList.remove("d-none");
+  inStock.innerHTML += `${restInStock} items low stock`;
+} else {
+  inStock.classList.add("d-none");
+}
 
+const productCounts = {};
+
+users?.forEach((user) => {
+  user.orders?.forEach((order) => {
+    order.products?.forEach((product) => {
+      if (productCounts[product.id]) {
+        productCounts[product.id].count += product.count || 0;
+      } else {
+        productCounts[product.id] = {
+          id: product.id,
+          name: product.name,
+          count: product.count || 0,
+          image: product.image,
+          sale: product.sale,
+          price: product.price,
+        };
+      }
+    });
+  });
+});
+
+const sortedProducts = Object.values(productCounts).sort(
+  (a, b) => b.count - a.count
+);
+const top4Products = sortedProducts.slice(0, 4);
+
+topSellingProducts.innerHTML = top4Products
+  .map(
+    (product) => `
+  
+   <div class="col-sm-6 col-md-6 col-lg-6 mb-3">
+                  <div class="card product-card h-100">
+                    <img
+                      src=${product.image}
+                      class="card-img-top"
+                      alt="Product"
+                    />
+                    ${
+                      product.sale.trim() !== ""
+                        ? `<span class="discount-badge">${product.sale} OFF</span>`
+                        : ""
+                    }
+                    <div class="card-body">
+                      <h6 class="card-title">${product.name}</h6>
+                      <div
+                        class="d-flex justify-content-between align-items-center"
+                      >
+                        <div>
+                          <span class="text-danger">$${product.price}</span>
+                          <span
+                            class="text-muted text-decoration-line-through ms-2"
+                            >$200</span
+                          >
+                        </div>
+                        <span class="text-muted small">${
+                          product.count
+                        } sold</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+  `
+  )
+  .join("");
