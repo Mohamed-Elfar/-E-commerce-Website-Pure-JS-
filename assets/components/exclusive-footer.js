@@ -41,13 +41,7 @@ class ExclusiveFooter extends HTMLElement {
             <h5 class="mb-2">Account</h5>
             <ul class="nav flex-column text--secondary">
               <li class="nav-item mb-2">
-                <a href="#" class="border-0">my account</a>
-              </li>
-              <li class="nav-item mb-2">
-                <a href="/authentication/login.html" class="border-0"
-                  >login</a
-                > /<a href="/authentication/register.html" class="border-0"
-                  >register</a>
+                <a href="/customer/profile/profile.html" class="border-0">my account</a>
               </li>
               <li class="nav-item mb-2">
                 <a href="/customer/cart/cart.html" class="border-0">cart</a>

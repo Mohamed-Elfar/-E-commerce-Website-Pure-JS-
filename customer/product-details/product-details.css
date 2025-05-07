@@ -45,6 +45,10 @@ input[type="radio"] {
     margin-block: 50px 30px;
 }
 
+#backProductsBtn:hover {
+  color: white !important;
+}
+
 /* media query */
 @media screen and (max-width: 992px) {
   .product-info {

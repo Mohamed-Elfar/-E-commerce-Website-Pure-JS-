@@ -1,140 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Edit Profile</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Bootstrap CSS -->
-  <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/assets/css/fontawesome.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="/authentication/auth.css">
-  <link rel="stylesheet" href="/assets/css/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Edit Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bootstrap CSS -->
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/assets/css/fontawesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/authentication/auth.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
 
-  <style>
-    .sidebar-link{
-      color: black;
-    }
-    .sidebar-link.active {
-      color: red;
-    }
-    .form-control{
-      background-color: #f2f3f4;
-      border: none;
-      height: 40px;
-    }
-    
-  </style>
-</head>
-<body>
-  <exclusive-header></exclusive-header>
+    <style>
+      .sidebar-link {
+        color: black;
+      }
+      .sidebar-link.active {
+        color: red;
+      }
+      .form-control {
+        background-color: #f2f3f4;
+        border: none;
+        height: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <exclusive-header></exclusive-header>
+    <div class="toast"></div>
+    <div class="container mt-3">
+      <div class="row">
+        <div class="col-12 d-flex justify-content-between align-items-center">
+          <!-- الشمال -->
+          <div class="d-flex">
+            <p class="mb-0 text-muted me-2">Home /</p>
+            <p class="mb-0">My Account</p>
+          </div>
 
-  <div class="container mt-3">
-    <div class="row">
-      <div class="col-12 d-flex justify-content-between align-items-center">
-        <!-- الشمال -->
-        <div class="d-flex">
-          <p class="mb-0 text-muted me-2">Home / </p>
-          <p class="mb-0">My Account </p>
-        </div>
-  
-        <!-- اليمين -->
-        <div class="d-flex">
-          <p class="mb-0 me-1">Welcome!</p>
-          <p id="username" class="mb-0 text-danger">My dear guest</p>
+          <!-- اليمين -->
+          <div class="d-flex">
+            <p class="mb-0 me-1">Welcome!</p>
+            <p id="username" class="mb-0 text-danger">My dear guest</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  
 
-<div class="container my-5">
-<div class="row">
-<!-- Sidebar -->
-<div class="col-md-3 mb-4">
-  <h6 class="fw-bold mb-3">Manage My Account</h6>
-  <ul class="list-unstyled">
-    <li><a href="../profile/profile.html" class="d-block sidebar-link active">My Profile</a></li>
-    <li><a class="d-block sidebar-link">Address Book</a></li>
-    <li><a class="d-block sidebar-link">My Payment Options</a></li>
-  </ul>
-  <h6 class="fw-bold mt-4 mb-3">History</h6>
-  <ul class="list-unstyled">
-    <li><a href="../orders/myorders.html" class="d-block sidebar-link">My Orders</a></li>
-    <li><a href="../orders/cancellation.html" class="d-block sidebar-link">Cancellation</a></li>
+    <div class="container my-5">
+      <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3 mb-4">
+          <h6 class="fw-bold mb-3">Manage My Account</h6>
+          <ul class="list-unstyled">
+            <li>
+              <a
+                href="../profile/profile.html"
+                class="d-block sidebar-link active"
+                >My Profile</a
+              >
+            </li>
+            <li><a class="d-block sidebar-link">Address Book</a></li>
+            <li><a class="d-block sidebar-link">My Payment Options</a></li>
+          </ul>
+          <h6 class="fw-bold mt-4 mb-3">History</h6>
+          <ul class="list-unstyled">
+            <li>
+              <a href="../orders/myorders.html" class="d-block sidebar-link"
+                >My Orders</a
+              >
+            </li>
+            <li>
+              <a href="../orders/cancellation.html" class="d-block sidebar-link"
+                >Cancellation</a
+              >
+            </li>
+          </ul>
+          <h6 class="fw-bold mt-4 mb-3">My Wishlist</h6>
+          <a class="d-block sidebar-link">Wishlist</a>
+        </div>
 
-  </ul>
-  <h6 class="fw-bold mt-4 mb-3">My Wishlist</h6>
-  <a class="d-block sidebar-link">Wishlist</a>
-
-</div>
-
-    <!-- Profile Form -->
-    <div class="col-md-9">
-      <div class="p-4 rounded bg-white shadow-sm">
-        <h5 class="fw-bold text-danger mb-4">Edit Your Profile</h5>
-        <form>
-          <div class="row mb-3">
-            <div class="col-md-6">
-              <label for="firstName" class="form-label">First Name</label>
-              <input
-                  type="text"
-                  id="firstName"
-                  placeholder="First Name"
-                  name="firstname"
-                  class="form-control"
-                />
-                <div class="invalid-feedback">
-                  Please enter a valid first name.(please no Spaces)
+        <!-- Profile Form -->
+        <div class="col-md-9">
+          <div class="p-4 rounded bg-white shadow-sm">
+            <h5 class="fw-bold text-danger mb-4">Edit Your Profile</h5>
+            <form>
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <label for="firstName" class="form-label">First Name</label>
+                  <input
+                    type="text"
+                    id="firstName"
+                    placeholder="First Name"
+                    name="firstname"
+                    class="form-control"
+                  />
+                  <div class="invalid-feedback">
+                    Please enter a valid first name.(please no Spaces)
+                  </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-              <label for="lastName" class="form-label">Last Name</label>
-              <input
-                  type="text"
-                  id="lastName"
-                  placeholder="Last Name"
-                  name="lastname"
-                  class="form-control"
-                />
-                <div class="invalid-feedback">
-                  Please enter a valid last name.(please no Spaces)
+                <div class="col-md-6">
+                  <label for="lastName" class="form-label">Last Name</label>
+                  <input
+                    type="text"
+                    id="lastName"
+                    placeholder="Last Name"
+                    name="lastname"
+                    class="form-control"
+                  />
+                  <div class="invalid-feedback">
+                    Please enter a valid last name.(please no Spaces)
+                  </div>
                 </div>
-            </div>
-          </div>
+              </div>
 
-          <div class="row mb-3">
-            <div class="col-md-6">
-              <label for="email" class="form-label">Email</label>
-              <input
-                  type="email"
-                  id="email"
-                  placeholder="Email Address"
-                  name="email"
-                  class="form-control"
-                />
-                <div class="invalid-feedback">
-                  Please enter a valid email address.
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <label for="email" class="form-label">Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    placeholder="Email Address"
+                    name="email"
+                    class="form-control"
+                  />
+                  <div class="invalid-feedback">
+                    Please enter a valid email address.
+                  </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-              <label for="phonenumber" class="form-label">Phone</label>
-              <input
-                  type="tel"
-                  id="phonenumber"
-                  placeholder="Phone Number"
-                  name="phonenumber"
-                  class="form-control"
-                />
-                <div class="invalid-feedback">
-                  Please enter a valid phone number.
+                <div class="col-md-6">
+                  <label for="phonenumber" class="form-label">Phone</label>
+                  <input
+                    type="tel"
+                    id="phonenumber"
+                    placeholder="Phone Number"
+                    name="phonenumber"
+                    class="form-control"
+                  />
+                  <div class="invalid-feedback">
+                    Please enter a valid phone number.
+                  </div>
                 </div>
-            </div>
-          </div>
+              </div>
 
-          <h6 class="fw-bold mt-4 mb-3">Password Changes</h6>
-          <div class="mb-3">
-            <label for="currentpassword" class="form-label">Current Password</label>
-            <input
+              <h6 class="fw-bold mt-4 mb-3">Password Changes</h6>
+              <div class="mb-3">
+                <label for="currentpassword" class="form-label"
+                  >Current Password</label
+                >
+                <input
                   type="password"
                   id="currentpassword"
                   placeholder="Password"
@@ -142,13 +154,11 @@
                   class="form-control"
                   autocomplete="new-password"
                 />
-                <div class="invalid-feedback">
-                  Please enter Your password.
-                </div>
-          </div>
-          <div class="mb-3">
-            <label for="newpassword" class="form-label">New Password</label>
-            <input
+                <div class="invalid-feedback">Please enter Your password.</div>
+              </div>
+              <div class="mb-3">
+                <label for="newpassword" class="form-label">New Password</label>
+                <input
                   type="password"
                   id="newpassword"
                   placeholder="Password"
@@ -159,10 +169,12 @@
                 <div class="invalid-feedback">
                   at least 6 chars & include (@, #, $,..).
                 </div>
-          </div>
-          <div class="mb-4">
-            <label for="confirmpassword" class="form-label">Confirm Password</label>
-            <input
+              </div>
+              <div class="mb-4">
+                <label for="confirmpassword" class="form-label"
+                  >Confirm Password</label
+                >
+                <input
                   type="password"
                   id="confirmpassword"
                   placeholder="Confirm Password"
@@ -170,23 +182,33 @@
                   class="form-control"
                 />
                 <div class="invalid-feedback">Passwords do not match.</div>
-          </div>
+              </div>
 
-          <div class="d-flex justify-content-end">
-            <button type="button" class="btn btn-cancel me-3 p-0 border-0 text-black bg-transparent">Cancel</button>
-            <button type="submit" id="saveChanges" class="btn btn-danger">Save Changes</button>
+              <div class="d-flex justify-content-end">
+                <button
+                  type="button"
+                  class="btn btn-cancel me-3 p-0 border-0 text-black bg-transparent"
+                >
+                  Cancel
+                </button>
+                <button type="submit" id="saveChanges" class="btn btn-danger">
+                  Save Changes
+                </button>
+              </div>
+            </form>
           </div>
-        </form>
+        </div>
       </div>
     </div>
 
-  </div>
-</div>
-
-<exclusive-footer></exclusive-footer>
-<script src="/assets/components/exclusive-header.js"  type="module" defer></script>
-<script src="/assets/components/exclusive-footer.js" defer></script>
-<script src="/assets/js/bootstrap.bundle.min.js"></script>
-<script src="profile.js" type="module"></script>
-</body>
+    <exclusive-footer></exclusive-footer>
+    <script
+      src="/assets/components/exclusive-header.js"
+      type="module"
+      defer
+    ></script>
+    <script src="/assets/components/exclusive-footer.js" defer></script>
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="profile.js" type="module"></script>
+  </body>
 </html>

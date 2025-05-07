@@ -20,21 +20,31 @@
 
     <exclusive-header></exclusive-header>
 
-<div class="container mt-5">
-  <div class="d-flex justify-content-between py-4">  
-    <P id="wishlistnum"></P>
-    <button class="ms-auto px-3 py-2 bg-white" id="AddALlToCart">Move All To Bag</button>
-   </div>
-  <div id="wishlist-container" class="row" style="row-gap: 20px;" ></div>
-</div>
-   
+    <div class="container mt-5">
+      <div class="d-flex justify-content-between py-4">
+        <p id="wishlistnum"></p>
+        <button class="ms-auto px-3 py-2 bg-white" id="AddALlToCart">
+          Move All To Bag
+        </button>
+      </div>
+      <div id="wishlist-container" class="row" style="row-gap: 20px"></div>
+    </div>
+
+    <!-- create badge for cart
+    <span class="badge bg-secondary rounded-pill">0</span> -->
+
+
+
+
+
+
 
     <exclusive-footer></exclusive-footer>
-    
+ 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.0/nouislider.min.js"></script>
     <script src="/assets/components/exclusive-header.js"  type="module" defer></script>
     <script src="/assets/components/exclusive-footer.js" defer></script>
-    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+     <script src="/assets/js/bootstrap.bundle.min.js"></script>
     <script src="./wishlist.js" type="module"></script>
   </body>
 </html>

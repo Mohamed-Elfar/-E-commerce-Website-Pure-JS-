@@ -122,7 +122,7 @@ addReviewBtn.addEventListener("click", function () {
 
   const firstName = currentUser.firstName;
   const lastName = currentUser.lastName;
-  const userName = firstName + " " + lastName;
+  const userName = firstName +" "+ lastName;
   const today = new Date();
   const reviewDate = today.toLocaleDateString("en-CA");
   const newReview = {
@@ -201,7 +201,7 @@ addToCartBtn.addEventListener("click", () => {
   if (addToCartBtn.disabled) return;
   const added = addToCart(product);
   if (added) {
-    window.location.href = "../checkout/checkout.html";
+    window.location.href = "../cart/cart.html";
   }
 });
 
