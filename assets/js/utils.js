@@ -7,28 +7,7 @@ export function hashPassword(password) {
 export function validateHashedPassword(inputPassword, storedHash) {
   return hashPassword(inputPassword) === storedHash;
 }
-export function showToast(status, message) {
-  const toast = document.querySelector(".toast");
-  if (!toast) {
-    console.error("Toast element not found in DOM");
-    return;
-  }
-  toast.className = "toast";
-  const icons = {
-    success: "fa-circle-check",
-    error: "fa-triangle-exclamation",
-    warning: "fa-warning",
-    info: "fa-info",
-  };
-  if (!icons[status]) {
-    console.error(`Invalid toast status: ${status}`);
-    return;
-  }
-  toast.innerHTML = `<i class="fa-solid ${icons[status]}"></i> ${message}`;
-  toast.classList.add("show", `toast-${status}`);
 
-  setTimeout(() => toast.classList.remove("show"), 3000);
-}
 export function validateName(inputOrValue) {
   if (inputOrValue?.classList) {
     const value = inputOrValue.value.trim();
@@ -373,4 +352,33 @@ export class User {
   print() {
     console.log(`User ID: ${this.#userId}`);
   }
+}
+
+export function loginUser() {
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+  const token = localStorage.getItem("token") || [];
+  const user = users.find((user) => user.token === token);
+  return user;
+}
+export function showToast(status, message) {
+  const toast = document.querySelector(".toast");
+  if (!toast) {
+    console.error("Toast element not found in DOM");
+    return;
+  }
+  toast.className = "toast";
+  const icons = {
+    success: "fa-circle-check",
+    error: "fa-triangle-exclamation",
+    warning: "fa-warning",
+    info: "fa-info",
+  };
+  if (!icons[status]) {
+    console.error(`Invalid toast status: ${status}`);
+    return;
+  }
+  toast.innerHTML = `<i class="fa-solid ${icons[status]}"></i> ${message}`;
+  toast.classList.add("show", `toast-${status}`);
+
+  setTimeout(() => toast.classList.remove("show"), 3000);
 }

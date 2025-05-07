@@ -5,6 +5,7 @@ import {
   validatePhone,
   validatePasswordMatch,
   validateName,
+  hashPassword,
   User,
 } from "../assets/js/utils.js";
 if (localStorage.getItem("token")) {
@@ -84,7 +85,7 @@ class Admin extends User {
         last_name: "Samir",
         email: "mohamedsamiir252@gmail.com",
         phone_number: "01060493174",
-        password: "Mohamed@123",
+        password: hashPassword("Mohamed@123"),
         want_to_be_seller: false,
       };
 

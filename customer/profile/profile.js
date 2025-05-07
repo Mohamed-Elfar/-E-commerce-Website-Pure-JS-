@@ -6,15 +6,14 @@ import {
   validatePasswordMatch,
   validatePassword,
   hashPassword,
-  validateHashedPassword
 } from "/assets/js/utils.js";
 (function() {
   const currentToken = localStorage.getItem("token");
   const user = getUserByToken(currentToken);
   if(user){
-    document.getElementById("username").innerHTML= user.firstName;
-    document.getElementById("firstName").value= user.firstName;
-    document.getElementById("lastName").value= user.lastName;
+    document.getElementById("username").innerHTML= user.first_name;
+    document.getElementById("firstName").value= user.first_name;
+    document.getElementById("lastName").value= user.last_name;
     document.getElementById("email").value= user.email;
     document.getElementById("phonenumber").value= user.phone;
   }else{

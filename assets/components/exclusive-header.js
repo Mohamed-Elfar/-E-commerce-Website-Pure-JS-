@@ -1,4 +1,4 @@
-import { loggout } from "/assets/js/utils.js";
+import { loggout,loginUser } from "/assets/js/utils.js";
 
 class ExclusiveHeader extends HTMLElement {
   constructor() {
@@ -212,49 +212,74 @@ class ExclusiveHeader extends HTMLElement {
     }
   }
   loggedInUser() {
-    const token = localStorage.getItem("token");
-    const userButton = this.querySelector(".userIcon");
-    const adminLink = this.querySelector("#adminLink");
-    const serllerLink = this.querySelector("#serllerLink");
-    const wishlistLink = this.querySelector("#wishlistLink");
-    const cartLink = this.querySelector("#cartLink");
-    const loginBtn = this.querySelector("#loginBtn");
-    const registerBtn = this.querySelector("#registerBtn");
-    if (adminLink) {
-      const users = JSON.parse(localStorage.getItem("users"));
-      const user = users.find((user) => user.token === token);
-      if (user) {
-        user.role === "Admin"
-          ? adminLink.classList.remove("d-none")
-          : adminLink.classList.add("d-none");
-        user.role === "Seller"
-          ? serllerLink.classList.remove("d-none")
-          : serllerLink.classList.add("d-none");
-        console.log(user.role);
-      }
+    // Get DOM elements once
+    const elements = {
+        token: localStorage.getItem("token"),
+        userButton: this.querySelector(".userIcon"),
+        adminLink: this.querySelector("#adminLink"),
+        sellerLink: this.querySelector("#sellerLink"), // Fixed typo from "serllerLink"
+        wishlistLink: this.querySelector("#wishlistLink"),
+        cartLink: this.querySelector("#cartLink"),
+        loginBtn: this.querySelector("#loginBtn"),
+        registerBtn: this.querySelector("#registerBtn")
+    };
+
+    // Helper function to toggle elements
+    const toggleElements = (show, ...elements) => {
+        elements.forEach(el => el && el.classList.toggle("d-none", !show));
+    };
+
+    if (!elements.token) {
+        // Not logged in state
+        toggleElements(false, 
+            elements.userButton, 
+            elements.wishlistLink, 
+            elements.cartLink, 
+            elements.adminLink, 
+            elements.sellerLink
+        );
+        toggleElements(true, elements.loginBtn, elements.registerBtn);
+        return;
     }
 
-    if (!token) {
-      if (userButton) userButton.classList.add("d-none");
-      if (wishlistLink) wishlistLink.classList.add("d-none");
-      if (cartLink) cartLink.classList.add("d-none");
+    // Logged in state
+    const user = loginUser();
 
-      if (loginBtn) loginBtn.classList.remove("d-none");
-      if (registerBtn) registerBtn.classList.remove("d-none");
-    } else {
-      if (userButton) {
-        userButton.classList.remove("d-none");
-        userButton.addEventListener("click", () => {
-          userButton.classList.toggle("userIcon--Style");
+    if (!user) {
+        console.warn("Token exists but user not found in database");
+        return;
+    }
+
+    // Toggle user button and auth buttons
+    toggleElements(true, elements.userButton);
+    toggleElements(false, elements.loginBtn, elements.registerBtn);
+
+    // Initialize dropdown behavior
+    if (elements.userButton) {
+        elements.userButton.addEventListener("click", () => {
+            elements.userButton.classList.toggle("userIcon--Style");
         });
-      }
-      if (wishlistLink) wishlistLink.classList.remove("d-none");
-      if (cartLink) cartLink.classList.remove("d-none");
-
-      if (loginBtn) loginBtn.classList.add("d-none");
-      if (registerBtn) registerBtn.classList.add("d-none");
     }
-  }
+
+    // Reset all special links first
+    toggleElements(false, elements.adminLink, elements.sellerLink);
+
+    // Handle roles
+    switch (user.role) {
+        case "Admin":
+            toggleElements(true, elements.adminLink);
+            toggleElements(false, elements.wishlistLink, elements.cartLink);
+            break;
+        case "Seller":
+            toggleElements(true, elements.sellerLink);
+            toggleElements(true, elements.wishlistLink, elements.cartLink);
+            break;
+        default: // Regular customer
+            toggleElements(true, elements.wishlistLink, elements.cartLink);
+    }
+
+    console.log("User role:", user.role);
+}
   initDropdown() {
     const userButton = this.querySelector(".userIcon");
     if (userButton && typeof bootstrap !== "undefined" && bootstrap.Dropdown) {

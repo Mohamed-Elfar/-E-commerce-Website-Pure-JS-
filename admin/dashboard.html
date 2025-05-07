@@ -1,257 +1,357 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="dashboard.css">
-</head>
-<body class="d-flex min-vh-100">
-    
-  <!-- Sidebar -->
-  <div class="sidebar bg-dark text-white p-4" id="sidebar">
-    <div class="d-flex justify-content-end">
-      <button id="toggleSidebar" class="btn btn-sm btn-light mb-3">
-        <i class="fas fa-chevron-left"></i>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exclusive - Admin Dashboard</title>
+
+    <!-- css style -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link rel="stylesheet" href="dashboard.css" />
+  </head>
+  <body>
+    <exclusive-header></exclusive-header>
+    <div class="sidebar-container" id="sidebarContainer">
+      <div class="sidebar" id="sidebar">
+        <div class="position-sticky pt-3">
+          <div class="text-center mb-4">
+            <h4 class="sidebar-heading">Exclusive</h4>
+            <hr class="bg-light" />
+          </div>
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">
+                <i class="fas fa-tachometer-alt"></i> Dashboard
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <i class="fas fa-box-open"></i> Products
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <i class="fas fa-shopping-cart"></i> Orders
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <i class="fas fa-chart-line"></i> Analytics
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <i class="fas fa-tags"></i> Discounts
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <i class="fas fa-cog"></i> Settings
+              </a>
+            </li>
+          </ul>
+
+          <div class="mt-4 px-3">
+            <h6>Wounders' location</h6>
+            <ul class="list-unstyled">
+              <li>
+                <i class="fas fa-circle text-primary me-2"></i> Men & Fashion
+              </li>
+              <li>
+                <i class="fas fa-circle text-success me-2"></i> Electronics
+              </li>
+              <li>
+                <i class="fas fa-circle text-info me-2"></i> Home & Lifestyle
+              </li>
+              <li><i class="fas fa-circle text-warning me-2"></i> Medicine</li>
+              <li>
+                <i class="fas fa-circle text-danger me-2"></i> Sports & Outdoor
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toggle Buttons -->
+      <button id="openSidebar" class="toggle-btn btn">
+        <i class="fas fa-bars"></i>
+      </button>
+      <button id="closeSidebar" class="toggle-btn btn close-btn">
+        <i class="fas fa-times"></i>
       </button>
     </div>
-    <ul class="mt-2 list-unstyled">
-      <li class="py-3"><a href="#" class="text-white text-decoration-none">Dashboard</a></li>
-      <li class="py-3"><a href="#" class="text-white text-decoration-none">Products</a></li>
-      <li class="py-3"><a href="#" class="text-white text-decoration-none">Orders</a></li>
-      <li class="py-3"><a href="#" class="text-white text-decoration-none">Customers</a></li>
-    </ul>
-  </div>
 
-  <!-- Main Content -->
-  <div class="main-content ms-250px p-4" id="mainContent">
-    <div class="dashboard-header bg-white p-4 rounded shadow-sm d-flex justify-content-between align-items-center mb-4">
-        <h2 class="m-0">Seller Dashboard</h2>
-        <div>
-            <span class="me-3">Welcome, <strong>Seller Name</strong></span>
-            <button class="btn btn-sm btn-outline-secondary">
-                <i class="fas fa-sign-out-alt"></i> Logout
-            </button>
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+      <div
+        class="dashboard-header d-flex justify-content-between align-items-center"
+      >
+        <h2 class="dashboard-heading">admin Dashboard</h2>
+        <div class="dashboard-user d-flex">
+          <span class="me-3 dashboard-name"
+            >Welcome, <strong id="userName">Seller Name</strong></span
+          >
+          <button class="btn btn-sm btn-outline-secondary" id="dashboardBtn">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </button>
         </div>
-    </div>
+      </div>
 
-    <!-- Stats Cards -->
-    <div class="row">
+      <!-- Stats Cards -->
+      <div class="row">
         <div class="col-md-6 col-lg-3 mb-4">
-            <div class="card h-100 border-0 shadow-sm">
-                <div class="card-body">
-                    <h6 class="card-subtitle mb-2 text-muted">Total Revenue</h6>
-                    <h3 class="card-title">$8,450</h3>
-                    <p class="card-text text-success">
-                        <i class="fas fa-arrow-up"></i> 12.5% from last month
-                    </p>
-                </div>
+          <div class="card h-100">
+            <div class="card-body">
+              <h6 class="card-subtitle mb-2 text-muted">Total Revenue</h6>
+              <h3 class="card-title">$8,450</h3>
+              <p class="card-text text-success">
+                <i class="fas fa-arrow-up"></i> 12.5% from last month
+              </p>
             </div>
+          </div>
         </div>
         <div class="col-md-6 col-lg-3 mb-4">
-            <div class="card h-100 border-0 shadow-sm">
-                <div class="card-body">
-                    <h6 class="card-subtitle mb-2 text-muted">Total Orders</h6>
-                    <h3 class="card-title">124</h3>
-                    <p class="card-text text-success">
-                        <i class="fas fa-arrow-up"></i> 8.3% from last month
-                    </p>
-                </div>
+          <div class="card h-100">
+            <div class="card-body">
+              <h6 class="card-subtitle mb-2 text-muted">Total Orders</h6>
+              <h3 class="card-title">124</h3>
+              <p class="card-text text-success">
+                <i class="fas fa-arrow-up"></i> 8.3% from last month
+              </p>
             </div>
+          </div>
         </div>
         <div class="col-md-6 col-lg-3 mb-4">
-            <div class="card h-100 border-0 shadow-sm">
-                <div class="card-body">
-                    <h6 class="card-subtitle mb-2 text-muted">Products</h6>
-                    <h3 class="card-title">42</h3>
-                    <p class="card-text text-danger">
-                        <i class="fas fa-arrow-down"></i> 2 items low stock
-                    </p>
-                </div>
+          <div class="card h-100">
+            <div class="card-body">
+              <h6 class="card-subtitle mb-2 text-muted">Products</h6>
+              <h3 class="card-title">42</h3>
+              <p class="card-text text-danger">
+                <i class="fas fa-arrow-down"></i> 2 items low stock
+              </p>
             </div>
+          </div>
         </div>
         <div class="col-md-6 col-lg-3 mb-4">
-            <div class="card h-100 border-0 shadow-sm">
-                <div class="card-body">
-                    <h6 class="card-subtitle mb-2 text-muted">Conversion Rate</h6>
-                    <h3 class="card-title">3.2%</h3>
-                    <p class="card-text text-success">
-                        <i class="fas fa-arrow-up"></i> 0.5% from last month
-                    </p>
-                </div>
+          <div class="card h-100">
+            <div class="card-body">
+              <h6 class="card-subtitle mb-2 text-muted">Conversion Rate</h6>
+              <h3 class="card-title">3.2%</h3>
+              <p class="card-text text-success">
+                <i class="fas fa-arrow-up"></i> 0.5% from last month
+              </p>
             </div>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <!-- Charts Row -->
-    <div class="row mt-4">
+      <!-- Charts Row -->
+      <div class="row mt-4">
         <div class="col-lg-8 mb-4">
-            <div class="card h-100 border-0 shadow-sm">
-                <div class="card-header bg-white border-bottom d-flex justify-content-between align-items-center">
-                    <span class="fw-bold">Sales Analytics</span>
-                    <select class="form-select form-select-sm w-auto">
-                        <option>Last 7 days</option>
-                        <option selected>Last 30 days</option>
-                        <option>Last 90 days</option>
-                    </select>
-                </div>
-                <div class="card-body">
-                    <div class="chart-container">
-                        <canvas id="salesChart"></canvas>
-                    </div>
-                </div>
+          <div class="card h-100">
+            <div
+              class="card-header d-flex justify-content-between align-items-center"
+            >
+              <span>Sales Analytics</span>
+              <select class="form-select form-select-sm w-auto">
+                <option>Last 7 days</option>
+                <option selected>Last 30 days</option>
+                <option>Last 90 days</option>
+              </select>
             </div>
+            <div class="card-body">
+              <div class="chart-container">
+                <canvas id="salesChart"></canvas>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="col-lg-4 mb-4">
-            <div class="card h-100 border-0 shadow-sm">
-                <div class="card-header bg-white border-bottom fw-bold">
-                    Revenue by Category
-                </div>
-                <div class="card-body">
-                    <div class="chart-container">
-                        <canvas id="categoryChart"></canvas>
-                    </div>
-                </div>
+          <div class="card h-100">
+            <div class="card-header">Revenue by Category</div>
+            <div class="card-body">
+              <div class="chart-container">
+                <canvas id="categoryChart"></canvas>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <!-- Flash Sales & Products -->
-    <div class="row mt-4">
+      <!-- Flash Sales & Products -->
+      <div class="row mt-4">
         <div class="col-lg-6 mb-4">
-            <div class="card h-100 border-0 shadow-sm">
-                <div class="card-header bg-white border-bottom d-flex justify-content-between align-items-center">
-                    <span class="fw-bold">Flash Sales</span>
-                    <div class="flash-sale-timer bg-primary text-white p-2 rounded fw-bold text-center">
-                        <span id="flashSaleHours">03</span> : 
-                        <span id="flashSaleMinutes">23</span> : 
-                        <span id="flashSaleSeconds">19</span>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Product</th>
-                                    <th>Discount</th>
-                                    <th>Sold</th>
-                                    <th>Revenue</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>HXRT Wired Gaming</td>
-                                    <td><span class="badge bg-danger">20%</span></td>
-                                    <td>56</td>
-                                    <td>$4,480</td>
-                                </tr>
-                                <tr>
-                                    <td>AC-500 Wired Explosive</td>
-                                    <td><span class="badge bg-danger">20%</span></td>
-                                    <td>42</td>
-                                    <td>$3,360</td>
-                                </tr>
-                                <tr>
-                                    <td>WELCO Gaming Monitor</td>
-                                    <td><span class="badge bg-warning text-dark">10%</span></td>
-                                    <td>28</td>
-                                    <td>$2,520</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+          <div class="card h-100">
+            <div
+              class="card-header d-flex justify-content-between align-items-center"
+            >
+              <span>Flash Sales</span>
+              <div class="flash-sale-timer">
+                <span id="flashSaleHours">03</span> :
+                <span id="flashSaleMinutes">23</span> :
+                <span id="flashSaleSeconds">19</span>
+              </div>
             </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>Product</th>
+                      <th>Discount</th>
+                      <th>Sold</th>
+                      <th>Revenue</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>HXRT Wired Gaming</td>
+                      <td><span class="badge bg-danger">20%</span></td>
+                      <td>56</td>
+                      <td>$4,480</td>
+                    </tr>
+                    <tr>
+                      <td>AC-500 Wired Explosive</td>
+                      <td><span class="badge bg-danger">20%</span></td>
+                      <td>42</td>
+                      <td>$3,360</td>
+                    </tr>
+                    <tr>
+                      <td>WELCO Gaming Monitor</td>
+                      <td>
+                        <span class="badge bg-warning text-dark">10%</span>
+                      </td>
+                      <td>28</td>
+                      <td>$2,520</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="col-lg-6 mb-4">
-            <div class="card h-100 border-0 shadow-sm">
-                <div class="card-header bg-white border-bottom fw-bold">
-                    Top Selling Products
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-6 col-md-6 col-lg-6 mb-3">
-                            <div class="card product-card h-100 border-0 shadow-sm">
-                                <img src="https://via.placeholder.com/300x200?text=Gaming+Headset" class="card-img-top" alt="Product">
-                                <span class="discount-badge bg-primary">20% OFF</span>
-                                <div class="card-body">
-                                    <h6 class="card-title">HXRT Wired Gaming</h6>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <span class="text-danger">$160</span>
-                                            <span class="text-muted text-decoration-line-through ms-2">$200</span>
-                                        </div>
-                                        <span class="text-muted small">16 sold</span>
-                                    </div>
-                                </div>
-                            </div>
+          <div class="card h-100">
+            <div class="card-header">Top Selling Products</div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-6 mb-3">
+                  <div class="card product-card h-100">
+                    <img
+                      src="https://via.placeholder.com/300x200?text=Gaming+Headset"
+                      class="card-img-top"
+                      alt="Product"
+                    />
+                    <span class="discount-badge">20% OFF</span>
+                    <div class="card-body">
+                      <h6 class="card-title">HXRT Wired Gaming</h6>
+                      <div
+                        class="d-flex justify-content-between align-items-center"
+                      >
+                        <div>
+                          <span class="text-danger">$160</span>
+                          <span
+                            class="text-muted text-decoration-line-through ms-2"
+                            >$200</span
+                          >
                         </div>
-                        <div class="col-sm-6 col-md-6 col-lg-6 mb-3">
-                            <div class="card product-card h-100 border-0 shadow-sm">
-                                <img src="https://via.placeholder.com/300x200?text=Gaming+Monitor" class="card-img-top" alt="Product">
-                                <span class="discount-badge bg-primary">10% OFF</span>
-                                <div class="card-body">
-                                    <h6 class="card-title">WELCO Gaming Monitor</h6>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <span class="text-danger">$360</span>
-                                            <span class="text-muted text-decoration-line-through ms-2">$400</span>
-                                        </div>
-                                        <span class="text-muted small">12 sold</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-6 col-lg-6 mb-3">
-                            <div class="card product-card h-100 border-0 shadow-sm">
-                                <img src="https://via.placeholder.com/300x200?text=Comfort+Chair" class="card-img-top" alt="Product">
-                                <span class="discount-badge bg-primary">10% OFF</span>
-                                <div class="card-body">
-                                    <h6 class="card-title">Index Comfort Chair</h6>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <span class="text-danger">$360</span>
-                                            <span class="text-muted text-decoration-line-through ms-2">$400</span>
-                                        </div>
-                                        <span class="text-muted small">8 sold</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-6 col-lg-6 mb-3">
-                            <div class="card product-card h-100 border-0 shadow-sm">
-                                <img src="https://via.placeholder.com/300x200?text=AC-500+Headset" class="card-img-top" alt="Product">
-                                <span class="discount-badge bg-primary">20% OFF</span>
-                                <div class="card-body">
-                                    <h6 class="card-title">AC-500 Wired Explosive</h6>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <span class="text-danger">$160</span>
-                                            <span class="text-muted text-decoration-line-through ms-2">$200</span>
-                                        </div>
-                                        <span class="text-muted small">14 sold</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <span class="text-muted small">16 sold</span>
+                      </div>
                     </div>
+                  </div>
                 </div>
+                <div class="col-sm-6 col-md-6 col-lg-6 mb-3">
+                  <div class="card product-card h-100">
+                    <img
+                      src="https://via.placeholder.com/300x200?text=Gaming+Monitor"
+                      class="card-img-top"
+                      alt="Product"
+                    />
+                    <span class="discount-badge">10% OFF</span>
+                    <div class="card-body">
+                      <h6 class="card-title">WELCO Gaming Monitor</h6>
+                      <div
+                        class="d-flex justify-content-between align-items-center"
+                      >
+                        <div>
+                          <span class="text-danger">$360</span>
+                          <span
+                            class="text-muted text-decoration-line-through ms-2"
+                            >$400</span
+                          >
+                        </div>
+                        <span class="text-muted small">12 sold</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-6 mb-3">
+                  <div class="card product-card h-100">
+                    <img
+                      src="https://via.placeholder.com/300x200?text=Comfort+Chair"
+                      class="card-img-top"
+                      alt="Product"
+                    />
+                    <span class="discount-badge">10% OFF</span>
+                    <div class="card-body">
+                      <h6 class="card-title">Index Comfort Chair</h6>
+                      <div
+                        class="d-flex justify-content-between align-items-center"
+                      >
+                        <div>
+                          <span class="text-danger">$360</span>
+                          <span
+                            class="text-muted text-decoration-line-through ms-2"
+                            >$400</span
+                          >
+                        </div>
+                        <span class="text-muted small">8 sold</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-6 mb-3">
+                  <div class="card product-card h-100">
+                    <img
+                      src="https://via.placeholder.com/300x200?text=AC-500+Headset"
+                      class="card-img-top"
+                      alt="Product"
+                    />
+                    <span class="discount-badge">20% OFF</span>
+                    <div class="card-body">
+                      <h6 class="card-title">AC-500 Wired Explosive</h6>
+                      <div
+                        class="d-flex justify-content-between align-items-center"
+                      >
+                        <div>
+                          <span class="text-danger">$160</span>
+                          <span
+                            class="text-muted text-decoration-line-through ms-2"
+                            >$200</span
+                          >
+                        </div>
+                        <span class="text-muted small">14 sold</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Bootstrap JS Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Custom JavaScript -->
-    <script src="dashboard.js" defer></script>
-</body>
+
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+    <script
+      src="/assets/components/exclusive-header.js"
+      type="module"
+      defer
+    ></script>
+    <script src="dashboard.js" type="module" defer></script>
+  </body>
 </html>
