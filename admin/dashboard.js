@@ -13,6 +13,23 @@ const totalOrders = document.querySelector(".totalOrders");
 const topSellingProducts = document.querySelector(".topSellingProducts");
 const flashTable = document.querySelector("table > tbody");
 const totalUsers = document.querySelector(".totalUsers");
+
+
+document.querySelectorAll('.section-toggle-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const targetId = this.getAttribute('data-show');
+    const mainContent = document.getElementById('mainContent');
+    
+    // Hide all sections
+    Array.from(mainContent.children).forEach(child => {
+      child.classList.add('d-none');
+    });
+    
+    // Show target section
+    document.getElementById(targetId).classList.remove('d-none');
+  });
+});
+
 // const totalUsersRate = document.querySelector(".totalUsersRate");
 
 // Initial state
@@ -115,9 +132,9 @@ function updateFlashSaleTimer() {
 
 setInterval(updateFlashSaleTimer, 1000);
 
-dashboardBtn.addEventListener("click", () => {
-  loggout();
-});
+// dashboardBtn.addEventListener("click", () => {
+//   loggout();
+// });
 
 userName.textContent = loginUser().first_name + " " + loginUser().last_name;
 let sum = 0;

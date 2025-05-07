@@ -95,7 +95,7 @@ body {
 }
 
 /* main content */
-.main-content {
+.main-content ,.users-content{
   margin-left: calc(var(--sidebar-width) + 52px);
   padding: 20px;
   transition: all 0.3s;
@@ -103,7 +103,7 @@ body {
 
 .dashboard-header {
   background-color: white;
-  padding: 20px;
+  padding: 20px ;
   border-radius: 10px;
   margin-bottom: 20px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
@@ -150,7 +150,6 @@ body {
   font-size: 12px;
   font-weight: bold;
 }
-
 /* media query */
 @media screen and (max-width: 768px) {
   .sidebar {
