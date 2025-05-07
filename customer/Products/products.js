@@ -68,7 +68,7 @@ fetch("../../assets/data/products.json")
           <div>
             <div class="d-flex">
               <p class="product__title">${product.name.slice(0, 30)}</p>
-              <p class="product__category px-2" data-category="${
+              <p class="product__category px-1" data-category="${
                 product.category
               }">${categoryText}</p>
             </div>

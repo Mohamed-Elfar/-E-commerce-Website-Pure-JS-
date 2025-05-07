@@ -85,3 +85,35 @@ body {
     font-weight: 600;
 }
 
+
+.order-card {
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+}
+.order-card:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.status-badge {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+.delivered {
+    background-color: #d4edda;
+    color: #155724;
+}
+.shipped {
+    background-color: #cce5ff;
+    color: #004085;
+}
+.processing {
+    background-color: #fff3cd;
+    color: #856404;
+}
+.product-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+}
