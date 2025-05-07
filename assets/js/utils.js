@@ -374,3 +374,12 @@ export class User {
     console.log(`User ID: ${this.#userId}`);
   }
 }
+
+export function loginUser() {
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+  const token = localStorage.getItem("token") || [];
+  const user = users.find((user) => user.token === token);
+  return user;
+}
+
+ 

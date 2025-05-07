@@ -1,11 +1,68 @@
+let container = document.getElementById('order');
+
+function getCurrentUser() {
+    const token = localStorage.getItem('token');
+    if (!token) return null;
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    console.log(users.find(user => user.token === token) || null);
+    return users.find(user => user.token === token) || null;
+}
+
+function getAllMyOrdersWithProducts(orders) {
+    const currentUser = getCurrentUser();
+    if (!currentUser) return [];
+  
+    let myOrders = [];
+  
+    orders.forEach(order => {
+        // تصفية المنتجات الخاصة بالمستخدم الحالي فقط
+        const myProducts = order.products.filter(product => 
+            product.createdBy === currentUser.userId.toString()
+        );
+        
+        // إذا كان هناك منتجات خاصة بالمستخدم، نضيف الطلب مع هذه المنتجات فقط
+        if (myProducts.length > 0) {
+            myOrders.push({
+                ...order,
+                products: myProducts
+            });
+        }
+    });
+  
+    return myOrders;
+}
+
+const orders = JSON.parse(localStorage.getItem('orders'));  
+const myOrders = getAllMyOrdersWithProducts(orders);
+console.log(myOrders);
+
+function getDailySalesData(orders) {
+    const salesPerDay = {};
+  
+    orders.forEach(order => {
+        const date = new Date(order.date).toISOString().split('T')[0]; // YYYY-MM-DD
+        salesPerDay[date] = (salesPerDay[date] || 0) + order.products.length;
+    });
+  
+    // ترتيب حسب التاريخ
+    const sortedDates = Object.keys(salesPerDay).sort();
+  
+    return {
+        labels: sortedDates,
+        data: sortedDates.map(date => salesPerDay[date])
+    };
+}
+
+const salesData = getDailySalesData(myOrders);
+  
 const salesCtx = document.getElementById('salesChart').getContext('2d');
 const salesChart = new Chart(salesCtx, {
     type: 'line',
     data: {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        labels: salesData.labels,
         datasets: [{
-            label: 'Sales',
-            data: [1200, 1900, 1500, 2000, 1800, 2100, 2400, 2200, 2500, 2800, 3000, 3200],
+            label: 'Daily Sales',
+            data: salesData.data,
             backgroundColor: 'rgba(75, 192, 192, 0.2)',
             borderColor: 'rgba(75, 192, 192, 1)',
             borderWidth: 2,
@@ -28,8 +85,9 @@ const salesChart = new Chart(salesCtx, {
             y: {
                 beginAtZero: true,
                 ticks: {
+                    stepSize: 1,
                     callback: function (value) {
-                        return '$' + value;
+                        return value + ' sale' + (value > 1 ? 's' : '');
                     }
                 }
             }
