@@ -6,6 +6,7 @@ import {
   validatePasswordMatch,
   validatePassword,
   hashPassword,
+  validateHashedPassword
 } from "/assets/js/utils.js";
 (function () {
   const currentToken = localStorage.getItem("token");
@@ -61,12 +62,8 @@ function validation() {
   const isLastNameValid = validateName(document.getElementById("lastName"));
   const isEmailValid = validateEmail(document.getElementById("email"));
   const isPhoneValid = validatePhone(document.getElementById("phonenumber"));
-  const isMatchPasswordValid = MatchUserPassword(
-    hashPassword(document.getElementById("currentpassword").value)
-  );
-  const isNewPasswordValid = validatePassword(
-    document.getElementById("newpassword")
-  );
+  const isMatchPasswordValid = MatchUserPassword(hashPassword(document.getElementById("currentpassword").value));
+  const isNewPasswordValid = validatePassword(document.getElementById("newpassword"));
   const isPasswordMatch = validatePasswordMatch(
     document.getElementById("newpassword"),
     document.getElementById("confirmpassword")
@@ -83,7 +80,7 @@ function validation() {
   );
 }
 
-function getUserByToken(token) {
+export function getUserByToken(token) {
   const usersJSON = localStorage.getItem("users");
   if (!usersJSON) return null;
   const users = JSON.parse(usersJSON);

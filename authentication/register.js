@@ -15,13 +15,19 @@ class Customer extends User {
   static get customerCount() {
     const users = JSON.parse(localStorage.getItem("users")) || [];
     return users.filter((user) => user.role === "Customer").length;
+    return users.filter((user) => user.role === "Customer").length;
   }
   #customerId;
 
   constructor(userData) {
     super(userData);
 
+
     this.#customerId = Customer.customerCount;
+  }
+  toJSON() {
+    const userData = super.toJSON();
+    return userData;
   }
   toJSON() {
     const userData = super.toJSON();
@@ -37,10 +43,15 @@ class Seller extends User {
     const users = JSON.parse(localStorage.getItem("users")) || [];
     return users.filter((user) => user.role === "Seller").length;
   }
+  static get sellerCount() {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    return users.filter((user) => user.role === "Seller").length;
+  }
   #sellerId;
 
   constructor(userData) {
     super(userData);
+
 
     this.#sellerId = Seller.sellerCount;
   }
@@ -63,6 +74,7 @@ class Admin extends User {
 
   constructor(userData) {
     super(userData);
+
 
     this.#adminId = Admin.adminCount;
   }
@@ -132,6 +144,10 @@ form.addEventListener("submit", (event) => {
     try {
       new Customer(data);
       showToast("success", "Account created successfully!");
+
+      setTimeout(() => {
+        open("login.html", "_self");
+      }, 2000);
 
       setTimeout(() => {
         open("login.html", "_self");

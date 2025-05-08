@@ -71,7 +71,6 @@ productInCart.forEach((Element) => {
       }
     
       localStorage.setItem("cart", JSON.stringify(productInCart));
-      updateBadges();
       updateCartTotal();
     });
   }
