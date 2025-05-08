@@ -94,7 +94,6 @@ function addProduct(event) {
   document.getElementById('submitModal').blur();
 
   form.reset();
-
 }
 
 let form = document.getElementById("productForm");
@@ -146,14 +145,44 @@ function updateProduct(productId) {
   modal.show();
 }
 
-function validateCategory(form) {
-  if (form['category'].value == 'Choose Category') {
-    showToast('warning', `Please choose a category`);
-    form['category'].focus();
-    return false;
+function deleteProduct(productId) {
+  let allProducts = JSON.parse(localStorage.getItem("allProducts")) || [];
+  const product = allProducts.find((p) => p.id === productId);
+
+  if (!product) {
+    showToast("error", "Product not found");
+    return;
   }
-  return true;
+
+  allProducts = allProducts.filter((p) => p.id !== productId);
+  localStorage.setItem("allProducts", JSON.stringify(allProducts));
+
+  showToast("success", "Product deleted successfully!");
+  displayProducts();
 }
+
+document.addEventListener('click', (event) => {
+  if (event.target.closest('.update-btn')) {
+    const button = event.target.closest('.update-btn');
+    const productId = parseInt(button.dataset.id);
+    updateProduct(productId);
+  } else if (event.target.closest('.delete-btn')) {
+    const button = event.target.closest('.delete-btn');
+    const productId = parseInt(button.dataset.id);
+    const modal = new bootstrap.Modal(document.getElementById('deleteConfirmModal'));
+    modal.show();
+    // Store productId in a data attribute or variable
+    document.getElementById('confirmDeleteBtn').dataset.productId = productId;
+  }
+});
+
+document.getElementById('confirmDeleteBtn').addEventListener('click', () => {
+  const productId = parseInt(document.getElementById('confirmDeleteBtn').dataset.productId);
+  deleteProduct(productId);
+  const modal = bootstrap.Modal.getInstance(document.getElementById('deleteConfirmModal'));
+  modal.hide();
+  document.getElementById('confirmDeleteBtn').blur();
+});
 
 function displayProducts() {
   const tbody = document.querySelector('table tbody');
@@ -165,7 +194,7 @@ function displayProducts() {
     const card = document.createElement('div');
     card.className = 'col mb-4';
     card.innerHTML = `
-        <div class="card h-100 border-0 shadow-sm p-3 d-xxl-none">
+        <div class="card h-100 border-0 shadow-sm p-3">
           <div class="d-flex flex-sm-row flex-column position-relative">
              <img src="${product.image}" 
                  class="p-1 w-100 w-sm-auto" 
@@ -266,26 +295,22 @@ function displayProducts() {
 };
 displayProducts();
 
-document.addEventListener('click', (event) => {
-  if (event.target.closest('.update-btn')) {
-    const button = event.target.closest('.update-btn');
-    const productId = parseInt(button.dataset.id);
-    updateProduct(productId);
-  }
-});
-
 // solve Blocked aria-hidden issue
-document.getElementById('closeModal').addEventListener('click', function () {
-  moveFocus();
+document.querySelectorAll('.modal-close-btn').forEach((element) => {
+  element.addEventListener('click', () => {
+    const openModalButton = document.querySelector('button[data-bs-target="#productModal"]');
+    if (openModalButton) {
+      openModalButton.focus();
+    }
+  });
 });
 
-document.querySelector('.btn-close').addEventListener('click', function () {
-  moveFocus();
-});
-
-function moveFocus() {
-  const openModalButton = document.querySelector('button[data-bs-target="#productModal"]');
-  if (openModalButton) {
-    openModalButton.focus();
+function validateCategory(form) {
+  if (form['category'].value == 'Choose Category') {
+    showToast('warning', `Please choose a category`);
+    form['category'].focus();
+    return false;
   }
+  return true;
 }
+
