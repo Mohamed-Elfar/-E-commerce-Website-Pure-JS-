@@ -199,7 +199,7 @@ class ExclusiveHeader extends HTMLElement {
       });
     }
   }
-  badges() {
+   badges() {
     const wishlistCount = this.querySelector("#wishlistCount");
     const cartCount = this.querySelector("#cartCount");
     if (wishlistCount) {

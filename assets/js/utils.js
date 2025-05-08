@@ -17,11 +17,11 @@ export function validateName(inputOrValue) {
     isValid ? "" : showToast("error", "Invalid Name");
     return isValid;
   } else if (typeof inputOrValue === "string") {
-    if( /^[a-zA-Z]{2,30}$/.test(inputOrValue.trim())){
-      return true
-    }else{
+    if (/^[a-zA-Z]{2,30}$/.test(inputOrValue.trim())) {
+      return true;
+    } else {
       showToast("error", "Invalid Name");
-      return false
+      return false;
     }
     // return /^[a-zA-Z]{2,30}$/.test(inputOrValue.trim());
   }
@@ -40,13 +40,17 @@ export function validateEmail(inputOrValue) {
     isValid ? "" : showToast("error", "Invalid Email");
     return isValid;
   } else if (typeof inputOrValue === "string") {
-    if( /^[a-zA-Z0-9._%+-]+@(gmail|outlook|yahoo|hotmail|icloud|protonmail)\.(com|net|org)$/i.test(inputOrValue.trim())){
-      return true
-    }else{
+    if (
+      /^[a-zA-Z0-9._%+-]+@(gmail|outlook|yahoo|hotmail|icloud|protonmail)\.(com|net|org)$/i.test(
+        inputOrValue.trim()
+      )
+    ) {
+      return true;
+    } else {
       showToast("error", "Invalid Email");
-      return false
+      return false;
     }
-    
+
     // return /^[a-zA-Z0-9._%+-]+@(gmail|outlook|yahoo|hotmail|icloud|protonmail)\.(com|net|org)$/i.test(
     //   inputOrValue.trim()
     // );
@@ -63,11 +67,11 @@ export function validatePhone(inputOrValue) {
     isValid ? "" : showToast("error", "Invalid Phone");
     return isValid;
   } else if (typeof inputOrValue === "string") {
-    if( /^(010|011|012|015)\d{8}$/.test(inputOrValue.trim())){
-      return true
-    }else{
+    if (/^(010|011|012|015)\d{8}$/.test(inputOrValue.trim())) {
+      return true;
+    } else {
       showToast("error", "Invalid Phone");
-      return false
+      return false;
     }
     // return /^(010|011|012|015)\d{8}$/.test(inputOrValue.trim());
   }
@@ -109,6 +113,13 @@ export function validatePasswordMatch(passwordInput, confirmPasswordInput) {
 
   return isMatching;
 }
+export function updateBadges() {
+  const header = document.querySelector("exclusive-header");
+  if (header && typeof header.badges === "function") {
+    header.badges();
+  }
+}
+
 export function addToCart(product) {
   if (localStorage.getItem("token")) {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -119,6 +130,7 @@ export function addToCart(product) {
       if (product.quantity > 0) {
         cart.push(product);
         localStorage.setItem("cart", JSON.stringify(cart));
+        updateBadges();
         showToast("success", "Product added to cart");
         return true;
       } else {
@@ -130,7 +142,7 @@ export function addToCart(product) {
       return false;
     }
   } else {
-    showToast("warning", "Please Login First");
+    showToast("warning", "Please Login First");
     return false;
   }
 }
@@ -141,13 +153,14 @@ export function toggleWishList(productId, icon) {
     icon.classList.remove("active", "fa-solid");
     icon.classList.add("fa-regular");
     showToast("error", "Removed from wishlist!");
+    updateBadges();
   } else {
     wishlist.push(productId);
     icon.classList.add("active", "fa-solid");
     icon.classList.remove("fa-regular");
     showToast("success", "Added to wishlist");
+    updateBadges();
   }
-
   localStorage.setItem("wishlist", JSON.stringify(wishlist));
 }
 
