@@ -1,6 +1,6 @@
 import { showToast } from "../../assets/js/utils.js";
 
-export function getCurrentUser() {
+function getCurrentUser() {
   const token = localStorage.getItem("token");
   if (!token) {
     return null;
@@ -11,7 +11,7 @@ export function getCurrentUser() {
   return user || null;
 }
 
-export function fetchSellerProducts() {
+function fetchSellerProducts() {
   const currentUser = getCurrentUser();
   if (!currentUser) {
     showToast("error", "Please log in first");
@@ -28,11 +28,11 @@ export function fetchSellerProducts() {
     (product) => Number(product.createdBy) === currentUser.userId
   );
   console.log(sellerProducts);
-  console.log(allProducts)
+  // console.log(allProducts)
   return sellerProducts;
 }
 fetchSellerProducts();
-export function addProduct(event) {
+function addProduct(event) {
   event.preventDefault();
   const form = event.target;
 
@@ -44,8 +44,12 @@ export function addProduct(event) {
   const formData = Object.fromEntries(formObject.entries());
   let allProducts = JSON.parse(localStorage.getItem("allProducts")) || [];
 
+  const productId = parseInt(formData.id);
+  const isUpdating = !isNaN(productId) && productId > 0;
+  const updatableProduct = allProducts.find((p) => p.id === productId);
+
   let product = {
-    id:  Date.now(),
+    id: isUpdating ? productId : Date.now(),
     name: formData.name,
     description: formData.description,
     category: formData.category,
@@ -54,10 +58,10 @@ export function addProduct(event) {
     quantity: Number(formData.quantity),
     sale: parseFloat(formData.sale) || "",
     createdBy: getCurrentUser().userId.toString(),
-    rating: 0.0,
-    ratingCount: 0,
-    count: 1,
-    reviews: [],
+    rating: isUpdating ? updatableProduct.rating : 0.0,
+    ratingCount: isUpdating ? updatableProduct.ratingCount : 0,
+    count: isUpdating ? updatableProduct.count : 1,
+    reviews: isUpdating ? updatableProduct.reviews : [],
     images: [
       formData.image2 || "",
       formData.image3 || "",
@@ -66,23 +70,81 @@ export function addProduct(event) {
     ],
   };
 
-  allProducts.push(product);
+  if (isUpdating) {
+    const index = allProducts.findIndex((p) => p.id === productId);
+    if (index !== -1) {
+      allProducts[index] = product;
+      showToast('success', 'Product updated successfully!');
+    } else {
+      showToast('error', 'Product not found');
+    }
+  } else {
+    allProducts.push(product);
+    showToast('success', 'Product added successfully!');
+  }
   localStorage.setItem("allProducts", JSON.stringify(allProducts));
+  displayProducts();
 
+  const modalTitle = document.getElementById("productModalLabel");
+  modalTitle.textContent = "Add New Product";
 
   const modal = bootstrap.Modal.getInstance(document.getElementById('productModal'));
-  const submitBtn = document.getElementById('submitModal');
-  const closeBtn = document.getElementById('closeModal');
+
   modal.hide();
-  closeBtn.blur();
-  submitBtn.blur();
-  
+  document.getElementById('submitModal').blur();
+
   form.reset();
-  showToast('success', 'Product added successfully!');
+
 }
 
 let form = document.getElementById("productForm");
 form.addEventListener("submit", addProduct);
+
+function updateProduct(productId) {
+  const sellerProducts = fetchSellerProducts();
+  const product = sellerProducts.find((p) => p.id === productId);
+  if (!product) {
+    showToast('error', 'Product not found');
+    return;
+  }
+  const productForm = document.querySelector('#productForm');
+  const values = {
+    id: productId,
+    name: product.name,
+    description: product.description,
+    category: product.category,
+    image: product.image,
+    price: product.price,
+    quantity: product.quantity,
+    sale: product.sale ? String(product.sale) : '',
+    image2: product.images[0],
+    image3: product.images[1],
+    image4: product.images[2],
+    image5: product.images[3],
+  }
+  for (const input of productForm.elements) {
+    if (values.hasOwnProperty(input.name)) {
+      input.value = values[input.name];
+    }
+  }
+
+  const modalTitle = document.getElementById("productModalLabel");
+  if (modalTitle) {
+    modalTitle.textContent = "Update Product";
+  }
+
+  const modalElement = document.getElementById('productModal');
+  if (!modalElement) {
+    showToast('error', 'Modal element not found');
+    return;
+  }
+  let modal = bootstrap.Modal.getInstance(modalElement);
+  if (!modal) {
+    modal = new bootstrap.Modal(modalElement);
+  }
+
+  modal.show();
+}
 
 function validateCategory(form) {
   if (form['category'].value == 'Choose Category') {
@@ -93,12 +155,10 @@ function validateCategory(form) {
   return true;
 }
 
-
-
-function addProductToTable() {
+function displayProducts() {
   const tbody = document.querySelector('table tbody');
   const container = document.getElementById('productCards');
-  let sellerProducts = fetchSellerProducts();
+  const sellerProducts = fetchSellerProducts();
   container.innerHTML = '';
   tbody.innerHTML = '';
   sellerProducts.map((product) => {
@@ -113,18 +173,19 @@ function addProductToTable() {
                  alt="${product.name}" 
                  onerror="this.src='https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?t=st=1746629522~exp=1746633122~hmac=d7ab6887b8e97559468627d4f72ce44616d158a31eb77d05b688edf831fef7e3&w=826'">
             <div class="card-body p-3">
-            <div class="d-flex flex-column-reverse flex-sm-row">
+              <div class="d-flex flex-column-reverse flex-sm-row">
              <div class="">
               <h5 class="card-title fs-5 fw-semibold">${product.name}</h5>
               <p class="card-text text-muted fs-6 mb-1">${product.description}}</p>
-            </div>
+             </div>
             <div class="d-flex align-items-start mb-2">
-                <button class="btn btn-sm btn-outline-primary mx-2" onclick="editProduct(this)">
+                <button aria-label="Update Product" type="button" class="btn btn-sm btn-outline-primary mx-2 update-btn" data-id="${product.id}">
                   <i class="fas fa-edit"></i>
                 </button>
-                <button class="btn btn-sm btn-outline-danger" onclick="deleteProduct(this)">
+                <button aria-label="Delete Product" type="button" class="btn btn-sm btn-outline-danger delete-btn" data-id="${product.id}">
                   <i class="fas fa-trash-alt"></i>
                 </button>
+                
               </div>
             </div>
 
@@ -191,10 +252,10 @@ function addProductToTable() {
         <td>${product.reviews.length}</td>
         <td>
           <div class="action-btns d-flex">
-            <button class="btn btn-sm btn-outline-primary me-2" onclick="editProduct(this)">
+            <button aria-label="Update Product" type="button" class="btn btn-sm btn-outline-primary me-2 update-btn" data-id="${product.id}">
               <i class="fas fa-edit"></i>
             </button>
-            <button class="btn btn-sm btn-outline-danger" onclick="deleteProduct(this)">
+            <button aria-label="Delete Product" type="button" class="btn btn-sm btn-outline-danger delete-btn" data-id="${product.id}">
               <i class="fas fa-trash-alt"></i>
             </button>
           </div>
@@ -202,18 +263,29 @@ function addProductToTable() {
       `;
     tbody.insertBefore(row, tbody.firstChild);
   });
-}
-addProductToTable();
+};
+displayProducts();
 
+document.addEventListener('click', (event) => {
+  if (event.target.closest('.update-btn')) {
+    const button = event.target.closest('.update-btn');
+    const productId = parseInt(button.dataset.id);
+    updateProduct(productId);
+  }
+});
 
 // solve Blocked aria-hidden issue
 document.getElementById('closeModal').addEventListener('click', function () {
-  const modal = bootstrap.Modal.getInstance(document.getElementById('productModal'));
-  modal.hide();
+  moveFocus();
+});
 
-  // Move focus to the "Add Product" button
+document.querySelector('.btn-close').addEventListener('click', function () {
+  moveFocus();
+});
+
+function moveFocus() {
   const openModalButton = document.querySelector('button[data-bs-target="#productModal"]');
   if (openModalButton) {
     openModalButton.focus();
   }
-});
+}

@@ -64,38 +64,67 @@
               </div>
               <div class="modal-body">
                 <form id="productForm">
-                  <input required name="name" class="form-control mb-3" type="text" placeholder="Product Name" />
-                  <textarea required name="description" class="form-control mb-3" placeholder="Description"></textarea>
-                  <input required name="quantity" class="form-control mb-3" type="number" placeholder="Stock" min="0" />
-                  <select required name="category" class="form-select mb-3">
-                    <option disabled selected>Choose Category</option>
-                    <option>Smartphones</option>
-                    <option>Tablets</option>
-                    <option>Laptops</option>
-                    <option>Gaming</option>
-                    <option>SmartWatches</option>
-                    <option>HeadPhones</option>
-                  </select>
-                  <input required name="price" class="form-control mb-3" type="number" placeholder="Price" min="0"
-                    step="1" />
-                  <input name="sale" class="form-control mb-3" type="number" placeholder="Sale (%)" min="0" max="100" />
-                  <input required name="image" class="form-control mb-3" type="url" placeholder="Primary Image URL" />
+                  <input name="id" type="hidden" />
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">Product Name</span>
+                    <input required name="name" class="form-control" type="text" placeholder="Product Name" />
+                  </div>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">Description</span>
+                    <textarea required name="description" class="form-control" placeholder="Description"></textarea>
+                  </div>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">Stock</span>
+                    <input required name="quantity" class="form-control" type="number" placeholder="Stock" min="0" />
+                  </div>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">Category</span>
+                    <select required name="category" class="form-select">
+                      <option disabled selected>Choose Category</option>
+                      <option>Smartphones</option>
+                      <option>Tablets</option>
+                      <option>Laptops</option>
+                      <option>Gaming</option>
+                      <option>SmartWatches</option>
+                      <option>HeadPhones</option>
+                    </select>
+                  </div>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">Price</span>
+                    <input required name="price" class="form-control" type="number" placeholder="Price" min="0" step="1" />
+                  </div>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">Sale (%)</span>
+                    <input name="sale" class="form-control" type="number" placeholder="Sale (%)" min="0" max="100" />
+                  </div>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">Primary Image URL</span>
+                    <input required name="image" class="form-control" type="url" placeholder="Primary Image URL" />
+                  </div>
                   <div class="row g-2 mb-3">
                     <div class="col-12 col-sm-6">
-                      <input required name="image2" class="form-control" type="url"
-                        placeholder="Image 2 URL" />
+                      <div class="input-group">
+                        <span class="input-group-text">Image 2 URL</span>
+                        <input required name="image2" class="form-control" type="url" placeholder="Image 2 URL" />
+                      </div>
                     </div>
                     <div class="col-12 col-sm-6">
-                      <input required name="image3" class="form-control" type="url"
-                        placeholder="Image 3 URL" />
+                      <div class="input-group">
+                        <span class="input-group-text">Image 3 URL</span>
+                        <input required name="image3" class="form-control" type="url" placeholder="Image 3 URL" />
+                      </div>
                     </div>
                     <div class="col-12 col-sm-6">
-                      <input required name="image4" class="form-control" type="url"
-                        placeholder="Image 4 URL" />
+                      <div class="input-group">
+                        <span class="input-group-text">Image 4 URL</span>
+                        <input required name="image4" class="form-control" type="url" placeholder="Image 4 URL" />
+                      </div>
                     </div>
                     <div class="col-12 col-sm-6">
-                      <input required name="image5" class="form-control" type="url"
-                        placeholder="Image 5 URL" />
+                      <div class="input-group">
+                        <span class="input-group-text">Image 5 URL</span>
+                        <input required name="image5" class="form-control" type="url" placeholder="Image 5 URL" />
+                      </div>
                     </div>
                   </div>
                   <div class="modal-footer">
