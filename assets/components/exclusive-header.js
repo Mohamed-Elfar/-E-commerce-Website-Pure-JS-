@@ -133,27 +133,11 @@ class ExclusiveHeader extends HTMLElement {
                 >
               </li>
               <li class="d-flex align-items-center mx-3">
-                <i class="fa-regular fa-heart"></i>
-                <a
-                  class="dropdown-item text-white"
-                  href="/customer/profile/profile.html"
-                  >Manage Wishlist</a
-                >
-              </li>
-              <li class="d-flex align-items-center mx-3">
                 <i class="fa-solid fa-bag-shopping"></i>
                 <a
                   class="dropdown-item text-white"
-                  href="/customer/profile/profile.html"
+                  href="/customer/orders/myorders.html"
                   >Manage Orders</a
-                >
-              </li>
-              <li class="d-flex align-items-center mx-3">
-                <i class="fa-solid fa-ban"></i>
-                <a
-                  class="dropdown-item text-white"
-                  href="/customer/profile/profile.html"
-                  >Manage Cancellations</a
                 >
               </li>
               <li class="d-flex align-items-center mx-3">
