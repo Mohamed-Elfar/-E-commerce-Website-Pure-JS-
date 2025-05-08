@@ -26,7 +26,7 @@ const elements = {
   },
   sections: {
     users: document.querySelector("[data-show='usersContainer']"),
-  },
+  }
 };
 
 // Data
@@ -46,7 +46,7 @@ function init() {
 // Sidebar Functions
 function setupSidebar() {
   const { container, openBtn, closeBtn } = elements.sidebar;
-
+  
   // Initial state
   if (container.classList.contains("collapsed")) {
     openBtn.style.display = "block";
@@ -59,17 +59,13 @@ function setupSidebar() {
   }
 
   // Event listeners
-  elements.sidebar.openBtn.addEventListener("click", () =>
-    toggleSidebar(false)
-  );
-  elements.sidebar.closeBtn.addEventListener("click", () =>
-    toggleSidebar(true)
-  );
+  elements.sidebar.openBtn.addEventListener("click", () => toggleSidebar(false));
+  elements.sidebar.closeBtn.addEventListener("click", () => toggleSidebar(true));
 }
 
 function toggleSidebar(collapse) {
   const { container, openBtn, closeBtn } = elements.sidebar;
-
+  
   container.classList.toggle("collapsed", collapse);
   elements.mainContent.classList.toggle("full", collapse);
   openBtn.style.display = collapse ? "block" : "none";
@@ -79,11 +75,11 @@ function toggleSidebar(collapse) {
 // Section Navigation
 function setupSectionToggles() {
   document.querySelectorAll(".section-toggle-btn").forEach((btn) => {
-    btn.addEventListener("click", function () {
+    btn.addEventListener("click", function() {
       const targetId = this.getAttribute("data-show");
-
+      
       // Hide all sections
-      Array.from(elements.mainContent.children).forEach((child) => {
+      Array.from(elements.mainContent.children).forEach(child => {
         child.classList.add("d-none");
       });
 
@@ -101,9 +97,9 @@ function renderDashboard() {
   // Calculate revenue and orders
   let sum = 0;
   let allOrders = 0;
-
-  users.forEach((user) => {
-    user.orders?.forEach((order) => {
+  
+  users.forEach(user => {
+    user.orders?.forEach(order => {
       allOrders++;
       sum += Number(order.total) || 0;
     });
@@ -113,33 +109,24 @@ function renderDashboard() {
   elements.userDisplay.orders.textContent = allOrders;
 
   // Revenue percentage calculation
-  const lastDayRevenue =
-    parseFloat(localStorage.getItem("totalRevenuePrevDay")) || 0;
+  const lastDayRevenue = parseFloat(localStorage.getItem("totalRevenuePrevDay")) || 0;
   let percentDifference = 0;
 
   if (lastDayRevenue) {
-    percentDifference =
-      lastDayRevenue === 0
-        ? 0
-        : ((sum - lastDayRevenue) / lastDayRevenue) * 100;
+    percentDifference = lastDayRevenue === 0 ? 0 : ((sum - lastDayRevenue) / lastDayRevenue) * 100;
     if (Math.abs(percentDifference) < 0.001) percentDifference = 0;
   }
 
   elements.userDisplay.revenueRate.classList.add(
     percentDifference >= 0 ? "text-success" : "text-danger"
   );
-
-  elements.userDisplay.revenueRate.innerHTML =
-    percentDifference >= 0
-      ? `<i class="fas fa-arrow-up"></i> ${Math.abs(percentDifference).toFixed(
-          2
-        )}% from last day`
-      : `<i class="fas fa-arrow-down"></i> ${Math.abs(
-          percentDifference
-        ).toFixed(2)}% from last day`;
+  
+  elements.userDisplay.revenueRate.innerHTML = percentDifference >= 0 
+    ? `<i class="fas fa-arrow-up"></i> ${Math.abs(percentDifference).toFixed(2)}% from last day`
+    : `<i class="fas fa-arrow-down"></i> ${Math.abs(percentDifference).toFixed(2)}% from last day`;
 
   // Stock information
-  const productsInStock = allProducts.filter((p) => p.quantity > 0).length;
+  const productsInStock = allProducts.filter(p => p.quantity > 0).length;
   const lowStockCount = allProducts.length - productsInStock;
 
   if (lowStockCount > 0) {
@@ -161,10 +148,10 @@ function renderDashboard() {
 // Product Rendering
 function renderTopSellingProducts() {
   const productCounts = {};
-
-  users.forEach((user) => {
-    user.orders?.forEach((order) => {
-      order.products?.forEach((product) => {
+  
+  users.forEach(user => {
+    user.orders?.forEach(order => {
+      order.products?.forEach(product => {
         if (!productCounts[product.id]) {
           productCounts[product.id] = { ...product, count: 0 };
         }
@@ -177,51 +164,36 @@ function renderTopSellingProducts() {
     .sort((a, b) => b.count - a.count)
     .slice(0, 4);
 
-  elements.userDisplay.products.innerHTML = topProducts
-    .map(
-      (product) => `
+  elements.userDisplay.products.innerHTML = topProducts.map(product => `
     <div class="col-sm-6 col-md-6 col-lg-6 mb-3">
       <div class="card product-card h-100">
         <img src="${product.image}" class="card-img-top w-50" alt="Product" />
-        ${
-          product.sale.trim()
-            ? `<span class="discount-badge">${product.sale} OFF</span>`
-            : ""
-        }
+        ${product.sale.trim() ? `<span class="discount-badge">${product.sale} OFF</span>` : ''}
         <div class="card-body">
           <h6 class="card-title">${product.name}</h6>
           <div class="d-flex justify-content-between align-items-center">
             <div>
               <span class="text-danger">$${product.price}</span>
-              ${
-                product.sale.trim()
-                  ? `
+              ${product.sale.trim() ? `
                 <span class="text-muted text-decoration-line-through ms-2">
-                  $${(
-                    product.price *
-                    (1 - parseFloat(product.sale) / 100)
-                  ).toFixed(2)}
+                  $${(product.price * (1 - parseFloat(product.sale)/100)).toFixed(2)}
                 </span>
-              `
-                  : ""
-              }
+              ` : ''}
             </div>
             <span class="text-muted small">${product.count} sold</span>
           </div>
         </div>
       </div>
     </div>
-  `
-    )
-    .join("");
+  `).join('');
 }
 
 function renderFlashSaleProducts() {
   const productCounts = {};
-
-  users.forEach((user) => {
-    user.orders?.forEach((order) => {
-      order.products?.forEach((product) => {
+  
+  users.forEach(user => {
+    user.orders?.forEach(order => {
+      order.products?.forEach(product => {
         if (!productCounts[product.id]) {
           productCounts[product.id] = product.count || 0;
         } else {
@@ -232,29 +204,23 @@ function renderFlashSaleProducts() {
   });
 
   const flashProducts = allProducts
-    .filter((p) => p.sale.trim())
+    .filter(p => p.sale.trim())
     .sort((a, b) => parseFloat(b.sale) - parseFloat(a.sale));
 
-  elements.userDisplay.flashTable.innerHTML = flashProducts
-    .map(
-      (product) => `
+  elements.userDisplay.flashTable.innerHTML = flashProducts.map(product => `
     <tr>
       <td>${product.name}</td>
       <td>
-        <span class="badge ${
-          parseFloat(product.sale) > 15
-            ? "bg-danger bg-opacity-10 text-danger"
-            : "bg-success bg-opacity-10 text-success"
-        }">
+        <span class="badge ${parseFloat(product.sale) > 15 
+          ? 'bg-danger bg-opacity-10 text-danger' 
+          : 'bg-success bg-opacity-10 text-success'}">
           ${product.sale}
         </span>
       </td>
       <td>${productCounts[product.id] || 0}</td>
       <td>$${product.price}</td>
     </tr>
-  `
-    )
-    .join("");
+  `).join('');
 }
 
 // Charts
@@ -264,26 +230,12 @@ function setupCharts() {
   new Chart(categoryCtx, {
     type: "doughnut",
     data: {
-      labels: [
-        "Men & Fashion",
-        "Electronics",
-        "Home & Lifestyle",
-        "Medicine",
-        "Sports & Outdoor",
-      ],
-      datasets: [
-        {
-          data: [0, 100, 0, 0, 0],
-          backgroundColor: [
-            "#3498db",
-            "#2ecc71",
-            "#9b59b6",
-            "#f1c40f",
-            "#e74c3c",
-          ],
-          borderWidth: 0,
-        },
-      ],
+      labels: ["Men & Fashion", "Electronics", "Home & Lifestyle", "Medicine", "Sports & Outdoor"],
+      datasets: [{
+        data: [0, 100, 0, 0, 0],
+        backgroundColor: ["#3498db", "#2ecc71", "#9b59b6", "#f1c40f", "#e74c3c"],
+        borderWidth: 0,
+      }],
     },
     options: {
       responsive: true,
@@ -292,18 +244,18 @@ function setupCharts() {
         legend: { position: "right" },
         tooltip: {
           callbacks: {
-            label: (context) => `${context.label}: ${context.raw}%`,
-          },
-        },
-      },
-    },
+            label: context => `${context.label}: ${context.raw}%`
+          }
+        }
+      }
+    }
   });
 
   // Sales Chart
   const dailySales = Array(7).fill(0);
-
-  users.forEach((user) => {
-    user.orders?.forEach((order) => {
+  
+  users.forEach(user => {
+    user.orders?.forEach(order => {
       const day = new Date(order.date).getDay();
       dailySales[day > 6 ? 0 : day] += Number(order.total) || 0;
     });
@@ -314,34 +266,32 @@ function setupCharts() {
     type: "line",
     data: {
       labels: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-      datasets: [
-        {
-          label: "Sales",
-          data: dailySales,
-          backgroundColor: "rgba(75, 192, 192, 0.2)",
-          borderColor: "rgba(75, 192, 192, 1)",
-          borderWidth: 2,
-          tension: 0.4,
-          fill: true,
-        },
-      ],
+      datasets: [{
+        label: "Sales",
+        data: dailySales,
+        backgroundColor: "rgba(75, 192, 192, 0.2)",
+        borderColor: "rgba(75, 192, 192, 1)",
+        borderWidth: 2,
+        tension: 0.4,
+        fill: true,
+      }]
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
       plugins: {
         legend: { position: "top" },
-        tooltip: { mode: "index", intersect: false },
+        tooltip: { mode: "index", intersect: false }
       },
       scales: {
         y: {
           beginAtZero: true,
           ticks: {
-            callback: (value) => `$${value}`,
-          },
-        },
-      },
-    },
+            callback: value => `$${value}`
+          }
+        }
+      }
+    }
   });
 }
 
@@ -350,13 +300,13 @@ function startFlashSaleTimer() {
   const timerElements = {
     hours: document.getElementById("flashSaleHours"),
     minutes: document.getElementById("flashSaleMinutes"),
-    seconds: document.getElementById("flashSaleSeconds"),
+    seconds: document.getElementById("flashSaleSeconds")
   };
 
   let time = {
     h: parseInt(timerElements.hours.textContent),
     m: parseInt(timerElements.minutes.textContent),
-    s: parseInt(timerElements.seconds.textContent),
+    s: parseInt(timerElements.seconds.textContent)
   };
 
   setInterval(() => {
@@ -382,10 +332,9 @@ function renderUserSection() {
   usersAccordion.innerHTML = "";
 
   // Skip first user (admin)
-  users.slice(1).forEach((user) => {
+  users.slice(1).forEach(user => {
     const userId = user.userId;
-    const userRoleClass =
-      user.role === "Seller" ? "role-seller" : "role-customer";
+    const userRoleClass = user.role === "Seller" ? "role-seller" : "role-customer";
 
     usersAccordion.innerHTML += `
       <div class="accordion-item mb-2">
@@ -459,12 +408,8 @@ function renderUserSection() {
                 <div class="mb-3">
                   <label class="form-label">Role</label>
                   <select class="form-select" id="modal-${userId}-role" required>
-                    <option value="Customer" ${
-                      user.role === "Customer" ? "selected" : ""
-                    }>Customer</option>
-                    <option value="Seller" ${
-                      user.role === "Seller" ? "selected" : ""
-                    }>Seller</option>
+                    <option value="Customer" ${user.role === "Customer" ? "selected" : ""}>Customer</option>
+                    <option value="Seller" ${user.role === "Seller" ? "selected" : ""}>Seller</option>
                   </select>
                 </div>
                 <div class="modal-footer">
@@ -487,8 +432,8 @@ function renderSellerApplications() {
   const applicationsContainer = document.querySelector(".applications");
   const pendingBadge = document.querySelector(".pending");
   const noPendingMessage = document.querySelector(".noPending");
-
-  const wantedSellers = users.filter((user) => user.want_to_be_seller);
+  
+  const wantedSellers = users.filter(user => user.want_to_be_seller);
   pendingBadge.textContent = `${wantedSellers.length} pending`;
 
   if (wantedSellers.length === 0) {
@@ -498,9 +443,7 @@ function renderSellerApplications() {
   }
 
   noPendingMessage.classList.add("d-none");
-  applicationsContainer.innerHTML = wantedSellers
-    .map(
-      (user) => `
+  applicationsContainer.innerHTML = wantedSellers.map(user => `
     <div class="request-item">
       <div class="request-username">${user.firstName} ${user.lastName}</div>
       <div class="request-email">${user.email}</div>
@@ -513,27 +456,19 @@ function renderSellerApplications() {
         </button>
       </div>
     </div>
-  `
-    )
-    .join("");
+  `).join('');
 }
 
 // Window functions
-window.saveUserChanges = async function (userId) {
+window.saveUserChanges = async function(userId) {
   try {
-    const modal = bootstrap.Modal.getInstance(
-      document.getElementById(`modal-${userId}`)
-    );
+    const modal = bootstrap.Modal.getInstance(document.getElementById(`modal-${userId}`));
     const inputs = {
-      firstName: document
-        .getElementById(`modal-${userId}-firstName`)
-        .value.trim(),
-      lastName: document
-        .getElementById(`modal-${userId}-lastName`)
-        .value.trim(),
+      firstName: document.getElementById(`modal-${userId}-firstName`).value.trim(),
+      lastName: document.getElementById(`modal-${userId}-lastName`).value.trim(),
       email: document.getElementById(`modal-${userId}-email`).value.trim(),
       phone: document.getElementById(`modal-${userId}-phone`).value.trim(),
-      role: document.getElementById(`modal-${userId}-role`).value,
+      role: document.getElementById(`modal-${userId}-role`).value
     };
 
     // Validation
@@ -548,21 +483,22 @@ window.saveUserChanges = async function (userId) {
     }
 
     // Update user
-    const userIndex = users.findIndex((u) => u.userId === userId);
+    const userIndex = users.findIndex(u => u.userId === userId);
     if (userIndex === -1) throw new Error("User not found");
-
+    
     users[userIndex] = { ...users[userIndex], ...inputs };
     localStorage.setItem("users", JSON.stringify(users));
-
+    
     await Swal.fire("Success!", "User updated successfully", "success");
     modal.hide();
     renderUserSection();
+    
   } catch (error) {
     await Swal.fire("Error!", error.message, "error");
   }
 };
 
-window.deleteUser = async function (userId) {
+window.deleteUser = async function(userId) {
   const result = await Swal.fire({
     title: "Are you sure?",
     text: "You won't be able to revert this!",
@@ -570,41 +506,42 @@ window.deleteUser = async function (userId) {
     showCancelButton: true,
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
-    confirmButtonText: "Yes, delete it!",
+    confirmButtonText: "Yes, delete it!"
   });
 
   if (!result.isConfirmed) return;
 
-  users = users.filter((u) => u.userId !== userId);
+  users = users.filter(u => u.userId !== userId);
   localStorage.setItem("users", JSON.stringify(users));
-
+  
   await Swal.fire("Deleted!", "User has been deleted.", "success");
   renderUserSection();
 };
 
-window.approveSeller = async function (userId) {
-  const userIndex = users.findIndex((u) => u.userId === userId);
+window.approveSeller = async function(userId) {
+  const userIndex = users.findIndex(u => u.userId === userId);
   if (userIndex === -1) return;
 
-  users[userIndex] = {
-    ...users[userIndex],
+  users[userIndex] = { 
+    ...users[userIndex], 
     role: "Seller",
-    want_to_be_seller: false,
+    want_to_be_seller: false
   };
 
   localStorage.setItem("users", JSON.stringify(users));
   await Swal.fire("Approved!", "User is now a seller.", "success");
   renderSellerApplications();
   renderUserSection();
+
 };
 
-window.rejectSeller = async function (userId) {
-  const userIndex = users.findIndex((u) => u.userId === userId);
+window.rejectSeller = async function(userId) {
+  const userIndex = users.findIndex(u => u.userId === userId);
   if (userIndex === -1) return;
 
-  users[userIndex] = {
-    ...users[userIndex],
-    want_to_be_seller: false,
+  users[userIndex] = { 
+    ...users[userIndex], 
+    want_to_be_seller: false
   };
 
   localStorage.setItem("users", JSON.stringify(users));

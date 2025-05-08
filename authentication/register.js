@@ -143,28 +143,6 @@ form.addEventListener("submit", (event) => {
     showToast("error", "Please fix the validation errors.");
   }
 });
-
-document.getElementById("firstname").addEventListener("input", function () {
-  validateName(this);
-});
-document.getElementById("lastname").addEventListener("input", function () {
-  validateName(this);
-});
-document.getElementById("email").addEventListener("input", function () {
-  validateEmail(this);
-});
-document.getElementById("phonenumber").addEventListener("input", function () {
-  validatePhone(this);
-});
-document.getElementById("password").addEventListener("input", function () {
-  validatePassword(this);
-});
-document
-  .getElementById("confirmpassword")
-  .addEventListener("input", function () {
-    validatePasswordMatch(password, this);
-  });
-
 function validateForm(
   firstName,
   lastName,
@@ -184,9 +162,5 @@ function validateForm(
 
   return valid;
 }
-
 Admin.createAdmin();
-console.log(User.totalUsers);
-console.log(Customer.customerCount);
-console.log(Seller.sellerCount);
-console.log(Admin.adminCount);
+

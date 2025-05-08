@@ -157,11 +157,7 @@ if (cart.length === 0) {
               if (user.token === authToken) {
                 return {
                   ...user,
-                  orders: [
-                    ...(user.orders || []),
-                      order,
-                    
-                  ],
+                  orders: [...(user.orders || []), order],
                 };
               }
               return user;
