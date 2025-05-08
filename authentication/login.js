@@ -1,4 +1,6 @@
-import { showToast } from "../assets/js/utils.js";
+import { hashPassword, showToast 
+  ,validatePassword
+} from "../assets/js/utils.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector("form");
@@ -9,8 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const users = JSON.parse(localStorage.getItem("users")) || [];
     const email = form.email.value;
     const password = form.password.value;
+    const hashedPassword = hashPassword(password)
     const user = users.find(
-      (user) => user.email === email && user.password === password
+      (user) => user.email === email && user.password === hashedPassword
     );
 
     if (user) {

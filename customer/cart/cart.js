@@ -61,19 +61,19 @@ productInCart.forEach((Element) => {
 
     deleteButton.addEventListener("click", () => {
       row.remove();
-      const index = cartItems.findIndex(
-        (item) => item.quantityInput === quantityInput
-      );
-      if (index !== -1) cartItems.splice(index, 1);
-
-      const updatedCart = productInCart.filter(
-        (item) => item.id !== Element.id
-      );
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
+    
+      // شيل العنصر من cartItems
+      const index = cartItems.findIndex(item => item.quantityInput === quantityInput);
+      if (index !== -1) {
+        cartItems.splice(index, 1);
+        productInCart.splice(index, 1); // ← شيل من cart الأصلي كمان
+      }
+    
+      localStorage.setItem("cart", JSON.stringify(productInCart));
       updateCartTotal();
     });
   }
-});
+});    
 
 function updateCartTotal() {
   let subtotalSum = 0;

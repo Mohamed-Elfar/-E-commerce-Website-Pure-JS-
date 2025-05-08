@@ -1,9 +1,12 @@
-import { 
+import {
+  showToast,
   validateName,
   validateEmail,
   validatePhone,
   validatePasswordMatch,
-  validatePassword
+  validatePassword,
+  hashPassword,
+  validateHashedPassword
 } from "/assets/js/utils.js";
 (function() {
   const currentToken = localStorage.getItem("token");
@@ -31,8 +34,6 @@ document.querySelector("#saveChanges").addEventListener("click", function (e) {
       showToast("error", "User not found");
       return;
     }
-
-    // تعديل بيانات المستخدم داخل مصفوفة المستخدمين
     const usersJSON = localStorage.getItem("users");
     const users = JSON.parse(usersJSON);
 
@@ -44,7 +45,7 @@ document.querySelector("#saveChanges").addEventListener("click", function (e) {
           lastName: document.getElementById("lastName").value,
           email: document.getElementById("email").value,
           phone: document.getElementById("phonenumber").value,
-          password: document.getElementById("newpassword").value,
+          password: hashPassword(document.getElementById("newpassword").value),
         };
       }
       return u;
@@ -62,7 +63,7 @@ function validation() {
   const isLastNameValid = validateName(document.getElementById("lastName"));
   const isEmailValid = validateEmail(document.getElementById("email"));
   const isPhoneValid = validatePhone(document.getElementById("phonenumber"));
-  const isMatchPasswordValid = MatchUserPassword(document.getElementById("currentpassword").value);
+  const isMatchPasswordValid = MatchUserPassword(hashPassword(document.getElementById("currentpassword").value));
   const isNewPasswordValid = validatePassword(document.getElementById("newpassword"));
   const isPasswordMatch = validatePasswordMatch(
     document.getElementById("newpassword"),
@@ -80,7 +81,7 @@ function validation() {
   );
 }
 
-function getUserByToken(token) {
+export function getUserByToken(token) {
   const usersJSON = localStorage.getItem("users");
   if (!usersJSON) return null;
   const users = JSON.parse(usersJSON);
