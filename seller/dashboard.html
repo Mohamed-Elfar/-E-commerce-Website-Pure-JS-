@@ -13,17 +13,12 @@
 </head>
 
 <body>
-  <!-- best to place before sidemenu for all content of your page -->
+  <exclusive-header></exclusive-header>
   <div class="container-fluid">
     <div class="row">
-      <!-- Sidebar Column -->
       <side-menu></side-menu>
-      
-      <!-- Main Content Column -->
-      <!-- These sizes must be placed after sidemenu for main content of your page -->
       <div class="main-content col-12 pt-3 px-4">
         <div class="d-flex align-items-center justify-content-between">
-          <!-- Sidebar Toggler Button (Don't forget to add this) -->
           <side-toggler></side-toggler>
           <div
             class="dashboard-header col-lg-12 col-11 mx-2 d-flex justify-content-between align-items-center flex-column flex-sm-row">
@@ -36,8 +31,6 @@
             </div>
           </div>
         </div>
-
-        <!-- Stats Cards -->
         <div class="row mt-4">
           <div class="col-md-4 mb-3">
             <div class="card h-100">
@@ -94,9 +87,9 @@
   <script src="/assets/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="analytics.js"></script>
-  <!-- side menu components -->
   <script src="/assets/components/side-menu.js"></script>
   <script src="/assets/components/side_toggler.js"></script>
+  <script src="/assets/components/exclusive-header.js" type="module"></script>
 
 </body>
 

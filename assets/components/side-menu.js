@@ -2,7 +2,7 @@ class SideMenuComponent extends HTMLElement {
     connectedCallback() {
         // Use default paths if attributes aren't provided
         const href1 = this.getAttribute('href-1') || 'dashboard.html';
-        const href2 = this.getAttribute('href-2') || 'manage-products.html';
+        const href2 = this.getAttribute('href-2') || 'products-management.html';
         const href3 = this.getAttribute('href-3') || 'orders.html';
         const href4 = this.getAttribute('href-4') || 'analytics.html';
 
@@ -16,6 +16,10 @@ class SideMenuComponent extends HTMLElement {
                 color: white;
                 height: 100vh;
                 height: 100vh;
+                top: 0;
+                padding-top: 10px;
+                transition: left 0.3s ease;
+                border-radius: 0px 10px 10px 0px;
             }
 
             .sidemenu .nav-link {
@@ -59,24 +63,23 @@ class SideMenuComponent extends HTMLElement {
 
 
             @media (min-width: 992px) {
-            .sidemenu {
-                background-color: white;
-                position: fixed;
-                left: 0;
-            }
+                .sidemenu {
+                    background-color: white;
+                    position: fixed;
+                    left: 0;
+                }
 
-            .sidemenu .nav-link {
-                color: var(--color-black) !important;
-            }
+                .sidemenu .nav-link {
+                    color: var(--color-black) !important;
+                }
 
-            .sidemenu-backdrop {
-                display: none !important;
-            }
+                .sidemenu-backdrop {
+                    display: none !important;
+                }
 
-            .sidemenu .nav-link:hover {
-                background-color: rgba(0, 0, 0, 0.1);
-            }
-
+                .sidemenu .nav-link:hover {
+                    background-color: rgba(0, 0, 0, 0.1);
+                }
             }
 
             .toggle-btn {
@@ -94,7 +97,7 @@ class SideMenuComponent extends HTMLElement {
             }
         </style>
         <div class="sidemenu-backdrop"></div>
-        <div class="col-6 col-md-4 col-lg-3 sidemenu collapse p-0" id="sidemenu">
+        <div class="col-6 col-md-3 col-lg-2 sidemenu collapse p-0" id="sidemenu">
             <div class="nav flex-column">
                 <div class="text-center my-4">
                     <h4>Exclusive</h4>

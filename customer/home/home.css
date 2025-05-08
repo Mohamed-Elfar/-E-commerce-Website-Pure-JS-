@@ -85,14 +85,13 @@ hr {
     width: 100vw;
     height: 100vh;
     background: rgba(0, 0, 0, 0.5);
-    z-index: 1039;
+    z-index: 1040;
     opacity: 0;
     visibility: hidden;
 }
 
 .sidebar.show {
     left: 0;
-    /* Slide in when shown */
 }
 
 .sidebar-backdrop.show {
