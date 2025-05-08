@@ -85,7 +85,9 @@ body {
         transition: all 0.3s;
         margin-right: 10px;
     }
-    
+    .text-transform-normal{
+        text-transform: none !important;
+    }
     .btn-delete {
         background-color: var(--danger-color);
         color: white;
@@ -93,11 +95,6 @@ body {
     
     .btn-delete:hover {
         background-color: #c0392b;
-    }
-    
-    .btn-edit {
-        background-color: var(--accent-color);
-        color: white;
     }
     
     .btn-edit:hover {

@@ -14,9 +14,16 @@ export function validateName(inputOrValue) {
     const isValid = /^[a-zA-Z]{2,30}$/.test(value);
     inputOrValue.classList.toggle("is-invalid", !isValid);
     inputOrValue.classList.toggle("is-valid", isValid);
+    isValid ? "" : showToast("error", "Invalid Name");
     return isValid;
   } else if (typeof inputOrValue === "string") {
-    return /^[a-zA-Z]{2,30}$/.test(inputOrValue.trim());
+    if( /^[a-zA-Z]{2,30}$/.test(inputOrValue.trim())){
+      return true
+    }else{
+      showToast("error", "Invalid Name");
+      return false
+    }
+    // return /^[a-zA-Z]{2,30}$/.test(inputOrValue.trim());
   }
   return false;
 }
@@ -30,11 +37,19 @@ export function validateEmail(inputOrValue) {
       );
     inputOrValue.classList.toggle("is-invalid", !isValid);
     inputOrValue.classList.toggle("is-valid", isValid);
+    isValid ? "" : showToast("error", "Invalid Email");
     return isValid;
   } else if (typeof inputOrValue === "string") {
-    return /^[a-zA-Z0-9._%+-]+@(gmail|outlook|yahoo|hotmail|icloud|protonmail)\.(com|net|org)$/i.test(
-      inputOrValue.trim()
-    );
+    if( /^[a-zA-Z0-9._%+-]+@(gmail|outlook|yahoo|hotmail|icloud|protonmail)\.(com|net|org)$/i.test(inputOrValue.trim())){
+      return true
+    }else{
+      showToast("error", "Invalid Email");
+      return false
+    }
+    
+    // return /^[a-zA-Z0-9._%+-]+@(gmail|outlook|yahoo|hotmail|icloud|protonmail)\.(com|net|org)$/i.test(
+    //   inputOrValue.trim()
+    // );
   }
   return false;
 }
@@ -45,9 +60,16 @@ export function validatePhone(inputOrValue) {
     const isValid = /^(010|011|012|015)\d{8}$/.test(value);
     inputOrValue.classList.toggle("is-invalid", !isValid);
     inputOrValue.classList.toggle("is-valid", isValid);
+    isValid ? "" : showToast("error", "Invalid Phone");
     return isValid;
   } else if (typeof inputOrValue === "string") {
-    return /^(010|011|012|015)\d{8}$/.test(inputOrValue.trim());
+    if( /^(010|011|012|015)\d{8}$/.test(inputOrValue.trim())){
+      return true
+    }else{
+      showToast("error", "Invalid Phone");
+      return false
+    }
+    // return /^(010|011|012|015)\d{8}$/.test(inputOrValue.trim());
   }
   return false;
 }
@@ -64,6 +86,7 @@ export function validatePassword(inputOrValue) {
   if (inputOrValue?.classList) {
     inputOrValue.classList.toggle("is-invalid", !isValid);
     inputOrValue.classList.toggle("is-valid", isValid);
+    isValid ? "" : showToast("error", "Invalid Password");
   }
 
   return isValid;

@@ -81,8 +81,8 @@ class Admin extends User {
 
     if (!existingAdmin) {
       const adminData = {
-        first_name: "Mohamed",
-        last_name: "Samir",
+        firstName: "Mohamed",
+        lastName: "Samir",
         email: "mohamedsamiir252@gmail.com",
         phone_number: "01060493174",
         password: hashPassword("Mohamed@123"),
