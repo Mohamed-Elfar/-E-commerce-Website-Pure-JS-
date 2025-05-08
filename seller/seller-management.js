@@ -25,7 +25,7 @@ export function fetchSellerProducts() {
   let allProducts = JSON.parse(localStorage.getItem("allProducts")) || [];
 
   let sellerProducts = allProducts.filter(
-    (product) => parseInt(product.createdBy) === currentUser.userId
+    (product) => Number(product.createdBy) === currentUser.userId
   );
   console.log(sellerProducts);
   console.log(allProducts)
@@ -45,13 +45,13 @@ export function addProduct(event) {
   let allProducts = JSON.parse(localStorage.getItem("allProducts")) || [];
 
   let product = {
-    id: allProducts.length + 1,
+    id:  Date.now(),
     name: formData.name,
     description: formData.description,
     category: formData.category,
     image: formData.image,
     price: parseFloat(formData.price),
-    quantity: parseInt(formData.quantity),
+    quantity: Number(formData.quantity),
     sale: parseFloat(formData.sale) || "",
     createdBy: getCurrentUser().userId.toString(),
     rating: 0.0,
@@ -76,8 +76,8 @@ export function addProduct(event) {
   modal.hide();
   closeBtn.blur();
   submitBtn.blur();
+  
   form.reset();
-
   showToast('success', 'Product added successfully!');
 }
 
@@ -99,6 +99,8 @@ function addProductToTable() {
   const tbody = document.querySelector('table tbody');
   const container = document.getElementById('productCards');
   let sellerProducts = fetchSellerProducts();
+  container.innerHTML = '';
+  tbody.innerHTML = '';
   sellerProducts.map((product) => {
     const card = document.createElement('div');
     card.className = 'col mb-4';
@@ -113,7 +115,7 @@ function addProductToTable() {
             <div class="card-body p-3">
             <div class="d-flex flex-column-reverse flex-sm-row">
              <div class="">
-              <h5 class="card-title fs-5 fw-semibold">${product.name}}</h5>
+              <h5 class="card-title fs-5 fw-semibold">${product.name}</h5>
               <p class="card-text text-muted fs-6 mb-1">${product.description}}</p>
             </div>
             <div class="d-flex align-items-start mb-2">
@@ -138,8 +140,8 @@ function addProductToTable() {
                 <div class="col-6">
                   <p class="card-text fs-6">
                     <strong>Stock:</strong> 
-                    <span class="badge ${parseInt(product.quantity) > 0 ? 'bg-success bg-opacity-10 text-success' : 'bg-danger bg-opacity-10 text-danger'}">
-                      ${parseInt(product.quantity) > 0 ? product.quantity + ' in Stock' : 'Out of Stock'}
+                    <span class="badge ${Number(product.quantity) > 0 ? 'bg-success bg-opacity-10 text-success' : 'bg-danger bg-opacity-10 text-danger'}">
+                      ${Number(product.quantity) > 0 ? product.quantity + ' in Stock' : 'Out of Stock'}
                     </span>
                   </p>
                   <p class="card-text fs-6">
@@ -176,8 +178,8 @@ function addProductToTable() {
         <td>$${parseFloat(product.price).toFixed(2)}</td>
         <td> ${product.sale ? `<span class="badge bg-danger">${product.sale}%</span>` : '-'}</td>
         <td>
-         <span class="badge ${parseInt(product.quantity) > 0 ? 'bg-success bg-opacity-10 text-success' : 'bg-danger bg-opacity-10 text-danger'}">
-          ${parseInt(product.quantity) > 0 ? product.quantity + ' in Stock' : 'Out of Stock'}
+         <span class="badge ${Number(product.quantity) > 0 ? 'bg-success bg-opacity-10 text-success' : 'bg-danger bg-opacity-10 text-danger'}">
+          ${Number(product.quantity) > 0 ? product.quantity + ' in Stock' : 'Out of Stock'}
         </span>
         </td>
         <td>
@@ -202,3 +204,16 @@ function addProductToTable() {
   });
 }
 addProductToTable();
+
+
+// solve Blocked aria-hidden issue
+document.getElementById('closeModal').addEventListener('click', function () {
+  const modal = bootstrap.Modal.getInstance(document.getElementById('productModal'));
+  modal.hide();
+
+  // Move focus to the "Add Product" button
+  const openModalButton = document.querySelector('button[data-bs-target="#productModal"]');
+  if (openModalButton) {
+    openModalButton.focus();
+  }
+});
