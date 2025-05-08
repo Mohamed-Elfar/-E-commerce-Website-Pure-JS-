@@ -5,6 +5,22 @@ if (cart.length === 0) {
 }
 (function () {
   "use strict";
+  function calculateOrderTotal(cart) {
+    const shippingCost = 30;
+    let subtotal = cart.reduce((sum, item) => sum + item.price * item.count, 0);
+
+    // Apply discount if exists (using first item's discount for the whole cart)
+    const discount = cart[0]?.discount
+      ? (1 - cart[0].discount) * subtotal
+      : subtotal;
+
+    return {
+      subtotal: subtotal.toFixed(2),
+      discount: (cart[0]?.discount || 0) * 100,
+      shipping: shippingCost,
+      total: (discount + shippingCost).toFixed(2),
+    };
+  }
 
   function validateCardName(name) {
     return /^[a-zA-Z\s]+$/.test(name);
@@ -109,6 +125,7 @@ if (cart.length === 0) {
             JSON.parse(localStorage.getItem("allProducts")) || [];
           const users = JSON.parse(localStorage.getItem("users")) || [];
           const user = users.find((user) => user.token == authToken);
+          const orderTotal = calculateOrderTotal(cart);
 
           const address = document.getElementById("address").value;
           const address2 = document.getElementById("address2").value;
@@ -128,25 +145,19 @@ if (cart.length === 0) {
               address,
               address2,
               city,
+              orderStatus: "waiting",
               paymentMethod: getSelectedPaymentMethod(),
+              subtotal: orderTotal.subtotal,
+              discount: `${orderTotal.discount}%`,
+              shipping: orderTotal.shipping,
+              total: orderTotal.total,
             };
-
+            const { userId, ...order } = newOrder;
             const updatedUsers = users.map((user) => {
               if (user.token === authToken) {
                 return {
                   ...user,
-                  orders: [
-                    ...(user.orders || []),
-                    {
-                      orderId: newOrder.orderId,
-                      products: newOrder.products,
-                      date: newOrder.date,
-                      address,
-                      address2,
-                      city,
-                      paymentMethod: getSelectedPaymentMethod(),
-                    },
-                  ],
+                  orders: [...(user.orders || []), order],
                 };
               }
               return user;

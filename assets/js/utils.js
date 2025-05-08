@@ -7,37 +7,23 @@ export function hashPassword(password) {
 export function validateHashedPassword(inputPassword, storedHash) {
   return hashPassword(inputPassword) === storedHash;
 }
-export function showToast(status, message) {
-  const toast = document.querySelector(".toast");
-  if (!toast) {
-    console.error("Toast element not found in DOM");
-    return;
-  }
-  toast.className = "toast";
-  const icons = {
-    success: "fa-circle-check",
-    error: "fa-triangle-exclamation",
-    warning: "fa-warning",
-    info: "fa-info",
-  };
-  if (!icons[status]) {
-    console.error(`Invalid toast status: ${status}`);
-    return;
-  }
-  toast.innerHTML = `<i class="fa-solid ${icons[status]}"></i> ${message}`;
-  toast.classList.add("show", `toast-${status}`);
 
-  setTimeout(() => toast.classList.remove("show"), 3000);
-}
 export function validateName(inputOrValue) {
   if (inputOrValue?.classList) {
     const value = inputOrValue.value.trim();
     const isValid = /^[a-zA-Z]{2,30}$/.test(value);
     inputOrValue.classList.toggle("is-invalid", !isValid);
     inputOrValue.classList.toggle("is-valid", isValid);
+    isValid ? "" : showToast("error", "Invalid Name");
     return isValid;
   } else if (typeof inputOrValue === "string") {
-    return /^[a-zA-Z]{2,30}$/.test(inputOrValue.trim());
+    if (/^[a-zA-Z]{2,30}$/.test(inputOrValue.trim())) {
+      return true;
+    } else {
+      showToast("error", "Invalid Name");
+      return false;
+    }
+    // return /^[a-zA-Z]{2,30}$/.test(inputOrValue.trim());
   }
   return false;
 }
@@ -51,11 +37,23 @@ export function validateEmail(inputOrValue) {
       );
     inputOrValue.classList.toggle("is-invalid", !isValid);
     inputOrValue.classList.toggle("is-valid", isValid);
+    isValid ? "" : showToast("error", "Invalid Email");
     return isValid;
   } else if (typeof inputOrValue === "string") {
-    return /^[a-zA-Z0-9._%+-]+@(gmail|outlook|yahoo|hotmail|icloud|protonmail)\.(com|net|org)$/i.test(
-      inputOrValue.trim()
-    );
+    if (
+      /^[a-zA-Z0-9._%+-]+@(gmail|outlook|yahoo|hotmail|icloud|protonmail)\.(com|net|org)$/i.test(
+        inputOrValue.trim()
+      )
+    ) {
+      return true;
+    } else {
+      showToast("error", "Invalid Email");
+      return false;
+    }
+
+    // return /^[a-zA-Z0-9._%+-]+@(gmail|outlook|yahoo|hotmail|icloud|protonmail)\.(com|net|org)$/i.test(
+    //   inputOrValue.trim()
+    // );
   }
   return false;
 }
@@ -66,9 +64,16 @@ export function validatePhone(inputOrValue) {
     const isValid = /^(010|011|012|015)\d{8}$/.test(value);
     inputOrValue.classList.toggle("is-invalid", !isValid);
     inputOrValue.classList.toggle("is-valid", isValid);
+    isValid ? "" : showToast("error", "Invalid Phone");
     return isValid;
   } else if (typeof inputOrValue === "string") {
-    return /^(010|011|012|015)\d{8}$/.test(inputOrValue.trim());
+    if (/^(010|011|012|015)\d{8}$/.test(inputOrValue.trim())) {
+      return true;
+    } else {
+      showToast("error", "Invalid Phone");
+      return false;
+    }
+    // return /^(010|011|012|015)\d{8}$/.test(inputOrValue.trim());
   }
   return false;
 }
@@ -85,6 +90,7 @@ export function validatePassword(inputOrValue) {
   if (inputOrValue?.classList) {
     inputOrValue.classList.toggle("is-invalid", !isValid);
     inputOrValue.classList.toggle("is-valid", isValid);
+    isValid ? "" : showToast("error", "Invalid Password");
   }
 
   return isValid;
@@ -107,6 +113,13 @@ export function validatePasswordMatch(passwordInput, confirmPasswordInput) {
 
   return isMatching;
 }
+export function updateBadges() {
+  const header = document.querySelector("exclusive-header");
+  if (header && typeof header.badges === "function") {
+    header.badges();
+  }
+}
+
 export function addToCart(product) {
   if (localStorage.getItem("token")) {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -117,6 +130,7 @@ export function addToCart(product) {
       if (product.quantity > 0) {
         cart.push(product);
         localStorage.setItem("cart", JSON.stringify(cart));
+        updateBadges();
         showToast("success", "Product added to cart");
         return true;
       } else {
@@ -128,7 +142,7 @@ export function addToCart(product) {
       return false;
     }
   } else {
-    showToast("warning", "Please Login First");
+    showToast("warning", "Please Login First");
     return false;
   }
 }
@@ -145,8 +159,9 @@ export function toggleWishList(productId, icon) {
     icon.classList.remove("fa-regular");
     showToast("success", "Added to wishlist");
   }
-
   localStorage.setItem("wishlist", JSON.stringify(wishlist));
+  updateBadges();
+
 }
 
 export function search(title, parent) {
@@ -373,4 +388,33 @@ export class User {
   print() {
     console.log(`User ID: ${this.#userId}`);
   }
+}
+
+export function loginUser() {
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+  const token = localStorage.getItem("token") || [];
+  const user = users.find((user) => user.token === token);
+  return user;
+}
+export function showToast(status, message) {
+  const toast = document.querySelector(".toast");
+  if (!toast) {
+    console.error("Toast element not found in DOM");
+    return;
+  }
+  toast.className = "toast";
+  const icons = {
+    success: "fa-circle-check",
+    error: "fa-triangle-exclamation",
+    warning: "fa-warning",
+    info: "fa-info",
+  };
+  if (!icons[status]) {
+    console.error(`Invalid toast status: ${status}`);
+    return;
+  }
+  toast.innerHTML = `<i class="fa-solid ${icons[status]}"></i> ${message}`;
+  toast.classList.add("show", `toast-${status}`);
+
+  setTimeout(() => toast.classList.remove("show"), 3000);
 }

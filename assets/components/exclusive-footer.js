@@ -2,7 +2,7 @@ class ExclusiveFooter extends HTMLElement {
   constructor() {
     super();
     this.innerHTML = `
-    <footer class="footer bg-black text-white mt-5">
+    <footer class="footer bg-black text-white mt-5 position-relative">
       <div class="container py-5">
         <div class="outer__grid d-flex flex-wrap gap-3 mx-4 mx-md-0">
           <div class="col">
@@ -120,8 +120,19 @@ class ExclusiveFooter extends HTMLElement {
           copyright &copy; 2022 exclusive. all rights reserved
         </p>
       </div>
+      <button id="scrollToTopBtn" class="btn btn-dark rounded-circle position-absolute end-0" title="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+      </button>
     </footer>
-      `;
+    `;
+    
+    // Add scroll to top functionality
+    this.querySelector('#scrollToTopBtn').addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
   }
 }
 
