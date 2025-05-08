@@ -115,7 +115,7 @@ class ExclusiveHeader extends HTMLElement {
               </li>
               <li
                 class="d-flex align-items-center mx-3 d-none"
-                id="serllerLink"
+                id="sellerLink"
               >
                 <i class="fa fa-regular fa-user"></i>
                 <a
