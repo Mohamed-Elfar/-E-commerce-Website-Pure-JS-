@@ -145,6 +145,7 @@ if (cart.length === 0) {
               address,
               address2,
               city,
+              orderStatus: "waiting",
               paymentMethod: getSelectedPaymentMethod(),
               subtotal: orderTotal.subtotal,
               discount: `${orderTotal.discount}%`,
@@ -158,7 +159,6 @@ if (cart.length === 0) {
                   ...user,
                   orders: [
                     ...(user.orders || []),
-                   
                       order,
                     
                   ],
