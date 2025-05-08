@@ -153,15 +153,15 @@ export function toggleWishList(productId, icon) {
     icon.classList.remove("active", "fa-solid");
     icon.classList.add("fa-regular");
     showToast("error", "Removed from wishlist!");
-    updateBadges();
   } else {
     wishlist.push(productId);
     icon.classList.add("active", "fa-solid");
     icon.classList.remove("fa-regular");
     showToast("success", "Added to wishlist");
-    updateBadges();
   }
   localStorage.setItem("wishlist", JSON.stringify(wishlist));
+  updateBadges();
+
 }
 
 export function search(title, parent) {
