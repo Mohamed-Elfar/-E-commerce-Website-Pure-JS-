@@ -199,15 +199,17 @@ function renderTopSellingProducts() {
           <h6 class="card-title">${product.name}</h6>
           <div class="d-flex justify-content-between align-items-center">
             <div>
-              <span class="text-danger">$${product.price}</span>
+              <span class="text-danger"> $${
+                product.sale.trim()
+                  ? parseFloat(product.price) *
+                    (1 - parseFloat(product.sale) / 100)
+                  : product.price
+              }</span>
               ${
                 product.sale.trim()
                   ? `
                 <span class="text-muted text-decoration-line-through ms-2">
-                  $${(
-                    product.price *
-                    (1 - parseFloat(product.sale) / 100)
-                  ).toFixed(2)}
+                  $${product.price}
                 </span>
               `
                   : ""
