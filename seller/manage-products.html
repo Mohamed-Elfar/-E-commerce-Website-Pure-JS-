@@ -20,11 +20,16 @@
       <div class="main-content col-12 pt-3 px-4">
         <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
           <side-toggler></side-toggler>
-          <h3 class="mb-2 mb-md-0">Products Management</h3>
-          <button class="button background-primary secondary-color" data-bs-toggle="modal"
+          <h3 class="mb-2 mb-md-0 my-2 my-sm-0">Products Management</h3>
+          <button class="button background-primary secondary-color my-2 my-sm-0" data-bs-toggle="modal"
             data-bs-target="#productModal" type="button">
             <i class="fa-solid fa-plus"></i> Add Product
           </button>
+        </div>
+        <div class="container p-sm-3">
+          <div class="row row-cols-1 row-cols-lg-2" id="productCards">
+            <!-- Product cards will be inserted here -->
+          </div>
         </div>
         <div class="card">
           <div class="card-body">

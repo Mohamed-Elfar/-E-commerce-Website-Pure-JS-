@@ -66,8 +66,8 @@ export function addProduct(event) {
     ],
   };
 
-  // allProducts.push(product);
-  // localStorage.setItem("allProducts", JSON.stringify(allProducts));
+  allProducts.push(product);
+  localStorage.setItem("allProducts", JSON.stringify(allProducts));
 
 
   const modal = bootstrap.Modal.getInstance(document.getElementById('productModal'));
@@ -97,8 +97,67 @@ function validateCategory(form) {
 
 function addProductToTable() {
   const tbody = document.querySelector('table tbody');
-
+  const container = document.getElementById('productCards');
   let sellerProducts = fetchSellerProducts();
+  sellerProducts.map((product) => {
+    const card = document.createElement('div');
+    card.className = 'col mb-4';
+    card.innerHTML = `
+        <div class="card h-100 border-0 shadow-sm p-3 d-xxl-none">
+          <div class="d-flex flex-sm-row flex-column position-relative">
+             <img src="${product.image}" 
+                 class="p-1 w-100 w-sm-auto" 
+                 style="height: 160px; max-width: 160px; object-fit: contain; background: linear-gradient(145deg, #f8f9fa, #e9ecef);" 
+                 alt="${product.name}" 
+                 onerror="this.src='https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?t=st=1746629522~exp=1746633122~hmac=d7ab6887b8e97559468627d4f72ce44616d158a31eb77d05b688edf831fef7e3&w=826'">
+            <div class="card-body p-3">
+            <div class="d-flex flex-column-reverse flex-sm-row">
+             <div class="">
+              <h5 class="card-title fs-5 fw-semibold">${product.name}}</h5>
+              <p class="card-text text-muted fs-6 mb-1">${product.description}}</p>
+            </div>
+            <div class="d-flex align-items-start mb-2">
+                <button class="btn btn-sm btn-outline-primary mx-2" onclick="editProduct(this)">
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn btn-sm btn-outline-danger" onclick="deleteProduct(this)">
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </div>
+            </div>
+
+              <div class="row g-2 d-flex flex-column flex-sm-row">
+                <div class="col-6">
+                  <p class="card-text fs-6"><strong>Category:</strong> ${product.category}</p>
+                  <p class="card-text fs-6"><strong>Price:</strong> $${parseFloat(product.price).toFixed(2)}</p>
+                  <p class="card-text fs-6">
+                    <strong>Discount:</strong> 
+                    ${product.sale ? `<span class="badge bg-danger">${product.sale}%</span>` : '-'}
+                  </p>
+                </div>
+                <div class="col-6">
+                  <p class="card-text fs-6">
+                    <strong>Stock:</strong> 
+                    <span class="badge ${parseInt(product.quantity) > 0 ? 'bg-success bg-opacity-10 text-success' : 'bg-danger bg-opacity-10 text-danger'}">
+                      ${parseInt(product.quantity) > 0 ? product.quantity + ' in Stock' : 'Out of Stock'}
+                    </span>
+                  </p>
+                  <p class="card-text fs-6">
+                    <strong>Rating:</strong> 
+                    <span class="rating-stars">${product.rating}
+                      <i class="fa-solid fa-star text-warning"></i>
+                      (${product.ratingCount})
+                    </span>
+                  </p>
+                  <p class="card-text fs-6"><strong>Reviews:</strong> ${product.reviews.length}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    container.insertBefore(card, container.firstChild);
+  });
   sellerProducts.map((product) => {
     const row = document.createElement('tr');
     row.innerHTML = `
@@ -141,6 +200,5 @@ function addProductToTable() {
       `;
     tbody.insertBefore(row, tbody.firstChild);
   });
-
 }
 addProductToTable();
