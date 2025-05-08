@@ -215,6 +215,12 @@ exclusive-header {
 
 exclusive-footer {
   margin-top: auto;
+  #scrollToTopBtn {
+    top: -50px;
+    width: 40px;
+    height: 40px;
+    margin-right: 50px;
+  }
 }
 
 .footer {
@@ -230,8 +236,8 @@ exclusive-footer {
     place-items: center;
   }
 
-  .footer__rights>p {
-    .footer__rights>p {
+  .footer__rights > p {
+    .footer__rights > p {
       border-color: rgb(94, 93, 93);
       color: rgb(94, 93, 93);
     }
@@ -250,7 +256,6 @@ exclusive-footer {
   }
 
   @media (max-width: 991px) {
-
     .toast-success,
     .toast-error {
       text-align: center;
@@ -354,7 +359,7 @@ exclusive-footer {
   }
 }
 
-.custom-control-input:checked+.custom-control-label {
+.custom-control-input:checked + .custom-control-label {
   background-color: var(--text-primary);
   color: white;
   padding: 0.25rem 0.5rem;
