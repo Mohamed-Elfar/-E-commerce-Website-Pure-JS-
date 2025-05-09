@@ -26,7 +26,6 @@ function getAllMyOrdersWithProducts(orders) {
 
 const orders = JSON.parse(localStorage.getItem("orders"));
 const myOrders = getAllMyOrdersWithProducts(orders);
-console.log(myOrders);
 function getWeeklySalesData(orders) {
   // إنشاء تاريخ بداية الأسبوع (الأحد) ونهايته (السبت)
   const today = new Date();
@@ -68,8 +67,6 @@ function getWeeklySalesData(orders) {
 }
 
 const weeklySalesData = getWeeklySalesData(myOrders);
-console.log("Weekly Sales Data:", weeklySalesData);
-
 const salesCtx = document.getElementById("salesChart").getContext("2d");
 const salesChart = new Chart(salesCtx, {
   type: "line",

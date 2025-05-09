@@ -1,96 +1,258 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="icon" href="/assets/images/icon.png" type="image/png" />
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="/admin/dashboard.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link rel="stylesheet" href="seller.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard</title>
-  <link rel="icon" href="/assets/images/icon.png" type="image/png" />
-  <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="/assets/css/fontawesome.min.css" />
-  <link rel="stylesheet" href="/assets/css/style.css" />
-  <link rel="stylesheet" href="seller.css">
-</head>
+  <body>
+    <exclusive-header></exclusive-header>
+    <div class="toast"></div>
+    <div class="sidebar-container" id="sidebarContainer">
+      <div class="sidebar" id="sidebar">
+        <div class="position-sticky pt-3">
+          <div class="text-center mb-4">
+            <h4 class="sidebar-heading">Exclusive</h4>
+            <hr class="bg-light" />
+          </div>
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a
+                class="nav-link active section-toggle-btn"
+                href="#"
+                data-show="dashboard"
+              >
+                <i class="fas fa-tachometer-alt" aria-hidden="true"></i>
+                Dashboard
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link section-toggle-btn"
+                href="#"
+                data-show="usersContainer"
+              >
+                <i class="fas fa-box-open" aria-hidden="true"></i> users
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link section-toggle-btn"
+                href="#"
+                data-show="productsContainer"
+              >
+                <i class="fas fa-box-open" aria-hidden="true"></i> Products
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link section-toggle-btn"
+                href="#"
+                data-show="ordersContainer"
+              >
+                <i class="fas fa-shopping-cart" aria-hidden="true"></i> Orders
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <i class="fas fa-tags" aria-hidden="true"></i> Discounts
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link section-toggle-btn"
+                href="#"
+                data-show="messagesContainer"
+              >
+                <i class="fas fa-cog" aria-hidden="true"></i> Support
+              </a>
+            </li>
+          </ul>
 
-<body>
-  <exclusive-header></exclusive-header>
-  <div class="container-fluid">
-    <div class="row">
-      <side-menu></side-menu>
-      <div class="main-content col-12 pt-3 px-4">
-        <div class="d-flex align-items-center justify-content-between">
-          <side-toggler></side-toggler>
-          <div
-            class="dashboard-header col-lg-12 col-11 mx-2 d-flex justify-content-between align-items-center flex-column flex-sm-row">
-            <h2>Dashboard</h2>
-            <div class="d-flex flex-column flex-md-row gap-2">
-              <span class="me-3">Welcome, <strong>Name</strong></span>
-              <button class="btn btn-sm btn-outline-secondary">
-                <i class="fas fa-sign-out-alt"></i> Logout
-              </button>
-            </div>
+          <div class="mt-4 px-3">
+            <h6>Wounders' location</h6>
+            <ul class="list-unstyled">
+              <li>
+                <i
+                  class="fas fa-circle text-primary me-2"
+                  aria-hidden="true"
+                ></i>
+                Men & Fashion
+              </li>
+              <li>
+                <i
+                  class="fas fa-circle text-success me-2"
+                  aria-hidden="true"
+                ></i>
+                Electronics
+              </li>
+              <li>
+                <i class="fas fa-circle text-info me-2" aria-hidden="true"></i>
+                Home & Lifestyle
+              </li>
+              <li>
+                <i
+                  class="fas fa-circle text-warning me-2"
+                  aria-hidden="true"
+                ></i>
+                Medicine
+              </li>
+              <li>
+                <i
+                  class="fas fa-circle text-danger me-2"
+                  aria-hidden="true"
+                ></i>
+                Sports & Outdoor
+              </li>
+            </ul>
           </div>
         </div>
-        <div class="row mt-4">
-          <div class="col-md-4 mb-3">
+      </div>
+
+      <!-- Toggle Buttons -->
+      <button id="openSidebar" class="toggle-btn btn">
+        <i class="fas fa-bars" aria-hidden="true"></i>
+      </button>
+      <button id="closeSidebar" class="toggle-btn btn close-btn">
+        <i class="fas fa-times" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+      <div class="dashboard" id="dashboard">
+        <div
+          class="dashboard-header d-flex justify-content-between align-items-center text-black"
+        >
+          <h2 class="dashboard-heading">admin Dashboard</h2>
+          <div class="dashboard-user d-flex">
+            <span class="me-3 dashboard-name"
+              >Welcome, <strong id="userName">Seller Name</strong></span
+            >
+          </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="row gap-4 justify-content-center">
+          <div class="col-md-6 col-lg-3 mb-4">
             <div class="card h-100">
               <div class="card-body">
                 <h6 class="card-subtitle mb-2 text-muted">Total Revenue</h6>
-                <h3 class="card-title">$8,450</h3>
-                <p class="card-text text-success">
-                  <i class="fas fa-arrow-up"></i> 12.5% from last month
-                </p>
+                <h3 class="card-title TotalRevenue">$8,450</h3>
+                <p class="card-text text-success TotalRevenueRate"></p>
               </div>
             </div>
           </div>
-          <div class="col-md-4 mb-3">
+          <div class="col-md-6 col-lg-3 mb-4">
             <div class="card h-100">
               <div class="card-body">
                 <h6 class="card-subtitle mb-2 text-muted">Total Orders</h6>
-                <h3 class="card-title">124</h3>
-                <p class="card-text text-success">
-                  <i class="fas fa-arrow-up"></i> 8.3% from last month
-                </p>
+                <h3 class="card-title totalOrders">124</h3>
               </div>
             </div>
           </div>
-          <div class="col-md-4 mb-3">
+          <div class="col-md-6 col-lg-3 mb-4">
             <div class="card h-100">
               <div class="card-body">
                 <h6 class="card-subtitle mb-2 text-muted">Products</h6>
-                <h3 class="card-title">42</h3>
-                <p class="card-text text-danger">
-                  <i class="fas fa-arrow-down"></i> 2 items low stock
+                <h3 class="card-title totalProductsNum"></h3>
+                <p class="card-text text-danger inStock d-none">
+                  <i class="fas fa-arrow-down" aria-hidden="true"></i>
                 </p>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="card mt-4">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <span>Sales Analytics</span>
-            <select class="form-select form-select-sm w-auto">
-              <option>Last 7 days</option>
-              <option selected>Last 30 days</option>
-              <option>Last 90 days</option>
-            </select>
+        <!-- Charts Row -->
+        <div class="row mt-4">
+          <div class="col-lg-8 mb-4">
+            <div class="card h-100">
+              <div
+                class="card-header d-flex justify-content-between align-items-center"
+              >
+                <span>Sales Analytics</span>
+                <select class="form-select form-select-sm w-auto">
+                  <option>Last 7 days</option>
+                  <option selected>Last 30 days</option>
+                  <option>Last 90 days</option>
+                </select>
+              </div>
+              <div class="card-body">
+                <div class="chart-container">
+                  <canvas id="salesChart"></canvas>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="card-body">
-            <canvas id="salesChart"></canvas>
+          <div class="col-lg-4 mb-4">
+            <div class="card h-100">
+              <div class="card-header">Revenue by Category</div>
+              <div class="card-body">
+                <div class="chart-container">
+                  <canvas id="categoryChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Flash Sales & Products -->
+        <div class="row mt-4">
+          <div class="col-lg-6 mb-4">
+            <div class="card h-100">
+              <div
+                class="card-header d-flex justify-content-between align-items-center"
+              >
+                <span>Flash Sales</span>
+                <div class="flash-sale-timer">
+                  <span id="flashSaleHours">03</span> :
+                  <span id="flashSaleMinutes">23</span> :
+                  <span id="flashSaleSeconds">19</span>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>Product</th>
+                        <th>Discount</th>
+                        <th>Sold</th>
+                        <th>Revenue</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 mb-4">
+            <div class="card h-100">
+              <div class="card-header">Top Selling Products</div>
+              <div class="card-body">
+                <div class="row topSellingProducts"></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <script src="/assets/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="analytics.js"></script>
-  <script src="/assets/components/side-menu.js"></script>
-  <script src="/assets/components/side_toggler.js"></script>
-  <script src="/assets/components/exclusive-header.js" type="module"></script>
-
-</body>
-
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/assets/components/side-menu.js"></script>
+    <script src="/assets/components/side_toggler.js"></script>
+    <script src="/assets/components/exclusive-header.js" type="module"></script>
+    <script src="dashboard.js" type="module"></script>
+    <script src="analytics.js" type="module"></script>
+  </body>
 </html>
