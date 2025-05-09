@@ -15,7 +15,8 @@ fetch("../../assets/data/products.json")
     const container = document.getElementById("product-container");
     const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
     const user = loginUser();
-    data.forEach((product) => {
+    const allProducts = JSON.parse(localStorage.getItem("allProducts")) || [];
+    allProducts.forEach((product) => {
       const card = document.createElement("div");
       card.classList.add("col-md-4");
 
