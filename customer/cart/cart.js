@@ -1,11 +1,139 @@
+// import{showToast} from "/assets/js/utils.js"
+// const returnhome = document.querySelector(".button--return");
+// returnhome.addEventListener("click", () => {
+//   window.location.href = "../home/home.html";
+// });
+
+// const productInCart = JSON.parse(localStorage.getItem("cart")) || [];
+
+// console.log(productInCart);
+// const tbody = document.querySelector("tbody");
+// const subtotalInCart = document.getElementById("subtotalincart");
+// const shipping = document.getElementById("shipping");
+// const total = document.getElementById("Total");
+// const couponInput = document.getElementById("coupon");
+// const couponButton = document.querySelector(".button--coupon");
+// const clearButton = document.querySelector(".button--clear");
+
+// let discount = 0;
+// let shippingCost = 30;
+// const cartItems = [];
+// productInCart.forEach((Element) => {
+//   const productquantity = Element.quantity;
+//   if (Element) {
+//     const row = document.createElement("tr");
+//     row.innerHTML = `
+//           <td>
+//             <div class="d-flex align-items-center gap-2">
+//                 <img src="${Element.image}" width="50" alt="${Element.name}">
+//                 <p class="mb-0">${Element.name}</p>
+//             </div>
+//           </td>
+//           <td class="price"><div class="d-flex align-items-center" style="height:50px"> $${Element.price}</div></td>
+//           <td><div class="d-flex align-items-center" style="height:50px"> <input type="number" class="quantity form-control" min="1" max="${productquantity}" value="${Element.count}"> </div></td>
+//           <td class="subtotal"><div class="d-flex align-items-center" style="height:50px"> $${Element.price}</div> </td>
+//           <td><button class="btn btn-sm border-0 delete-btn">X</button></td>
+//         `;
+
+//     tbody.appendChild(row);
+
+//     const quantityInput = row.querySelector(".quantity");
+//     const subtotalCell = row.querySelector(".subtotal");
+//     const deleteButton = row.querySelector(".delete-btn");
+//     const price = Element.price;
+
+//     cartItems.push({ quantityInput, subtotalCell, price, row });
+//     if (!(cartItems.length == 0)) {
+//       const process = document.querySelector(".button--process");
+//       process.addEventListener("click", () => {
+//         showToast("success", "Order placed successfully");
+//       });
+//     }
+
+//     quantityInput.addEventListener("input", () => {
+//       const quantity = parseInt(quantityInput.value) || 1;
+//       subtotalCell.innerHTML = `<div class="d-flex align-items-center" style="height:50px"> $${(
+//         quantity * price
+//       ).toFixed(2)} </div>`;
+//       Element.count = quantity;
+//       localStorage.setItem("cart", JSON.stringify(productInCart));
+//       updateCartTotal();
+//     });
+
+//     deleteButton.addEventListener("click", () => {
+//       row.remove();
+    
+//       // شيل العنصر من cartItems
+//       const index = cartItems.findIndex(item => item.quantityInput === quantityInput);
+//       if (index !== -1) {
+//         cartItems.splice(index, 1);
+//         productInCart.splice(index, 1); // ← شيل من cart الأصلي كمان
+//       }
+    
+//       localStorage.setItem("cart", JSON.stringify(productInCart));
+//       updateCartTotal();
+//       showToast("info", "Product removed from cart");
+//     });
+//   }
+// });    
+
+// function updateCartTotal() {
+//   let subtotalSum = 0;
+//   cartItems.forEach((item) => {
+//     const quantity = parseInt(item.quantityInput.value) || 1;
+//     subtotalSum += quantity * item.price;
+//   });
+
+//   const discountedSubtotal = subtotalSum * (1 - discount);
+//   subtotalInCart.innerText = `$${subtotalSum.toFixed(2)}`;
+//   shipping.innerText = `$${shippingCost}`;
+//   total.innerText = `$${(discountedSubtotal + shippingCost).toFixed(2)}`;
+// }
+
+// couponButton.addEventListener("click", () => {
+//   const couponCode = couponInput.value.trim();
+//   if (couponCode === "Group6-30") {
+//     discount = 0.3;
+//     couponInput.style.border = "3px solid green";
+//     sendDiscount(discount);
+//   } else {
+//     discount = 0;
+//     couponInput.style.border = "3px solid red";
+//     sendDiscount(discount);
+//   }
+//   updateCartTotal();
+// });
+
+// clearButton.addEventListener("click", () => {
+//   tbody.innerHTML = "";
+//   cartItems.length = 0;
+//   localStorage.removeItem("cart");
+//   updateCartTotal();
+//   // window.location.reload();
+//   showToast("success", "Cart cleared successfully");
+// });
+
+//         updateCartTotal();
+
+// function sendDiscount(Discount) {
+//   const cartJSON = localStorage.getItem("cart");
+//   const cart = cartJSON ? JSON.parse(cartJSON) : [];
+
+//   const updatedCart = cart.map((item) => ({
+//     ...item,
+//     discount: Discount,
+//   }));
+
+//   localStorage.setItem("cart", JSON.stringify(updatedCart));
+// }
+
+import{showToast} from "/assets/js/utils.js"
 const returnhome = document.querySelector(".button--return");
 returnhome.addEventListener("click", () => {
   window.location.href = "../home/home.html";
 });
 
-const productInCart = JSON.parse(localStorage.getItem("cart")) || [];
-
-console.log(productInCart);
+// console.log(productInCart);
 const tbody = document.querySelector("tbody");
 const subtotalInCart = document.getElementById("subtotalincart");
 const shipping = document.getElementById("shipping");
@@ -17,7 +145,10 @@ const clearButton = document.querySelector(".button--clear");
 let discount = 0;
 let shippingCost = 30;
 const cartItems = [];
-productInCart.forEach((Element) => {
+function renderproducts() {
+  const productInCart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  productInCart.forEach((Element) => {
   const productquantity = Element.quantity;
   if (Element) {
     const row = document.createElement("tr");
@@ -45,7 +176,8 @@ productInCart.forEach((Element) => {
     if (!(cartItems.length == 0)) {
       const process = document.querySelector(".button--process");
       process.addEventListener("click", () => {
-        window.location.href = "/customer/checkout/checkout.html";
+        showToast("success", "Order placed successfully");
+        location.href = "/customer/checkout/checkout.html";
       });
     }
 
@@ -71,9 +203,12 @@ productInCart.forEach((Element) => {
     
       localStorage.setItem("cart", JSON.stringify(productInCart));
       updateCartTotal();
+      showToast("info", "Product removed from cart");
     });
   }
-});    
+}); 
+}   
+renderproducts();
 
 function updateCartTotal() {
   let subtotalSum = 0;
@@ -94,10 +229,12 @@ couponButton.addEventListener("click", () => {
     discount = 0.3;
     couponInput.style.border = "3px solid green";
     sendDiscount(discount);
+    showToast("success", "Coupon applied successfully");
   } else {
     discount = 0;
     couponInput.style.border = "3px solid red";
     sendDiscount(discount);
+    showToast("warning", "Invalid coupon code");
   }
   updateCartTotal();
 });
@@ -107,10 +244,11 @@ clearButton.addEventListener("click", () => {
   cartItems.length = 0;
   localStorage.removeItem("cart");
   updateCartTotal();
-  window.location.reload();
+  renderproducts();
+  showToast("success", "Cart cleared successfully");
 });
 
-        updateCartTotal();
+updateCartTotal();
 
 function sendDiscount(Discount) {
   const cartJSON = localStorage.getItem("cart");
@@ -123,3 +261,4 @@ function sendDiscount(Discount) {
 
   localStorage.setItem("cart", JSON.stringify(updatedCart));
 }
+

@@ -50,12 +50,10 @@ document.querySelector("#saveChanges").addEventListener("click", function (e) {
       }
       return u;
     });
-
-    // حفظ التعديلات في localStorage
-    localStorage.setItem("users", JSON.stringify(updatedUsers));
-    showToast("success", "Changes saved successfully");
-    // window.location.href = "/customer/home/home.html";
+    confirmChange(updatedUsers);
+    
   }
+
 });
 
 function validation() {
@@ -102,4 +100,38 @@ function MatchUserPassword(newpassword) {
     document.getElementById("currentpassword").classList.remove("is-valid");
     return false;
   }
+}
+function confirmChange(updatedUsers) {
+  Swal.fire({
+    title: 'Are you sure?',
+    text: 'Your settings will be updated. Do you want to proceed?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, update!',
+    cancelButtonText: 'Cancel',
+    reverseButtons: true,
+    background: '#fff',
+    color: '#333'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      localStorage.setItem("users", JSON.stringify(updatedUsers));
+      Swal.fire({
+        title: 'Updated!',
+        text: 'Your changes have been saved successfully.',
+        icon: 'success',
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#27ae60'
+      }).then(() => {
+        window.location.href = "../home/home.html";
+      });
+    } else if (result.dismiss === Swal.DismissReason.cancel) {
+      Swal.fire({
+        title: 'Cancelled',
+        text: 'No changes were made.',
+        icon: 'info',
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#3498db'
+      });
+    }
+  });
 }
