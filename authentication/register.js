@@ -15,7 +15,6 @@ class Customer extends User {
   static get customerCount() {
     const users = JSON.parse(localStorage.getItem("users")) || [];
     return users.filter((user) => user.role === "Customer").length;
-    return users.filter((user) => user.role === "Customer").length;
   }
   #customerId;
 
@@ -96,7 +95,7 @@ class Admin extends User {
         firstName: "Mohamed",
         lastName: "Samir",
         email: "mohamedsamiir252@gmail.com",
-        phone_number: "01060493174",
+        phone: "01060493174",
         password: hashPassword("Mohamed@123"),
         want_to_be_seller: false,
       };

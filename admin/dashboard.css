@@ -257,7 +257,6 @@ body {
   }
 
   .btn-accept {
-    background-color: var(--success-color);
     color: white;
   }
 
@@ -266,7 +265,6 @@ body {
   }
 
   .btn-reject {
-    background-color: var(--danger-color);
     color: white;
   }
 
@@ -536,8 +534,7 @@ body {
     }
   }
 }
-#messagesContainer{
-  
+#messagesContainer {
   .filter-buttons button:not(#filterUnread) {
     background-color: var(--primary-color);
     color: var(--secondary-color);
@@ -679,7 +676,7 @@ body {
 
   @media (max-width: 576px) {
     .filter-buttons button {
-        margin-block: 5px;
+      margin-block: 5px;
     }
   }
 }

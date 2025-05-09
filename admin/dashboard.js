@@ -149,7 +149,7 @@ function renderDashboard() {
 
   if (lowStockCount > 0) {
     elements.userDisplay.inStock.classList.remove("d-none");
-    elements.userDisplay.inStock.textContent = `${lowStockCount} items low stock`;
+    elements.userDisplay.inStock.innerHTML = `<i class="fas fa-arrow-down" aria-hidden="true"></i> ${lowStockCount} items low stock`;
   } else {
     elements.userDisplay.inStock.classList.add("d-none");
   }
@@ -1041,4 +1041,183 @@ if (addProductForm) {
     await Swal.fire("Success!", "Product added successfully!", "success");
   });
 }
-document.addEventListener("DOMContentLoaded", init);
+
+//message section
+const Messages = {
+  // DOM Elements
+  elements: {
+    container: document.getElementById("messagesContainer"),
+    usersContainer: document.getElementById("users-container"),
+    noMessage: document.getElementById("noMessage"),
+    filterButtons: document.querySelectorAll(".filter-buttons button"),
+    modalUserName: document.getElementById("modalUserName"),
+    modalMessagesContainer: document.getElementById("modal-messages-container"),
+  },
+
+  // Initialize messages dashboard
+  init() {
+    this.elements.container?.classList.remove("d-none");
+    const messages = JSON.parse(localStorage.getItem("contact")) || [];
+    const groupedMessages = this.groupMessagesByUser(messages);
+
+    this.renderUserCards(groupedMessages);
+    this.setupEventListeners(groupedMessages);
+    this.filterMessages("all", groupedMessages);
+  },
+
+  // Group messages by user email
+  groupMessagesByUser(messages) {
+    return messages.reduce((groups, message, index) => {
+      const { email } = message;
+
+      if (!groups[email]) {
+        groups[email] = {
+          name: message.name,
+          email,
+          phone: message.phone,
+          role: message.role || "Customer",
+          unread: true,
+          messages: [],
+        };
+      }
+
+      groups[email].messages.push({
+        ...message,
+        id: index,
+      });
+
+      return groups;
+    }, {});
+  },
+
+  // Render user cards
+  renderUserCards(groupedMessages) {
+    const { usersContainer, noMessage } = this.elements;
+    const hasMessages = Object.keys(groupedMessages).length > 0;
+
+    noMessage.classList.toggle("d-none", hasMessages);
+    if (!hasMessages) return;
+
+    usersContainer.innerHTML = Object.entries(groupedMessages)
+      .map(([email, user], index) => this.createUserCard(user, index))
+      .join("");
+  },
+
+  // Create individual user card HTML
+  createUserCard(user, index) {
+    const roleClass =
+      user.role === "Seller" ? "badge-seller" : "badge-customer";
+
+    return `
+      <div class="col-md-6 col-lg-4 user-card-container"
+           data-role="${user.role}"
+           data-unread="${user.unread}"
+           data-user-id="${index}">
+        <div class="user-card h-100">
+          <div class="user-header">
+            <h3 class="user-name">${user.name}</h3>
+            <span class="badge badge-role ${roleClass}">
+              ${user.role}
+            </span>
+          </div>
+          <div class="user-body d-flex align-items-center justify-content-between mt-2 py-4">
+            <div>
+              <div class="user-detail">
+                <i class="fas fa-envelope"></i>
+                <span>${user.email}</span>
+              </div>
+              <div class="user-detail">
+                <i class="fas fa-phone"></i>
+                <span>${user.phone}</span>
+              </div>
+            </div>
+            <div>
+              <button class="messages-btn"
+                      data-bs-toggle="modal"
+                      data-bs-target="#messagesModal"
+                      data-user-id="${index}">
+                <i class="fas fa-comments"></i>
+                <span class="messages-count">${user.messages.length}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
+  // Set up event listeners
+  setupEventListeners(groupedMessages) {
+    const { filterButtons } = this.elements;
+
+    // Filter buttons
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const filter = button.id.replace("filter", "").toLowerCase();
+        this.filterMessages(filter, groupedMessages);
+      });
+    });
+
+    // Modal open handler
+    document.addEventListener("click", (e) => {
+      const messageBtn = e.target.closest(".messages-btn");
+      if (messageBtn) {
+        this.openUserMessages(messageBtn.dataset.userId, groupedMessages);
+      }
+    });
+  },
+
+  // Filter messages by criteria
+  filterMessages(filter, groupedMessages) {
+    const { noMessage } = this.elements;
+    const userCards = document.querySelectorAll(".user-card-container");
+    let hasVisibleCards = false;
+
+    userCards.forEach((card) => {
+      const shouldShow =
+        filter === "all" ||
+        (filter === "customers" && card.dataset.role === "Customer") ||
+        (filter === "sellers" && card.dataset.role === "Seller") ||
+        (filter === "unread" && card.dataset.unread === "true");
+
+      card.style.display = shouldShow ? "" : "none";
+      if (shouldShow) hasVisibleCards = true;
+    });
+
+    noMessage.classList.toggle("d-none", hasVisibleCards);
+  },
+
+  // Open user messages in modal
+  openUserMessages(userId, groupedMessages) {
+    const { modalUserName, modalMessagesContainer } = this.elements;
+    const user = Object.values(groupedMessages)[userId];
+
+    if (!user) return;
+
+    modalUserName.textContent = user.name;
+    modalMessagesContainer.innerHTML = user.messages
+      .map(
+        (message) => `
+        <div class="modal-message">
+          <p>${message.message}</p>
+          <div class="message-date">${message.date}</div>
+        </div>
+      `
+      )
+      .join("");
+
+    // Mark as read
+    user.unread = false;
+    const userCard = document.querySelector(
+      `.user-card-container[data-user-id="${userId}"]`
+    );
+    if (userCard) userCard.dataset.unread = "false";
+  },
+};
+
+const support = document.querySelector("[data-show=messagesContainer]");
+support.addEventListener("click", () => Messages.init());
+// Initialize when DOM is loaded
+document.addEventListener("DOMContentLoaded", () => {
+  init();
+});

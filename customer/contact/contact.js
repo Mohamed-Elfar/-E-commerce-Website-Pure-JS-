@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (user) {
     if (nameInput) nameInput.value = user.firstName || "";
     if (emailInput) emailInput.value = user.email || "";
-    if (phoneInput) phoneInput.value = user.phone_number || "";
+    if (phoneInput) phoneInput.value = user.phone || "";
   }
 
   form.addEventListener("submit", (event) => {
