@@ -221,7 +221,9 @@ if (wishlist.includes(product.id.toString())) {
 wishListBtn.addEventListener("click", () => {
   toggleWishList(product.id.toString(), wishListIcon);
 });
-
+if(user.role === "Admin" || parseInt(product?.createdBy) === user.userId){
+  wishListBtn.disabled = true;
+}
 export function fetchSliceCategoryProducts() {
   const productsSection = document.getElementById("relatedProducts");
   productsSection.innerHTML = "";
