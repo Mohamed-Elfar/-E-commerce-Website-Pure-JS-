@@ -1,96 +1,114 @@
-let container = document.getElementById('order');
+import { loginUser } from "/assets/js/utils.js";
 
-function getCurrentUser() {
-    const token = localStorage.getItem('token');
-    if (!token) return null;
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-    console.log(users.find(user => user.token === token) || null);
-    return users.find(user => user.token === token) || null;
-}
+let container = document.getElementById("order");
 
 function getAllMyOrdersWithProducts(orders) {
-    const currentUser = getCurrentUser();
-    if (!currentUser) return [];
-  
-    let myOrders = [];
-  
-    orders.forEach(order => {
-        // تصفية المنتجات الخاصة بالمستخدم الحالي فقط
-        const myProducts = order.products.filter(product => 
-            product.createdBy === currentUser.userId.toString()
-        );
-        
-        // إذا كان هناك منتجات خاصة بالمستخدم، نضيف الطلب مع هذه المنتجات فقط
-        if (myProducts.length > 0) {
-            myOrders.push({
-                ...order,
-                products: myProducts
-            });
-        }
-    });
-  
-    return myOrders;
+  const currentUser = loginUser();
+  if (!currentUser) return [];
+
+  let myOrders = [];
+
+  orders.forEach((order) => {
+    const myProducts = order.products.filter(
+      (product) => product.createdBy === currentUser.userId.toString()
+    );
+
+    if (myProducts.length > 0) {
+      myOrders.push({
+        ...order,
+        products: myProducts,
+      });
+    }
+  });
+
+  return myOrders;
 }
 
-const orders = JSON.parse(localStorage.getItem('orders'));  
+const orders = JSON.parse(localStorage.getItem("orders"));
 const myOrders = getAllMyOrdersWithProducts(orders);
 console.log(myOrders);
+function getWeeklySalesData(orders) {
+  // إنشاء تاريخ بداية الأسبوع (الأحد) ونهايته (السبت)
+  const today = new Date();
+  const dayOfWeek = today.getDay(); // 0 لأحد، 6 لسبت
+  const startOfWeek = new Date(today);
+  startOfWeek.setDate(today.getDate() - dayOfWeek);
+  startOfWeek.setHours(0, 0, 0, 0);
 
-function getDailySalesData(orders) {
-    const salesPerDay = {};
-  
-    orders.forEach(order => {
-        const date = new Date(order.date).toISOString().split('T')[0]; // YYYY-MM-DD
-        salesPerDay[date] = (salesPerDay[date] || 0) + order.products.length;
-    });
-  
-    // ترتيب حسب التاريخ
-    const sortedDates = Object.keys(salesPerDay).sort();
-  
-    return {
-        labels: sortedDates,
-        data: sortedDates.map(date => salesPerDay[date])
-    };
+  const endOfWeek = new Date(startOfWeek);
+  endOfWeek.setDate(startOfWeek.getDate() + 6);
+  endOfWeek.setHours(23, 59, 59, 999);
+
+  // تهيئة كائن لتخزين المبيعات لكل يوم
+  const salesPerDay = {
+    Sun: 0,
+    Mon: 0,
+    Tue: 0,
+    Wed: 0,
+    Thu: 0,
+    Fri: 0,
+    Sat: 0,
+  };
+
+  // تعبئة بيانات المبيعات لكل يوم
+  orders.forEach((order) => {
+    const orderDate = new Date(order.date);
+    if (orderDate >= startOfWeek && orderDate <= endOfWeek) {
+      const dayName = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][
+        orderDate.getDay()
+      ];
+      salesPerDay[dayName] += order.products.length;
+    }
+  });
+
+  return {
+    labels: Object.keys(salesPerDay),
+    data: Object.values(salesPerDay),
+  };
 }
 
-const salesData = getDailySalesData(myOrders);
-  
-const salesCtx = document.getElementById('salesChart').getContext('2d');
+const weeklySalesData = getWeeklySalesData(myOrders);
+console.log("Weekly Sales Data:", weeklySalesData);
+
+const salesCtx = document.getElementById("salesChart").getContext("2d");
 const salesChart = new Chart(salesCtx, {
-    type: 'line',
-    data: {
-        labels: salesData.labels,
-        datasets: [{
-            label: 'Daily Sales',
-            data: salesData.data,
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            borderColor: 'rgba(75, 192, 192, 1)',
-            borderWidth: 2,
-            tension: 0.4,
-            fill: true
-        }]
-    },
-    options: {
-        responsive: true,
-        plugins: {
-            legend: {
-                position: 'top',
-            },
-            tooltip: {
-                mode: 'index',
-                intersect: false,
-            }
+  type: "line",
+  data: {
+    labels: weeklySalesData.labels,
+    datasets: [
+      {
+        label: "Weekly Sales",
+        data: weeklySalesData.data,
+        backgroundColor: "rgba(75, 192, 192, 0.2)",
+        borderColor: "rgba(75, 192, 192, 1)",
+        borderWidth: 3,
+        tension: 0.4,
+        fill: true,
+        pointBackgroundColor: "rgba(75, 192, 192, 1)",
+        pointRadius: 5,
+      },
+    ],
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: true },
+      tooltip: {
+        callbacks: {
+          label: (ctx) => {
+            return `${ctx.raw} sale${ctx.raw !== 1 ? "s" : ""}`;
+          },
         },
-        scales: {
-            y: {
-                beginAtZero: true,
-                ticks: {
-                    stepSize: 1,
-                    callback: function (value) {
-                        return value + ' sale' + (value > 1 ? 's' : '');
-                    }
-                }
-            }
-        }
-    }
+      },
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        max: Math.max(...weeklySalesData.data, 10),
+        ticks: {
+          callback: (val) => `${val} sale${val !== 1 ? "s" : ""}`,
+        },
+      },
+    },
+  },
 });
