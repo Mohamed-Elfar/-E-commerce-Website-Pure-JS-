@@ -175,8 +175,10 @@ function updateQuantityAndPrice() {
     addToCartBtn.disabled = true;
     addToCartBtn.textContent = "Sold Out";
   }
+  user.role === "Admin" || parseInt(product?.createdBy) === user.userId
+    ? (addToCartBtn.disabled = true)
+    : (addToCartBtn.disabled = false);
   if (parseInt(product?.createdBy) === user.userId) {
-    addToCartBtn.disabled = true;
     addToCartBtn.textContent = "u can't buy ur product";
   }
   const total = currentCount * product.price;
