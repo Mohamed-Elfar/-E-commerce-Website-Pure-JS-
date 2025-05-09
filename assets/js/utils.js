@@ -1,98 +1,122 @@
-export function showToast(status, message) {
-  const toast = document.querySelector(".toast");
-  if (!toast) {
-    console.error("Toast element not found in DOM");
-    return;
-  }
+import { sha256 } from "https://esm.sh/js-sha256@0.9.0";
+const APP_SALT = "mohamedsamirelfar";
 
-  // Reset classes
-  toast.className = "toast";
-  
-  // Icons mapping
-  const icons = {
-    success: "fa-circle-check",
-    error: "fa-triangle-exclamation",
-    warning: "fa-warning",
-    info: "fa-info"
-  };
-
-  if (!icons[status]) {
-    console.error(`Invalid toast status: ${status}`);
-    return;
-  }
-
-  toast.innerHTML = `<i class="fa-solid ${icons[status]}"></i> ${message}`;
-  toast.classList.add("show", `toast-${status}`);
-
-  // Auto-hide after 3 seconds
-  setTimeout(() => toast.classList.remove("show"), 3000);
+export function hashPassword(password) {
+  return sha256(APP_SALT + password + APP_SALT);
+}
+export function validateHashedPassword(inputPassword, storedHash) {
+  return hashPassword(inputPassword) === storedHash;
 }
 
-export function validateName(input) {
-  var name = /^[a-zA-Z]{3,10}$/;
-  if (!name.test(input.value)) {
-    input.classList.add("is-invalid");
-    input.classList.remove("is-valid");
-    return false;
-  } else {
-    input.classList.remove("is-invalid");
-    input.classList.add("is-valid");
-    return true;
+export function validateName(inputOrValue) {
+  if (inputOrValue?.classList) {
+    const value = inputOrValue.value.trim();
+    const isValid = /^[a-zA-Z]{2,30}$/.test(value);
+    inputOrValue.classList.toggle("is-invalid", !isValid);
+    inputOrValue.classList.toggle("is-valid", isValid);
+    isValid ? "" : showToast("error", "Invalid Name");
+    return isValid;
+  } else if (typeof inputOrValue === "string") {
+    if (/^[a-zA-Z]{2,30}$/.test(inputOrValue.trim())) {
+      return true;
+    } else {
+      showToast("error", "Invalid Name");
+      return false;
+    }
+    // return /^[a-zA-Z]{2,30}$/.test(inputOrValue.trim());
   }
+  return false;
 }
 
-export function validateEmail(input) {
-  var reEmail =
-    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  if (!reEmail.test(input.value)) {
-    input.classList.add("is-invalid");
-    input.classList.remove("is-valid");
+export function validateEmail(inputOrValue) {
+  if (inputOrValue?.classList) {
+    const value = inputOrValue.value.trim();
+    const isValid =
+      /^[a-zA-Z0-9._%+-]+@(gmail|outlook|yahoo|hotmail|icloud|protonmail)\.(com|net|org)$/i.test(
+        value
+      );
+    inputOrValue.classList.toggle("is-invalid", !isValid);
+    inputOrValue.classList.toggle("is-valid", isValid);
+    isValid ? "" : showToast("error", "Invalid Email");
+    return isValid;
+  } else if (typeof inputOrValue === "string") {
+    if (
+      /^[a-zA-Z0-9._%+-]+@(gmail|outlook|yahoo|hotmail|icloud|protonmail)\.(com|net|org)$/i.test(
+        inputOrValue.trim()
+      )
+    ) {
+      return true;
+    } else {
+      showToast("error", "Invalid Email");
+      return false;
+    }
 
-    return false;
-  } else {
-    input.classList.remove("is-invalid");
-    input.classList.add("is-valid");
-    return true;
+    // return /^[a-zA-Z0-9._%+-]+@(gmail|outlook|yahoo|hotmail|icloud|protonmail)\.(com|net|org)$/i.test(
+    //   inputOrValue.trim()
+    // );
   }
+  return false;
 }
 
-export function validatePhone(input) {
-  const phone = /^(010|011|012|015)\d{8}$/;
-  if (!phone.test(input.value)) {
-    input.classList.add("is-invalid");
-    input.classList.remove("is-valid");
-
-    return false;
-  } else {
-    input.classList.remove("is-invalid");
-    input.classList.add("is-valid");
-    return true;
+export function validatePhone(inputOrValue) {
+  if (inputOrValue?.classList) {
+    const value = inputOrValue.value.trim();
+    const isValid = /^(010|011|012|015)\d{8}$/.test(value);
+    inputOrValue.classList.toggle("is-invalid", !isValid);
+    inputOrValue.classList.toggle("is-valid", isValid);
+    isValid ? "" : showToast("error", "Invalid Phone");
+    return isValid;
+  } else if (typeof inputOrValue === "string") {
+    if (/^(010|011|012|015)\d{8}$/.test(inputOrValue.trim())) {
+      return true;
+    } else {
+      showToast("error", "Invalid Phone");
+      return false;
+    }
+    // return /^(010|011|012|015)\d{8}$/.test(inputOrValue.trim());
   }
+  return false;
 }
 
-export function validatePassword(input) {
-  var Password =
-    /^(?=.[A-Z])(?=.[a-zA-Z0-9])(?=.[!@#$%^&()_+={}\[\]:;"'<>,.?/\\|`~\-]).{6,}$/;
-  if (!Password.test(input.value)) {
-    input.classList.add("is-invalid");
-    input.classList.remove("is-valid");
-    return false;
-  } else {
-    input.classList.remove("is-invalid");
-    input.classList.add("is-valid");
-    return true;
+export function validatePassword(inputOrValue) {
+  const value = inputOrValue?.value || inputOrValue;
+  if (!value || typeof value !== "string") return false;
+
+  const passwordRegex =
+    /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,}$/;
+
+  const isValid = passwordRegex.test(value);
+
+  if (inputOrValue?.classList) {
+    inputOrValue.classList.toggle("is-invalid", !isValid);
+    inputOrValue.classList.toggle("is-valid", isValid);
+    isValid ? "" : showToast("error", "Invalid Password");
   }
+
+  return isValid;
 }
 
-export function validatePasswordMatch(password, confirmPassword) {
-  if (password.value !== confirmPassword.value) {
-    confirmPassword.classList.add("is-invalid");
-    confirmPassword.classList.remove("is-valid");
+export function validatePasswordMatch(passwordInput, confirmPasswordInput) {
+  const password = passwordInput?.value || passwordInput;
+  const confirmPassword = confirmPasswordInput?.value || confirmPasswordInput;
+
+  if (typeof password !== "string" || typeof confirmPassword !== "string") {
     return false;
-  } else {
-    confirmPassword.classList.remove("is-invalid");
-    confirmPassword.classList.add("is-valid");
-    return true;
+  }
+
+  const isMatching = password === confirmPassword;
+
+  if (confirmPasswordInput?.classList) {
+    confirmPasswordInput.classList.toggle("is-invalid", !isMatching);
+    confirmPasswordInput.classList.toggle("is-valid", isMatching);
+  }
+
+  return isMatching;
+}
+export function updateBadges() {
+  const header = document.querySelector("exclusive-header");
+  if (header && typeof header.badges === "function") {
+    header.badges();
   }
 }
 
@@ -372,5 +396,25 @@ export function loginUser() {
   const user = users.find((user) => user.token === token);
   return user;
 }
+export function showToast(status, message) {
+  const toast = document.querySelector(".toast");
+  if (!toast) {
+    console.error("Toast element not found in DOM");
+    return;
+  }
+  toast.className = "toast";
+  const icons = {
+    success: "fa-circle-check",
+    error: "fa-triangle-exclamation",
+    warning: "fa-warning",
+    info: "fa-info",
+  };
+  if (!icons[status]) {
+    console.error(`Invalid toast status: ${status}`);
+    return;
+  }
+  toast.innerHTML = `<i class="fa-solid ${icons[status]}"></i> ${message}`;
+  toast.classList.add("show", `toast-${status}`);
 
- 
+  setTimeout(() => toast.classList.remove("show"), 3000);
+}

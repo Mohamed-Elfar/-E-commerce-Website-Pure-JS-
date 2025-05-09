@@ -20,7 +20,7 @@
   <body>
     <!-- ----------------------------------Cantact------------------------------------- -->
     <exclusive-header></exclusive-header>
-
+    <div class="toast"></div>
     <section class="contact container py-5">
       <div class="row align-items-center justify-content-evenly g-1">
         <div class="contact_Details col-md-4">
@@ -51,12 +51,13 @@
         </div>
 
         <div class="contact_form col-md-7">
-          <form class="row g-3 needs-validation" novalidate>
+          <form class="row g-3 needs-validation">
             <div class="col-md-4">
               <input
                 type="text"
                 class="form-control"
-                id="validationCustom01"
+                id="name"
+                name="name"
                 placeholder="Your name"
                 required
               />
@@ -65,7 +66,8 @@
               <input
                 type="text"
                 class="form-control"
-                id="validationCustom02"
+                id="email"
+                name="email"
                 placeholder="Your Email"
                 required
               />
@@ -74,19 +76,21 @@
               <input
                 type="text"
                 class="form-control"
-                id="validationCustom02"
+                id="phone"
+                name="phone"
                 placeholder="Your Phone"
                 required
               />
             </div>
             <div class="col-md-12">
               <textarea
-                name=""
-                id=""
+                name="message"
+                id="message"
+                name="message"
                 cols="20"
                 rows="10"
                 class="w-100"
-                placeholder=" Your Massage"
+                placeholder=" Your message"
               ></textarea>
             </div>
             <div class="col-12">
@@ -104,8 +108,13 @@
       </div>
     </section>
     <exclusive-footer></exclusive-footer>
-    <script src="/assets/components/exclusive-header.js"  type="module" defer></script>
+    <script
+      src="/assets/components/exclusive-header.js"
+      type="module"
+      defer
+    ></script>
     <script src="/assets/components/exclusive-footer.js" defer></script>
     <script src="/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="contact.js" type="module"></script>
   </body>
 </html>

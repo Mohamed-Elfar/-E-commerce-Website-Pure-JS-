@@ -3,10 +3,6 @@ const cart = JSON.parse(localStorage.getItem("cart") || "[]");
 if (cart.length === 0) {
   location.href = "/customer/home/home.html";
 }
-const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-if (cart.length === 0) {
-  location.href = "/customer/home/home.html";
-}
 (function () {
   "use strict";
   function calculateOrderTotal(cart) {
@@ -121,8 +117,6 @@ if (cart.length === 0) {
           if (!authToken) {
             showToast("error", "Please Login First");
             setTimeout(() => open("/customer/home/home.html", "_self"), 2000);
-            showToast("error", "Please Login First");
-            setTimeout(() => open("/customer/home/home.html", "_self"), 2000);
             return;
           }
 
@@ -142,18 +136,11 @@ if (cart.length === 0) {
             );
             return selected ? selected.id : null;
           }
-          function getSelectedPaymentMethod() {
-            const selected = document.querySelector(
-              'input[name="paymentMethod"]:checked'
-            );
-            return selected ? selected.id : null;
-          }
           if (user) {
             const newOrder = {
               orderId: user.orders?.length + 1 || 1,
               products: cart,
               date: new Date().toISOString(),
-              userId: user.userId,
               userId: user.userId,
               address,
               address2,
@@ -202,7 +189,6 @@ if (cart.length === 0) {
             localStorage.removeItem("cart");
             showToast("success", "Order placed successfully!");
             setTimeout(() => open("/customer/home/home.html", "_self"), 1500);
-            setTimeout(() => open("/customer/home/home.html", "_self"), 1500);
           }
         }
       });
@@ -234,13 +220,11 @@ if (cart.length === 0) {
 (function appendProducts() {
   const checkoutCard = document.querySelector(".checkoutCard");
   const badge = document.querySelector("#checkoutBadge");
-  const badge = document.querySelector("#checkoutBadge");
   const products = JSON.parse(localStorage.getItem("cart")) || [];
 
   let total = 0;
   let discount;
   let shippingCost = 30;
-  badge.innerText = products.length;
   badge.innerText = products.length;
 
   if (products.length > 0) {

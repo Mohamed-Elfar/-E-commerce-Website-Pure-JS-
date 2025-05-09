@@ -122,7 +122,7 @@ addReviewBtn.addEventListener("click", function () {
 
   const firstName = currentUser.firstName;
   const lastName = currentUser.lastName;
-  const userName = firstName + " " + lastName;
+  const userName = firstName +" "+ lastName;
   const today = new Date();
   const reviewDate = today.toLocaleDateString("en-CA");
   const newReview = {
@@ -228,6 +228,6 @@ export function fetchSliceCategoryProducts() {
     }).slice(0, 4).sort(() => Math.random() - 0.5).forEach(product => {
       productsSection.appendChild(creatProductCard(product));
     });
-  });
-};
+  }).catch(() => redirectToNotFoundPage(true));
+}
 fetchSliceCategoryProducts();

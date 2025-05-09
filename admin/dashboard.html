@@ -70,8 +70,8 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
-                <i class="fas fa-cog" aria-hidden="true"></i> Settings
+              <a class="nav-link section-toggle-btn" href="#" data-show="messagesContainer">
+                <i class="fas fa-cog" aria-hidden="true"></i> Support
               </a>
             </li>
           </ul>
@@ -572,6 +572,323 @@
           </div>
         </div>
         <!-- end edit modal -->
+      </div>
+
+      <!--user messages-->
+      <div class="messagesContainer d-none"  id="messagesContainer">
+        <div class="container">
+          <div class="row mb-4">
+            <div class="col-12">
+              <h2 class="mb-3">Messages Dashboard</h2>
+              <div class="filter-buttons">
+                <button id="filterAll" class="btn text-white">All Messages</button>
+                <button id="filterCustomers" class="btn text-white">Customers</button>
+                <button id="filterSellers" class="btn text-white">Sellers</button>
+                <button id="filterUnread" class="btn btn-danger">
+                  Unread Messages
+                </button>
+              </div>
+            </div>
+          </div>
+    
+          <div class="row gy-4" id="users-container">
+            <!-- Example User Card (Customer) -->
+            <div
+              class="col-md-6 col-lg-4 user-card-container"
+              data-role="customer"
+              data-unread="true"
+            >
+              <div class="user-card h-100">
+                <div class="user-header">
+                  <h3 class="user-name" id="userName">John Doe</h3>
+                  <span class="badge badge-role badge-customer" id="userRole"
+                    >Customer</span
+                  >
+                </div>
+                <div
+                  class="user-body d-flex align-items-center justify-content-between mt-2 py-4"
+                >
+                  <div>
+                    <div class="user-detail">
+                      <i class="fas fa-envelope"></i>
+                      <span id="userEmail">john.doe@example.com</span>
+                    </div>
+                    <div class="user-detail">
+                      <i class="fas fa-phone"></i>
+                      <span id="userPhone">+1234567890</span>
+                    </div>
+                  </div>
+                  <div>
+                    <button
+                      class="messages-btn"
+                      data-bs-toggle="modal"
+                      data-bs-target="#messagesModal"
+                      data-user-id="1"
+                      id="messageBtn"
+                    >
+                      <i class="fas fa-comments"></i>
+                      <span class="messages-count" id="messageCount">3</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="col-md-6 col-lg-4 user-card-container"
+              data-role="customer"
+              data-unread="true"
+            >
+              <div class="user-card h-100">
+                <div class="user-header">
+                  <h3 class="user-name" id="userName">John Doe</h3>
+                  <span class="badge badge-role badge-customer" id="userRole"
+                    >Customer</span
+                  >
+                </div>
+                <div
+                  class="user-body d-flex align-items-center justify-content-between mt-2 py-4"
+                >
+                  <div>
+                    <div class="user-detail">
+                      <i class="fas fa-envelope"></i>
+                      <span id="userEmail">john.doe@example.com</span>
+                    </div>
+                    <div class="user-detail">
+                      <i class="fas fa-phone"></i>
+                      <span id="userPhone">+1234567890</span>
+                    </div>
+                  </div>
+                  <div>
+                    <button
+                      class="messages-btn"
+                      data-bs-toggle="modal"
+                      data-bs-target="#messagesModal"
+                      data-user-id="1"
+                    >
+                      <i class="fas fa-comments"></i>
+                      <span class="messages-count" id="messageCount">3</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="col-md-6 col-lg-4 user-card-container"
+              data-role="customer"
+              data-unread="true"
+            >
+              <div class="user-card h-100">
+                <div class="user-header">
+                  <h3 class="user-name" id="userName">John Doe</h3>
+                  <span class="badge badge-role badge-customer" id="userRole"
+                    >Customer</span
+                  >
+                </div>
+                <div
+                  class="user-body d-flex align-items-center justify-content-between mt-2 py-4"
+                >
+                  <div>
+                    <div class="user-detail">
+                      <i class="fas fa-envelope"></i>
+                      <span id="userEmail">john.doe@example.com</span>
+                    </div>
+                    <div class="user-detail">
+                      <i class="fas fa-phone"></i>
+                      <span id="userPhone">+1234567890</span>
+                    </div>
+                  </div>
+                  <div>
+                    <button
+                      class="messages-btn"
+                      data-bs-toggle="modal"
+                      data-bs-target="#messagesModal"
+                      data-user-id="1"
+                    >
+                      <i class="fas fa-comments"></i>
+                      <span class="messages-count" id="messageCount">3</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+            <!-- Example User Card  (Seller) -->
+            <div class="col-md-6 col-lg-4 user-card-container" data-role="seller">
+              <div class="user-card h-100">
+                <div class="user-header">
+                  <h3 class="user-name" id="userName">Jane Smith</h3>
+                  <span class="badge badge-role badge-seller" id="userRole"
+                    >Seller</span
+                  >
+                </div>
+                <div
+                  class="user-body d-flex align-items-center justify-content-between mt-2 py-4"
+                >
+                  <div>
+                    <div class="user-detail">
+                      <i class="fas fa-envelope"></i>
+                      <span id="userEmail">jane.smith@example.com</span>
+                    </div>
+                    <div class="user-detail">
+                      <i class="fas fa-phone"></i>
+                      <span id="userPhone">+9876543210</span>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-end mt-3">
+                    <button
+                      class="messages-btn"
+                      data-bs-toggle="modal"
+                      data-bs-target="#messagesModal"
+                      data-user-id="2"
+                    >
+                      <i class="fas fa-comments"></i>
+                      <span class="messages-count" id="messageCount">1</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4 user-card-container" data-role="seller">
+              <div class="user-card h-100">
+                <div class="user-header">
+                  <h3 class="user-name" id="userName">Jane Smith</h3>
+                  <span class="badge badge-role badge-seller" id="userRole"
+                    >Seller</span
+                  >
+                </div>
+                <div
+                  class="user-body d-flex align-items-center justify-content-between mt-2 py-4"
+                >
+                  <div>
+                    <div class="user-detail">
+                      <i class="fas fa-envelope"></i>
+                      <span id="userEmail">jane.smith@example.com</span>
+                    </div>
+                    <div class="user-detail">
+                      <i class="fas fa-phone"></i>
+                      <span id="userPhone">+9876543210</span>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-end mt-3">
+                    <button
+                      class="messages-btn"
+                      data-bs-toggle="modal"
+                      data-bs-target="#messagesModal"
+                      data-user-id="2"
+                    >
+                      <i class="fas fa-comments"></i>
+                      <span class="messages-count" id="messageCount">1</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4 user-card-container" data-role="seller">
+              <div class="user-card h-100">
+                <div class="user-header">
+                  <h3 class="user-name" id="userName">Jane Smith</h3>
+                  <span class="badge badge-role badge-seller" id="userRole"
+                    >Seller</span
+                  >
+                </div>
+                <div
+                  class="user-body d-flex align-items-center justify-content-between mt-2 py-4"
+                >
+                  <div>
+                    <div class="user-detail">
+                      <i class="fas fa-envelope"></i>
+                      <span id="userEmail">jane.smith@example.com</span>
+                    </div>
+                    <div class="user-detail">
+                      <i class="fas fa-phone"></i>
+                      <span id="userPhone">+9876543210</span>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-end mt-3">
+                    <button
+                      class="messages-btn"
+                      data-bs-toggle="modal"
+                      data-bs-target="#messagesModal"
+                      data-user-id="2"
+                    >
+                      <i class="fas fa-comments"></i>
+                      <span class="messages-count" id="messageCount">1</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+            <!-- Empty state (will be hidden when users exist) -->
+            <div class="col-12 no-messages-container d-none" id="noMessage">
+              <div class="no-messages">
+                <i class="far fa-comment-slash fa-3x mb-3"></i>
+                <h4>No messages found</h4>
+                <p>There are currently no messages matching your filters.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Messages Modal -->
+        <div
+          class="modal fade"
+          id="messagesModal"
+          tabindex="-1"
+          aria-labelledby="messagesModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="messagesModalLabel">
+                  Messages from <span id="modalUserName">User Name</span>
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body" id="modal-messages-container">
+                <!-- Messages will be dynamically inserted here -->
+    
+                <!-- Example Message 1 -->
+                <div class="modal-message" id="modalMessage">
+                  <p>
+                    Hello, I have a question about my order #12345. When will it be
+                    shipped?
+                  </p>
+                  <div class="message-date" id="modalMessageDate">
+                    May 8, 2025 at 14:30
+                  </div>
+                </div>
+    
+                <!-- Example Message 2 -->
+                <div class="modal-message">
+                  <p>
+                    Also, can I change the shipping address? I've moved to a new
+                    location.
+                  </p>
+                  <div class="message-date">May 8, 2025 at 14:32</div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button type="button" class="btn btn-primary" id="replyBtn">
+                  Reply
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <!-- Chart.js -->
