@@ -9,9 +9,8 @@ import {
 document.addEventListener("DOMContentLoaded", () => {
   const user = loginUser();
   const form = document.querySelector("form.needs-validation");
-
-  console.log(form.name);
-
+  const submitBtn = document.querySelector("#submitBtn");
+  if (user.role === "Admin") submitBtn.setAttribute("disabled", "true");
   const nameInput = form.name;
   const emailInput = form.email;
   const phoneInput = form.phone;

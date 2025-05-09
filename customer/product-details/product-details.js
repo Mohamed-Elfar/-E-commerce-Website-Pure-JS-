@@ -3,15 +3,14 @@ import {
   addToCart,
   redirectToNotFoundPage,
   toggleWishList,
+  loginUser,
 } from "/assets/js/utils.js";
 import { creatProductCard, fetchResponse } from "/assets/js/main.js";
 
-
 const productId = parseInt(new URLSearchParams(location.search).get("id"));
-
 const products = JSON.parse(localStorage.getItem("allProducts") || []);
 const product = products.find((p) => p.id === productId);
-
+const user = loginUser();
 /* not found page */
 redirectToNotFoundPage(!productId || isNaN(productId) || !product);
 
@@ -89,9 +88,11 @@ function displayProductDetails() {
   ratingCount.textContent = `(${product.ratingCount})`;
   ratingStars.innerHTML = [...Array(5)]
     .map((_, i) => {
-      return `<i class="fa-${i < product.rating ? "solid" : "regular"
-        } fa-star ${i < product.rating ? "gold" : "text-muted"
-        }" aria-hidden="true"></i>`;
+      return `<i class="fa-${
+        i < product.rating ? "solid" : "regular"
+      } fa-star ${
+        i < product.rating ? "gold" : "text-muted"
+      }" aria-hidden="true"></i>`;
     })
     .join("");
 }
@@ -122,7 +123,7 @@ addReviewBtn.addEventListener("click", function () {
 
   const firstName = currentUser.firstName;
   const lastName = currentUser.lastName;
-  const userName = firstName +" "+ lastName;
+  const userName = firstName + " " + lastName;
   const today = new Date();
   const reviewDate = today.toLocaleDateString("en-CA");
   const newReview = {
@@ -174,7 +175,10 @@ function updateQuantityAndPrice() {
     addToCartBtn.disabled = true;
     addToCartBtn.textContent = "Sold Out";
   }
-
+  if (parseInt(product?.createdBy) === user.userId) {
+    addToCartBtn.disabled = true;
+    addToCartBtn.textContent = "u can't buy ur product";
+  }
   const total = currentCount * product.price;
   totalPrice.textContent = `$${total.toFixed(2)}`;
 }
@@ -217,17 +221,23 @@ wishListBtn.addEventListener("click", () => {
 });
 
 export function fetchSliceCategoryProducts() {
-  const productsSection = document.getElementById('relatedProducts');
-  productsSection.innerHTML = '';
-  fetchResponse().then(products => {
-    products.filter(e => {
-      return (
-        e.category &&
-        e.category.toLowerCase() === product.category.toLowerCase()
-      );
-    }).slice(0, 4).sort(() => Math.random() - 0.5).forEach(product => {
-      productsSection.appendChild(creatProductCard(product));
-    });
-  }).catch(() => redirectToNotFoundPage(true));
+  const productsSection = document.getElementById("relatedProducts");
+  productsSection.innerHTML = "";
+  fetchResponse()
+    .then((products) => {
+      products
+        .filter((e) => {
+          return (
+            e.category &&
+            e.category.toLowerCase() === product.category.toLowerCase()
+          );
+        })
+        .slice(0, 4)
+        .sort(() => Math.random() - 0.5)
+        .forEach((product) => {
+          productsSection.appendChild(creatProductCard(product));
+        });
+    })
+    .catch(() => redirectToNotFoundPage(true));
 }
 fetchSliceCategoryProducts();

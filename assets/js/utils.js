@@ -161,15 +161,14 @@ export function toggleWishList(productId, icon) {
   }
   localStorage.setItem("wishlist", JSON.stringify(wishlist));
   updateBadges();
-
 }
 
 export function search(title, parent) {
   const search = document.getElementById("navSearch");
   const searchBtn = document.getElementById("searchBtn");
   const list = document.getElementsByClassName(title);
-  const options = document.getElementById("productSuggestions").options;
-  search.addEventListener("input", (e) => {
+  const options = document.getElementById("productSuggestions")?.options;
+  search?.addEventListener("input", (e) => {
     const value = e.target.value;
     for (let i = 0; i < list.length; i++) {
       const columnParent = list[i].closest(parent);
@@ -178,7 +177,7 @@ export function search(title, parent) {
         : (columnParent.style.display = "none");
     }
   });
-  searchBtn.addEventListener("click", (e) => {
+  searchBtn?.addEventListener("click", (e) => {
     let foundOption = null;
     for (let i = 0; i < options.length; i++) {
       if (options[i].value === search.value) {
