@@ -1,12 +1,9 @@
-import { updateBadges } from "/assets/js/utils.js";
+import { showToast, updateBadges } from "/assets/js/utils.js";
 const returnhome = document.querySelector(".button--return");
 returnhome.addEventListener("click", () => {
   window.location.href = "../home/home.html";
 });
 
-const productInCart = JSON.parse(localStorage.getItem("cart")) || [];
-
-console.log(productInCart);
 const tbody = document.querySelector("tbody");
 const subtotalInCart = document.getElementById("subtotalincart");
 const shipping = document.getElementById("shipping");
@@ -18,11 +15,14 @@ const clearButton = document.querySelector(".button--clear");
 let discount = 0;
 let shippingCost = 30;
 const cartItems = [];
-productInCart.forEach((Element) => {
-  const productquantity = Element.quantity;
-  if (Element) {
-    const row = document.createElement("tr");
-    row.innerHTML = `
+function renderproducts() {
+  const productInCart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  productInCart.forEach((Element) => {
+    const productquantity = Element.quantity;
+    if (Element) {
+      const row = document.createElement("tr");
+      row.innerHTML = `
           <td>
             <div class="d-flex align-items-center gap-2">
                 <img src="${Element.image}" width="50" alt="${Element.name}">
@@ -35,47 +35,52 @@ productInCart.forEach((Element) => {
           <td><button class="btn btn-sm border-0 delete-btn">X</button></td>
         `;
 
-    tbody.appendChild(row);
+      tbody.appendChild(row);
 
-    const quantityInput = row.querySelector(".quantity");
-    const subtotalCell = row.querySelector(".subtotal");
-    const deleteButton = row.querySelector(".delete-btn");
-    const price = Element.price;
+      const quantityInput = row.querySelector(".quantity");
+      const subtotalCell = row.querySelector(".subtotal");
+      const deleteButton = row.querySelector(".delete-btn");
+      const price = Element.price;
 
-    cartItems.push({ quantityInput, subtotalCell, price, row });
-    if (!(cartItems.length == 0)) {
-      const process = document.querySelector(".button--process");
-      process.addEventListener("click", () => {
-        window.location.href = "/customer/checkout/checkout.html";
+      cartItems.push({ quantityInput, subtotalCell, price, row });
+      if (!(cartItems.length == 0)) {
+        const process = document.querySelector(".button--process");
+        process.addEventListener("click", () => {
+          showToast("success", "Order placed successfully");
+          location.href = "/customer/checkout/checkout.html";
+        });
+      }
+
+      quantityInput.addEventListener("input", () => {
+        const quantity = parseInt(quantityInput.value) || 1;
+        subtotalCell.innerHTML = `<div class="d-flex align-items-center" style="height:50px"> $${(
+          quantity * price
+        ).toFixed(2)} </div>`;
+        Element.count = quantity;
+        localStorage.setItem("cart", JSON.stringify(productInCart));
+        updateCartTotal();
+      });
+
+      deleteButton.addEventListener("click", () => {
+        row.remove();
+
+        const index = cartItems.findIndex(
+          (item) => item.quantityInput === quantityInput
+        );
+        if (index !== -1) {
+          cartItems.splice(index, 1);
+          productInCart.splice(index, 1);
+        }
+
+        localStorage.setItem("cart", JSON.stringify(productInCart));
+        updateBadges();
+        updateCartTotal();
+        showToast("info", "Product removed from cart");
       });
     }
-
-    quantityInput.addEventListener("input", () => {
-      const quantity = parseInt(quantityInput.value) || 1;
-      subtotalCell.innerHTML = `<div class="d-flex align-items-center" style="height:50px"> $${(
-        quantity * price
-      ).toFixed(2)} </div>`;
-      Element.count = quantity;
-      localStorage.setItem("cart", JSON.stringify(productInCart));
-      updateCartTotal();
-    });
-
-    deleteButton.addEventListener("click", () => {
-      row.remove();
-    
-      // شيل العنصر من cartItems
-      const index = cartItems.findIndex(item => item.quantityInput === quantityInput);
-      if (index !== -1) {
-        cartItems.splice(index, 1);
-        productInCart.splice(index, 1); // ← شيل من cart الأصلي كمان
-      }
-    
-      localStorage.setItem("cart", JSON.stringify(productInCart));
-      updateBadges();
-      updateCartTotal();
-    });
-  }
-});    
+  });
+}
+renderproducts();
 
 function updateCartTotal() {
   let subtotalSum = 0;
@@ -96,10 +101,12 @@ couponButton.addEventListener("click", () => {
     discount = 0.3;
     couponInput.style.border = "3px solid green";
     sendDiscount(discount);
+    showToast("success", "Coupon applied successfully");
   } else {
     discount = 0;
     couponInput.style.border = "3px solid red";
     sendDiscount(discount);
+    showToast("warning", "Invalid coupon code");
   }
   updateCartTotal();
 });
@@ -109,10 +116,11 @@ clearButton.addEventListener("click", () => {
   cartItems.length = 0;
   localStorage.removeItem("cart");
   updateCartTotal();
-  window.location.reload();
+  renderproducts();
+  showToast("success", "Cart cleared successfully");
 });
 
-        updateCartTotal();
+updateCartTotal();
 
 function sendDiscount(Discount) {
   const cartJSON = localStorage.getItem("cart");

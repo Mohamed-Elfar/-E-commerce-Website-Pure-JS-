@@ -1,4 +1,4 @@
-import { loggout,loginUser } from "/assets/js/utils.js";
+import { loggout, loginUser } from "/assets/js/utils.js";
 
 class ExclusiveHeader extends HTMLElement {
   constructor() {
@@ -132,7 +132,7 @@ class ExclusiveHeader extends HTMLElement {
                   >My Account</a
                 >
               </li>
-              <li class="d-flex align-items-center mx-3">
+              <li class="d-flex align-items-center mx-3 manageOrders">
                 <i class="fa-solid fa-bag-shopping"></i>
                 <a
                   class="dropdown-item text-white"
@@ -183,7 +183,7 @@ class ExclusiveHeader extends HTMLElement {
       });
     }
   }
-   badges() {
+  badges() {
     const wishlistCount = this.querySelector("#wishlistCount");
     const cartCount = this.querySelector("#cartCount");
     if (wishlistCount) {
@@ -198,40 +198,42 @@ class ExclusiveHeader extends HTMLElement {
   loggedInUser() {
     // Get DOM elements once
     const elements = {
-        token: localStorage.getItem("token"),
-        userButton: this.querySelector(".userIcon"),
-        adminLink: this.querySelector("#adminLink"),
-        sellerLink: this.querySelector("#sellerLink"), 
-        wishlistLink: this.querySelector("#wishlistLink"),
-        cartLink: this.querySelector("#cartLink"),
-        loginBtn: this.querySelector("#loginBtn"),
-        registerBtn: this.querySelector("#registerBtn")
+      token: localStorage.getItem("token"),
+      userButton: this.querySelector(".userIcon"),
+      adminLink: this.querySelector("#adminLink"),
+      sellerLink: this.querySelector("#sellerLink"),
+      wishlistLink: this.querySelector("#wishlistLink"),
+      cartLink: this.querySelector("#cartLink"),
+      loginBtn: this.querySelector("#loginBtn"),
+      registerBtn: this.querySelector("#registerBtn"),
+      manageOrders: this.querySelector(".manageOrders"),
     };
 
     // Helper function to toggle elements
     const toggleElements = (show, ...elements) => {
-        elements.forEach(el => el && el.classList.toggle("d-none", !show));
+      elements.forEach((el) => el && el.classList.toggle("d-none", !show));
     };
 
     if (!elements.token) {
-        // Not logged in state
-        toggleElements(false, 
-            elements.userButton, 
-            elements.wishlistLink, 
-            elements.cartLink, 
-            elements.adminLink, 
-            elements.sellerLink
-        );
-        toggleElements(true, elements.loginBtn, elements.registerBtn);
-        return;
+      // Not logged in state
+      toggleElements(
+        false,
+        elements.userButton,
+        elements.wishlistLink,
+        elements.cartLink,
+        elements.adminLink,
+        elements.sellerLink
+      );
+      toggleElements(true, elements.loginBtn, elements.registerBtn);
+      return;
     }
 
     // Logged in state
     const user = loginUser();
 
     if (!user) {
-        console.warn("Token exists but user not found in database");
-        return;
+      console.warn("Token exists but user not found in database");
+      return;
     }
 
     // Toggle user button and auth buttons
@@ -240,9 +242,9 @@ class ExclusiveHeader extends HTMLElement {
 
     // Initialize dropdown behavior
     if (elements.userButton) {
-        elements.userButton.addEventListener("click", () => {
-            elements.userButton.classList.toggle("userIcon--Style");
-        });
+      elements.userButton.addEventListener("click", () => {
+        elements.userButton.classList.toggle("userIcon--Style");
+      });
     }
 
     // Reset all special links first
@@ -250,20 +252,21 @@ class ExclusiveHeader extends HTMLElement {
 
     // Handle roles
     switch (user.role) {
-        case "Admin":
-            toggleElements(true, elements.adminLink);
-            toggleElements(false, elements.wishlistLink, elements.cartLink);
-            break;
-        case "Seller":
-            toggleElements(true, elements.sellerLink);
-            toggleElements(true, elements.wishlistLink, elements.cartLink);
-            break;
-        default: // Regular customer
-            toggleElements(true, elements.wishlistLink, elements.cartLink);
+      case "Admin":
+        toggleElements(true, elements.adminLink);
+        toggleElements(false, elements.manageOrders);
+        toggleElements(false, elements.wishlistLink, elements.cartLink);
+        break;
+      case "Seller":
+        toggleElements(true, elements.sellerLink);
+        toggleElements(true, elements.wishlistLink, elements.cartLink);
+        break;
+      default: // Regular customer
+        toggleElements(true, elements.wishlistLink, elements.cartLink);
     }
 
     console.log("User role:", user.role);
-}
+  }
   initDropdown() {
     const userButton = this.querySelector(".userIcon");
     if (userButton && typeof bootstrap !== "undefined" && bootstrap.Dropdown) {

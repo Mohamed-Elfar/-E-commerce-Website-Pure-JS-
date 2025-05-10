@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
@@ -10,41 +9,39 @@
     <link href="/assets/css/fontawesome.min.css" rel="stylesheet" />
     <link href="/assets/css/style.css" rel="stylesheet" />
     <link href="seller.css" rel="stylesheet" />
-</head>
+  </head>
 
-<body>
+  <body>
     <exclusive-header></exclusive-header>
     <div class="container-fluid">
-        <div class="row">
-            <side-menu></side-menu>
-            <div class="main-content col-12 pt-3 px-4">
-                <side-toggler></side-toggler>
-                <div class="card">
-                    <div class="card-header d-flex justify-content-between align-items-center">
-                        <span>Sales Analytics</span>
-                        <select class="form-select form-select-sm w-auto">
-                            <option>Last 7 days</option>
-                            <option selected>Last 30 days</option>
-                            <option>Last 90 days</option>
-                        </select>
-                    </div>
-                    <div class="card-body">
-                        <canvas id="salesChart"></canvas>
-                    </div>
-                </div>
+      <div class="row">
+        <side-menu></side-menu>
+        <div class="main-content col-12 pt-3 px-4">
+          <side-toggler></side-toggler>
+          <div class="card">
+            <div
+              class="card-header d-flex justify-content-between align-items-center"
+            >
+              <span>Sales Analytics</span>
+              <select class="form-select form-select-sm w-auto">
+                <option>Last 7 days</option>
+                <option selected>Last 30 days</option>
+                <option>Last 90 days</option>
+              </select>
             </div>
-
-            
+            <div class="card-body">
+              <canvas id="salesChart"></canvas>
+            </div>
+          </div>
         </div>
-
+      </div>
     </div>
 
     <script src="/assets/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="analytics.js"></script>
     <script src="/assets/components/side-menu.js"></script>
     <script src="/assets/components/side_toggler.js"></script>
     <script src="/assets/components/exclusive-header.js" type="module"></script>
-</body>
-
+    <script src="analytics.js" type="module"></script>
+  </body>
 </html>

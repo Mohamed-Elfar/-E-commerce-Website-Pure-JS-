@@ -9,6 +9,11 @@
   --color-DB: #db4444;
   --color-F5: #f5f5f5;
 }
+a[disabled] {
+  pointer-events: none;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
 .main-section {
   display: flex;
   margin-bottom: 140px;

@@ -30,6 +30,7 @@ const elements = {
 
 // Data
 let users = JSON.parse(localStorage.getItem("users")) || [];
+const sellers = users.filter((u) => u.role === "Seller");
 let allProducts = JSON.parse(localStorage.getItem("allProducts")) || [];
 
 // Initialize
@@ -241,7 +242,7 @@ function renderFlashSaleProducts() {
   });
 
   const flashProducts = allProducts
-    .filter((p) => p.sale?.trim())
+    .filter((p) => p.sale)
     .sort((a, b) => parseFloat(b.sale) - parseFloat(a.sale));
 
   elements.userDisplay.flashTable.innerHTML = flashProducts
@@ -621,92 +622,6 @@ window.rejectSeller = async function (userId) {
   renderSellerApplications();
 };
 
-// Render Product Section
-// function renderProductSection() {
-//   console.log(elements.userDisplay.products);
-
-//   elements.userDisplay.allProducts.innerHTML = ""; // Clear existing content
-
-//   allProducts.forEach((product) => {
-//     // Generate carousel indicators and items
-//     const carouselIndicators = product.images
-//       .map((_, index) => `
-//         <button type="button" data-bs-target="#carousel-${product.id}"
-//                 data-bs-slide-to="${index}"
-//                 ${index === 0 ? 'class="active" aria-current="true"' : ''}
-//                 aria-label="Slide ${index + 1}"></button>
-//       `)
-//       .join("");
-
-//     const carouselItems = product.images
-//       .map((image, index) => `
-//         <div class="carousel-item ${index === 0 ? 'active' : ''}">
-//           <img src="${image}"
-//                class="d-block product-img"
-//                style="width: 250px; height: 200px; object-fit: contain;"
-//                alt="${product.name}">
-//         </div>
-//       `)
-//       .join("");
-
-//     elements.userDisplay.allProducts.innerHTML += `
-//       <div class="col-lg-4 col-md-6 mb-4">
-//         <div class="card h-100">
-//           <div id="carousel-${product.id}" class="carousel slide" data-bs-ride="carousel">
-//             <div class="carousel-indicators">
-//               ${carouselIndicators}
-//             </div>
-//             <div class="carousel-inner text-center"> <!-- Added text-center -->
-//               ${carouselItems}
-//             </div>
-//             ${product.images.length > 1 ? `
-//             <button class="carousel-control-prev" type="button"
-//                     data-bs-target="#carousel-${product.id}" data-bs-slide="prev">
-//               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-//               <span class="visually-hidden">Previous</span>
-//             </button>
-//             <button class="carousel-control-next" type="button"
-//                     data-bs-target="#carousel-${product.id}" data-bs-slide="next">
-//               <span class="carousel-control-next-icon" aria-hidden="true"></span>
-//               <span class="visually-hidden">Next</span>
-//             </button>
-//             ` : ''}
-//           </div>
-//           <div class="product-card-body">
-//             <h5 class="product-name">${product.name}</h5>
-//             <span class="product-price mb-2">$${product.price.toFixed(2)}</span>
-//             <div class="product-meta mb-2">
-//               <div>
-//                 <i class="fas fa-tag"></i>
-//                 <span class="category-badge">${product.category}</span>
-//               </div>
-//               <div><i class="fas fa-user"></i> ${product.seller}</div>
-//               <div><i class="fas fa-calendar-alt"></i> ${new Date(
-//                 product.date
-//               ).toLocaleDateString()}</div>
-//             </div>
-//             <div class="d-flex justify-content-around mt-3">
-//               <button class="btn btn-primary px-4 edit-btn" data-product-id="${
-//                 product.id
-//               }">
-//                 <i class="fas fa-edit me-1"></i> Edit
-//               </button>
-//               <button class="btn btn-danger px-4 delete-btn" data-product-id="${
-//                 product.id
-//               }">
-//                 <i class="fas fa-trash-alt me-1"></i> Delete
-//               </button>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     `;
-//   });
-// }
-
-// Initialize the application
-
-// Product Management Functions
 function renderProductSection() {
   const totalProductsHeader = document.querySelector(".totalProductsHeader");
   totalProductsHeader.innerHTML = ` (${allProducts.length})`;
@@ -776,7 +691,7 @@ function renderProductSection() {
                 <span class="category-badge">${product.category}</span>
               </div>
               <div><i class="fas fa-user" aria-hidden="true"></i> ${
-                product.createdBy || "Admin"
+                product.seller || "Admin"
               }</div>         
               ${
                 product.sale
@@ -880,7 +795,16 @@ function populateEditForm(product) {
   }
 
   // Set seller select
+
   const sellerSelect = document.querySelector(".product-seller");
+  sellerSelect.innerHTML = `<option value="">Select Seller</option>`;
+  sellerSelect.innerHTML += sellers
+    .map(
+      (user) => `                        
+      <option value="${user.userId}">${user.firstName}</option>`
+    )
+    .join("");
+
   if (sellerSelect) {
     for (let i = 0; i < sellerSelect.options.length; i++) {
       if (sellerSelect.options[i].text === product.seller) {
@@ -911,6 +835,7 @@ async function saveEditedProduct() {
         document.querySelector(".product-seller").options[
           document.querySelector(".product-seller").selectedIndex
         ].text,
+      createdBy: document.querySelector(".product-seller").value,
       description: document.querySelector(".product-description").value,
       sale:
         parseInt(document.querySelector(".productSaleEdit").value) + "%" || "",
@@ -993,9 +918,16 @@ function getImagePreviewUrl(inputId) {
 // Add product form submission
 const addProductForm = document.getElementById("addProductForm");
 if (addProductForm) {
+  const sellerSelect = document.getElementById("productSeller");
+  sellerSelect.innerHTML = `<option value="">Select Seller</option>`;
+  sellerSelect.innerHTML += sellers
+    .map(
+      (user) => `                        
+      <option value="${user.userId}">${user.firstName}</option>`
+    )
+    .join("");
   addProductForm.addEventListener("submit", async function (e) {
     e.preventDefault();
-
     const newProduct = {
       id:
         allProducts.length > 0
@@ -1008,6 +940,7 @@ if (addProductForm) {
         document.getElementById("productSeller").options[
           document.getElementById("productSeller").selectedIndex
         ].text,
+      createdBy: document.getElementById("productSeller").value,
       description: document.getElementById("productDescription").value,
       image:
         getImagePreviewUrl("productImage") ||
