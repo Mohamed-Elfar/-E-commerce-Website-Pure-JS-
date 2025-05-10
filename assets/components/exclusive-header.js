@@ -32,7 +32,7 @@ class ExclusiveHeader extends HTMLElement {
             <a class="nav-link active" href="/customer/home/home.html">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/customer/contact/contact.html"
+            <a class="nav-link" href="/customer/contact/Contact.html"
               >contact</a
             >
           </li>
@@ -40,7 +40,7 @@ class ExclusiveHeader extends HTMLElement {
             <a class="nav-link" href="/customer/about/about.html">about</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/customer/products/products.html"
+            <a class="nav-link" href="/customer/Products/products.html"
               >products</a
             >
           </li>
