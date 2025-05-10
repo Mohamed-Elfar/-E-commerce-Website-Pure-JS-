@@ -76,7 +76,6 @@ class ExclusiveHeader extends HTMLElement {
             <i class="fa fa-heart"></i>
             <span class="badge" id="wishlistCount">3</span>
           </a>
-
           <a class="btn" id="cartLink" href="/customer/cart/cart.html">
             <i class="fa fa-shopping-cart"></i>
             <span class="badge" id="cartCount">5</span>
@@ -128,7 +127,7 @@ class ExclusiveHeader extends HTMLElement {
                 <i class="fa fa-regular fa-user"></i>
                 <a
                   class="dropdown-item text-white"
-                  href="/customer/profile/profile.html"
+                  href="/customer/profile/Profile.html"
                   >My Account</a
                 >
               </li>
