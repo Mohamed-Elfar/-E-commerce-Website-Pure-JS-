@@ -157,7 +157,7 @@ function renderDashboard() {
 
   // Total users
   const totalUsersCount = users?.length > 0 ? users?.length - 1 : 0;
-  elements.userDisplay.users?.textContent = totalUsersCount;
+  elements.userDisplay.users.textContent = totalUsersCount;
 
   // Top selling products
   renderTopSellingProducts();
