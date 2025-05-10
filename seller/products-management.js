@@ -194,7 +194,7 @@ function displayProducts() {
                  class="p-1 w-100 w-sm-auto" 
                  style="height: 160px; max-width: 160px; object-fit: contain; background: linear-gradient(145deg, #f8f9fa, #e9ecef);" 
                  alt="${product.name}" 
-                 onerror="this.src='https:
+                 onerror="this.src='https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?t=st=1746629522~exp=1746633122~hmac=d7ab6887b8e97559468627d4f72ce44616d158a31eb77d05b688edf831fef7e3&w=826'">
             <div class="card-body p-3">
               <div class="d-flex flex-column-reverse flex-sm-row">
              <div class="">
@@ -229,9 +229,11 @@ function displayProducts() {
                   <p class="card-text fs-6">
                     <strong>Discount:</strong> 
                     ${
-                      product.sale
-                        ? `<span class="badge bg-danger">${product.sale}%</span>`
-                        : "-"
+                      product.sale ? (
+                        <span class="badge bg-danger">${product.sale}%</span>
+                      ) : (
+                        "-"
+                      )
                     }
                   </p>
                 </div>
