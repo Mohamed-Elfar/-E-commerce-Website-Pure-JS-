@@ -32,7 +32,7 @@ class ExclusiveHeader extends HTMLElement {
             <a class="nav-link active" href="/customer/home/home.html">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/customer/contact/contact.html"
+            <a class="nav-link" href="/customer/contact/Contact.html"
               >contact</a
             >
           </li>
@@ -40,7 +40,7 @@ class ExclusiveHeader extends HTMLElement {
             <a class="nav-link" href="/customer/about/about.html">about</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/customer/products/products.html"
+            <a class="nav-link" href="/customer/Products/products.html"
               >products</a
             >
           </li>
@@ -76,7 +76,6 @@ class ExclusiveHeader extends HTMLElement {
             <i class="fa fa-heart"></i>
             <span class="badge" id="wishlistCount">3</span>
           </a>
-
           <a class="btn" id="cartLink" href="/customer/cart/cart.html">
             <i class="fa fa-shopping-cart"></i>
             <span class="badge" id="cartCount">5</span>
@@ -128,7 +127,7 @@ class ExclusiveHeader extends HTMLElement {
                 <i class="fa fa-regular fa-user"></i>
                 <a
                   class="dropdown-item text-white"
-                  href="/customer/profile/profile.html"
+                  href="/customer/profile/Profile.html"
                   >My Account</a
                 >
               </li>
