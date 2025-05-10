@@ -150,8 +150,8 @@ a {
 }
 
 .btn--primary {
-  background-color: var(--text-primary);
-  color: white;
+  background-color: var(--text-primary) !important;
+  color: white !important;
 }
 
 .btn--primary:hover,

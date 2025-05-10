@@ -1,5 +1,4 @@
 // change username to my email
-
 const gettoken = localStorage.getItem("token") || "";
 const users = JSON.parse(localStorage.getItem("users")) || [];
 const username = document.querySelector("#username");
@@ -52,10 +51,11 @@ orders.forEach((order) => {
                 <p>${order.date.split("T")[0] || "01/01/2023"}</p>
             </div>
             <div>
+                <button class="button-return btn btn-warning d-none" style="width: 100px; height: 35px; color:rgb(250, 250, 250); ">Return</button>
                 <button class="button-cancel btn d-none text-danger" style="width: 100px; height: 35px; background-color:rgb(250, 250, 250); ">Cancel</button>
             </div>
             <div class="d-flex gap-2">
-                <div class="d-flex">
+                <div class="ballsOfStatus d-flex">
                     <div class="completed-order rounded-circle bg-success opacity-25 me-2" style="width: 20px; height: 20px;"></div>
                     <div class="waiting-order rounded-circle bg-warning opacity-25 me-2" style="width: 20px; height: 20px;"></div>
                     <div class="canceled-order rounded-circle bg-danger opacity-25" style="width: 20px; height: 20px;"></div>
@@ -70,7 +70,7 @@ orders.forEach((order) => {
     const firstDiv = orderContainer.querySelector(".d-flex.gap-2");
     firstDiv.appendChild(orderImages);
     // ضيف كل order للـ container العام
-    orderitems.appendChild(orderContainer);
+    orderitems.prepend(orderContainer);
 
 
     const completedorder = orderContainer.querySelector(".completed-order");
@@ -78,12 +78,24 @@ orders.forEach((order) => {
     const canceledorder = orderContainer.querySelector(".canceled-order");
     const orderstatus = orderContainer.querySelector(".order-status");
     const cancelbtn = orderContainer.querySelector(".button-cancel");
+    const ballsOfStatus = orderContainer.querySelector(".ballsOfStatus");
+    const returnedbtn = orderContainer.querySelector(".button-return");
     if (order.orderStatus === "completed") {
         CompletedOrder();
+        orderContainer.addEventListener("mouseenter", () => {
+            orderContainer.style.backgroundColor = "";
+            returnedbtn.classList.remove("d-none");
+            returnedbtn.style.display = "block";
+          });
+          
+          orderContainer.addEventListener("mouseleave", () => {
+            returnedbtn.classList.add("d-none");
+            orderContainer.style.backgroundColor = ""; // يرجعه للحالة الأصلية
+          });
+
 
     } else if (order.orderStatus === "waiting") {
         WaitingOrder();
-        cancelbtn.style.display = "block";
         orderContainer.addEventListener("mouseenter", () => {
             orderContainer.style.backgroundColor = "";
             cancelbtn.classList.remove("d-none");
@@ -94,18 +106,37 @@ orders.forEach((order) => {
             cancelbtn.classList.add("d-none");
             orderContainer.style.backgroundColor = ""; // يرجعه للحالة الأصلية
           });
+        setTimeout(() => {
+            order.orderStatus = "completed";
+            localStorage.setItem("users", JSON.stringify(users));
+        },30000);
         
     } else if (order.orderStatus === "canceled") {
         CanceledOrder();
+    } else if (order.orderStatus === "needtoReturn") {
+        NeedToReturn();
+        setTimeout(() => {
+            order.orderStatus = "returned";
+            localStorage.setItem("users", JSON.stringify(users));
+        },30000);
+
+    } else if (order.orderStatus === "returned") {
+        returned();
     }
     else{
         orderContainer.style.backgroundImage = 'url("/assets/images/error-message.png")';
     };
 
-    cancelbtn.addEventListener("click", () => {
+    cancelbtn.addEventListener("click", (e) => {
+        e.preventDefault();
         order.orderStatus = "canceled";
-        localStorage.setItem("users", JSON.stringify(users));
-    });  
+        confirmChange(users , "Cancel Request");
+        });  
+    returnedbtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        order.orderStatus = "needtoReturn";
+        confirmChange(users , "Return Request");
+    });
 
     function CompletedOrder(){
         waitingorder.classList.remove("opacity-100");
@@ -128,13 +159,54 @@ orders.forEach((order) => {
         canceledorder.classList.add("opacity-100");
         orderstatus.textContent = "Canceled";
     }
+    function NeedToReturn() {
+        ballsOfStatus.classList.add("d-none");
+        orderstatus.textContent = "Work On Return";
+        orderstatus.style.color = "rgb(15, 125, 184)";
+    }
+    function returned(){
+        ballsOfStatus.classList.add("d-none");
+        orderstatus.textContent = "Returned";
+        orderstatus.style.color = "rgb(18, 18, 141)";
+    }
+
 });
 
 
 }
 })();
 
-
-
-
-
+function confirmChange(updatedUsers, actionType) {
+  Swal.fire({
+    title: 'Are you sure?',
+    text: `You are about to proceed with: ${actionType}. Do you want to continue?`,
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, proceed!',
+    cancelButtonText: 'Cancel',
+    reverseButtons: true,
+    background: '#fff',
+    color: '#333'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      localStorage.setItem("users", JSON.stringify(updatedUsers));
+      Swal.fire({
+        title: 'Success!',
+        text: `${actionType} has been processed successfully.`,
+        icon: 'success',
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#27ae60'
+      }).then(() => {
+        window.location.reload();
+      });
+    } else if (result.dismiss === Swal.DismissReason.cancel) {
+      Swal.fire({
+        title: "",
+        text: `${actionType} has been canceled..`,
+        icon: 'info',
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#3498db'
+      });
+    }
+  });
+}

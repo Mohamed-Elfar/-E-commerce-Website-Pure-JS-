@@ -2,17 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>My Orders</title>
+  <title>manage-orders</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Bootstrap CSS -->
   <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
   <link href="/assets/css/fontawesome.min.css" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/style.css">
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <link rel="stylesheet" href="myorders.css">
 
 
-  
+  <style>
+    .sidebar-link{
+      color: black;
+    }
+    .sidebar-link.active {
+      color: red;
+    }
+    img{
+      width: 65px;
+      height: 65px;
+    }
+    
+  </style>
 </head>
 <body>
 
@@ -48,7 +58,9 @@
       </ul>
       <h6 class="fw-bold mt-4 mb-3">History</h6>
       <ul class="list-unstyled">
-        <li><a href="../orders/myorders.html" class="d-block sidebar-link active">My Orders</a></li>
+        <li><a href="../orders/myorders.html" class="d-block sidebar-link">My Orders</a></li>
+        <li><a href="../manage orders/manage-orders.html" class="d-block sidebar-link active">Manage Orders</a></li>
+
       </ul>
       <h6 class="fw-bold mt-4 mb-3">My Wishlist</h6>
       <a class="d-block sidebar-link">Wishlist</a>
@@ -59,7 +71,7 @@
     <div class="col-md-9">
       <div class="p-4 rounded bg-white shadow-sm" style="height: 530px;">
         <form class="d-flex flex-column" style="height: 490px;">
-          <h5 class="fw-bold text-danger mb-2">My orders</h5>
+          <h5 class="fw-bold text-danger mb-2">Manage Orders</h5>
           <div class="order-items overflow-auto" style="height: 100%;">
            
           </div>
@@ -75,6 +87,6 @@
 <script src="/assets/components/exclusive-header.js"  type="module" defer></script>
 <script src="/assets/components/exclusive-footer.js" defer></script>
 <script src="/assets/js/bootstrap.bundle.min.js"></script>
-<script src="myorders.js" type="module"></script>
+<script src="manage-orders.js" type="module"></script>
 </body>
 </html>

@@ -1,0 +1,42 @@
+ .sidebar-link{
+      color: black;
+    }
+    .sidebar-link.active {
+      color: red;
+    }
+    img{
+      width: 65px;
+      height: 65px;
+    }
+    .custom-swal {
+    border-radius: 15px;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+  }
+
+  .btn-confirm {
+    background-color: #00b894 !important;
+    color: white !important;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: bold;
+  }
+
+  .btn-cancel {
+    background-color: #ffffff !important;
+    color: #d63031 !important;
+    border: 1px solid #d63031 !important;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: bold;
+  }
+
+  .swal-title {
+    font-size: 22px;
+    color: #f1c40f;
+  }
+
+  .swal-text {
+    font-size: 16px;
+    color: #ecf0f1;
+  }
