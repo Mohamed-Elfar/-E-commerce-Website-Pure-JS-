@@ -132,41 +132,43 @@ fetch("../../assets/data/products.json")
 
 search("product__title", ".col-md-4");
 
-function filterProducts(productCards, checkboxes) {
-  const checkedCategories = [];
-  checkboxes.forEach((checkbox) => {
-    if (checkbox.checked) {
-      checkedCategories.push(checkbox.value);
-    }
-  });
-
-  productCards.forEach((card) => {
-    const cardCategory =
-      card.querySelector(".product__category").dataset.category;
-    if (
-      checkedCategories.length === 0 ||
-      checkedCategories.includes(cardCategory)
-    ) {
-      card.style.display = "block";
-    } else {
-      card.style.display = "none";
-    }
+ function filterProducts() {
+   const minPrice = parseFloat(document.getElementById('minPrice').value) || 0;
+  const maxPrice = parseFloat(document.getElementById('maxPrice').value) || Infinity;
+  
+   const checkboxes = document.querySelectorAll('.filter-options input[type="checkbox"]');
+  const checkedCategories = Array.from(checkboxes)
+    .filter(checkbox => checkbox.checked)
+    .map(checkbox => checkbox.value);
+  
+   const productCards = document.querySelectorAll('#product-container .col-md-4');
+  
+  productCards.forEach(card => {
+     const cardCategory = card.querySelector('.product__category')?.dataset.category;
+    
+     const priceText = card.querySelector('.product__price-new')?.textContent.replace('$', '') || '0';
+    const cardPrice = parseFloat(priceText);
+    
+     const priceMatch = cardPrice >= minPrice && cardPrice <= maxPrice;
+    const categoryMatch = checkedCategories.length === 0 || checkedCategories.includes(cardCategory);
+    
+     card.style.display = (priceMatch && categoryMatch) ? 'block' : 'none';
   });
 }
-document.getElementById("filterPriceBtn").addEventListener("click", () => {
-  const min = parseFloat(document.getElementById("minPrice").value) || 0;
-  const max = parseFloat(document.getElementById("maxPrice").value) || Infinity;
 
-  const allCards = document.querySelectorAll("#product-container .col-md-4");
-  allCards.forEach((card) => {
-    const priceText =
-      card.querySelector(".product__price-new")?.textContent.replace("$", "") ||
-      "0";
-    const price = parseFloat(priceText);
-    if (price >= min && price <= max) {
-      card.style.display = "block";
-    } else {
-      card.style.display = "none";
-    }
-  });
+ 
+ document.querySelectorAll('.filter-options input[type="checkbox"]').forEach(checkbox => {
+  checkbox.addEventListener('change', filterProducts);
 });
+
+document.getElementById('priceRange').addEventListener('input', function() {
+  document.getElementById('minPrice').value = this.value;
+  filterProducts();
+});
+
+ document.getElementById('minPrice').addEventListener('input', function() {
+  document.getElementById('priceRange').value = this.value;
+  filterProducts();
+});
+
+document.getElementById('maxPrice').addEventListener('input', filterProducts);

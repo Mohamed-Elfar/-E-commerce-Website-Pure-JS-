@@ -106,47 +106,88 @@ a {
   min-height: 1.2em;
   font-size: 12px;
 }
-
-.toast-success,
-.toast-error,
-.toast-warning,
-.toast-info {
+.toast {
   position: fixed;
   left: 50%;
   transform: translate(-50%, -100px);
-  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
-  z-index: 100000;
-  width: fit-content;
-  padding: 10px 25px;
-  border-radius: 15px;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  z-index: 1000;
+  width: 90%;
+  max-width: 400px;
+  padding: 16px 24px;
+  border-radius: 12px;
   opacity: 0;
   pointer-events: none;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.toast-warning {
-  background-color: #fff3cd;
-  color: #664d03;
-}
-
-.toast-info {
-  background-color: #d1ecf1;
-  color: #664d03;
+.toast::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 5px;
+  height: 100%;
+  border-radius: 12px 0 0 12px;
 }
 
 .toast-success {
-  color: green;
-  background-color: #d4edda;
+  background: rgba(212, 237, 218, 0.9);
+  color: #155724;
+}
+
+.toast-success::before {
+  background: #28a745;
 }
 
 .toast-error {
-  background-color: red;
-  color: white;
+  background: rgba(248, 215, 218, 0.9);
+  color: #721c24;
+}
+
+.toast-error::before {
+  background: #dc3545;
+}
+
+.toast-warning {
+  background: rgba(255, 243, 205, 0.9);
+  color: #856404;
+}
+
+.toast-warning::before {
+  background: #ffc107;
+}
+
+.toast-info {
+  background: rgba(209, 236, 241, 0.9);
+  color: #0c5460;
+}
+
+.toast-info::before {
+  background: #17a2b8;
 }
 
 .toast.show {
-  transform: translate(-50%, 20px);
+  transform: translate(-50%, 30px);
   opacity: 1;
   pointer-events: auto;
+}
+
+ 
+
+ @media (max-width: 768px) {
+  .toast {
+    width: 85%;
+    padding: 14px 20px;
+    font-size: 14px;
+  }
 }
 
 .btn--primary {

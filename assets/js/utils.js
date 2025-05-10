@@ -15,10 +15,10 @@ export function showToast(status, message) {
   }
   toast.className = "toast";
   const icons = {
-    success: "fa-circle-check",
-    error: "fa-triangle-exclamation",
-    warning: "fa-warning",
-    info: "fa-info",
+    success: "fa-circle-check px-2",
+    error: "fa-triangle-exclamation px-2",
+    warning: "fa-warning px-2",
+    info: "fa-info px-2",
   };
   if (!icons[status]) {
     console.error(`Invalid toast status: ${status}`);
