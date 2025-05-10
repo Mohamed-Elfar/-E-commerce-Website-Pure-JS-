@@ -1,21 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Orders</title>
 
-    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/assets/css/fontawesome.min.css" />
-    <link rel="stylesheet" href="/assets/css/style.css" />
-    <link rel="stylesheet" href="seller.css">
-  </head>
-  <body>
-    <side-bar></side-bar>
-    <div class="main-content">
-      <h1>Orders</h1>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Management - Orders</title>
+  <link rel="icon" href="/assets/images/icon.png" type="image/png" />
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/assets/css/fontawesome.min.css" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="seller.css" />
+</head>
+
+<body>
+  <exclusive-header></exclusive-header>
+  <div class="container-fluid">
+    <div class="row">
+      <side-menu></side-menu>
+      <div class="main-content col-12 pt-3 px-4">
+        <side-toggler></side-toggler>
+        
+        <div class="container py-5">
+          <div class="row justify-content-center">
+            <div class="col-12">
+              <h2 class="mb-4">My Orders</h2>
+              <div id="order">
+               
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <script src="side-bar.js"></script>
-    <script src="/assets/js/bootstrap.bundle.min.js"></script>
-  </body>
+  </div>
+  
+  <script src="./orders.js"></script>
+  <script src="/assets/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/components/side-menu.js"></script>
+  <script src="/assets/components/side_toggler.js"></script>
+  <script src="/assets/components/exclusive-header.js" type="module"></script>
+</body>
+
 </html>

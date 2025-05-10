@@ -1,7 +1,7 @@
 import {
   showToast,
   validatePassword,
-  validatePasswordMatch,
+  validatePasswordMatch,hashPassword
 } from "../assets/js/utils.js";
 const forgetEmail = document.querySelector("#forgetEmailInput");
 const submitEmailBtn = document.querySelector("#submitEmailBtn");
@@ -46,7 +46,7 @@ function save() {
   if (newPassword.value === repass.value) {
     const users = JSON.parse(localStorage.getItem("users"));
     const foundUser = users.find((user) => user.email === forgetEmail.value);
-    foundUser.password = newPassword.value;
+    foundUser.password = hashPassword(newPassword.value);
     localStorage.setItem("users", JSON.stringify(users));
     showToast("success", "Password changed successfully");
     closePasswordBtn.click();

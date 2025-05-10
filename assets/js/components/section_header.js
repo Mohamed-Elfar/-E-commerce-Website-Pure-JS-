@@ -9,7 +9,7 @@ class SectionHeaderComponent extends HTMLElement {
             <div class="section__header">
                 <div class="section__highlights">
                     <p class="section__title">${section_title}</p>
-                    <a href= "/customer/all_products/all_products.html?type=${section_type}" class="section__button background-primary secondary-color" id="viewallBtn">
+                    <a href= "/customer/all_products/all_products.html?type=${section_type}" class="section__button background-primary text-white " id="viewallBtn">
                         View All    
                     </a>
                 </div>

@@ -9,6 +9,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 input {
@@ -180,9 +181,11 @@ exclusive-header {
   p {
     color: rgb(200, 198, 198);
   }
+
   .btn {
     position: relative;
   }
+
   .badge {
     position: absolute !important;
     top: -5px !important;
@@ -193,6 +196,7 @@ exclusive-header {
     padding: 2px 6px;
     font-size: 12px;
   }
+
   .dropdown-menu,
   .userIcon--Style {
     background: rgb(102 100 100 / 80%) !important;
@@ -211,7 +215,12 @@ exclusive-header {
 
 exclusive-footer {
   margin-top: auto;
-  /* Pushes footer to bottom */
+  #scrollToTopBtn {
+    top: -50px;
+    width: 40px;
+    height: 40px;
+    margin-right: 50px;
+  }
 }
 
 .footer {
@@ -238,10 +247,6 @@ exclusive-footer {
         input[type="email"] {
           width: 100% !important;
         }
-
-        /* ul>  .nav-item{
-        font-size: 13px;
-      } */
       }
     }
   }
@@ -252,12 +257,20 @@ exclusive-footer {
       text-align: center;
       width: 300px;
     }
-
     .container {
       width: 100% !important;
     }
+    #scrollToTopBtn {
+      top: -20px;
+      width: 40px;
+      height: 40px;
+      margin-right: 30px;
+      background-color: white;
+      color: black;
+    }
   }
 }
+
 .moveAnimation {
   animation: move 1s infinite;
 }
@@ -354,4 +367,27 @@ exclusive-footer {
   color: white;
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
+}
+
+/* -------------------dashboard------------------- */
+
+.dashboard-header {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.card {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+}
+
+.card-header {
+  background-color: white;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  font-weight: 600;
 }

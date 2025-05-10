@@ -5,6 +5,7 @@ import {
   validatePhone,
   validatePasswordMatch,
   validateName,
+  hashPassword,
   User,
 } from "../assets/js/utils.js";
 if (localStorage.getItem("token")) {
@@ -20,7 +21,12 @@ class Customer extends User {
   constructor(userData) {
     super(userData);
 
+
     this.#customerId = Customer.customerCount;
+  }
+  toJSON() {
+    const userData = super.toJSON();
+    return userData;
   }
   toJSON() {
     const userData = super.toJSON();
@@ -36,10 +42,15 @@ class Seller extends User {
     const users = JSON.parse(localStorage.getItem("users")) || [];
     return users.filter((user) => user.role === "Seller").length;
   }
+  static get sellerCount() {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    return users.filter((user) => user.role === "Seller").length;
+  }
   #sellerId;
 
   constructor(userData) {
     super(userData);
+
 
     this.#sellerId = Seller.sellerCount;
   }
@@ -63,6 +74,7 @@ class Admin extends User {
   constructor(userData) {
     super(userData);
 
+
     this.#adminId = Admin.adminCount;
   }
 
@@ -80,11 +92,11 @@ class Admin extends User {
 
     if (!existingAdmin) {
       const adminData = {
-        first_name: "Mohamed",
-        last_name: "Samir",
+        firstName: "Mohamed",
+        lastName: "Samir",
         email: "mohamedsamiir252@gmail.com",
-        phone_number: "01060493174",
-        password: "Mohamed@123",
+        phone: "01060493174",
+        password: hashPassword("Mohamed@123"),
         want_to_be_seller: false,
       };
 
@@ -135,6 +147,10 @@ form.addEventListener("submit", (event) => {
       setTimeout(() => {
         open("login.html", "_self");
       }, 2000);
+
+      setTimeout(() => {
+        open("login.html", "_self");
+      }, 2000);
     } catch (error) {
       showToast("error", error.message);
     }
@@ -142,28 +158,6 @@ form.addEventListener("submit", (event) => {
     showToast("error", "Please fix the validation errors.");
   }
 });
-
-document.getElementById("firstname").addEventListener("input", function () {
-  validateName(this);
-});
-document.getElementById("lastname").addEventListener("input", function () {
-  validateName(this);
-});
-document.getElementById("email").addEventListener("input", function () {
-  validateEmail(this);
-});
-document.getElementById("phonenumber").addEventListener("input", function () {
-  validatePhone(this);
-});
-document.getElementById("password").addEventListener("input", function () {
-  validatePassword(this);
-});
-document
-  .getElementById("confirmpassword")
-  .addEventListener("input", function () {
-    validatePasswordMatch(password, this);
-  });
-
 function validateForm(
   firstName,
   lastName,
@@ -183,9 +177,5 @@ function validateForm(
 
   return valid;
 }
-
 Admin.createAdmin();
-console.log(User.totalUsers);
-console.log(Customer.customerCount);
-console.log(Seller.sellerCount);
-console.log(Admin.adminCount);
+

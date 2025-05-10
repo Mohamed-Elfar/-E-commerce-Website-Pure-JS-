@@ -1,0 +1,108 @@
+:root {
+    --primary-color: #2a2a2a;
+    --secondary-color: #DB4444;
+    --text-color: #f8f9fa;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-color);
+    overflow: hidden;
+  }
+
+  .welcome-container {
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1s ease;
+  }
+
+  .welcome-logo {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 30px;
+    animation: pulse 2s infinite alternate;
+  }
+
+  .welcome-text {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    min-height: 60px;
+    color: var(--primary-color);
+  }
+
+  .typed-cursor {
+    opacity: 1;
+    animation: blink 0.7s infinite;
+  }
+
+  .progress-bar {
+    width: 0;
+    height: 3px;
+    background-color: var(--secondary-color);
+    margin: 20px auto;
+    transition: width 2s linear;
+  }
+
+  /* Skip button styles */
+  .skip-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--secondary-color);
+    border: none;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    z-index: 10;
+  }
+
+  .skip-btn:hover {
+    background: #ff6b6b;
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.1);
+    }
+  }
+
+  @keyframes blink {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .welcome-text {
+      font-size: 1.8rem;
+    }
+
+    .welcome-logo {
+      width: 80px;
+      height: 80px;
+    }
+
+    .skip-btn {
+      top: 15px;
+      right: 15px;
+      padding: 6px 12px;
+      font-size: 0.9rem;
+    }
+  }

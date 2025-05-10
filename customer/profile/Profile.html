@@ -10,40 +10,42 @@
     <link rel="stylesheet" href="/authentication/auth.css" />
     <link rel="stylesheet" href="/assets/css/style.css" />
 
-    <style>
-      .sidebar-link {
-        color: black;
-      }
-      .sidebar-link.active {
-        color: red;
-      }
-      .form-control {
-        background-color: #f2f3f4;
-        border: none;
-        height: 40px;
-      }
-    </style>
-  </head>
-  <body>
-    <exclusive-header></exclusive-header>
-    <div class="toast"></div>
-    <div class="container mt-3">
-      <div class="row">
-        <div class="col-12 d-flex justify-content-between align-items-center">
-          <!-- الشمال -->
-          <div class="d-flex">
-            <p class="mb-0 text-muted me-2">Home /</p>
-            <p class="mb-0">My Account</p>
-          </div>
+  <style>
+    .sidebar-link{
+      color: black;
+    }
+    .sidebar-link.active {
+      color: red;
+    }
+    .form-control{
+      background-color: #f2f3f4;
+      border: none;
+      height: 40px;
+    }
+    
+  </style>
+</head>
+<body>
+  <exclusive-header></exclusive-header>
 
-          <!-- اليمين -->
-          <div class="d-flex">
-            <p class="mb-0 me-1">Welcome!</p>
-            <p id="username" class="mb-0 text-danger">My dear guest</p>
-          </div>
+  <div class="container mt-3">
+    <div class="row">
+      <div class="col-12 d-flex justify-content-between align-items-center">
+        <!-- الشمال -->
+        <div class="d-flex">
+          <p class="mb-0 text-muted me-2">Home / </p>
+          <p class="mb-0">My Account </p>
+        </div>
+  
+        <!-- اليمين -->
+        <div class="d-flex">
+          <p class="mb-0 me-1">Welcome!</p>
+          <p id="username" class="mb-0 text-danger"></p>
         </div>
       </div>
     </div>
+  </div>
+  
 
     <div class="container my-5">
       <div class="row">

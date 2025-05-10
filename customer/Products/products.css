@@ -13,7 +13,6 @@
   display: flex;
   margin-bottom: 140px;
 }
-
 /* Side Menu Styles */
 .side-menu {
   margin-right: 16px;
@@ -251,7 +250,7 @@
   color: var(--color-DB);
   font-size: 16px;
   font-weight: 500;
-  line-height: 24px;
+  line-height: 10px;
 }
 
 .product__price-old {
@@ -259,7 +258,7 @@
   opacity: 50%;
   font-size: 16px;
   font-weight: 400;
-  line-height: 24px;
+  line-height: 10px;
   text-decoration: line-through;
 }
 
@@ -278,48 +277,25 @@
 .product__rating {
   display: flex;
 }
-
-/* .products__section{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-}
-.products__group{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-} */
-
 .product__icon.fa-heart.active {
   color: red;
 }
 
  
 .product {
-  
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
  .product__image {
   width: 100%;
   height: 200px;
-  object-fit: contain; /* أو cover لو حابة تقطعي الصورة */
+  object-fit: contain;  
  }
 
  #product-container {
    row-gap: 24px;  
 }
-#price-slider .noUi-handle {
-  background-color: #007b8a;
-  border: none;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
-}
-#price-slider .noUi-connect {
-  background: #007b8a;
-}
-#price-slider {
-  margin-top: 10px;
-}
+ 
 @media (max-width: 767px) {
   .mobile-margin {
     margin-bottom: 1.5rem;

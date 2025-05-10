@@ -8,20 +8,19 @@ import {
   hashPassword,
   validateHashedPassword
 } from "/assets/js/utils.js";
-(function() {
+(function () {
   const currentToken = localStorage.getItem("token");
   const user = getUserByToken(currentToken);
-  if(user){
-    document.getElementById("username").innerHTML= user.firstName;
-    document.getElementById("firstName").value= user.firstName;
-    document.getElementById("lastName").value= user.lastName;
-    document.getElementById("email").value= user.email;
-    document.getElementById("phonenumber").value= user.phone;
-  }else{
-    document.getElementById("username").innerHTML= "Guest";
+  if (user) {
+    document.getElementById("username").innerHTML = user.firstName;
+    document.getElementById("firstName").value = user.firstName;
+    document.getElementById("lastName").value = user.lastName;
+    document.getElementById("email").value = user.email;
+    document.getElementById("phonenumber").value = user.phone;
+  } else {
+    document.getElementById("username").innerHTML = "Guest";
   }
 })();
-
 
 document.querySelector("#saveChanges").addEventListener("click", function (e) {
   e.preventDefault(); // منع الإرسال الحقيقي للفورم
@@ -37,7 +36,7 @@ document.querySelector("#saveChanges").addEventListener("click", function (e) {
     const usersJSON = localStorage.getItem("users");
     const users = JSON.parse(usersJSON);
 
-    const updatedUsers = users.map(u => {
+    const updatedUsers = users.map((u) => {
       if (u.token === currentToken) {
         return {
           ...u,
@@ -81,18 +80,18 @@ function validation() {
   );
 }
 
-function getUserByToken(token) {
+export function getUserByToken(token) {
   const usersJSON = localStorage.getItem("users");
   if (!usersJSON) return null;
   const users = JSON.parse(usersJSON);
-  const matchedUser = users.find(user => user.token === token);
+  const matchedUser = users.find((user) => user.token === token);
   return matchedUser || null;
 }
 
 function MatchUserPassword(newpassword) {
   const usersJSON = localStorage.getItem("users");
   const users = JSON.parse(usersJSON);
-  const matchedUser = users.find(user => user.password === newpassword);
+  const matchedUser = users.find((user) => user.password === newpassword);
   if (matchedUser) {
     document.getElementById("currentpassword").classList.remove("is-invalid");
     document.getElementById("currentpassword").classList.add("is-valid");
