@@ -106,7 +106,6 @@ a {
   min-height: 1.2em;
   font-size: 12px;
 }
-
 .toast-success,
 .toast-error,
 .toast-warning,
@@ -369,6 +368,22 @@ exclusive-footer {
   color: white;
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
+}
+
+.nav-pills {
+  border-radius: 50rem !important;
+  padding: 0.5rem 1rem !important;
+  margin: 0 0.25rem !important;
+  transition: all 0.3s ease !important;
+}
+
+.nav-pills:hover {
+  background-color: var(--text-primary) !important;
+}
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link.show {
+  background-color: var(--text-primary) !important;
+  color: white !important;
 }
 
 /* -------------------dashboard------------------- */

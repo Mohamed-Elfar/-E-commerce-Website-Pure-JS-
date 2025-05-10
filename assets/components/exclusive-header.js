@@ -28,18 +28,18 @@ class ExclusiveHeader extends HTMLElement {
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav m-auto mb-2 mb-lg-0 text-center">
-          <li class="nav-item">
+          <li class="nav-item  nav-pills">
             <a class="nav-link active" href="/customer/home/home.html">Home</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item nav-pills">
             <a class="nav-link" href="/customer/contact/Contact.html"
               >contact</a
             >
           </li>
-          <li class="nav-item">
+          <li class="nav-item  nav-pills">
             <a class="nav-link" href="/customer/about/about.html">about</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item  nav-pills">
             <a class="nav-link" href="/customer/Products/products.html"
               >products</a
             >
@@ -162,6 +162,7 @@ class ExclusiveHeader extends HTMLElement {
     this.initDropdown();
     this.setupLogout();
     this.badges();
+    this.highlightActiveNavItem(); // Add this new method call
   }
 
   initBootstrapToggle() {
@@ -280,6 +281,28 @@ class ExclusiveHeader extends HTMLElement {
         loggout();
       });
     }
+  }
+  highlightActiveNavItem() {
+    // Get current page path
+    const currentPath = window.location.pathname;
+
+    // Find all nav links
+    const navLinks = this.querySelectorAll(".nav-link");
+
+    // Remove active class from all links first
+    navLinks.forEach((link) => {
+      link.classList.remove("active");
+      link.removeAttribute("aria-current");
+    });
+
+    // Find and highlight the matching link
+    navLinks.forEach((link) => {
+      const linkPath = new URL(link.href).pathname;
+      if (currentPath.includes(linkPath)) {
+        link.classList.add("active");
+        link.setAttribute("aria-current", "page");
+      }
+    });
   }
 }
 
