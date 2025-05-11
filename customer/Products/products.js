@@ -44,8 +44,8 @@ fetch("../../assets/data/products.json")
               }">${product.sale}</div>
               <div class="product__icons">
                 <a  class="border-0" ${
-                  user.userId === parseInt(product.createdBy) ||
-                  user.role === "Admin"
+                  user?.userId === parseInt(product.createdBy) ||
+                  user?.role === "Admin"
                     ? "disabled"
                     : ""
                 }>
