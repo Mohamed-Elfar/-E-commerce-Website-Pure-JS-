@@ -1,11 +1,12 @@
 class SideMenuComponent extends HTMLElement {
-  connectedCallback() {
-    const href1 = this.getAttribute("href-1") || "dashboard.html";
-    const href2 = this.getAttribute("href-2") || "products-management.html";
-    const href3 = this.getAttribute("href-3") || "orders.html";
-    const href4 = this.getAttribute("href-4") || "analytics.html";
+    connectedCallback() {
+        // Use default paths if attributes aren't provided
+        const href1 = this.getAttribute('href-1') || 'dashboard.html';
+        const href2 = this.getAttribute('href-2') || 'products-management.html';
+        const href3 = this.getAttribute('href-3') || 'orders.html';
+        const href4 = this.getAttribute('href-4') || 'analytics.html';
 
-    this.innerHTML = `
+        this.innerHTML = `
         <style>
             .sidemenu{
                 position: fixed;
@@ -124,45 +125,47 @@ class SideMenuComponent extends HTMLElement {
         </div>
         `;
 
-    const currentPage = window.location.pathname.split("/").pop();
-    const menuLinks = this.querySelectorAll(".nav-link");
+        const currentPage = window.location.pathname.split('/').pop();
+        const menuLinks = this.querySelectorAll('.nav-link');
 
-    menuLinks.forEach((link) => {
-      if (link.getAttribute("href") === currentPage) {
-        link.classList.add("active");
-      }
-    });
+        menuLinks.forEach(link => {
+            if (link.getAttribute('href') === currentPage) {
+                link.classList.add('active');
+            }
+        });
 
-    const sidemenu = document.getElementById("sidemenu");
-    const backdrop = document.querySelector(".sidemenu-backdrop");
+        const sidemenu = document.getElementById("sidemenu");
+        const backdrop = document.querySelector(".sidemenu-backdrop");
 
-    sidemenu.addEventListener("show.bs.collapse", () => {
-      backdrop.classList.add("show");
-      document.addEventListener("click", closeOnClickOutside);
-    });
+        // Show/hide sync
+        sidemenu.addEventListener("show.bs.collapse", () => {
+            backdrop.classList.add("show");
+            document.addEventListener("click", closeOnClickOutside);
+        });
 
-    sidemenu.addEventListener("hide.bs.collapse", () => {
-      backdrop.classList.remove("show");
-      document.removeEventListener("click", closeOnClickOutside);
-    });
+        sidemenu.addEventListener("hide.bs.collapse", () => {
+            backdrop.classList.remove("show");
+            document.removeEventListener("click", closeOnClickOutside);
+        });
 
-    backdrop.addEventListener("click", () => {
-      new bootstrap.Collapse(sidemenu).hide();
-    });
+        // Close when clicking backdrop
+        backdrop.addEventListener("click", () => {
+            new bootstrap.Collapse(sidemenu).hide();
+        });
 
-    function closeOnClickOutside(event) {
-      if (
-        !sidemenu.contains(event.target) &&
-        !document
-          .querySelector(
-            '[data-bs-toggle="collapse"][data-bs-target="#sidemenu"]'
-          )
-          .contains(event.target)
-      ) {
-        new bootstrap.Collapse(sidemenu).hide();
-      }
+        // Close when clicking outside
+        function closeOnClickOutside(event) {
+            if (
+                !sidemenu.contains(event.target) &&
+                !document
+                    .querySelector('[data-bs-toggle="collapse"][data-bs-target="#sidemenu"]')
+                    .contains(event.target)
+            ) {
+                new bootstrap.Collapse(sidemenu).hide();
+            }
+        }
+
     }
-  }
 }
 
-customElements.define("side-menu", SideMenuComponent);
+customElements.define('side-menu', SideMenuComponent);

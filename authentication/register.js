@@ -1,1 +1,181 @@
-import{showToast as e,validateEmail as t,validatePassword as r,validatePhone as s,validatePasswordMatch as o,validateName as a,hashPassword as n,User as m}from"../assets/js/utils.js";localStorage.getItem("token")&&(location.href="/customer/home/home.html");class l extends m{static get customerCount(){return(JSON.parse(localStorage.getItem("users"))||[]).filter((e=>"Customer"===e.role)).length}#e;constructor(e){super(e),this.#e=l.customerCount}toJSON(){return super.toJSON()}toJSON(){return super.toJSON()}print(){super.print(),console.log(`Customer ID: ${this.#e}`)}}class i extends m{static get adminCount(){return(JSON.parse(localStorage.getItem("users"))||[]).filter((e=>"Admin"===e.role)).length}#t;constructor(e){super(e),this.#t=i.adminCount}print(){super.print(),console.log(`Admin ID: ${this.#t}`)}toJSON(){return super.toJSON()}static createAdmin(){const e=JSON.parse(localStorage.getItem("users"))||[];if(!e.some((e=>"Admin"===e.role))){const t={...{firstName:"Mohamed",lastName:"Samir",email:"mohamedsamiir252@gmail.com",phone:"01060493174",password:n("Mohamed@123"),want_to_be_seller:!1},userId:e.length>0?Math.max(...e.map((e=>e.userId)))+1:1,role:"Admin"};e.push(t),localStorage.setItem("users",JSON.stringify(e))}}}let u=document.querySelector("form");u.addEventListener("submit",(n=>{n.preventDefault();var m=u.firstname,i=u.lastname,c=u.email,d=u.phonenumber,p=u.password,h=u.confirmpassword,g=u.role;const f=function(e,n,m,l,i,u){let c=!0;a(e)||(c=!1);a(n)||(c=!1);t(m)||(c=!1);s(l)||(c=!1);r(i)||(c=!1);o(i,u)||(c=!1);return c}(m,i,c,d,p,h);if(f){const t={first_name:m.value.trim(),last_name:i.value.trim(),email:c.value.trim(),phone_number:d.value.trim(),password:p.value,want_to_be_seller:!!g.checked};try{new l(t),e("success","Account created successfully!"),setTimeout((()=>{open("login.html","_self")}),2e3),setTimeout((()=>{open("login.html","_self")}),2e3)}catch(t){e("error",t.message)}}else e("error","Please fix the validation errors.")})),i.createAdmin();
+import {
+  showToast,
+  validateEmail,
+  validatePassword,
+  validatePhone,
+  validatePasswordMatch,
+  validateName,
+  hashPassword,
+  User,
+} from "../assets/js/utils.js";
+if (localStorage.getItem("token")) {
+  location.href = "/customer/home/home.html";
+}
+class Customer extends User {
+  static get customerCount() {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    return users.filter((user) => user.role === "Customer").length;
+  }
+  #customerId;
+
+  constructor(userData) {
+    super(userData);
+
+
+    this.#customerId = Customer.customerCount;
+  }
+  toJSON() {
+    const userData = super.toJSON();
+    return userData;
+  }
+  toJSON() {
+    const userData = super.toJSON();
+    return userData;
+  }
+  print() {
+    super.print();
+    console.log(`Customer ID: ${this.#customerId}`);
+  }
+}
+class Seller extends User {
+  static get sellerCount() {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    return users.filter((user) => user.role === "Seller").length;
+  }
+  static get sellerCount() {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    return users.filter((user) => user.role === "Seller").length;
+  }
+  #sellerId;
+
+  constructor(userData) {
+    super(userData);
+
+
+    this.#sellerId = Seller.sellerCount;
+  }
+
+  print() {
+    super.print();
+    console.log(`Seller ID: ${this.#sellerId}`);
+  }
+  toJSON() {
+    const userData = super.toJSON();
+    return userData;
+  }
+}
+class Admin extends User {
+  static get adminCount() {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    return users.filter((user) => user.role === "Admin").length;
+  }
+  #adminId;
+
+  constructor(userData) {
+    super(userData);
+
+
+    this.#adminId = Admin.adminCount;
+  }
+
+  print() {
+    super.print();
+    console.log(`Admin ID: ${this.#adminId}`);
+  }
+  toJSON() {
+    const userData = super.toJSON();
+    return userData;
+  }
+  static createAdmin() {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const existingAdmin = users.some((user) => user.role === "Admin");
+
+    if (!existingAdmin) {
+      const adminData = {
+        firstName: "Mohamed",
+        lastName: "Samir",
+        email: "mohamedsamiir252@gmail.com",
+        phone: "01060493174",
+        password: hashPassword("Mohamed@123"),
+        want_to_be_seller: false,
+      };
+
+      const newAdmin = {
+        ...adminData,
+        userId:
+          users.length > 0 ? Math.max(...users.map((u) => u.userId)) + 1 : 1,
+        role: "Admin",
+      };
+
+      users.push(newAdmin);
+      localStorage.setItem("users", JSON.stringify(users));
+    }
+  }
+}
+let form = document.querySelector("form");
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  var firstName = form.firstname;
+  var lastName = form.lastname;
+  var email = form.email;
+  var phone = form.phonenumber;
+  var password = form.password;
+  var confirmPassword = form.confirmpassword;
+  var sellerRadio = form.role;
+  const isValid = validateForm(
+    firstName,
+    lastName,
+    email,
+    phone,
+    password,
+    confirmPassword
+  );
+  if (isValid) {
+    const data = {
+      first_name: firstName.value.trim(),
+      last_name: lastName.value.trim(),
+      email: email.value.trim(),
+      phone_number: phone.value.trim(),
+      password: password.value,
+      want_to_be_seller: sellerRadio.checked ? true : false,
+    };
+
+    try {
+      new Customer(data);
+      showToast("success", "Account created successfully!");
+
+      setTimeout(() => {
+        open("login.html", "_self");
+      }, 2000);
+
+      setTimeout(() => {
+        open("login.html", "_self");
+      }, 2000);
+    } catch (error) {
+      showToast("error", error.message);
+    }
+  } else {
+    showToast("error", "Please fix the validation errors.");
+  }
+});
+function validateForm(
+  firstName,
+  lastName,
+  email,
+  phone,
+  password,
+  confirmPassword
+) {
+  let valid = true;
+
+  if (!validateName(firstName)) valid = false;
+  if (!validateName(lastName)) valid = false;
+  if (!validateEmail(email)) valid = false;
+  if (!validatePhone(phone)) valid = false;
+  if (!validatePassword(password)) valid = false;
+  if (!validatePasswordMatch(password, confirmPassword)) valid = false;
+
+  return valid;
+}
+Admin.createAdmin();
+

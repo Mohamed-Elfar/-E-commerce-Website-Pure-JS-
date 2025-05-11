@@ -1,1 +1,83 @@
-:root{--color-secondary:#FAFAFA;--color-primary:#DB4444;--color-F5:#F5F5F5;--primary-color:#2c3e50}.primary-color{color:var(--color-primary)}.background-primary{background-color:var(--color-primary)}.secondary-color{color:var(--color-secondary)!important}.button{width:160px;height:56px;line-height:24px;border-radius:4px;border:none;text-align:center;align-content:center}.button:hover{opacity:.8;transition:opacity .3s}body{background-color:var(--color-F5)}.product__rating-star{color:#ffad33;font-size:14px}.table td,.table th{padding:12px 8px;text-align:center;vertical-align:middle;border-bottom:1px solid #dee2e6}.order-card{transition:.3s;margin-bottom:20px}.order-card:hover{box-shadow:0 5px 15px rgba(0,0,0,.1)}.status-badge{padding:5px 10px;border-radius:20px;font-size:.85rem;font-weight:500}.delivered{background-color:#d4edda;color:#155724}.shipped{background-color:#cce5ff;color:#004085}.processing{background-color:#fff3cd;color:#856404}.product-img{width:60px;height:60px;object-fit:cover;border-radius:8px}
+:root {
+    --color-secondary: #FAFAFA;
+    --color-primary: #DB4444;
+    --color-F5: #F5F5F5;
+    --primary-color: #2c3e50;
+}
+
+.primary-color {
+    color: var(--color-primary);
+}
+
+.background-primary {
+    background-color: var(--color-primary);
+}
+
+.secondary-color {
+    color: var(--color-secondary) !important;
+}
+
+.button{
+    width: 160px;
+    height: 56px;
+    line-height: 24px;
+    border-radius: 4px;
+    border: none;
+    text-align: center;
+    align-content: center;
+}
+.button:hover {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+body {
+    background-color: var(--color-F5);
+}
+
+.product__rating-star {
+    color: #FFAD33;
+    font-size: 14px;
+}
+
+.table th,
+.table td {
+  padding: 12px 8px;
+  text-align: center;
+  vertical-align: middle;
+  border-bottom: 1px solid #dee2e6;
+}
+
+
+
+.order-card {
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+}
+.order-card:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.status-badge {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+.delivered {
+    background-color: #d4edda;
+    color: #155724;
+}
+.shipped {
+    background-color: #cce5ff;
+    color: #004085;
+}
+.processing {
+    background-color: #fff3cd;
+    color: #856404;
+}
+.product-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+}

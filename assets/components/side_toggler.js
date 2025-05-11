@@ -1,6 +1,6 @@
 class SideTogglerComponent extends HTMLElement {
-  connectedCallback() {
-    this.innerHTML = `
+    connectedCallback() {
+        this.innerHTML = `
             <button class="toggle-btn btn" 
                 type="button" 
                 data-bs-toggle="collapse" 
@@ -10,6 +10,6 @@ class SideTogglerComponent extends HTMLElement {
                 <i class="fa-solid fa-bars"></i>
             </button>
       `;
-  }
+    }
 }
-customElements.define("side-toggler", SideTogglerComponent);
+customElements.define('side-toggler', SideTogglerComponent);

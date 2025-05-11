@@ -1,1 +1,271 @@
-import{loginUser as e}from"/assets/js/utils.js";const t=e(),n={mainContent:document.getElementById("mainContent"),userDisplay:{name:document.getElementById("userName"),revenue:document.querySelector(".TotalRevenue"),revenueRate:document.querySelector(".TotalRevenueRate"),inStock:document.querySelector(".inStock"),orders:document.querySelector(".totalOrders"),products:document.querySelector(".topSellingProducts"),totalProductsNum:document.querySelector(".totalProductsNum"),users:document.querySelector(".totalUsers"),flashTable:document.querySelector("table > tbody"),allProducts:document.querySelector(".allProducts")}};let s=JSON.parse(localStorage.getItem("users"))||[],o=JSON.parse(localStorage.getItem("allProducts"))||[];function a(){!function(){n.userDisplay.name.textContent=`${t.firstName} ${t.lastName}`;let e=0;const a=s.flatMap((e=>e.orders||[])).flatMap((e=>e.products||[])).filter((e=>e.createdBy===t.userId.toString()));console.log(a);let r=0;a.forEach((e=>{r+=Number(e.price)*e.count||0})),console.log(r.toFixed(2)),s.forEach((t=>{t.orders?.forEach((t=>{e+=Number(t.total)||0}))})),n.userDisplay.revenue.textContent=`$${r.toFixed(2)}`,n.userDisplay.orders.textContent=a.length;let c=o.filter((e=>e.createdBy===t.userId.toString()));const l=c.filter((e=>e.quantity>0)).length;n.userDisplay.totalProductsNum.textContent=c.length;const d=c.length-l;d>0?(n.userDisplay.inStock.classList.remove("d-none"),n.userDisplay.inStock.innerHTML=`<i class="fas fa-arrow-down" aria-hidden="true"></i> ${d} items low stock`):n.userDisplay.inStock.classList.add("d-none");(function(){const e={};s.forEach((t=>{t.orders?.forEach((n=>{n.products?.forEach((n=>{n.createdBy===t.userId.toString()?e[n.id]?e[n.id].count+=n.count||0:e[n.id]={count:n.count||0,name:n.name,image:n.image,price:n.price,sale:n.sale}:e[n.id]||(e[n.id]={count:n.count||0,name:n.name,image:n.image,price:n.price,sale:n.sale})}))}))}));const t=Object.values(e).sort(((e,t)=>t.count-e.count)).slice(0,4);n.userDisplay.products.innerHTML=t.map((e=>`\n    <div class="col-sm-6 col-md-6 col-lg-6 mb-3">\n      <div class="card product-card h-100">\n        <img src="${e.image}" class="card-img-top w-50" alt="Product" loading ="lazy"/>\n        ${e.sale.trim()?`<span class="discount-badge">${e.sale} OFF</span>`:""}\n        <div class="card-body">\n          <h6 class="card-title">${e.name}</h6>\n          <div class="d-flex justify-content-between align-items-center">\n            <div>\n              <span class="text-danger"> $${e.sale.trim()?parseFloat(e.price)*(1-parseFloat(e.sale)/100):e.price}</span>\n              ${e.sale.trim()?`\n                <span class="text-muted text-decoration-line-through ms-2">\n                  $${e.price}\n                </span>\n              `:""}\n            </div>\n            <span class="text-muted small">${e.count} sold</span>\n          </div>\n        </div>\n      </div>\n    </div>\n  `)).join("")})(),function(){const e={};let a=o.filter((e=>e.createdBy===t.userId.toString()));s.forEach((t=>{t.orders?.forEach((t=>{t.products?.forEach((t=>{e[t.id]?e[t.id]+=t.count||0:e[t.id]=t.count||0}))}))}));const r=a.filter((e=>e.sale)).sort(((e,t)=>parseFloat(t.sale)-parseFloat(e.sale)));n.userDisplay.flashTable.innerHTML=r.map((t=>`\n    <tr>\n      <td>${t.name}</td>\n      <td>\n        <span class="badge ${parseFloat(t.sale)>15?"bg-danger bg-opacity-10 text-danger":"bg-success bg-opacity-10 text-success"}">\n          ${t.sale}\n        </span>\n      </td>\n      <td>${e[t.id]||0}</td>\n      <td>$${t.price}</td>\n    </tr>\n  `)).join("")}()}(),function(){const e=document.getElementById("categoryChart").getContext("2d");new Chart(e,{type:"doughnut",data:{labels:["Men & Fashion","Electronics","Home & Lifestyle","Medicine","Sports & Outdoor"],datasets:[{data:[0,100,0,0,0],backgroundColor:["#3498db","#2ecc71","#9b59b6","#f1c40f","#e74c3c"],borderWidth:0}]},options:{responsive:!0,maintainAspectRatio:!1,plugins:{legend:{position:"right"},tooltip:{callbacks:{label:e=>`${e.label}: ${e.raw}%`}}}}})}(),function(){const e={hours:document.getElementById("flashSaleHours"),minutes:document.getElementById("flashSaleMinutes"),seconds:document.getElementById("flashSaleSeconds")};let t={h:parseInt(e.hours.textContent),m:parseInt(e.minutes.textContent),s:parseInt(e.seconds.textContent)};setInterval((()=>{t.s--,t.s<0&&(t.s=59,t.m--,t.m<0&&(t.m=59,t.h--)),e.hours.textContent=t.h.toString().padStart(2,"0"),e.minutes.textContent=t.m.toString().padStart(2,"0"),e.seconds.textContent=t.s.toString().padStart(2,"0")}),1e3)}()}document.addEventListener("DOMContentLoaded",(()=>{a()}));
+import { loginUser } from "/assets/js/utils.js";
+const user = loginUser();
+
+const elements = {
+  mainContent: document.getElementById("mainContent"),
+  userDisplay: {
+    name: document.getElementById("userName"),
+    revenue: document.querySelector(".TotalRevenue"),
+    revenueRate: document.querySelector(".TotalRevenueRate"),
+    inStock: document.querySelector(".inStock"),
+    orders: document.querySelector(".totalOrders"),
+    products: document.querySelector(".topSellingProducts"),
+    totalProductsNum: document.querySelector(".totalProductsNum"),
+    users: document.querySelector(".totalUsers"),
+    flashTable: document.querySelector("table > tbody"),
+    allProducts: document.querySelector(".allProducts"),
+  },
+};
+
+let users = JSON.parse(localStorage.getItem("users")) || [];
+let allProducts = JSON.parse(localStorage.getItem("allProducts")) || [];
+
+function init() {
+  renderDashboard();
+  setupCharts();
+  startFlashSaleTimer();
+}
+
+function renderDashboard() {
+  elements.userDisplay.name.textContent = `${user.firstName} ${user.lastName}`;
+
+  let sum = 0;
+  let allOrders = 0;
+
+  const myProductsOrders = users
+    .flatMap((user) => user.orders || [])
+    .flatMap((order) => order.products || [])
+    .filter((product) => product.createdBy === user.userId.toString());
+
+  console.log(myProductsOrders);
+  let orderSum = 0;
+  myProductsOrders.forEach((product) => {
+    orderSum += Number(product.price) * product.count || 0;
+  });
+  console.log(orderSum.toFixed(2));
+
+  users.forEach((user) => {
+    user.orders?.forEach((order) => {
+      allOrders++;
+      sum += Number(order.total) || 0;
+    });
+  });
+
+  elements.userDisplay.revenue.textContent = `$${orderSum.toFixed(2)}`;
+  elements.userDisplay.orders.textContent = myProductsOrders.length;
+
+  let myProducts = allProducts.filter(
+    (p) => p.createdBy === user.userId.toString()
+  );
+  const productsInStock = myProducts.filter((p) => p.quantity > 0).length;
+  elements.userDisplay.totalProductsNum.textContent = myProducts.length;
+  const lowStockCount = myProducts.length - productsInStock;
+
+  if (lowStockCount > 0) {
+    elements.userDisplay.inStock.classList.remove("d-none");
+    elements.userDisplay.inStock.innerHTML = `<i class="fas fa-arrow-down" aria-hidden="true"></i> ${lowStockCount} items low stock`;
+  } else {
+    elements.userDisplay.inStock.classList.add("d-none");
+  }
+
+  renderTopSellingProducts();
+  renderFlashSaleProducts();
+}
+
+function renderTopSellingProducts() {
+  const productCounts = {};
+
+  users.forEach((user) => {
+    user.orders?.forEach((order) => {
+      order.products?.forEach((product) => {
+        if (product.createdBy === user.userId.toString()) {
+          if (!productCounts[product.id]) {
+            productCounts[product.id] = {
+              count: product.count || 0,
+              name: product.name,
+              image: product.image,
+              price: product.price,
+              sale: product.sale,
+            };
+          } else {
+            productCounts[product.id].count += product.count || 0;
+          }
+        } else {
+          if (!productCounts[product.id]) {
+            productCounts[product.id] = {
+              count: product.count || 0,
+              name: product.name,
+              image: product.image,
+              price: product.price,
+              sale: product.sale,
+            };
+          }
+        }
+      });
+    });
+  });
+
+  const topProducts = Object.values(productCounts)
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 4);
+
+  elements.userDisplay.products.innerHTML = topProducts
+    .map(
+      (product) => `
+    <div class="col-sm-6 col-md-6 col-lg-6 mb-3">
+      <div class="card product-card h-100">
+        <img src="${
+          product.image
+        }" class="card-img-top w-50" alt="Product" loading ="lazy"/>
+        ${
+          product.sale.trim()
+            ? `<span class="discount-badge">${product.sale} OFF</span>`
+            : ""
+        }
+        <div class="card-body">
+          <h6 class="card-title">${product.name}</h6>
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <span class="text-danger"> $${
+                product.sale.trim()
+                  ? parseFloat(product.price) *
+                    (1 - parseFloat(product.sale) / 100)
+                  : product.price
+              }</span>
+              ${
+                product.sale.trim()
+                  ? `
+                <span class="text-muted text-decoration-line-through ms-2">
+                  $${product.price}
+                </span>
+              `
+                  : ""
+              }
+            </div>
+            <span class="text-muted small">${product.count} sold</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  `
+    )
+    .join("");
+}
+
+function renderFlashSaleProducts() {
+  const productCounts = {};
+  let myProducts = allProducts.filter(
+    (p) => p.createdBy === user.userId.toString()
+  );
+  users.forEach((user) => {
+    user.orders?.forEach((order) => {
+      order.products?.forEach((product) => {
+        if (!productCounts[product.id]) {
+          productCounts[product.id] = product.count || 0;
+        } else {
+          productCounts[product.id] += product.count || 0;
+        }
+      });
+    });
+  });
+
+  const flashProducts = myProducts
+    .filter((p) => p.sale)
+    .sort((a, b) => parseFloat(b.sale) - parseFloat(a.sale));
+
+  elements.userDisplay.flashTable.innerHTML = flashProducts
+    .map(
+      (product) => `
+    <tr>
+      <td>${product.name}</td>
+      <td>
+        <span class="badge ${
+          parseFloat(product.sale) > 15
+            ? "bg-danger bg-opacity-10 text-danger"
+            : "bg-success bg-opacity-10 text-success"
+        }">
+          ${product.sale}
+        </span>
+      </td>
+      <td>${productCounts[product.id] || 0}</td>
+      <td>$${product.price}</td>
+    </tr>
+  `
+    )
+    .join("");
+}
+
+function setupCharts() {
+  const categoryCtx = document.getElementById("categoryChart").getContext("2d");
+  new Chart(categoryCtx, {
+    type: "doughnut",
+    data: {
+      labels: [
+        "Men & Fashion",
+        "Electronics",
+        "Home & Lifestyle",
+        "Medicine",
+        "Sports & Outdoor",
+      ],
+      datasets: [
+        {
+          data: [0, 100, 0, 0, 0],
+          backgroundColor: [
+            "#3498db",
+            "#2ecc71",
+            "#9b59b6",
+            "#f1c40f",
+            "#e74c3c",
+          ],
+          borderWidth: 0,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { position: "right" },
+        tooltip: {
+          callbacks: {
+            label: (context) => `${context.label}: ${context.raw}%`,
+          },
+        },
+      },
+    },
+  });
+}
+
+function startFlashSaleTimer() {
+  const timerElements = {
+    hours: document.getElementById("flashSaleHours"),
+    minutes: document.getElementById("flashSaleMinutes"),
+    seconds: document.getElementById("flashSaleSeconds"),
+  };
+
+  let time = {
+    h: parseInt(timerElements.hours.textContent),
+    m: parseInt(timerElements.minutes.textContent),
+    s: parseInt(timerElements.seconds.textContent),
+  };
+
+  setInterval(() => {
+    time.s--;
+    if (time.s < 0) {
+      time.s = 59;
+      time.m--;
+      if (time.m < 0) {
+        time.m = 59;
+        time.h--;
+      }
+    }
+
+    timerElements.hours.textContent = time.h.toString().padStart(2, "0");
+    timerElements.minutes.textContent = time.m.toString().padStart(2, "0");
+    timerElements.seconds.textContent = time.s.toString().padStart(2, "0");
+  }, 1000);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  init();
+});

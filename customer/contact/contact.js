@@ -1,1 +1,80 @@
-import{loginUser as e,showToast as t,validateEmail as a,validatePhone as r,validateName as s}from"/assets/js/utils.js";function n(e){return e.toLocaleString("en-US",{month:"long",day:"numeric",year:"numeric",hour:"2-digit",minute:"2-digit",hour12:!1}).replace(","," at").replace(/\s+/g," ")}document.addEventListener("DOMContentLoaded",(()=>{const o=e(),i=document.querySelector("form.needs-validation"),l=document.querySelector("#submitBtn");"Admin"===o?.role&&l.setAttribute("disabled","true");const m=i.name,u=i.email,c=i.phone,d=i.message;o&&(m&&(m.value=o?.firstName||""),u&&(u.value=o?.email||""),c&&(c.value=o?.phone||"")),i.addEventListener("submit",(e=>{e.preventDefault(),e.stopPropagation();const l={name:m?.value.trim()||"",email:u?.value.trim()||"",phone:c?.value.trim()||"",message:d?.value.trim()||"",date:n(new Date),role:o?.role};if(function(e){if(s(e.name),a(e.email),r(e.phone),!e.message||e.message.length<10)return t("error","Please enter a message with at least 10 characters"),!1;return!0}(l))try{const e=JSON.parse(localStorage.getItem("contact"))||[];e.push(l),localStorage.setItem("contact",JSON.stringify(e)),t("success","Message sent successfully!"),i.message.value=""}catch(e){t("error","Failed to save form data.")}}))}));
+import {
+  loginUser,
+  showToast,
+  validateEmail,
+  validatePhone,
+  validateName,
+} from "/assets/js/utils.js";
+
+document.addEventListener("DOMContentLoaded", () => {
+  const user = loginUser();
+  const form = document.querySelector("form.needs-validation");
+  const submitBtn = document.querySelector("#submitBtn");
+  if (user.role === "Admin") submitBtn.setAttribute("disabled", "true");
+  const nameInput = form.name;
+  const emailInput = form.email;
+  const phoneInput = form.phone;
+  const messageInput = form.message;
+
+  if (user) {
+    if (nameInput) nameInput.value = user.firstName || "";
+    if (emailInput) emailInput.value = user.email || "";
+    if (phoneInput) phoneInput.value = user.phone || "";
+  }
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const formData = {
+      name: nameInput?.value.trim() || "",
+      email: emailInput?.value.trim() || "",
+      phone: phoneInput?.value.trim() || "",
+      message: messageInput?.value.trim() || "",
+      date: formatDate(new Date()),
+      role: user.role,
+    };
+
+    if (validateForm(formData)) {
+      try {
+        const savedData = JSON.parse(localStorage.getItem("contact")) || [];
+        savedData.push(formData);
+        localStorage.setItem("contact", JSON.stringify(savedData));
+        showToast("success", "Message sent successfully!");
+        form.message.value = "";
+      } catch (storageError) {
+        showToast("error", "Failed to save form data.");
+      }
+    }
+  });
+});
+
+function validateForm(data) {
+  validateName(data.name);
+
+  validateEmail(data.email);
+
+  validatePhone(data.phone);
+
+  if (!data.message || data.message.length < 10) {
+    showToast("error", "Please enter a message with at least 10 characters");
+    return false;
+  }
+
+  return true;
+}
+function formatDate(date) {
+  const options = {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  };
+
+  return date
+    .toLocaleString("en-US", options)
+    .replace(",", " at")
+    .replace(/\s+/g, " ");
+}

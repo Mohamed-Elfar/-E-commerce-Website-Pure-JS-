@@ -105,10 +105,10 @@ class ExclusiveFooter extends HTMLElement {
               </li>
               <li class="nav-item mb-2">
                 <div class="d-flex gap-5 fs-5 my-2">
-                  <a href="https:
-                  <a href="https:
-                  <a href="https:
-                  <a href="https:
+                  <a href="https://www.facebook.com/"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                  <a href="https://x.com/"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                  <a href="https://www.instagram.com/"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                  <a href="https://www.linkedin.com"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
                 </div>
               </li>
             </ul>
@@ -125,10 +125,12 @@ class ExclusiveFooter extends HTMLElement {
       </button>
     </footer>
     `;
-    this.querySelector("#scrollToTopBtn").addEventListener("click", () => {
+    
+    // Add scroll to top functionality
+    this.querySelector('#scrollToTopBtn').addEventListener('click', () => {
       window.scrollTo({
         top: 0,
-        behavior: "smooth",
+        behavior: 'smooth'
       });
     });
   }

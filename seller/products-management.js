@@ -1,1 +1,359 @@
-import { showToast as t, loginUser as e } from "../../assets/js/utils.js"; const n = e(); function a() { if (!n) return t("error", "Please log in first"), []; return (JSON.parse(localStorage.getItem("allProducts")) || []).filter((t => Number(t.createdBy) === n.userId)) } function s() { const t = document.querySelector("table tbody"), e = document.getElementById("productCards"), n = a(); e.innerHTML = "", t.innerHTML = "", n?.map((t => { const n = document.createElement("div"); n.className = "col mb-4", n.innerHTML = `\n        <div class="card h-100 border-0 shadow-sm p-3">\n          <div class="d-flex flex-sm-row flex-column position-relative">\n             <img src="${t.image}" \n                 class="p-1 w-100 w-sm-auto" \n                 style="height: 160px; max-width: 160px; background: linear-gradient(145deg, #f8f9fa, #e9ecef);" \n                 alt="${t.name}" \n                onerror="this.src='https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg'">\n            <div class="card-body p-3">\n              <div class="d-flex flex-column-reverse flex-sm-row">\n             <div class="">\n              <h5 class="card-title fs-5 fw-semibold">${t.name}</h5>\n              <p class="card-text text-muted fs-6 mb-1">${t.description}</p>\n             </div>\n            <div class="d-flex align-items-start mb-2">\n                <button aria-label="Update Product" type="button" class="btn btn-sm btn-outline-primary mx-2 update-btn" data-id="${t.id}">\n                  <i class="fas fa-edit"></i>\n                </button>\n                <button aria-label="Delete Product" type="button" class="btn btn-sm btn-outline-danger delete-btn" data-id="${t.id}">\n                  <i class="fas fa-trash-alt"></i>\n                </button>\n                \n              </div>\n            </div>\n\n              <div class="row g-2 d-flex flex-column flex-sm-row">\n                <div class="col-6">\n                  <p class="card-text fs-6"><strong>Category:</strong> ${t?.category}</p>\n                  <p class="card-text fs-6"><strong>Price:</strong> $${parseFloat(t?.price).toFixed(2)}</p>\n                  <p class="card-text fs-6">\n                    <strong>Discount:</strong> \n                    ${t?.sale ? `<span class="badge bg-danger">${t?.sale}%</span>` : "-"}\n                  </p>\n                </div>\n                <div class="col-6">\n                  <p class="card-text fs-6">\n                    <strong>Stock:</strong> \n                    <span class="badge ${Number(t.quantity) > 0 ? "bg-success bg-opacity-10 text-success" : "bg-danger bg-opacity-10 text-danger"}">\n                      ${Number(t?.quantity) > 0 ? t?.quantity + " in Stock" : "Out of Stock"}\n                    </span>\n                  </p>\n                  <p class="card-text fs-6">\n                    <strong>Rating:</strong> \n                    <span class="rating-stars">${t?.rating}\n                      <i class="fa-solid fa-star text-warning"></i>\n                      (${t?.ratingCount})\n                    </span>\n                  </p>\n                  <p class="card-text fs-6"><strong>Reviews:</strong> ${t?.reviews?.length}</p>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      `, e.insertBefore(n, e.firstChild) })), n.map((e => { const n = document.createElement("tr"); n.innerHTML = `\n        <td>${e.id}</td>\n        <td class="d-flex align-items-center justify-content-center">\n          <div class="d-flex align-items-center text-start">\n              <img src="${e.image}" class="product-img img-fluid me-3" style="width: 70px;" alt="${e.name}" \n                 onerror="this.src='https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg'"\n              <div>\n                 <div class="fw-medium fs-7">${e.name.substring(0, 30)}${e.name.length > 30 ? "..." : ""}</div>\n              <small class="text-muted">${e.description.substring(0, 30)}${e.description.length > 30 ? "..." : ""}</small>\n          </div>\n          </div>\n        </td>\n        <td>${e.category}</td>\n        <td>$${parseFloat(e.price).toFixed(2)}</td>\n        <td> ${e.sale ? `<span class="badge bg-danger">${e.sale}%</span>` : "-"}</td>\n        <td>\n         <span class="badge ${Number(e.quantity) > 0 ? "bg-success bg-opacity-10 text-success" : "bg-danger bg-opacity-10 text-danger"}">\n          ${Number(e.quantity) > 0 ? e.quantity + " in Stock" : "Out of Stock"}\n        </span>\n        </td>\n        <td>\n          <span class="rating-stars ms-1">${e.rating}\n            <i class="product__rating-star fa-solid fa-star me-2"></i>\n            (${e.ratingCount})\n          </span>\n        </td>\n        <td>${e.reviews.length}</td>\n        <td>\n          <div class="action-btns d-flex">\n            <button aria-label="Update Product" type="button" class="btn btn-sm btn-outline-primary me-2 update-btn" data-id="${e.id}">\n              <i class="fas fa-edit"></i>\n            </button>\n            <button aria-label="Delete Product" type="button" class="btn btn-sm btn-outline-danger delete-btn" data-id="${e.id}">\n              <i class="fas fa-trash-alt"></i>\n            </button>\n          </div>\n        </td>\n      `, t.insertBefore(n, t.firstChild) })) } a(), document.getElementById("productForm").addEventListener("submit", (function (e) { e.preventDefault(); const a = e.target; if (!function (e) { if ("Choose Category" == e.category.value) return t("warning", "Please choose a category"), e.category.focus(), !1; return !0 }(a)) return; const r = new FormData(a), o = Object.fromEntries(r.entries()); let d = JSON.parse(localStorage.getItem("allProducts")) || []; const i = parseInt(o.id), c = !isNaN(i) && i > 0, l = d.find((t => t.id === i)); let u = { id: c ? i : Date.now(), name: o.name, description: o.description, category: o.category, image: o.image, price: parseFloat(o.price), quantity: Number(o.quantity), sale: parseFloat(o.sale) || "", createdBy: n.userId.toString(), seller: n.firstName + " " + n.lastName, rating: c ? l.rating : 0, ratingCount: c ? l.ratingCount : 0, count: c ? l.count : 1, reviews: c ? l.reviews : [], images: [o.image2 || "", o.image3 || "", o.image4 || "", o.image5 || ""] }; if (c) { const e = d.findIndex((t => t.id === i)); -1 !== e ? (d[e] = u, t("success", "Product updated successfully!")) : t("error", "Product not found") } else d.push(u), t("success", "Product added successfully!"); localStorage.setItem("allProducts", JSON.stringify(d)), s(), document.getElementById("productModalLabel").textContent = "Add New Product", bootstrap.Modal.getInstance(document.getElementById("productModal")).hide(), document.getElementById("submitModal").blur(), a.reset() })), document.addEventListener("click", (e => { if (e.target.closest(".update-btn")) { const n = e.target.closest(".update-btn"); !function (e) { const n = a().find((t => t.id === e)); if (!n) return void t("error", "Product not found"); const s = document.querySelector("#productForm"), r = { id: e, name: n.name, description: n.description, category: n.category, image: n.image, price: n.price, quantity: n.quantity, sale: n.sale ? String(n.sale) : "", image2: n.images[0], image3: n.images[1], image4: n.images[2], image5: n.images[3] }; for (const t of s.elements) r.hasOwnProperty(t.name) && (t.value = r[t.name]); const o = document.getElementById("productModalLabel"); o && (o.textContent = "Update Product"); const d = document.getElementById("productModal"); if (!d) return void t("error", "Modal element not found"); let i = bootstrap.Modal.getInstance(d); i || (i = new bootstrap.Modal(d)), i.show() }(parseInt(n.dataset.id)) } else if (e.target.closest(".delete-btn")) { const t = e.target.closest(".delete-btn"), n = parseInt(t.dataset.id); new bootstrap.Modal(document.getElementById("deleteConfirmModal")).show(), document.getElementById("confirmDeleteBtn").dataset.productId = n } })), document.getElementById("confirmDeleteBtn").addEventListener("click", (() => { !function (e) { let n = JSON.parse(localStorage.getItem("allProducts")) || []; n.find((t => t.id === e)) ? (n = n.filter((t => t.id !== e)), localStorage.setItem("allProducts", JSON.stringify(n)), t("success", "Product deleted successfully!"), s()) : t("error", "Product not found") }(parseInt(document.getElementById("confirmDeleteBtn").dataset.productId)); bootstrap.Modal.getInstance(document.getElementById("deleteConfirmModal")).hide(), document.getElementById("confirmDeleteBtn").blur() })), s(), document.querySelectorAll(".modal-close-btn").forEach((t => { t.addEventListener("click", (() => { const t = document.querySelector('button[data-bs-target="#productModal"]'); t && t.focus() })) }));
+import { showToast, loginUser } from "../../assets/js/utils.js";
+
+const user = loginUser();
+
+function fetchSellerProducts() {
+  if (!user) {
+    showToast("error", "Please log in first");
+    return [];
+  }
+  let allProducts = JSON.parse(localStorage.getItem("allProducts")) || [];
+
+  let sellerProducts = allProducts.filter(
+    (product) => Number(product.createdBy) === user.userId
+  );
+  console.log(sellerProducts);
+
+  return sellerProducts;
+}
+fetchSellerProducts();
+function addProduct(event) {
+  event.preventDefault();
+  const form = event.target;
+
+  if (!validateCategory(form)) {
+    return;
+  }
+
+  const formObject = new FormData(form);
+  const formData = Object.fromEntries(formObject.entries());
+  let allProducts = JSON.parse(localStorage.getItem("allProducts")) || [];
+
+  const productId = parseInt(formData.id);
+  const isUpdating = !isNaN(productId) && productId > 0;
+  const updatableProduct = allProducts.find((p) => p.id === productId);
+
+  let product = {
+    id: isUpdating ? productId : Date.now(),
+    name: formData.name,
+    description: formData.description,
+    category: formData.category,
+    image: formData.image,
+    price: parseFloat(formData.price),
+    quantity: Number(formData.quantity),
+    sale: parseFloat(formData.sale) || "",
+    createdBy: user.userId.toString(),
+    seller: user.firstName + " " + user.lastName,
+    rating: isUpdating ? updatableProduct.rating : 0.0,
+    ratingCount: isUpdating ? updatableProduct.ratingCount : 0,
+    count: isUpdating ? updatableProduct.count : 1,
+    reviews: isUpdating ? updatableProduct.reviews : [],
+    images: [
+      formData.image2 || "",
+      formData.image3 || "",
+      formData.image4 || "",
+      formData.image5 || "",
+    ],
+  };
+
+  if (isUpdating) {
+    const index = allProducts.findIndex((p) => p.id === productId);
+    if (index !== -1) {
+      allProducts[index] = product;
+      showToast("success", "Product updated successfully!");
+    } else {
+      showToast("error", "Product not found");
+    }
+  } else {
+    allProducts.push(product);
+    showToast("success", "Product added successfully!");
+  }
+  localStorage.setItem("allProducts", JSON.stringify(allProducts));
+  displayProducts();
+
+  const modalTitle = document.getElementById("productModalLabel");
+  modalTitle.textContent = "Add New Product";
+
+  const modal = bootstrap.Modal.getInstance(
+    document.getElementById("productModal")
+  );
+
+  modal.hide();
+  document.getElementById("submitModal").blur();
+
+  form.reset();
+}
+
+let form = document.getElementById("productForm");
+form.addEventListener("submit", addProduct);
+
+function updateProduct(productId) {
+  const sellerProducts = fetchSellerProducts();
+  const product = sellerProducts.find((p) => p.id === productId);
+  if (!product) {
+    showToast("error", "Product not found");
+    return;
+  }
+  const productForm = document.querySelector("#productForm");
+  const values = {
+    id: productId,
+    name: product.name,
+    description: product.description,
+    category: product.category,
+    image: product.image,
+    price: product.price,
+    quantity: product.quantity,
+    sale: product.sale ? String(product.sale) : "",
+    image2: product.images[0],
+    image3: product.images[1],
+    image4: product.images[2],
+    image5: product.images[3],
+  };
+  for (const input of productForm.elements) {
+    if (values.hasOwnProperty(input.name)) {
+      input.value = values[input.name];
+    }
+  }
+
+  const modalTitle = document.getElementById("productModalLabel");
+  if (modalTitle) {
+    modalTitle.textContent = "Update Product";
+  }
+
+  const modalElement = document.getElementById("productModal");
+  if (!modalElement) {
+    showToast("error", "Modal element not found");
+    return;
+  }
+  let modal = bootstrap.Modal.getInstance(modalElement);
+  if (!modal) {
+    modal = new bootstrap.Modal(modalElement);
+  }
+
+  modal.show();
+}
+
+function deleteProduct(productId) {
+  let allProducts = JSON.parse(localStorage.getItem("allProducts")) || [];
+  const product = allProducts.find((p) => p.id === productId);
+
+  if (!product) {
+    showToast("error", "Product not found");
+    return;
+  }
+
+  allProducts = allProducts.filter((p) => p.id !== productId);
+  localStorage.setItem("allProducts", JSON.stringify(allProducts));
+
+  showToast("success", "Product deleted successfully!");
+  displayProducts();
+}
+
+document.addEventListener("click", (event) => {
+  if (event.target.closest(".update-btn")) {
+    const button = event.target.closest(".update-btn");
+    const productId = parseInt(button.dataset.id);
+    updateProduct(productId);
+  } else if (event.target.closest(".delete-btn")) {
+    const button = event.target.closest(".delete-btn");
+    const productId = parseInt(button.dataset.id);
+    const modal = new bootstrap.Modal(
+      document.getElementById("deleteConfirmModal")
+    );
+    modal.show();
+
+    document.getElementById("confirmDeleteBtn").dataset.productId = productId;
+  }
+});
+
+document.getElementById("confirmDeleteBtn").addEventListener("click", () => {
+  const productId = parseInt(
+    document.getElementById("confirmDeleteBtn").dataset.productId
+  );
+  deleteProduct(productId);
+  const modal = bootstrap.Modal.getInstance(
+    document.getElementById("deleteConfirmModal")
+  );
+  modal.hide();
+  document.getElementById("confirmDeleteBtn").blur();
+});
+
+function displayProducts() {
+  const tbody = document.querySelector("table tbody");
+  const container = document.getElementById("productCards");
+  const sellerProducts = fetchSellerProducts();
+  container.innerHTML = "";
+  tbody.innerHTML = "";
+  sellerProducts.map((product) => {
+    const card = document.createElement("div");
+    card.className = "col mb-4";
+    card.innerHTML = `
+        <div class="card h-100 border-0 shadow-sm p-3">
+          <div class="d-flex flex-sm-row flex-column position-relative">
+             <img src="${product.image}" 
+                 class="p-1 w-100 w-sm-auto" 
+                 style="height: 160px; max-width: 160px; object-fit: contain; background: linear-gradient(145deg, #f8f9fa, #e9ecef);" 
+                 alt="${product.name}" 
+                 onerror="this.src='https:
+            <div class="card-body p-3">
+              <div class="d-flex flex-column-reverse flex-sm-row">
+             <div class="">
+              <h5 class="card-title fs-5 fw-semibold">${product.name}</h5>
+              <p class="card-text text-muted fs-6 mb-1">${
+                product.description
+              }}</p>
+             </div>
+            <div class="d-flex align-items-start mb-2">
+                <button aria-label="Update Product" type="button" class="btn btn-sm btn-outline-primary mx-2 update-btn" data-id="${
+                  product.id
+                }">
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button aria-label="Delete Product" type="button" class="btn btn-sm btn-outline-danger delete-btn" data-id="${
+                  product.id
+                }">
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+                
+              </div>
+            </div>
+
+              <div class="row g-2 d-flex flex-column flex-sm-row">
+                <div class="col-6">
+                  <p class="card-text fs-6"><strong>Category:</strong> ${
+                    product.category
+                  }</p>
+                  <p class="card-text fs-6"><strong>Price:</strong> $${parseFloat(
+                    product.price
+                  ).toFixed(2)}</p>
+                  <p class="card-text fs-6">
+                    <strong>Discount:</strong> 
+                    ${
+                      product.sale
+                        ? `<span class="badge bg-danger">${product.sale}%</span>`
+                        : "-"
+                    }
+                  </p>
+                </div>
+                <div class="col-6">
+                  <p class="card-text fs-6">
+                    <strong>Stock:</strong> 
+                    <span class="badge ${
+                      Number(product.quantity) > 0
+                        ? "bg-success bg-opacity-10 text-success"
+                        : "bg-danger bg-opacity-10 text-danger"
+                    }">
+                      ${
+                        Number(product.quantity) > 0
+                          ? product.quantity + " in Stock"
+                          : "Out of Stock"
+                      }
+                    </span>
+                  </p>
+                  <p class="card-text fs-6">
+                    <strong>Rating:</strong> 
+                    <span class="rating-stars">${product.rating}
+                      <i class="fa-solid fa-star text-warning"></i>
+                      (${product.ratingCount})
+                    </span>
+                  </p>
+                  <p class="card-text fs-6"><strong>Reviews:</strong> ${
+                    product.reviews.length
+                  }</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    container.insertBefore(card, container.firstChild);
+  });
+  sellerProducts.map((product) => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+        <td>${product.id}</td>
+        <td class="d-flex align-items-center justify-content-center">
+          <div class="d-flex align-items-center text-start">
+              <img src="${
+                product.image
+              }" class="product-img img-fluid me-3" style="width: 70px;" alt="${
+      product.name
+    }" 
+                 onerror="this.src='https:
+              <div>
+                 <div class="fw-medium fs-7">${product.name.substring(0, 30)}${
+      product.name.length > 30 ? "..." : ""
+    }</div>
+              <small class="text-muted">${product.description.substring(
+                0,
+                30
+              )}${product.description.length > 30 ? "..." : ""}</small>
+          </div>
+          </div>
+        </td>
+        <td>${product.category}</td>
+        <td>$${parseFloat(product.price).toFixed(2)}</td>
+        <td> ${
+          product.sale
+            ? `<span class="badge bg-danger">${product.sale}%</span>`
+            : "-"
+        }</td>
+        <td>
+         <span class="badge ${
+           Number(product.quantity) > 0
+             ? "bg-success bg-opacity-10 text-success"
+             : "bg-danger bg-opacity-10 text-danger"
+         }">
+          ${
+            Number(product.quantity) > 0
+              ? product.quantity + " in Stock"
+              : "Out of Stock"
+          }
+        </span>
+        </td>
+        <td>
+          <span class="rating-stars ms-1">${product.rating}
+            <i class="product__rating-star fa-solid fa-star me-2"></i>
+            (${product.ratingCount})
+          </span>
+        </td>
+        <td>${product.reviews.length}</td>
+        <td>
+          <div class="action-btns d-flex">
+            <button aria-label="Update Product" type="button" class="btn btn-sm btn-outline-primary me-2 update-btn" data-id="${
+              product.id
+            }">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button aria-label="Delete Product" type="button" class="btn btn-sm btn-outline-danger delete-btn" data-id="${
+              product.id
+            }">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </div>
+        </td>
+      `;
+    tbody.insertBefore(row, tbody.firstChild);
+  });
+}
+displayProducts();
+
+document.querySelectorAll(".modal-close-btn").forEach((element) => {
+  element.addEventListener("click", () => {
+    const openModalButton = document.querySelector(
+      'button[data-bs-target="#productModal"]'
+    );
+    if (openModalButton) {
+      openModalButton.focus();
+    }
+  });
+});
+
+function validateCategory(form) {
+  if (form["category"].value == "Choose Category") {
+    showToast("warning", `Please choose a category`);
+    form["category"].focus();
+    return false;
+  }
+  return true;
+}

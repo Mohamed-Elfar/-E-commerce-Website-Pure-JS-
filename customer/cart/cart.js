@@ -1,1 +1,135 @@
-import{showToast as e,updateBadges as t}from"/assets/js/utils.js";document.querySelector(".button--return").addEventListener("click",(()=>{window.location.href="../home/home.html"}));const n=document.querySelector("tbody"),c=document.getElementById("subtotalincart"),o=document.getElementById("shipping"),r=document.getElementById("Total"),s=document.getElementById("coupon"),l=document.querySelector(".button--coupon"),i=document.querySelector(".button--clear");let a=0,d=30;const u=[];function m(){const c=JSON.parse(localStorage.getItem("cart"))||[];c.forEach((o=>{const r=o.quantity;if(o){const s=document.createElement("tr");s.innerHTML=`\n          <td>\n            <div class="d-flex align-items-center gap-2">\n                <img src="${o.image}" width="50" alt="${o.name}">\n                <p class="mb-0">${o.name}</p>\n            </div>\n          </td>\n          <td class="price"><div class="d-flex align-items-center" style="height:50px"> $${o.price}</div></td>\n          <td><div class="d-flex align-items-center" style="height:50px"> <input type="number" class="quantity form-control" min="1" max="${r}" value="${o.count}"> </div></td>\n          <td class="subtotal"><div class="d-flex align-items-center" style="height:50px"> $${o.price}</div> </td>\n          <td><button class="btn btn-sm border-0 delete-btn">X</button></td>\n        `,n.appendChild(s);const l=s.querySelector(".quantity"),i=s.querySelector(".subtotal"),a=s.querySelector(".delete-btn"),d=o.price;if(u.push({quantityInput:l,subtotalCell:i,price:d,row:s}),0!=u.length){document.querySelector(".button--process").addEventListener("click",(()=>{e("success","Order placed successfully"),location.href="/customer/checkout/checkout.html"}))}l.addEventListener("input",(()=>{const e=parseInt(l.value)||1;i.innerHTML=`<div class="d-flex align-items-center" style="height:50px"> $${(e*d).toFixed(2)} </div>`,o.count=e,localStorage.setItem("cart",JSON.stringify(c)),p()})),a.addEventListener("click",(()=>{s.remove();const n=u.findIndex((e=>e.quantityInput===l));-1!==n&&(u.splice(n,1),c.splice(n,1)),localStorage.setItem("cart",JSON.stringify(c)),t(),p(),e("info","Product removed from cart")}))}}))}function p(){let e=0;u.forEach((t=>{const n=parseInt(t.quantityInput.value)||1;e+=n*t.price}));const t=e*(1-a);c.innerText=`$${e.toFixed(2)}`,o.innerText=`$${d}`,r.innerText=`$${(t+d).toFixed(2)}`}function g(e){const t=localStorage.getItem("cart"),n=(t?JSON.parse(t):[]).map((t=>({...t,discount:e})));localStorage.setItem("cart",JSON.stringify(n))}m(),l.addEventListener("click",(()=>{"Group6-30"===s.value.trim()?(a=.3,s.style.border="3px solid green",g(a),e("success","Coupon applied successfully")):(a=0,s.style.border="3px solid red",g(a),e("warning","Invalid coupon code")),p()})),i.addEventListener("click",(()=>{n.innerHTML="",u.length=0,localStorage.removeItem("cart"),p(),m(),e("success","Cart cleared successfully")})),p();
+import { showToast, updateBadges } from "/assets/js/utils.js";
+const returnhome = document.querySelector(".button--return");
+returnhome.addEventListener("click", () => {
+  window.location.href = "../home/home.html";
+});
+
+const tbody = document.querySelector("tbody");
+const subtotalInCart = document.getElementById("subtotalincart");
+const shipping = document.getElementById("shipping");
+const total = document.getElementById("Total");
+const couponInput = document.getElementById("coupon");
+const couponButton = document.querySelector(".button--coupon");
+const clearButton = document.querySelector(".button--clear");
+
+let discount = 0;
+let shippingCost = 30;
+const cartItems = [];
+function renderproducts() {
+  const productInCart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  productInCart.forEach((Element) => {
+    const productquantity = Element.quantity;
+    if (Element) {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+          <td>
+            <div class="d-flex align-items-center gap-2">
+                <img src="${Element.image}" width="50" alt="${Element.name}">
+                <p class="mb-0">${Element.name}</p>
+            </div>
+          </td>
+          <td class="price"><div class="d-flex align-items-center" style="height:50px"> $${Element.price}</div></td>
+          <td><div class="d-flex align-items-center" style="height:50px"> <input type="number" class="quantity form-control" min="1" max="${productquantity}" value="${Element.count}"> </div></td>
+          <td class="subtotal"><div class="d-flex align-items-center" style="height:50px"> $${Element.price}</div> </td>
+          <td><button class="btn btn-sm border-0 delete-btn">X</button></td>
+        `;
+
+      tbody.appendChild(row);
+
+      const quantityInput = row.querySelector(".quantity");
+      const subtotalCell = row.querySelector(".subtotal");
+      const deleteButton = row.querySelector(".delete-btn");
+      const price = Element.price;
+
+      cartItems.push({ quantityInput, subtotalCell, price, row });
+      if (!(cartItems.length == 0)) {
+        const process = document.querySelector(".button--process");
+        process.addEventListener("click", () => {
+          showToast("success", "Order placed successfully");
+          location.href = "/customer/checkout/checkout.html";
+        });
+      }
+
+      quantityInput.addEventListener("input", () => {
+        const quantity = parseInt(quantityInput.value) || 1;
+        subtotalCell.innerHTML = `<div class="d-flex align-items-center" style="height:50px"> $${(
+          quantity * price
+        ).toFixed(2)} </div>`;
+        Element.count = quantity;
+        localStorage.setItem("cart", JSON.stringify(productInCart));
+        updateCartTotal();
+      });
+
+      deleteButton.addEventListener("click", () => {
+        row.remove();
+
+        const index = cartItems.findIndex(
+          (item) => item.quantityInput === quantityInput
+        );
+        if (index !== -1) {
+          cartItems.splice(index, 1);
+          productInCart.splice(index, 1);
+        }
+
+        localStorage.setItem("cart", JSON.stringify(productInCart));
+        updateBadges();
+        updateCartTotal();
+        showToast("info", "Product removed from cart");
+      });
+    }
+  });
+}
+renderproducts();
+
+function updateCartTotal() {
+  let subtotalSum = 0;
+  cartItems.forEach((item) => {
+    const quantity = parseInt(item.quantityInput.value) || 1;
+    subtotalSum += quantity * item.price;
+  });
+
+  const discountedSubtotal = subtotalSum * (1 - discount);
+  subtotalInCart.innerText = `$${subtotalSum.toFixed(2)}`;
+  shipping.innerText = `$${shippingCost}`;
+  total.innerText = `$${(discountedSubtotal + shippingCost).toFixed(2)}`;
+}
+
+couponButton.addEventListener("click", () => {
+  const couponCode = couponInput.value.trim();
+  if (couponCode === "Group6-30") {
+    discount = 0.3;
+    couponInput.style.border = "3px solid green";
+    sendDiscount(discount);
+    showToast("success", "Coupon applied successfully");
+  } else {
+    discount = 0;
+    couponInput.style.border = "3px solid red";
+    sendDiscount(discount);
+    showToast("warning", "Invalid coupon code");
+  }
+  updateCartTotal();
+});
+
+clearButton.addEventListener("click", () => {
+  tbody.innerHTML = "";
+  cartItems.length = 0;
+  localStorage.removeItem("cart");
+  updateCartTotal();
+  renderproducts();
+  showToast("success", "Cart cleared successfully");
+});
+
+updateCartTotal();
+
+function sendDiscount(Discount) {
+  const cartJSON = localStorage.getItem("cart");
+  const cart = cartJSON ? JSON.parse(cartJSON) : [];
+
+  const updatedCart = cart.map((item) => ({
+    ...item,
+    discount: Discount,
+  }));
+
+  localStorage.setItem("cart", JSON.stringify(updatedCart));
+}

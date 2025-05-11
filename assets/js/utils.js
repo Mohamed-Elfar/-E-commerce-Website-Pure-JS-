@@ -23,6 +23,7 @@ export function validateName(inputOrValue) {
       showToast("error", "Invalid Name");
       return false;
     }
+    // return /^[a-zA-Z]{2,30}$/.test(inputOrValue.trim());
   }
   return false;
 }
@@ -49,6 +50,10 @@ export function validateEmail(inputOrValue) {
       showToast("error", "Invalid Email");
       return false;
     }
+
+    // return /^[a-zA-Z0-9._%+-]+@(gmail|outlook|yahoo|hotmail|icloud|protonmail)\.(com|net|org)$/i.test(
+    //   inputOrValue.trim()
+    // );
   }
   return false;
 }
@@ -225,7 +230,7 @@ export function loggout() {
     return rest;
   });
   localStorage.setItem("users", JSON.stringify(updatedUsers));
-  window.location.href = "/customer/home/home.html";
+  window.location.href = "/customer/products/products.html";
 }
 export function saveUserToLocal(userInstance) {
   try {

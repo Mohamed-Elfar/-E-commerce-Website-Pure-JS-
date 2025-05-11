@@ -1,1 +1,56 @@
-import{showToast as e,validatePassword as t,validatePasswordMatch as s,hashPassword as o}from"../assets/js/utils.js";const l=document.querySelector("#forgetEmailInput"),r=document.querySelector("#submitEmailBtn"),c=document.querySelector(".emailModal"),a=document.querySelector(".passwordModal"),u=document.querySelector("#resetPassword"),n=document.querySelector("#resetConfirmpassword");r.addEventListener("click",(function(o){o.preventDefault();JSON.parse(localStorage.getItem("users")).find((e=>e.email===l.value))?(e("success","Email sent successfully"),function(){const e=document.querySelectorAll(".modal")[0];e.classList.add("flip"),setTimeout((()=>{e.classList.remove("flip"),c.click(),new bootstrap.Modal(document.getElementById("resetModal")).show()}),200)}(),u.addEventListener("input",(()=>{t(u)})),n.addEventListener("input",(()=>{s(u,n)}))):e("error","Email not found")}));document.querySelector(".saveBtn").addEventListener("click",(function(){if(u.value===n.value){const t=JSON.parse(localStorage.getItem("users"));t.find((e=>e.email===l.value)).password=o(u.value),localStorage.setItem("users",JSON.stringify(t)),e("success","Password changed successfully"),a.click(),u.value="",n.value=""}}));
+import {
+  showToast,
+  validatePassword,
+  validatePasswordMatch,hashPassword
+} from "../assets/js/utils.js";
+const forgetEmail = document.querySelector("#forgetEmailInput");
+const submitEmailBtn = document.querySelector("#submitEmailBtn");
+const closeEmailBtn = document.querySelector(".emailModal");
+const closePasswordBtn = document.querySelector(".passwordModal");
+
+const newPassword = document.querySelector("#resetPassword");
+const repass = document.querySelector("#resetConfirmpassword");
+
+submitEmailBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  const users = JSON.parse(localStorage.getItem("users"));
+  const foundUser = users.find((user) => user.email === forgetEmail.value);
+  if (foundUser) {
+    showToast("success", "Email sent successfully");
+    flipModal();
+    newPassword.addEventListener("input", () => {
+      validatePassword(newPassword);
+    });
+    repass.addEventListener("input", () => {
+      validatePasswordMatch(newPassword, repass);
+    });
+  } else {
+    showToast("error", "Email not found");
+  }
+});
+
+function flipModal() {
+  const modal = document.querySelectorAll(".modal")[0];
+  modal.classList.add("flip");
+  setTimeout(() => {
+    modal.classList.remove("flip");
+    closeEmailBtn.click();
+    var myModal = new bootstrap.Modal(document.getElementById("resetModal"));
+    myModal.show();
+  }, 200);
+}
+
+const saveBtn = document.querySelector(".saveBtn");
+saveBtn.addEventListener("click", save);
+function save() {
+  if (newPassword.value === repass.value) {
+    const users = JSON.parse(localStorage.getItem("users"));
+    const foundUser = users.find((user) => user.email === forgetEmail.value);
+    foundUser.password = hashPassword(newPassword.value);
+    localStorage.setItem("users", JSON.stringify(users));
+    showToast("success", "Password changed successfully");
+    closePasswordBtn.click();
+    newPassword.value = "";
+    repass.value = "";
+  }
+}
