@@ -12,8 +12,6 @@ function fetchSellerProducts() {
   let sellerProducts = allProducts.filter(
     (product) => Number(product.createdBy) === user.userId
   );
-  console.log(sellerProducts);
-
   return sellerProducts;
 }
 fetchSellerProducts();
@@ -184,7 +182,7 @@ function displayProducts() {
   const sellerProducts = fetchSellerProducts();
   container.innerHTML = "";
   tbody.innerHTML = "";
-  sellerProducts.map((product) => {
+  sellerProducts?.map((product) => {
     const card = document.createElement("div");
     card.className = "col mb-4";
     card.innerHTML = `
@@ -194,7 +192,7 @@ function displayProducts() {
                  class="p-1 w-100 w-sm-auto" 
                  style="height: 160px; max-width: 160px; object-fit: contain; background: linear-gradient(145deg, #f8f9fa, #e9ecef);" 
                  alt="${product.name}" 
-                 onerror="this.src='https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?t=st=1746629522~exp=1746633122~hmac=d7ab6887b8e97559468627d4f72ce44616d158a31eb77d05b688edf831fef7e3&w=826'">
+                onerror="this.src='https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg'">
             <div class="card-body p-3">
               <div class="d-flex flex-column-reverse flex-sm-row">
              <div class="">
@@ -221,19 +219,17 @@ function displayProducts() {
               <div class="row g-2 d-flex flex-column flex-sm-row">
                 <div class="col-6">
                   <p class="card-text fs-6"><strong>Category:</strong> ${
-                    product.category
+                    product?.category
                   }</p>
                   <p class="card-text fs-6"><strong>Price:</strong> $${parseFloat(
-                    product.price
+                    product?.price
                   ).toFixed(2)}</p>
                   <p class="card-text fs-6">
                     <strong>Discount:</strong> 
                     ${
-                      product.sale ? (
-                        <span class="badge bg-danger">${product.sale}%</span>
-                      ) : (
-                        "-"
-                      )
+                      product?.sale
+                        ? `<span class="badge bg-danger">${product?.sale}%</span>`
+                        : "-"
                     }
                   </p>
                 </div>
@@ -246,21 +242,21 @@ function displayProducts() {
                         : "bg-danger bg-opacity-10 text-danger"
                     }">
                       ${
-                        Number(product.quantity) > 0
-                          ? product.quantity + " in Stock"
+                        Number(product?.quantity) > 0
+                          ? product?.quantity + " in Stock"
                           : "Out of Stock"
                       }
                     </span>
                   </p>
                   <p class="card-text fs-6">
                     <strong>Rating:</strong> 
-                    <span class="rating-stars">${product.rating}
+                    <span class="rating-stars">${product?.rating}
                       <i class="fa-solid fa-star text-warning"></i>
-                      (${product.ratingCount})
+                      (${product?.ratingCount})
                     </span>
                   </p>
                   <p class="card-text fs-6"><strong>Reviews:</strong> ${
-                    product.reviews.length
+                    product?.reviews?.length
                   }</p>
                 </div>
               </div>

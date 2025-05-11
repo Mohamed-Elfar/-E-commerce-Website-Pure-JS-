@@ -22,7 +22,7 @@ class ExclusiveHeader extends HTMLElement {
 
   <nav class="navbar navbar-expand-lg navbar-light border-bottom">
     <div class="container">
-      <a class="navbar-brand fw-bold border-0 fs-5" href="#">exclusive</a>
+      <a class="navbar-brand fw-bold border-0 fs-5" href="/customer/home/home.html">exclusive</a>
       <button class="navbar-toggler" type="button" id="navbarToggler">
         <span class="navbar-toggler-icon"></span>
       </button>

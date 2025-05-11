@@ -1,9 +1,8 @@
 import {
-  showToast,
   addToCart,
   search,
   toggleWishList,
-  redirectToNotFoundPage,
+  loginUser,
 } from "../../assets/js/utils.js";
 
 fetch("../../assets/data/products.json")
@@ -14,7 +13,7 @@ fetch("../../assets/data/products.json")
     }
     const container = document.getElementById("product-container");
     const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-
+    const user = loginUser();
     data.forEach((product) => {
       const card = document.createElement("div");
       card.classList.add("col-md-4");
@@ -44,7 +43,12 @@ fetch("../../assets/data/products.json")
                 product.sale ? "" : "visibility: hidden"
               }">${product.sale}</div>
               <div class="product__icons">
-                <a class="border-0">
+                <a  class="border-0" ${
+                  user.userId === parseInt(product.createdBy) ||
+                  user.role === "Admin"
+                    ? "disabled"
+                    : ""
+                }>
                   <div class="product__icon-container">
                     <i class="product__icon fa-heart ${
                       isWished ? "active fa-solid" : "fa-regular"
@@ -95,9 +99,14 @@ fetch("../../assets/data/products.json")
               <p class="product__rating-count">(${product.ratingCount})</p>
             </div>
             <div class="col-md-12">
-            <button class="btn btn-dark w-100 cartBTn" data-id="${
-              product.id
-            }"><i class="fa-solid fa-cart-plus px-2"></i> Add To Cart</button>
+            <button class="btn btn-dark w-100 cartBTn" ${
+              user?.role === "Admin" ||
+              parseInt(product?.createdBy) === user?.userId
+                ? "disabled"
+                : ""
+            } data-id="${
+        product.id
+      }"><i class="fa-solid fa-cart-plus px-2"></i> Add To Cart</button>
             </div>
           </div>
         </div>
