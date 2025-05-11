@@ -208,7 +208,9 @@ exclusive-header {
   a {
     border-bottom: 2px solid #7d8184;
   }
-
+  #loginBtn:hover {
+    color: #fff !important;
+  }
   .dropdown-item:hover {
     background: rgba(0, 0, 0, 0.05);
   }
