@@ -2,7 +2,7 @@ import {
   addToCart,
   search,
   showToast,
-  
+  updateBadges,
 } from "../../assets/js/utils.js";
 
 function renderWishlistProducts() {
@@ -99,6 +99,7 @@ function renderWishlistProducts() {
       localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
       showToast("success", "Product removed from wishlist");
       renderWishlistProducts();
+      updateBadges();
     };
     wishlistContainer.appendChild(card);
   });
