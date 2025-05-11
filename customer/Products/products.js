@@ -3,7 +3,7 @@ import {
   addToCart,
   search,
   toggleWishList,
-  loginUser,
+  redirectToNotFoundPage,
 } from "../../assets/js/utils.js";
 
 fetch("../../assets/data/products.json")
@@ -14,9 +14,8 @@ fetch("../../assets/data/products.json")
     }
     const container = document.getElementById("product-container");
     const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-    const user = loginUser();
-    const allProducts = JSON.parse(localStorage.getItem("allProducts")) || [];
-    allProducts.forEach((product) => {
+
+    data.forEach((product) => {
       const card = document.createElement("div");
       card.classList.add("col-md-4");
 
@@ -45,7 +44,7 @@ fetch("../../assets/data/products.json")
                 product.sale ? "" : "visibility: hidden"
               }">${product.sale}</div>
               <div class="product__icons">
-                <a  class="border-0" ${user?.userId === parseInt(product.createdBy) || user?.role === "Admin" ? "disabled" : ""}>
+                <a class="border-0">
                   <div class="product__icon-container">
                     <i class="product__icon fa-heart ${
                       isWished ? "active fa-solid" : "fa-regular"
@@ -96,13 +95,9 @@ fetch("../../assets/data/products.json")
               <p class="product__rating-count">(${product.ratingCount})</p>
             </div>
             <div class="col-md-12">
-            <button class="btn btn-dark w-100 cartBTn"  ${
-              user?.role === "Admin" ||
-              parseInt(product?.createdBy) === user?.userId
-                ? "disabled"
-                : ""
-            } data-id="${product.id}
-      "><i class="fa-solid fa-cart-plus px-2"></i> Add To Cart</button>
+            <button class="btn btn-dark w-100 cartBTn" data-id="${
+              product.id
+            }"><i class="fa-solid fa-cart-plus px-2"></i> Add To Cart</button>
             </div>
           </div>
         </div>
@@ -137,41 +132,54 @@ fetch("../../assets/data/products.json")
 
 search("product__title", ".col-md-4");
 
-function filterProducts(productCards, checkboxes) {
-  const checkedCategories = [];
-  checkboxes.forEach((checkbox) => {
-    if (checkbox.checked) {
-      checkedCategories.push(checkbox.value);
-    }
-  });
+function filterProducts() {
+  const minPrice = parseFloat(document.getElementById("minPrice").value) || 0;
+  const maxPrice =
+    parseFloat(document.getElementById("maxPrice").value) || Infinity;
+
+  const checkboxes = document.querySelectorAll(
+    '.filter-options input[type="checkbox"]'
+  );
+  const checkedCategories = Array.from(checkboxes)
+    .filter((checkbox) => checkbox.checked)
+    .map((checkbox) => checkbox.value);
+
+  const productCards = document.querySelectorAll(
+    "#product-container .col-md-4"
+  );
 
   productCards.forEach((card) => {
     const cardCategory =
-      card.querySelector(".product__category").dataset.category;
-    if (
-      checkedCategories.length === 0 ||
-      checkedCategories.includes(cardCategory)
-    ) {
-      card.style.display = "block";
-    } else {
-      card.style.display = "none";
-    }
-  });
-}
-document.getElementById("filterPriceBtn").addEventListener("click", () => {
-  const min = parseFloat(document.getElementById("minPrice").value) || 0;
-  const max = parseFloat(document.getElementById("maxPrice").value) || Infinity;
+      card.querySelector(".product__category")?.dataset.category;
 
-  const allCards = document.querySelectorAll("#product-container .col-md-4");
-  allCards.forEach((card) => {
     const priceText =
       card.querySelector(".product__price-new")?.textContent.replace("$", "") ||
       "0";
-    const price = parseFloat(priceText);
-    if (price >= min && price <= max) {
-      card.style.display = "block";
-    } else {
-      card.style.display = "none";
-    }
+    const cardPrice = parseFloat(priceText);
+
+    const priceMatch = cardPrice >= minPrice && cardPrice <= maxPrice;
+    const categoryMatch =
+      checkedCategories.length === 0 ||
+      checkedCategories.includes(cardCategory);
+
+    card.style.display = priceMatch && categoryMatch ? "block" : "none";
   });
+}
+
+document
+  .querySelectorAll('.filter-options input[type="checkbox"]')
+  .forEach((checkbox) => {
+    checkbox.addEventListener("change", filterProducts);
+  });
+
+document.getElementById("priceRange").addEventListener("input", function () {
+  document.getElementById("minPrice").value = this.value;
+  filterProducts();
 });
+
+document.getElementById("minPrice").addEventListener("input", function () {
+  document.getElementById("priceRange").value = this.value;
+  filterProducts();
+});
+
+document.getElementById("maxPrice").addEventListener("input", filterProducts);
