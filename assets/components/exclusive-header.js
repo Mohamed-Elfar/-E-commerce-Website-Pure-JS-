@@ -22,25 +22,25 @@ class ExclusiveHeader extends HTMLElement {
 
   <nav class="navbar navbar-expand-lg navbar-light border-bottom">
     <div class="container">
-      <a class="navbar-brand fw-bold border-0 fs-5" href="#">exclusive</a>
+      <a class="navbar-brand fw-bold border-0 fs-5" href="/customer/home/home.html">exclusive</a>
       <button class="navbar-toggler" type="button" id="navbarToggler">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav m-auto mb-2 mb-lg-0 text-center">
-          <li class="nav-item">
+          <li class="nav-item  nav-pills">
             <a class="nav-link active" href="/customer/home/home.html">Home</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/customer/contact/contact.html"
+          <li class="nav-item nav-pills">
+            <a class="nav-link" href="/customer/contact/Contact.html"
               >contact</a
             >
           </li>
-          <li class="nav-item">
+          <li class="nav-item  nav-pills">
             <a class="nav-link" href="/customer/about/about.html">about</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/customer/products/products.html"
+          <li class="nav-item  nav-pills">
+            <a class="nav-link" href="/customer/Products/products.html"
               >products</a
             >
           </li>
@@ -76,7 +76,6 @@ class ExclusiveHeader extends HTMLElement {
             <i class="fa fa-heart"></i>
             <span class="badge" id="wishlistCount">3</span>
           </a>
-
           <a class="btn" id="cartLink" href="/customer/cart/cart.html">
             <i class="fa fa-shopping-cart"></i>
             <span class="badge" id="cartCount">5</span>
@@ -128,7 +127,7 @@ class ExclusiveHeader extends HTMLElement {
                 <i class="fa fa-regular fa-user"></i>
                 <a
                   class="dropdown-item text-white"
-                  href="/customer/profile/profile.html"
+                  href="/customer/profile/Profile.html"
                   >My Account</a
                 >
               </li>
@@ -163,6 +162,7 @@ class ExclusiveHeader extends HTMLElement {
     this.initDropdown();
     this.setupLogout();
     this.badges();
+    this.highlightActiveNavItem();
   }
 
   initBootstrapToggle() {
@@ -196,7 +196,6 @@ class ExclusiveHeader extends HTMLElement {
     }
   }
   loggedInUser() {
-    // Get DOM elements once
     const elements = {
       token: localStorage.getItem("token"),
       userButton: this.querySelector(".userIcon"),
@@ -209,13 +208,11 @@ class ExclusiveHeader extends HTMLElement {
       manageOrders: this.querySelector(".manageOrders"),
     };
 
-    // Helper function to toggle elements
     const toggleElements = (show, ...elements) => {
       elements.forEach((el) => el && el.classList.toggle("d-none", !show));
     };
 
     if (!elements.token) {
-      // Not logged in state
       toggleElements(
         false,
         elements.userButton,
@@ -228,7 +225,6 @@ class ExclusiveHeader extends HTMLElement {
       return;
     }
 
-    // Logged in state
     const user = loginUser();
 
     if (!user) {
@@ -236,21 +232,17 @@ class ExclusiveHeader extends HTMLElement {
       return;
     }
 
-    // Toggle user button and auth buttons
     toggleElements(true, elements.userButton);
     toggleElements(false, elements.loginBtn, elements.registerBtn);
 
-    // Initialize dropdown behavior
     if (elements.userButton) {
       elements.userButton.addEventListener("click", () => {
         elements.userButton.classList.toggle("userIcon--Style");
       });
     }
 
-    // Reset all special links first
     toggleElements(false, elements.adminLink, elements.sellerLink);
 
-    // Handle roles
     switch (user.role) {
       case "Admin":
         toggleElements(true, elements.adminLink);
@@ -261,11 +253,9 @@ class ExclusiveHeader extends HTMLElement {
         toggleElements(true, elements.sellerLink);
         toggleElements(true, elements.wishlistLink, elements.cartLink);
         break;
-      default: // Regular customer
+      default:
         toggleElements(true, elements.wishlistLink, elements.cartLink);
     }
-
-    console.log("User role:", user.role);
   }
   initDropdown() {
     const userButton = this.querySelector(".userIcon");
@@ -281,6 +271,24 @@ class ExclusiveHeader extends HTMLElement {
         loggout();
       });
     }
+  }
+  highlightActiveNavItem() {
+    const currentPath = window.location.pathname;
+
+    const navLinks = this.querySelectorAll(".nav-link");
+
+    navLinks.forEach((link) => {
+      link.classList.remove("active");
+      link.removeAttribute("aria-current");
+    });
+
+    navLinks.forEach((link) => {
+      const linkPath = new URL(link.href).pathname;
+      if (currentPath.includes(linkPath)) {
+        link.classList.add("active");
+        link.setAttribute("aria-current", "page");
+      }
+    });
   }
 }
 
