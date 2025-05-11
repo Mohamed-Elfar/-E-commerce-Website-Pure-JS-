@@ -27,7 +27,7 @@
           loop: false,
           showCursor: true,
           onComplete: () => {
-            // After animation completes, wait 2 seconds then redirect
+            // After animation completes, wait 1.5 seconds then redirect
             setTimeout(() => {
               window.location.href = "customer/home/home.html";
             }, 1500);
