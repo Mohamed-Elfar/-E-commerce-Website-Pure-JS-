@@ -162,7 +162,7 @@ class ExclusiveHeader extends HTMLElement {
     this.initDropdown();
     this.setupLogout();
     this.badges();
-    this.highlightActiveNavItem(); // Add this new method call
+    this.highlightActiveNavItem();
   }
 
   initBootstrapToggle() {
@@ -196,7 +196,6 @@ class ExclusiveHeader extends HTMLElement {
     }
   }
   loggedInUser() {
-    // Get DOM elements once
     const elements = {
       token: localStorage.getItem("token"),
       userButton: this.querySelector(".userIcon"),
@@ -209,13 +208,11 @@ class ExclusiveHeader extends HTMLElement {
       manageOrders: this.querySelector(".manageOrders"),
     };
 
-    // Helper function to toggle elements
     const toggleElements = (show, ...elements) => {
       elements.forEach((el) => el && el.classList.toggle("d-none", !show));
     };
 
     if (!elements.token) {
-      // Not logged in state
       toggleElements(
         false,
         elements.userButton,
@@ -228,7 +225,6 @@ class ExclusiveHeader extends HTMLElement {
       return;
     }
 
-    // Logged in state
     const user = loginUser();
 
     if (!user) {
@@ -236,21 +232,17 @@ class ExclusiveHeader extends HTMLElement {
       return;
     }
 
-    // Toggle user button and auth buttons
     toggleElements(true, elements.userButton);
     toggleElements(false, elements.loginBtn, elements.registerBtn);
 
-    // Initialize dropdown behavior
     if (elements.userButton) {
       elements.userButton.addEventListener("click", () => {
         elements.userButton.classList.toggle("userIcon--Style");
       });
     }
 
-    // Reset all special links first
     toggleElements(false, elements.adminLink, elements.sellerLink);
 
-    // Handle roles
     switch (user.role) {
       case "Admin":
         toggleElements(true, elements.adminLink);
@@ -261,11 +253,9 @@ class ExclusiveHeader extends HTMLElement {
         toggleElements(true, elements.sellerLink);
         toggleElements(true, elements.wishlistLink, elements.cartLink);
         break;
-      default: // Regular customer
+      default:
         toggleElements(true, elements.wishlistLink, elements.cartLink);
     }
-
-    console.log("User role:", user.role);
   }
   initDropdown() {
     const userButton = this.querySelector(".userIcon");
@@ -283,19 +273,15 @@ class ExclusiveHeader extends HTMLElement {
     }
   }
   highlightActiveNavItem() {
-    // Get current page path
     const currentPath = window.location.pathname;
 
-    // Find all nav links
     const navLinks = this.querySelectorAll(".nav-link");
 
-    // Remove active class from all links first
     navLinks.forEach((link) => {
       link.classList.remove("active");
       link.removeAttribute("aria-current");
     });
 
-    // Find and highlight the matching link
     navLinks.forEach((link) => {
       const linkPath = new URL(link.href).pathname;
       if (currentPath.includes(linkPath)) {
