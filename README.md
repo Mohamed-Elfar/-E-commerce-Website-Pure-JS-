@@ -8,7 +8,6 @@ It provides a simple frontend simulation for Customers, Sellers, and Admins.
 ## 📺 Live Demo
 
 👉 [View Live Demo](https://e-commerce-website-pure-js.vercel.app/)  
-_(Replace this link with your deployed project URL)_
 
 ---
 
