@@ -1,1 +1,414 @@
-import{sha256}from"https://esm.sh/js-sha256@0.9.0";const APP_SALT="mohamedsamirelfar";export function hashPassword(a){return sha256(APP_SALT+a+APP_SALT)}export function validateHashedPassword(a,b){return hashPassword(a)===b}export function validateName(a){if(a?.classList){const b=a.value.trim(),c=/^[a-zA-Z]{2,30}$/.test(b);return a.classList.toggle("is-invalid",!c),a.classList.toggle("is-valid",c),c?"":showToast("error","Invalid Name"),c}if(typeof a=="string")return/^[a-zA-Z]{2,30}$/.test(a.trim())?1:(showToast("error","Invalid Name"),0);return 0}export function validateEmail(a){if(a?.classList){const b=a.value.trim(),c=/^[a-zA-Z0-9._%+-]+@(gmail|outlook|yahoo|hotmail|icloud|protonmail)\.(com|net|org)$/i.test(b);return a.classList.toggle("is-invalid",!c),a.classList.toggle("is-valid",c),c?"":showToast("error","Invalid Email"),c}if(typeof a=="string")return/^[a-zA-Z0-9._%+-]+@(gmail|outlook|yahoo|hotmail|icloud|protonmail)\.(com|net|org)$/i.test(a.trim())?1:(showToast("error","Invalid Email"),0);return 0}export function validatePhone(a){if(a?.classList){const b=a.value.trim(),c=/^(010|011|012|015)\d{8}$/.test(b);return a.classList.toggle("is-invalid",!c),a.classList.toggle("is-valid",c),c?"":showToast("error","Invalid Phone"),c}if(typeof a=="string")return/^(010|011|012|015)\d{8}$/.test(a.trim())?1:(showToast("error","Invalid Phone"),0);return 0}export function validatePassword(a){const b=a?.value||a;if(!b||typeof b!="string")return 0;const c=/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,}$/,d=c.test(b);return a?.classList&&(a.classList.toggle("is-invalid",!d),a.classList.toggle("is-valid",d),d?"":showToast("error","Invalid Password")),d}export function validatePasswordMatch(a,b){const c=a?.value||a,d=b?.value||b;if(typeof c!="string"||typeof d!="string")return 0;const e=c===d;return b?.classList&&(b.classList.toggle("is-invalid",!e),b.classList.toggle("is-valid",e)),e}export function updateBadges(){const a=document.querySelector("exclusive-header");a&&typeof a.badges=="function"&&a.badges()}export function addToCart(a){if(localStorage.getItem("token")){let b=JSON.parse(localStorage.getItem("cart"))||[];const c=b.some(d=>d.id===a.id);if(!c){if(a.quantity>0)return b.push(a),localStorage.setItem("cart",JSON.stringify(b)),updateBadges(),showToast("success","Product added to cart"),1;showToast("error","Product out of stock");return 0}return showToast("info","Product is already in your cart"),0}showToast("warning","Please Login First");return 0}export function toggleWishList(a,b){let c=JSON.parse(localStorage.getItem("wishlist"))||[];c.includes(a)?(c=c.filter(d=>d!==a),b.classList.remove("active","fa-solid"),b.classList.add("fa-regular"),showToast("error","Removed from wishlist!")):(c.push(a),b.classList.add("active","fa-solid"),b.classList.remove("fa-regular"),showToast("success","Added to wishlist")),localStorage.setItem("wishlist",JSON.stringify(c)),updateBadges()}export function search(a,b){const c=document.getElementById("navSearch"),d=document.getElementById("searchBtn"),e=document.getElementsByClassName(a),f=document.getElementById("productSuggestions")?.options;c?.addEventListener("input",g=>{const h=g.target.value;for(let i=0;i<e.length;i++){const j=e[i].closest(b);e[i].innerText.toLowerCase().includes(h.toLowerCase())?j.style.display="block":j.style.display="none"}}),d?.addEventListener("click",g=>{let h=null;for(let i=0;i<f.length;i++)if(f[i].value===c.value){h=f[i];break}h&&open(h.dataset.link,"_blank")})}export function filterProductsByStoredCategory(){let a=localStorage.getItem("category");if(a){const b=document.getElementsByClassName("product__category");let c=0;for(let d of b){const e=d.closest(".col-md-4");if(!e)continue;const f=d.dataset.category.toLowerCase(),g=f.includes(a.toLowerCase());e.style.display=g?"block":"none",g&&(c=1),localStorage.removeItem("category")}if(!c)return showToast("error","this product does not exist in the stock right now"),void(document.getElementById("product-container").textContent="No products found.")}}export function redirectToNotFoundPage(a){a&&(window.location.href="/404.html")}export function loggout(){localStorage.removeItem("token");const a=JSON.parse(localStorage.getItem("users")||[]),b=a.map(c=>{const{token:d,...e}=c;return e});localStorage.setItem("users",JSON.stringify(b)),window.location.href="/customer/home/home.html"}export function saveUserToLocal(a){try{const b=JSON.parse(localStorage.getItem("users"))||[],c=a.toJSON();if(!c||typeof c!="object")throw new Error("Invalid user data format");if(!c.email||!c.firstName||!c.lastName)throw new Error("Missing required user fields");const d=b.some(e=>e&&e.email===c.email),f=b.some(e=>e&&e.phone===c.phone);if(d)throw new Error("This email already exists");if(f)throw new Error("This Phone Number already exists");b.push(c),localStorage.setItem("users",JSON.stringify(b));return 1}catch(b){return console.error("Failed to save user:",b),showToast("error",b.message),void throw b}}export class User{static get totalUsers(){return(JSON.parse(localStorage.getItem("users"))||[]).length}#firstName;#lastName;#email;#phone;#password;#sellerRadio;#userId;constructor({first_name:a,last_name:b,email:c,phone_number:d,password:e,want_to_be_seller:f}){if(new.target===User)throw new Error("User is an abstract class and cannot be instantiated directly.");this.firstName=a,this.lastName=b,this.email=c,this.phone=d,this.password=e,this.#sellerRadio=f;const g=JSON.parse(localStorage.getItem("users"))||[];this.#userId=g.length>0?Math.max(...g.map(a=>a.userId))+1:1,"function"==typeof saveUserToLocal?saveUserToLocal(this):throw new Error("Save functionality not available"),console.log("Created user:",this)}get userId(){return this.#userId}get password(){return this.#password}get firstName(){return this.#firstName}get lastName(){return this.#lastName}get email(){return this.#email}get phone(){return this.#phone}set firstName(a){if(!validateName(a))throw showToast("error","Invalid first Name"),new Error("Validation failed for first name");this.#firstName=a}set lastName(a){if(!validateName(a))throw showToast("error","Invalid last Name"),new Error("Validation failed for last name");this.#lastName=a}set email(a){if(!validateEmail(a))throw showToast("error","Invalid Email"),new Error("Validation failed for email");this.#email=a}set phone(a){if(!validatePhone(a))throw showToast("error","Invalid Phone"),new Error("Validation failed for phone");this.#phone=a}set password(a){if(!validatePassword(a))throw showToast("error","Invalid Password"),new Error("Validation failed for password");this.#password=hashPassword(a)}toJSON(){return{userId:this.#userId,firstName:this.#firstName,lastName:this.#lastName,email:this.#email,phone:this.#phone,password:this.#password,want_to_be_seller:this.#sellerRadio,role:"Customer"}}print(){console.log(`User ID: ${this.#userId}`)}}export function loginUser(){const a=JSON.parse(localStorage.getItem("users"))||[],b=localStorage.getItem("token")||[];return a.find(a=>a.token===b)}export function showToast(a,b){const c=document.querySelector(".toast");if(!c)return void console.error("Toast element not found in DOM");c.className="toast";const d={success:"fa-circle-check",error:"fa-triangle-exclamation",warning:"fa-warning",info:"fa-info"};if(!d[a])return void console.error(`Invalid toast status: ${a}`);c.innerHTML=`<i class="fa-solid ${d[a]}"></i> ${b}`,c.classList.add("show",`toast-${a}`),setTimeout(()=>c.classList.remove("show"),3e3)}
+import { sha256 } from "https://esm.sh/js-sha256@0.9.0";
+const APP_SALT = "mohamedsamirelfar";
+
+export function hashPassword(password) {
+  return sha256(APP_SALT + password + APP_SALT);
+}
+export function validateHashedPassword(inputPassword, storedHash) {
+  return hashPassword(inputPassword) === storedHash;
+}
+
+export function validateName(inputOrValue) {
+  if (inputOrValue?.classList) {
+    const value = inputOrValue.value.trim();
+    const isValid = /^[a-zA-Z]{2,30}$/.test(value);
+    inputOrValue.classList.toggle("is-invalid", !isValid);
+    inputOrValue.classList.toggle("is-valid", isValid);
+    isValid ? "" : showToast("error", "Invalid Name");
+    return isValid;
+  } else if (typeof inputOrValue === "string") {
+    if (/^[a-zA-Z]{2,30}$/.test(inputOrValue.trim())) {
+      return true;
+    } else {
+      showToast("error", "Invalid Name");
+      return false;
+    }
+  }
+  return false;
+}
+
+export function validateEmail(inputOrValue) {
+  if (inputOrValue?.classList) {
+    const value = inputOrValue.value.trim();
+    const isValid =
+      /^[a-zA-Z0-9._%+-]+@(gmail|outlook|yahoo|hotmail|icloud|protonmail)\.(com|net|org)$/i.test(
+        value
+      );
+    inputOrValue.classList.toggle("is-invalid", !isValid);
+    inputOrValue.classList.toggle("is-valid", isValid);
+    isValid ? "" : showToast("error", "Invalid Email");
+    return isValid;
+  } else if (typeof inputOrValue === "string") {
+    if (
+      /^[a-zA-Z0-9._%+-]+@(gmail|outlook|yahoo|hotmail|icloud|protonmail)\.(com|net|org)$/i.test(
+        inputOrValue.trim()
+      )
+    ) {
+      return true;
+    } else {
+      showToast("error", "Invalid Email");
+      return false;
+    }
+  }
+  return false;
+}
+
+export function validatePhone(inputOrValue) {
+  if (inputOrValue?.classList) {
+    const value = inputOrValue.value.trim();
+    const isValid = /^(010|011|012|015)\d{8}$/.test(value);
+    inputOrValue.classList.toggle("is-invalid", !isValid);
+    inputOrValue.classList.toggle("is-valid", isValid);
+    isValid ? "" : showToast("error", "Invalid Phone");
+    return isValid;
+  } else if (typeof inputOrValue === "string") {
+    if (/^(010|011|012|015)\d{8}$/.test(inputOrValue.trim())) {
+      return true;
+    } else {
+      showToast("error", "Invalid Phone");
+      return false;
+    }
+    // return /^(010|011|012|015)\d{8}$/.test(inputOrValue.trim());
+  }
+  return false;
+}
+
+export function validatePassword(inputOrValue) {
+  const value = inputOrValue?.value || inputOrValue;
+  if (!value || typeof value !== "string") return false;
+
+  const passwordRegex =
+    /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,}$/;
+
+  const isValid = passwordRegex.test(value);
+
+  if (inputOrValue?.classList) {
+    inputOrValue.classList.toggle("is-invalid", !isValid);
+    inputOrValue.classList.toggle("is-valid", isValid);
+    isValid ? "" : showToast("error", "Invalid Password");
+  }
+
+  return isValid;
+}
+
+export function validatePasswordMatch(passwordInput, confirmPasswordInput) {
+  const password = passwordInput?.value || passwordInput;
+  const confirmPassword = confirmPasswordInput?.value || confirmPasswordInput;
+
+  if (typeof password !== "string" || typeof confirmPassword !== "string") {
+    return false;
+  }
+
+  const isMatching = password === confirmPassword;
+
+  if (confirmPasswordInput?.classList) {
+    confirmPasswordInput.classList.toggle("is-invalid", !isMatching);
+    confirmPasswordInput.classList.toggle("is-valid", isMatching);
+  }
+
+  return isMatching;
+}
+export function updateBadges() {
+  const header = document.querySelector("exclusive-header");
+  if (header && typeof header.badges === "function") {
+    header.badges();
+  }
+}
+
+export function addToCart(product) {
+  if (localStorage.getItem("token")) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    const productExists = cart.some((item) => item.id === product.id);
+
+    if (!productExists) {
+      if (product.quantity > 0) {
+        cart.push(product);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateBadges();
+        showToast("success", "Product added to cart");
+        return true;
+      } else {
+        showToast("error", "Product out of stock");
+        return false;
+      }
+    } else {
+      showToast("info", "Product is already in your cart");
+      return false;
+    }
+  } else {
+    showToast("warning", "Please Login First");
+    return false;
+  }
+}
+export function toggleWishList(productId, icon) {
+  let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+  if (wishlist.includes(productId)) {
+    wishlist = wishlist.filter((id) => id !== productId);
+    icon.classList.remove("active", "fa-solid");
+    icon.classList.add("fa-regular");
+    showToast("error", "Removed from wishlist!");
+  } else {
+    wishlist.push(productId);
+    icon.classList.add("active", "fa-solid");
+    icon.classList.remove("fa-regular");
+    showToast("success", "Added to wishlist");
+  }
+  localStorage.setItem("wishlist", JSON.stringify(wishlist));
+  updateBadges();
+}
+
+export function search(title, parent) {
+  const search = document.getElementById("navSearch");
+  const searchBtn = document.getElementById("searchBtn");
+  const list = document.getElementsByClassName(title);
+  const options = document.getElementById("productSuggestions")?.options;
+  search?.addEventListener("input", (e) => {
+    const value = e.target.value;
+    for (let i = 0; i < list.length; i++) {
+      const columnParent = list[i].closest(parent);
+      list[i].innerText.toLowerCase().includes(value.toLowerCase())
+        ? (columnParent.style.display = "block")
+        : (columnParent.style.display = "none");
+    }
+  });
+  searchBtn?.addEventListener("click", (e) => {
+    let foundOption = null;
+    for (let i = 0; i < options.length; i++) {
+      if (options[i].value === search.value) {
+        foundOption = options[i];
+        break;
+      }
+    }
+    if (foundOption) {
+      open(foundOption.dataset.link, "_blank");
+    }
+  });
+}
+
+export function filterProductsByStoredCategory() {
+  let category = localStorage.getItem("category");
+  if (category) {
+    const productCategories =
+      document.getElementsByClassName("product__category");
+    let anyMatches = false;
+
+    for (let categoryElement of productCategories) {
+      const productCard = categoryElement.closest(".col-md-4");
+      if (!productCard) continue;
+      const elementText = categoryElement.dataset.category.toLowerCase();
+      const matchesCategory = elementText.includes(category.toLowerCase());
+      productCard.style.display = matchesCategory ? "block" : "none";
+      if (matchesCategory) anyMatches = true;
+      localStorage.removeItem("category");
+    }
+    if (!anyMatches) {
+      showToast("error", "this product does not exist in the stock right now");
+      document.getElementById("product-container").textContent =
+        "No products found.";
+    }
+    return;
+  }
+}
+
+export function redirectToNotFoundPage(condition) {
+  if (condition) {
+    window.location.href = "/404.html";
+  }
+}
+
+export function loggout() {
+  localStorage.removeItem("token");
+  const users = JSON.parse(localStorage.getItem("users") || []);
+  const updatedUsers = users.map((user) => {
+    const { token, ...rest } = user;
+    return rest;
+  });
+  localStorage.setItem("users", JSON.stringify(updatedUsers));
+  window.location.href = "/customer/home/home.html";
+}
+export function saveUserToLocal(userInstance) {
+  try {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const newUser = userInstance.toJSON();
+
+    if (!newUser || typeof newUser !== "object") {
+      throw new Error("Invalid user data format");
+    }
+
+    if (!newUser.email || !newUser.firstName || !newUser.lastName) {
+      throw new Error("Missing required user fields");
+    }
+
+    const existEmail = users.some(
+      (user) => user && user.email === newUser.email
+    );
+    const existPhone = users.some(
+      (user) => user && user.phone === newUser.phone
+    );
+
+    if (existEmail) {
+      throw new Error("This email already exists");
+    }
+    if (existPhone) {
+      throw new Error("This Phone Number already exists");
+    }
+
+    users.push(newUser);
+    localStorage.setItem("users", JSON.stringify(users));
+
+    return true;
+  } catch (error) {
+    console.error("Failed to save user:", error);
+    showToast("error", error.message);
+    throw error;
+  }
+}
+export class User {
+  static get totalUsers() {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    return users.length;
+  }
+
+  #firstName;
+  #lastName;
+  #email;
+  #phone;
+  #password;
+  #sellerRadio;
+  #userId;
+
+  constructor({
+    first_name,
+    last_name,
+    email,
+    phone_number,
+    password,
+    want_to_be_seller,
+  }) {
+    if (new.target === User) {
+      throw new Error(
+        "User is an abstract class and cannot be instantiated directly."
+      );
+    }
+
+    this.firstName = first_name;
+    this.lastName = last_name;
+    this.email = email;
+    this.phone = phone_number;
+    this.password = password;
+    this.#sellerRadio = want_to_be_seller;
+
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    this.#userId =
+      users.length > 0 ? Math.max(...users.map((user) => user.userId)) + 1 : 1;
+
+    if (typeof saveUserToLocal === "function") {
+      saveUserToLocal(this);
+    } else {
+      throw new Error("Save functionality not available");
+    }
+
+    console.log("Created user:", this);
+  }
+
+  get userId() {
+    return this.#userId;
+  }
+  get password() {
+    return this.#password;
+  }
+  get firstName() {
+    return this.#firstName;
+  }
+  get lastName() {
+    return this.#lastName;
+  }
+  get email() {
+    return this.#email;
+  }
+  get phone() {
+    return this.#phone;
+  }
+  set firstName(value) {
+    if (!validateName(value)) {
+      showToast("error", "Invalid first Name");
+      throw new Error("Validation failed for first name");
+    }
+    this.#firstName = value;
+  }
+  set lastName(value) {
+    if (!validateName(value)) {
+      showToast("error", "Invalid last Name");
+      throw new Error("Validation failed for last name");
+    }
+    this.#lastName = value;
+  }
+  set email(value) {
+    if (!validateEmail(value)) {
+      showToast("error", "Invalid Email");
+      throw new Error("Validation failed for email");
+    }
+    this.#email = value;
+  }
+  set phone(value) {
+    if (!validatePhone(value)) {
+      showToast("error", "Invalid Phone");
+      throw new Error("Validation failed for phone");
+    }
+    this.#phone = value;
+  }
+  set password(value) {
+    if (!validatePassword(value)) {
+      showToast("error", "Invalid Password");
+      throw new Error("Validation failed for password");
+    }
+    this.#password = hashPassword(value);
+  }
+
+  toJSON() {
+    return {
+      userId: this.#userId,
+      firstName: this.#firstName,
+      lastName: this.#lastName,
+      email: this.#email,
+      phone: this.#phone,
+      password: this.#password,
+      want_to_be_seller: this.#sellerRadio,
+      role: "Customer",
+    };
+  }
+
+  print() {
+    console.log(`User ID: ${this.#userId}`);
+  }
+}
+
+export function loginUser() {
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+  const token = localStorage.getItem("token") || [];
+  const user = users.find((user) => user.token === token);
+  return user;
+}
+export function showToast(status, message) {
+  const toast = document.querySelector(".toast");
+  if (!toast) {
+    console.error("Toast element not found in DOM");
+    return;
+  }
+  toast.className = "toast";
+  const icons = {
+    success: "fa-circle-check",
+    error: "fa-triangle-exclamation",
+    warning: "fa-warning",
+    info: "fa-info",
+  };
+  if (!icons[status]) {
+    console.error(`Invalid toast status: ${status}`);
+    return;
+  }
+  toast.innerHTML = `<i class="fa-solid ${icons[status]}"></i> ${message}`;
+  toast.classList.add("show", `toast-${status}`);
+
+  setTimeout(() => toast.classList.remove("show"), 3000);
+}
