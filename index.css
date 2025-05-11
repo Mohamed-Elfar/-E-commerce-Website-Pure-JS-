@@ -105,3 +105,12 @@ body {
     font-size: 0.9rem;
   }
 }
+@media (max-width: 576px) {
+  .progress-bar {
+    width: 90% !important;
+  }
+
+  .welcome-text {
+    font-size: 1.5rem;
+  }
+}
