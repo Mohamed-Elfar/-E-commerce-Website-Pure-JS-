@@ -11,10 +11,6 @@ It provides a simple frontend simulation for Customers, Sellers, and Admins.
 
 ---
 
-## 📂 Project Structure
-
----
-
 ## 🚀 Technologies Used
 
 - **HTML5**
