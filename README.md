@@ -15,47 +15,38 @@ _(Replace this link with your deployed project URL)_
 ## 📂 Project Structure
 
 ```
- E-commerce Website(Pure JS)/
-├── index.html               # Home page (for Customers)
-├── login.html                # Login page (for all actors)
-├── register.html             # Registration page (optional)
-│
-├── customer/
-│   ├── catalog.html          # Browse products
-│   ├── cart.html             # Shopping cart
-│   ├── checkout.html         # Checkout process
-│   ├── orders.html           # Order history
-│
-├── seller/
-│   ├── dashboard.html        # Seller dashboard
-│   ├── add-product.html      # Add new product
-│   ├── manage-products.html  # Manage existing products
-│   ├── orders.html           # View customer orders
-│
-├── admin/
-│   ├── dashboard.html        # Admin panel
-│   ├── manage-users.html     # Manage users (sellers & customers)
-│   ├── manage-products.html  # Moderate product listings
-│
-├── assets/
-│   ├── css/
-│   │   ├── bootstrap.min.css
-│   │   ├── fontawesome.min.css
-│   │   └── style.css
-│   │
-│   ├── js/
-│   │   ├── main.js
-│   │   ├── customer.js
-│   │   ├── seller.js
-│   │   └── admin.js
-│   │
-│   ├── images/
-│   │   └── (product images, logos, etc.)
-│   │
-│   ├── webfonts/
-│       └── (FontAwesome fonts)
-│
-└── README.md                 # Project Documentation
+/E-commerce-root
+├── /assets          
+├── /admin
+│   └── dashnoard.html 
+│    
+├── /authentication    
+│   ├── login.html   
+│   ├── register.html  
+│   └── forgetPssword.html
+│      
+├── /custommer
+│   ├── profile.html   
+│   ├── cart.html  
+│   ├── products.html  
+│   ├── checkout.html  
+│   ├── orders.html  
+│   ├── home.html  
+│   ├── wishlist.html  
+│   ├── contact.html  
+│   .........
+│  
+├── /seller
+│   ├── dashboard.html   
+│   ├── analytics.html  
+│   ├── orders.html  
+│   └── products-managements.html   
+│  
+└── 404.html 
+│       
+└── index.html 
+│        # intro page
+└──README.md          # Project Documentation
 ```
 
 ---
