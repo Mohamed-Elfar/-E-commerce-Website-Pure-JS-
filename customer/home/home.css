@@ -244,6 +244,7 @@ hr {
 .product__overlay {
     height: 41px;
     align-content: center;
+    cursor: pointer;
 }
 
 .product__badge:hover .product__overlay {
@@ -279,6 +280,7 @@ hr {
     align-items: center;
     justify-content: center;
     transition: background-color 0.3s ease;
+    cursor: pointer;
 }
 
 .product__icon-container:hover {
