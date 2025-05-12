@@ -62,15 +62,15 @@ function displayProductDetails() {
     }
   }
   /* other data */
-  productName.textContent = product?.name;
-  productPrice.textContent = `$${product?.price.toFixed(2)}`;
-  productQuantity.textContent += product?.quantity;
-  productDesc.textContent = product?.description;
+  productName.textContent = product.name;
+  productPrice.textContent = `$${product.price.toFixed(2)}`;
+  productQuantity.textContent += product.quantity;
+  productDesc.textContent = product.description;
   /* reviews */
-  reviewsNumber.textContent = product?.reviews?.length || 0;
+  reviewsNumber.textContent = product.reviews?.length || 0;
   if (product.reviews.length > 0) {
     let reviewItem = "";
-    product?.reviews.forEach((review) => {
+    product.reviews.forEach((review) => {
       reviewItem += `
       <li class="mb-3 border-bottom pb-2">
       <strong>${review.username}</strong>
@@ -114,7 +114,7 @@ addReviewBtn.addEventListener("click", function () {
   }
 
   const users = JSON.parse(localStorage.getItem("users") || []);
-  const currentUser = users?.find((user) => user?.token === token);
+  const currentUser = users.find((user) => user.token === token);
   console.log(currentUser);
   if (!currentUser) {
     showToast("error", "invalid user, please login again !");
@@ -132,7 +132,7 @@ addReviewBtn.addEventListener("click", function () {
     comment: comment,
   };
 
-  product?.reviews.push(newReview);
+  product.reviews.push(newReview);
 
   const updatedProducts = products.map((p) =>
     p.id === product.id ? product : p
@@ -175,10 +175,10 @@ function updateQuantityAndPrice() {
     addToCartBtn.disabled = true;
     addToCartBtn.textContent = "Sold Out";
   }
-  user?.role === "Admin" || parseInt(product?.createdBy) === user?.userId
+  user.role === "Admin" || parseInt(product?.createdBy) === user.userId
     ? (addToCartBtn.disabled = true)
     : (addToCartBtn.disabled = false);
-  if (parseInt(product?.createdBy) === user?.userId) {
+  if (parseInt(product?.createdBy) === user.userId) {
     addToCartBtn.textContent = "u can't buy ur product";
   }
   const total = currentCount * product.price;

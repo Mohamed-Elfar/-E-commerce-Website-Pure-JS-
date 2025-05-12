@@ -45,7 +45,7 @@ fetch("../../assets/data/products.json")
                 product.sale ? "" : "visibility: hidden"
               }">${product.sale}</div>
               <div class="product__icons">
-                <a  class="border-0" ${user?.userId === parseInt(product.createdBy) || user?.role === "Admin" ? "disabled" : ""}>
+                <a  class="border-0" ${user.userId === parseInt(product.createdBy) || user.role === "Admin" ? "disabled" : ""}>
                   <div class="product__icon-container">
                     <i class="product__icon fa-heart ${
                       isWished ? "active fa-solid" : "fa-regular"

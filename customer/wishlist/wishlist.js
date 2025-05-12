@@ -2,7 +2,7 @@ import {
   addToCart,
   search,
   showToast,
-  filterProductsByStoredCategory,
+  updateBadges,
 } from "../../assets/js/utils.js";
  
 function renderWishlistProducts() {
@@ -80,16 +80,22 @@ const allProducts = JSON.parse(localStorage.getItem("allProducts")) || [];
         </div>
       `;
 
- card.querySelector(".cartBTn").addEventListener("click", () => addToCart(product));
-  const deleteBtn = card.querySelector(".fa-trash");
-  deleteBtn.onclick = () => {
-   const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-   const updatedWishlist = wishlist.filter(item => item !== product.id.toString());
-   localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
-   renderWishlistProducts(); 
-};
-      wishlistContainer.appendChild(card);
-});
+    card
+      .querySelector(".cartBTn")
+      .addEventListener("click", () => addToCart(product));
+    const deleteBtn = card.querySelector(".fa-trash");
+    deleteBtn.onclick = () => {
+      const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+      const updatedWishlist = wishlist.filter(
+        (item) => item !== product.id.toString()
+      );
+      localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
+      showToast("success", "Product removed from wishlist");
+      renderWishlistProducts();
+      updateBadges();
+    };
+    wishlistContainer.appendChild(card);
+  });
 }
 
 document.getElementById("AddALlToCart").addEventListener("click", () => {

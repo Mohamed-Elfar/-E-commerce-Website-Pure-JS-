@@ -230,7 +230,7 @@ export function loggout() {
     return rest;
   });
   localStorage.setItem("users", JSON.stringify(updatedUsers));
-  window.location.href = "/customer/home/home.html";
+  window.location.href = "/customer/products/products.html";
 }
 export function saveUserToLocal(userInstance) {
   try {

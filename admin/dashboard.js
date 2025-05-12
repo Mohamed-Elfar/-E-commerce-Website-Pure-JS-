@@ -101,14 +101,14 @@ function setupSectionToggles() {
 // Dashboard Rendering
 function renderDashboard() {
   const user = loginUser();
-  elements.userDisplay.name.textContent = `${user?.firstName} ${user?.lastName}`;
+  elements.userDisplay.name.textContent = `${user.firstName} ${user.lastName}`;
 
   // Calculate revenue and orders
   let sum = 0;
   let allOrders = 0;
 
   users.forEach((user) => {
-    user?.orders?.forEach((order) => {
+    user.orders?.forEach((order) => {
       allOrders++;
       sum += Number(order.total) || 0;
     });
@@ -156,7 +156,7 @@ function renderDashboard() {
   }
 
   // Total users
-  const totalUsersCount = users?.length > 0 ? users?.length - 1 : 0;
+  const totalUsersCount = users.length > 0 ? users.length - 1 : 0;
   elements.userDisplay.users.textContent = totalUsersCount;
 
   // Top selling products
@@ -168,8 +168,8 @@ function renderDashboard() {
 function renderTopSellingProducts() {
   const productCounts = {};
 
-  users?.forEach((user) => {
-    user?.orders?.forEach((order) => {
+  users.forEach((user) => {
+    user.orders?.forEach((order) => {
       order.products?.forEach((product) => {
         if (!productCounts[product.id]) {
           productCounts[product.id] = { ...product, count: 0 };
@@ -229,8 +229,8 @@ function renderTopSellingProducts() {
 function renderFlashSaleProducts() {
   const productCounts = {};
 
-  users?.forEach((user) => {
-    user?.orders?.forEach((order) => {
+  users.forEach((user) => {
+    user.orders?.forEach((order) => {
       order.products?.forEach((product) => {
         if (!productCounts[product.id]) {
           productCounts[product.id] = product.count || 0;
@@ -312,8 +312,8 @@ function setupCharts() {
   // Sales Chart
   const dailySales = Array(7).fill(0);
 
-  users?.forEach((user) => {
-    user?.orders?.forEach((order) => {
+  users.forEach((user) => {
+    user.orders?.forEach((order) => {
       const day = new Date(order.date).getDay();
       dailySales[day > 6 ? 0 : day] += Number(order.total) || 0;
     });
@@ -392,37 +392,37 @@ function renderUserSection() {
   usersAccordion.innerHTML = "";
 
   // Skip first user (admin)
-  users?.slice(1).forEach((user) => {
-    const userId = user?.userId;
+  users.slice(1).forEach((user) => {
+    const userId = user.userId;
     const userRoleClass =
-      user?.role === "Seller" ? "role-seller" : "role-customer";
+      user.role === "Seller" ? "role-seller" : "role-customer";
 
     usersAccordion.innerHTML += `
       <div class="accordion-item mb-2">
         <h2 class="accordion-header" id="heading-${userId}">
           <button class="accordion-button" type="button" data-bs-toggle="collapse" 
             data-bs-target="#collapse-${userId}" aria-expanded="false" aria-controls="collapse-${userId}">
-            ${user?.firstName} ${user?.lastName}
-            <span class="user-role ${userRoleClass}">${user?.role}</span>
+            ${user.firstName} ${user.lastName}
+            <span class="user-role ${userRoleClass}">${user.role}</span>
           </button>
         </h2>
         <div id="collapse-${userId}" class="accordion-collapse collapse" 
           aria-labelledby="heading-${userId}" data-bs-parent="#usersAccordion">
           <div class="accordion-body">
             <div class="user-info-item">
-              <span class="user-info-label">First Name:</span> ${user?.firstName}
+              <span class="user-info-label">First Name:</span> ${user.firstName}
             </div>
             <div class="user-info-item">
-              <span class="user-info-label">Last Name:</span> ${user?.lastName}
+              <span class="user-info-label">Last Name:</span> ${user.lastName}
             </div>
             <div class="user-info-item">
-              <span class="user-info-label">Email:</span> ${user?.email}
+              <span class="user-info-label">Email:</span> ${user.email}
             </div>
             <div class="user-info-item">
-              <span class="user-info-label">Phone:</span> ${user?.phone}
+              <span class="user-info-label">Phone:</span> ${user.phone}
             </div>
             <div class="user-info-item">
-              <span class="user-info-label">Role:</span> ${user?.role}
+              <span class="user-info-label">Role:</span> ${user.role}
             </div>
             <div class="mt-3">
               <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-${userId}">
@@ -449,31 +449,31 @@ function renderUserSection() {
                 <div class="mb-3">
                   <label class="form-label">First Name</label>
                   <input type="text" class="form-control" id="modal-${userId}-firstName" 
-                    value="${user?.firstName}" required>
+                    value="${user.firstName}" required>
                 </div>
                 <div class="mb-3">
                   <label class="form-label">Last Name</label>
                   <input type="text" class="form-control" id="modal-${userId}-lastName" 
-                    value="${user?.lastName}" required>
+                    value="${user.lastName}" required>
                 </div>
                 <div class="mb-3">
                   <label class="form-label">Email</label>
                   <input type="email" class="form-control" id="modal-${userId}-email" 
-                    value="${user?.email}" required>
+                    value="${user.email}" required>
                 </div>
                 <div class="mb-3">
                   <label class="form-label">Phone</label>
                   <input type="tel" class="form-control" id="modal-${userId}-phone" 
-                    value="${user?.phone}" required>
+                    value="${user.phone}" required>
                 </div>
                 <div class="mb-3">
                   <label class="form-label">Role</label>
                   <select class="form-select" id="modal-${userId}-role" required>
                     <option value="Customer" ${
-                      user?.role === "Customer" ? "selected" : ""
+                      user.role === "Customer" ? "selected" : ""
                     }>Customer</option>
                     <option value="Seller" ${
-                      user?.role === "Seller" ? "selected" : ""
+                      user.role === "Seller" ? "selected" : ""
                     }>Seller</option>
                   </select>
                 </div>
@@ -498,7 +498,7 @@ function renderSellerApplications() {
   const pendingBadge = document.querySelector(".pending");
   const noPendingMessage = document.querySelector(".noPending");
 
-  const wantedSellers = users?.filter((user) => user?.want_to_be_seller);
+  const wantedSellers = users.filter((user) => user.want_to_be_seller);
   pendingBadge.textContent = `${wantedSellers.length} pending`;
 
   if (wantedSellers.length === 0) {
@@ -512,13 +512,13 @@ function renderSellerApplications() {
     .map(
       (user) => `
     <div class="request-item">
-      <div class="request-username">${user?.firstName} ${user?.lastName}</div>
-      <div class="request-email">${user?.email}</div>
+      <div class="request-username">${user.firstName} ${user.lastName}</div>
+      <div class="request-email">${user.email}</div>
       <div class="mt-2">
-        <button class="btn btn-success btn-accept" onclick="window.approveSeller(${user?.userId})">
+        <button class="btn btn-success btn-accept" onclick="window.approveSeller(${user.userId})">
           <i class="fas fa-check me-1" aria-hidden="true"></i> Approve
         </button>
-        <button class="btn btn-danger btn-reject" onclick="window.rejectSeller(${user?.userId})">
+        <button class="btn btn-danger btn-reject" onclick="window.rejectSeller(${user.userId})">
           <i class="fas fa-times me-1" aria-hidden="true"></i> Reject
         </button>
       </div>
@@ -547,18 +547,18 @@ window.saveUserChanges = async function (userId) {
     };
 
     // Validation
-    if (!validateName(inputs?.firstName) || !validateName(inputs.lastName)) {
+    if (!validateName(inputs.firstName) || !validateName(inputs.lastName)) {
       throw new Error("Please enter valid names");
     }
-    if (!validateEmail(inputs?.email)) {
+    if (!validateEmail(inputs.email)) {
       throw new Error("Please enter a valid email");
     }
-    if (!validatePhone(inputs?.phone)) {
+    if (!validatePhone(inputs.phone)) {
       throw new Error("Please enter a valid phone number");
     }
 
     // Update user
-    const userIndex = users?.findIndex((u) => u.userId === userId);
+    const userIndex = users.findIndex((u) => u.userId === userId);
     if (userIndex === -1) throw new Error("User not found");
 
     users[userIndex] = { ...users[userIndex], ...inputs };
@@ -585,15 +585,15 @@ window.deleteUser = async function (userId) {
 
   if (!result.isConfirmed) return;
 
-  users = users?.filter((u) => u.userId !== userId);
+  users = users.filter((u) => u.userId !== userId);
   localStorage.setItem("users", JSON.stringify(users));
 
-  await Swal?.fire("Deleted!", "User has been deleted.", "success");
+  await Swal.fire("Deleted!", "User has been deleted.", "success");
   renderUserSection();
 };
 
 window.approveSeller = async function (userId) {
-  const userIndex = users?.findIndex((u) => u.userId === userId);
+  const userIndex = users.findIndex((u) => u.userId === userId);
   if (userIndex === -1) return;
 
   users[userIndex] = {
@@ -603,7 +603,7 @@ window.approveSeller = async function (userId) {
   };
 
   localStorage.setItem("users", JSON.stringify(users));
-  await Swal?.fire("Approved!", "User is now a seller.", "success");
+  await Swal.fire("Approved!", "User is now a seller.", "success");
   renderSellerApplications();
   renderUserSection();
 };
@@ -618,7 +618,7 @@ window.rejectSeller = async function (userId) {
   };
 
   localStorage.setItem("users", JSON.stringify(users));
-  await Swal?.fire("Rejected!", "Seller request rejected.", "success");
+  await Swal.fire("Rejected!", "Seller request rejected.", "success");
   renderSellerApplications();
 };
 

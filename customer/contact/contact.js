@@ -10,16 +10,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const user = loginUser();
   const form = document.querySelector("form.needs-validation");
   const submitBtn = document.querySelector("#submitBtn");
-  if (user?.role === "Admin") submitBtn.setAttribute("disabled", "true");
+  if (user.role === "Admin") submitBtn.setAttribute("disabled", "true");
   const nameInput = form.name;
   const emailInput = form.email;
   const phoneInput = form.phone;
   const messageInput = form.message;
 
   if (user) {
-    if (nameInput) nameInput.value = user?.firstName || "";
-    if (emailInput) emailInput.value = user?.email || "";
-    if (phoneInput) phoneInput.value = user?.phone || "";
+    if (nameInput) nameInput.value = user.firstName || "";
+    if (emailInput) emailInput.value = user.email || "";
+    if (phoneInput) phoneInput.value = user.phone || "";
   }
 
   form.addEventListener("submit", (event) => {
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
       phone: phoneInput?.value.trim() || "",
       message: messageInput?.value.trim() || "",
       date: formatDate(new Date()),
-      role: user?.role,
+      role: user.role,
     };
 
     if (validateForm(formData)) {

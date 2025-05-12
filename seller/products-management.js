@@ -179,14 +179,14 @@ document.getElementById("confirmDeleteBtn").addEventListener("click", () => {
 });
 
 function displayProducts() {
-  const tbody = document.querySelector("table tbody");
-  const container = document.getElementById("productCards");
+  const tbody = document.querySelector('table tbody');
+  const container = document.getElementById('productCards');
   const sellerProducts = fetchSellerProducts();
-  container.innerHTML = "";
-  tbody.innerHTML = "";
+  container.innerHTML = '';
+  tbody.innerHTML = '';
   sellerProducts.map((product) => {
-    const card = document.createElement("div");
-    card.className = "col mb-4";
+    const card = document.createElement('div');
+    card.className = 'col mb-4';
     card.innerHTML = `
         <div class="card h-100 border-0 shadow-sm p-3">
           <div class="d-flex flex-sm-row flex-column position-relative">
@@ -194,24 +194,18 @@ function displayProducts() {
                  class="p-1 w-100 w-sm-auto" 
                  style="height: 160px; max-width: 160px; object-fit: contain; background: linear-gradient(145deg, #f8f9fa, #e9ecef);" 
                  alt="${product.name}" 
-                 onerror="this.src='https:
+                 onerror="this.src='https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?t=st=1746629522~exp=1746633122~hmac=d7ab6887b8e97559468627d4f72ce44616d158a31eb77d05b688edf831fef7e3&w=826'">
             <div class="card-body p-3">
               <div class="d-flex flex-column-reverse flex-sm-row">
              <div class="">
               <h5 class="card-title fs-5 fw-semibold">${product.name}</h5>
-              <p class="card-text text-muted fs-6 mb-1">${
-                product.description
-              }}</p>
+              <p class="card-text text-muted fs-6 mb-1">${product.description}}</p>
              </div>
             <div class="d-flex align-items-start mb-2">
-                <button aria-label="Update Product" type="button" class="btn btn-sm btn-outline-primary mx-2 update-btn" data-id="${
-                  product.id
-                }">
+                <button aria-label="Update Product" type="button" class="btn btn-sm btn-outline-primary mx-2 update-btn" data-id="${product.id}">
                   <i class="fas fa-edit"></i>
                 </button>
-                <button aria-label="Delete Product" type="button" class="btn btn-sm btn-outline-danger delete-btn" data-id="${
-                  product.id
-                }">
+                <button aria-label="Delete Product" type="button" class="btn btn-sm btn-outline-danger delete-btn" data-id="${product.id}">
                   <i class="fas fa-trash-alt"></i>
                 </button>
                 
@@ -220,34 +214,18 @@ function displayProducts() {
 
               <div class="row g-2 d-flex flex-column flex-sm-row">
                 <div class="col-6">
-                  <p class="card-text fs-6"><strong>Category:</strong> ${
-                    product.category
-                  }</p>
-                  <p class="card-text fs-6"><strong>Price:</strong> $${parseFloat(
-                    product.price
-                  ).toFixed(2)}</p>
+                  <p class="card-text fs-6"><strong>Category:</strong> ${product.category}</p>
+                  <p class="card-text fs-6"><strong>Price:</strong> $${parseFloat(product.price).toFixed(2)}</p>
                   <p class="card-text fs-6">
                     <strong>Discount:</strong> 
-                    ${
-                      product.sale
-                        ? `<span class="badge bg-danger">${product.sale}%</span>`
-                        : "-"
-                    }
+                    ${product.sale ? `<span class="badge bg-danger">${product.sale}%</span>` : '-'}
                   </p>
                 </div>
                 <div class="col-6">
                   <p class="card-text fs-6">
                     <strong>Stock:</strong> 
-                    <span class="badge ${
-                      Number(product.quantity) > 0
-                        ? "bg-success bg-opacity-10 text-success"
-                        : "bg-danger bg-opacity-10 text-danger"
-                    }">
-                      ${
-                        Number(product.quantity) > 0
-                          ? product.quantity + " in Stock"
-                          : "Out of Stock"
-                      }
+                    <span class="badge ${Number(product.quantity) > 0 ? 'bg-success bg-opacity-10 text-success' : 'bg-danger bg-opacity-10 text-danger'}">
+                      ${Number(product.quantity) > 0 ? product.quantity + ' in Stock' : 'Out of Stock'}
                     </span>
                   </p>
                   <p class="card-text fs-6">
@@ -257,9 +235,7 @@ function displayProducts() {
                       (${product.ratingCount})
                     </span>
                   </p>
-                  <p class="card-text fs-6"><strong>Reviews:</strong> ${
-                    product.reviews.length
-                  }</p>
+                  <p class="card-text fs-6"><strong>Reviews:</strong> ${product.reviews.length}</p>
                 </div>
               </div>
             </div>
@@ -269,46 +245,25 @@ function displayProducts() {
     container.insertBefore(card, container.firstChild);
   });
   sellerProducts.map((product) => {
-    const row = document.createElement("tr");
+    const row = document.createElement('tr');
     row.innerHTML = `
         <td>${product.id}</td>
         <td class="d-flex align-items-center justify-content-center">
           <div class="d-flex align-items-center text-start">
-              <img src="${
-                product.image
-              }" class="product-img img-fluid me-3" style="width: 70px;" alt="${
-      product.name
-    }" 
-                 onerror="this.src='https:
+              <img src="${product.image}" class="product-img img-fluid me-3" style="width: 70px;" alt="${product.name}" 
+                 onerror="this.src='https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg?t=st=1746629522~exp=1746633122~hmac=d7ab6887b8e97559468627d4f72ce44616d158a31eb77d05b688edf831fef7e3&w=826'">
               <div>
-                 <div class="fw-medium fs-7">${product.name.substring(0, 30)}${
-      product.name.length > 30 ? "..." : ""
-    }</div>
-              <small class="text-muted">${product.description.substring(
-                0,
-                30
-              )}${product.description.length > 30 ? "..." : ""}</small>
+                 <div class="fw-medium fs-7">${product.name.substring(0, 30)}${product.name.length > 30 ? '...' : ''}</div>
+              <small class="text-muted">${product.description.substring(0, 30)}${product.description.length > 30 ? '...' : ''}</small>
           </div>
           </div>
         </td>
         <td>${product.category}</td>
         <td>$${parseFloat(product.price).toFixed(2)}</td>
-        <td> ${
-          product.sale
-            ? `<span class="badge bg-danger">${product.sale}%</span>`
-            : "-"
-        }</td>
+        <td> ${product.sale ? `<span class="badge bg-danger">${product.sale}%</span>` : '-'}</td>
         <td>
-         <span class="badge ${
-           Number(product.quantity) > 0
-             ? "bg-success bg-opacity-10 text-success"
-             : "bg-danger bg-opacity-10 text-danger"
-         }">
-          ${
-            Number(product.quantity) > 0
-              ? product.quantity + " in Stock"
-              : "Out of Stock"
-          }
+         <span class="badge ${Number(product.quantity) > 0 ? 'bg-success bg-opacity-10 text-success' : 'bg-danger bg-opacity-10 text-danger'}">
+          ${Number(product.quantity) > 0 ? product.quantity + ' in Stock' : 'Out of Stock'}
         </span>
         </td>
         <td>
@@ -320,14 +275,10 @@ function displayProducts() {
         <td>${product.reviews.length}</td>
         <td>
           <div class="action-btns d-flex">
-            <button aria-label="Update Product" type="button" class="btn btn-sm btn-outline-primary me-2 update-btn" data-id="${
-              product.id
-            }">
+            <button aria-label="Update Product" type="button" class="btn btn-sm btn-outline-primary me-2 update-btn" data-id="${product.id}">
               <i class="fas fa-edit"></i>
             </button>
-            <button aria-label="Delete Product" type="button" class="btn btn-sm btn-outline-danger delete-btn" data-id="${
-              product.id
-            }">
+            <button aria-label="Delete Product" type="button" class="btn btn-sm btn-outline-danger delete-btn" data-id="${product.id}">
               <i class="fas fa-trash-alt"></i>
             </button>
           </div>
@@ -335,7 +286,7 @@ function displayProducts() {
       `;
     tbody.insertBefore(row, tbody.firstChild);
   });
-}
+};
 displayProducts();
 
 document.querySelectorAll(".modal-close-btn").forEach((element) => {
