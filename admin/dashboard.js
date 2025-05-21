@@ -5,7 +5,7 @@ import {
   validateEmail,
 } from "/assets/js/utils.js";
 const user = loginUser();
-if (user.role !== "Admin") {
+if (user.role !== "Admin" || !user) {
   window.location.href = "/customer/home/home.html";
 }
 // DOM Elements
