@@ -219,6 +219,8 @@ export function redirectToNotFoundPage(condition) {
 
 export function loggout() {
   localStorage.removeItem("token");
+  localStorage.removeItem('wishlist')
+  localStorage.removeItem('cart')
   const users = JSON.parse(localStorage.getItem("users") || []);
   const updatedUsers = users.map((user) => {
     const { token, ...rest } = user;

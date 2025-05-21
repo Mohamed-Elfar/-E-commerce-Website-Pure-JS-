@@ -1,1 +1,1154 @@
-import{loginUser,validateName,validatePhone,validateEmail}from"/assets/js/utils.js";const elements={sidebar:{container:document.getElementById("sidebarContainer"),sidebar:document.getElementById("sidebar"),openBtn:document.getElementById("openSidebar"),closeBtn:document.getElementById("closeSidebar")},mainContent:document.getElementById("mainContent"),userDisplay:{name:document.getElementById("userName"),revenue:document.querySelector(".TotalRevenue"),revenueRate:document.querySelector(".TotalRevenueRate"),inStock:document.querySelector(".inStock"),orders:document.querySelector(".totalOrders"),products:document.querySelector(".topSellingProducts"),totalProductsNum:document.querySelector(".totalProductsNum"),users:document.querySelector(".totalUsers"),flashTable:document.querySelector("table > tbody"),allProducts:document.querySelector(".allProducts")}};let users=JSON.parse(localStorage.getItem("users"))||[];const sellers=users.filter((e=>"Seller"===e.role));let allProducts=JSON.parse(localStorage.getItem("allProducts"))||[];function init(){setupSidebar(),setupSectionToggles(),renderDashboard(),setupCharts(),startFlashSaleTimer(),renderUserSection(),renderProductSection()}function setupSidebar(){const{container:e,openBtn:t,closeBtn:s}=elements.sidebar;e.classList.contains("collapsed")?(t.style.display="block",s.style.display="none",elements.mainContent.classList.add("full")):(t.style.display="none",s.style.display="block",elements.mainContent.classList.remove("full")),elements.sidebar.openBtn.addEventListener("click",(()=>toggleSidebar(!1))),elements.sidebar.closeBtn.addEventListener("click",(()=>toggleSidebar(!0)))}function toggleSidebar(e){const{container:t,openBtn:s,closeBtn:n}=elements.sidebar;t.classList.toggle("collapsed",e),elements.mainContent.classList.toggle("full",e),s.style.display=e?"block":"none",n.style.display=e?"none":"block"}function setupSectionToggles(){document.querySelectorAll(".section-toggle-btn").forEach((e=>{e.addEventListener("click",(function(){const e=this.getAttribute("data-show");for(let e of document.querySelectorAll(".section-toggle-btn"))e.classList.remove("active");this.classList.add("active"),Array.from(elements.mainContent.children).forEach((e=>{e.classList.add("d-none"),e.classList.remove("active")})),document.getElementById(e)?.classList.remove("d-none")}))}))}function renderDashboard(){const e=loginUser();elements.userDisplay.name.textContent=`${e?.firstName} ${e?.lastName}`;let t=0,s=0;users.forEach((e=>{e?.orders?.forEach((e=>{s++,t+=Number(e.total)||0}))})),elements.userDisplay.revenue.textContent=`$${t.toFixed(2)}`,elements.userDisplay.orders.textContent=s;const n=parseFloat(localStorage.getItem("totalRevenuePrevDay"))||0;let a=0;n&&(a=0===n?0:(t-n)/n*100,Math.abs(a)<.001&&(a=0)),elements.userDisplay.revenueRate.classList.add(a>=0?"text-success":"text-danger"),elements.userDisplay.revenueRate.innerHTML=a>=0?`<i class="fas fa-arrow-up" aria-hidden="true"></i> ${Math.abs(a).toFixed(2)}% from last day`:`<i class="fas fa-arrow-down" aria-hidden="true"></i> ${Math.abs(a).toFixed(2)}% from last day`;const r=allProducts.filter((e=>e.quantity>0)).length;elements.userDisplay.totalProductsNum.textContent=allProducts.length;const o=allProducts.length-r;o>0?(elements.userDisplay.inStock.classList.remove("d-none"),elements.userDisplay.inStock.innerHTML=`<i class="fas fa-arrow-down" aria-hidden="true"></i> ${o} items low stock`):elements.userDisplay.inStock.classList.add("d-none");const l=users?.length>0?users?.length-1:0;elements.userDisplay.users.textContent=l,renderTopSellingProducts(),renderFlashSaleProducts()}function renderTopSellingProducts(){const e={};users?.forEach((t=>{t?.orders?.forEach((t=>{t.products?.forEach((t=>{e[t.id]||(e[t.id]={...t,count:0}),e[t.id].count+=t.count||0}))}))}));const t=Object.values(e).sort(((e,t)=>t.count-e.count)).slice(0,4);elements.userDisplay.products.innerHTML=t.map((e=>`\n    <div class="col-sm-6 col-md-6 col-lg-6 mb-3">\n      <div class="card product-card h-100">\n        <img src="${e.image}" class="card-img-top w-50" alt="Product" loading ="lazy"/>\n        ${e.sale.trim()?`<span class="discount-badge">${e.sale} OFF</span>`:""}\n        <div class="card-body">\n          <h6 class="card-title">${e.name}</h6>\n          <div class="d-flex justify-content-between align-items-center">\n            <div>\n              <span class="text-danger"> $${e.sale.trim()?parseFloat(e.price)*(1-parseFloat(e.sale)/100):e.price}</span>\n              ${e.sale?.trim()?`\n                <span class="text-muted text-decoration-line-through ms-2">\n                  $${e.price}\n                </span>\n              `:""}\n            </div>\n            <span class="text-muted small">${e.count} sold</span>\n          </div>\n        </div>\n      </div>\n    </div>\n  `)).join("")}function renderFlashSaleProducts(){const e={};users?.forEach((t=>{t?.orders?.forEach((t=>{t.products?.forEach((t=>{e[t.id]?e[t.id]+=t.count||0:e[t.id]=t.count||0}))}))}));const t=allProducts.filter((e=>e.sale)).sort(((e,t)=>parseFloat(t.sale)-parseFloat(e.sale)));elements.userDisplay.flashTable.innerHTML=t.map((t=>`\n    <tr>\n      <td>${t.name}</td>\n      <td>\n        <span class="badge ${parseFloat(t.sale)>15?"bg-danger bg-opacity-10 text-danger":"bg-success bg-opacity-10 text-success"}">\n          ${t.sale}\n        </span>\n      </td>\n      <td>${e[t.id]||0}</td>\n      <td>$${t.price}</td>\n    </tr>\n  `)).join("")}function setupCharts(){const e=document.getElementById("categoryChart").getContext("2d");new Chart(e,{type:"doughnut",data:{labels:["Men & Fashion","Electronics","Home & Lifestyle","Medicine","Sports & Outdoor"],datasets:[{data:[0,100,0,0,0],backgroundColor:["#3498db","#2ecc71","#9b59b6","#f1c40f","#e74c3c"],borderWidth:0}]},options:{responsive:!0,maintainAspectRatio:!1,plugins:{legend:{position:"right"},tooltip:{callbacks:{label:e=>`${e.label}: ${e.raw}%`}}}}});const t=Array(7).fill(0);users?.forEach((e=>{e?.orders?.forEach((e=>{const s=new Date(e.date).getDay();t[s>6?0:s]+=Number(e.total)||0}))}));const s=document.getElementById("salesChart").getContext("2d");new Chart(s,{type:"line",data:{labels:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],datasets:[{label:"Sales",data:t,backgroundColor:"rgba(75, 192, 192, 0.2)",borderColor:"rgba(75, 192, 192, 1)",borderWidth:2,tension:.4,fill:!0}]},options:{responsive:!0,maintainAspectRatio:!1,plugins:{legend:{position:"top"},tooltip:{mode:"index",intersect:!1}},scales:{y:{beginAtZero:!0,ticks:{callback:e=>`$${e}`}}}}})}function startFlashSaleTimer(){const e={hours:document.getElementById("flashSaleHours"),minutes:document.getElementById("flashSaleMinutes"),seconds:document.getElementById("flashSaleSeconds")};let t={h:parseInt(e.hours.textContent),m:parseInt(e.minutes.textContent),s:parseInt(e.seconds.textContent)};setInterval((()=>{t.s--,t.s<0&&(t.s=59,t.m--,t.m<0&&(t.m=59,t.h--)),e.hours.textContent=t.h.toString().padStart(2,"0"),e.minutes.textContent=t.m.toString().padStart(2,"0"),e.seconds.textContent=t.s.toString().padStart(2,"0")}),1e3)}function renderUserSection(){const e=document.getElementById("usersAccordion");e.innerHTML="",users?.slice(1).forEach((t=>{const s=t?.userId,n="Seller"===t?.role?"role-seller":"role-customer";e.innerHTML+=`\n      <div class="accordion-item mb-2">\n        <h2 class="accordion-header" id="heading-${s}">\n          <button class="accordion-button" type="button" data-bs-toggle="collapse" \n            data-bs-target="#collapse-${s}" aria-expanded="false" aria-controls="collapse-${s}">\n            ${t?.firstName} ${t?.lastName}\n            <span class="user-role ${n}">${t?.role}</span>\n          </button>\n        </h2>\n        <div id="collapse-${s}" class="accordion-collapse collapse" \n          aria-labelledby="heading-${s}" data-bs-parent="#usersAccordion">\n          <div class="accordion-body">\n            <div class="user-info-item">\n              <span class="user-info-label">First Name:</span> ${t?.firstName}\n            </div>\n            <div class="user-info-item">\n              <span class="user-info-label">Last Name:</span> ${t?.lastName}\n            </div>\n            <div class="user-info-item">\n              <span class="user-info-label">Email:</span> ${t?.email}\n            </div>\n            <div class="user-info-item">\n              <span class="user-info-label">Phone:</span> ${t?.phone}\n            </div>\n            <div class="user-info-item">\n              <span class="user-info-label">Role:</span> ${t?.role}\n            </div>\n            <div class="mt-3">\n              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-${s}">\n                <i class="fas fa-edit me-1" aria-hidden="true"></i> Edit\n              </button>\n              <button class="btn btn-danger ms-2" onclick="window.deleteUser(${s})">\n                <i class="fas fa-trash-alt me-1" aria-hidden="true"></i> Delete\n              </button>\n            </div>\n          </div>\n        </div>\n      </div>\n\n      \x3c!-- User Modal --\x3e\n      <div class="modal fade" id="modal-${s}" tabindex="-1" aria-hidden="true">\n        <div class="modal-dialog">\n          <div class="modal-content">\n            <div class="modal-header">\n              <h5 class="modal-title">Edit User</h5>\n              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>\n            </div>\n            <div class="modal-body">\n              <form onsubmit="window.saveUserChanges(${s}); return false;">\n                <div class="mb-3">\n                  <label class="form-label">First Name</label>\n                  <input type="text" class="form-control" id="modal-${s}-firstName" \n                    value="${t?.firstName}" required>\n                </div>\n                <div class="mb-3">\n                  <label class="form-label">Last Name</label>\n                  <input type="text" class="form-control" id="modal-${s}-lastName" \n                    value="${t?.lastName}" required>\n                </div>\n                <div class="mb-3">\n                  <label class="form-label">Email</label>\n                  <input type="email" class="form-control" id="modal-${s}-email" \n                    value="${t?.email}" required>\n                </div>\n                <div class="mb-3">\n                  <label class="form-label">Phone</label>\n                  <input type="tel" class="form-control" id="modal-${s}-phone" \n                    value="${t?.phone}" required>\n                </div>\n                <div class="mb-3">\n                  <label class="form-label">Role</label>\n                  <select class="form-select" id="modal-${s}-role" required>\n                    <option value="Customer" ${"Customer"===t?.role?"selected":""}>Customer</option>\n                    <option value="Seller" ${"Seller"===t?.role?"selected":""}>Seller</option>\n                  </select>\n                </div>\n                <div class="modal-footer">\n                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>\n                  <button type="submit" class="btn btn-primary">Save</button>\n                </div>\n              </form>\n            </div>\n          </div>\n        </div>\n      </div>\n    `})),renderSellerApplications()}function renderSellerApplications(){const e=document.querySelector(".applications"),t=document.querySelector(".pending"),s=document.querySelector(".noPending"),n=users?.filter((e=>e?.want_to_be_seller));if(t.textContent=`${n.length} pending`,0===n.length)return s.classList.remove("d-none"),void(e.innerHTML="");s.classList.add("d-none"),e.innerHTML=n.map((e=>`\n    <div class="request-item">\n      <div class="request-username">${e?.firstName} ${e?.lastName}</div>\n      <div class="request-email">${e?.email}</div>\n      <div class="mt-2">\n        <button class="btn btn-success btn-accept" onclick="window.approveSeller(${e?.userId})">\n          <i class="fas fa-check me-1" aria-hidden="true"></i> Approve\n        </button>\n        <button class="btn btn-danger btn-reject" onclick="window.rejectSeller(${e?.userId})">\n          <i class="fas fa-times me-1" aria-hidden="true"></i> Reject\n        </button>\n      </div>\n    </div>\n  `)).join("")}function renderProductSection(){document.querySelector(".totalProductsHeader").innerHTML=` (${allProducts.length})`,elements.userDisplay.allProducts.innerHTML="",allProducts.forEach((e=>{const t=e.images.map(((t,s)=>`\n        <button type="button" data-bs-target="#carousel-${e.id}" \n                data-bs-slide-to="${s}" \n                ${0===s?'class="active" aria-current="true"':""}\n                aria-label="Slide ${s+1}"></button>\n      `)).join(""),s=e.images.map(((t,s)=>`\n        <div class="carousel-item ${0===s?"active":""}">\n          <img src="${t}" \n               class="d-block product-img" \n               style="width: 250px; height: 200px; object-fit: contain;"\n               alt="${e.name}"\n               loading ="lazy">\n        </div>\n      `)).join("");elements.userDisplay.allProducts.innerHTML+=`\n      <div class="col-lg-4 col-md-6 mb-4">\n        <div class="card h-100">\n          <div id="carousel-${e.id}" class="carousel slide" data-bs-ride="carousel">\n            <div class="carousel-indicators">\n              ${t}\n            </div>\n            <div class="carousel-inner text-center">\n              ${s}\n            </div>\n            ${e.images.length>1?`\n            <button class="carousel-control-prev" type="button" \n                    data-bs-target="#carousel-${e.id}" data-bs-slide="prev">\n              <span class="carousel-control-prev-icon" aria-hidden="true"></span>\n              <span class="visually-hidden">Previous</span>\n            </button>\n            <button class="carousel-control-next" type="button" \n                    data-bs-target="#carousel-${e.id}" data-bs-slide="next">\n              <span class="carousel-control-next-icon" aria-hidden="true"></span>\n              <span class="visually-hidden">Next</span>\n            </button>\n            `:""}\n          </div>\n          <div class="product-card-body">\n            <h5 class="product-name">${e.name}</h5>\n            <span class="product-price mb-2">$${e.price.toFixed(2)}</span>\n            <div class="product-meta mb-2">\n              <div>\n                <i class="fas fa-tag" aria-hidden="true"></i>\n                <span class="category-badge">${e.category}</span>\n              </div>\n              <div><i class="fas fa-user" aria-hidden="true"></i> ${e.seller||"Admin"}</div>         \n              ${e.sale?`<div><i class="fas fa-percent" aria-hidden="true"></i> ${e.sale}</div>`:'<div><i class="fas fa-percent" aria-hidden="true"></i> no sale</div>'}\n              <div class="product-quantity mb-2">\n                <i class="fas fa-boxes" aria-hidden="true"></i> Quantity: ${e.quantity||0}\n              </div>\n            </div>\n            <div class="d-flex justify-content-around mt-3">\n              <button class="btn btn-primary px-4 edit-btn" data-product-id="${e.id}">\n                <i class="fas fa-edit me-1" aria-hidden="true"></i> Edit\n              </button>\n              <button class="btn btn-danger px-4 delete-btn" data-product-id="${e.id}">\n                <i class="fas fa-trash-alt me-1" aria-hidden="true"></i> Delete\n              </button>\n            </div>\n          </div>\n        </div>\n      </div>\n    `})),document.querySelectorAll(".carousel").forEach((e=>{new bootstrap.Carousel(e)})),setupProductEventListeners()}function setupProductEventListeners(){elements.userDisplay.allProducts.addEventListener("click",(function(e){const t=e.target.closest(".edit-btn"),s=e.target.closest(".delete-btn");if(t){const e=parseInt(t.dataset.productId),s=allProducts.find((t=>t.id===e));if(s){populateEditForm(s);new bootstrap.Modal(document.getElementById("productEditModal")).show()}}if(s){deleteProduct(parseInt(s.dataset.productId))}}));const e=document.querySelector(".product-edit-form");e&&e.addEventListener("submit",(function(e){e.preventDefault(),saveEditedProduct()}))}function populateEditForm(e){document.querySelector(".product-id").value=e.id,document.querySelector(".productNameEdit").value=e.name,document.querySelector(".productPriceEdit").value=e.price,document.querySelector(".product-description").value=e.description||"",document.querySelector(".productSaleEdit").value=parseFloat(e.sale)||0,document.querySelector(".productQuantityEdit").value=Number(e.quantity)||0;const t=document.querySelector(".product-category");if(t)for(let s=0;s<t.options.length;s++)if(t.options[s].value===e.category){t.selectedIndex=s;break}const s=document.querySelector(".product-seller");if(s.innerHTML='<option value="">Select Seller</option>',s.innerHTML+=sellers.map((e=>`                        \n      <option value="${e.userId}">${e.firstName}</option>`)).join(""),s)for(let t=0;t<s.options.length;t++)if(s.options[t].text===e.seller){s.selectedIndex=t;break}const n=document.querySelector(".add-modal__img");n&&e.image&&(n.src=e.image)}async function saveEditedProduct(){const e=parseInt(document.querySelector(".product-id").value),t=allProducts.findIndex((t=>t.id===e));if(-1!==t){const e={...allProducts[t],name:document.querySelector(".productNameEdit").value,price:parseFloat(document.querySelector(".productPriceEdit").value),category:document.querySelector(".product-category").value,seller:document.querySelector(".product-seller").options[document.querySelector(".product-seller").selectedIndex].text,createdBy:document.querySelector(".product-seller").value,description:document.querySelector(".product-description").value,sale:parseInt(document.querySelector(".productSaleEdit").value)+"%"||"",quantity:parseInt(document.querySelector(".productQuantityEdit").value)||0},s=document.querySelector(".product-image");s.files.length>0&&(e.image=URL.createObjectURL(s.files[0]),e.images=[e.image]),allProducts[t]=e,localStorage.setItem("allProducts",JSON.stringify(allProducts)),renderProductSection(),renderDashboard();bootstrap.Modal.getInstance(document.getElementById("productEditModal")).hide(),await Swal.fire("Success!","Product updated successfully!","success")}}async function deleteProduct(e){(await Swal.fire({title:"Are you sure?",text:"You won't be able to revert this!",icon:"warning",showCancelButton:!0,confirmButtonColor:"#3085d6",cancelButtonColor:"#d33",confirmButtonText:"Yes, delete it!"})).isConfirmed&&(allProducts=allProducts.filter((t=>t.id!==e)),localStorage.setItem("allProducts",JSON.stringify(allProducts)),renderProductSection(),renderDashboard(),await Swal.fire("Deleted!","Product has been deleted.","success"))}window.saveUserChanges=async function(e){try{const t=bootstrap.Modal.getInstance(document.getElementById(`modal-${e}`)),s={firstName:document.getElementById(`modal-${e}-firstName`).value.trim(),lastName:document.getElementById(`modal-${e}-lastName`).value.trim(),email:document.getElementById(`modal-${e}-email`).value.trim(),phone:document.getElementById(`modal-${e}-phone`).value.trim(),role:document.getElementById(`modal-${e}-role`).value};if(!validateName(s?.firstName)||!validateName(s.lastName))throw new Error("Please enter valid names");if(!validateEmail(s?.email))throw new Error("Please enter a valid email");if(!validatePhone(s?.phone))throw new Error("Please enter a valid phone number");const n=users?.findIndex((t=>t.userId===e));if(-1===n)throw new Error("User not found");users[n]={...users[n],...s},localStorage.setItem("users",JSON.stringify(users)),await Swal.fire("Success!","User updated successfully","success"),t.hide(),renderUserSection()}catch(e){await Swal.fire("Error!",e.message,"error")}},window.deleteUser=async function(e){(await Swal.fire({title:"Are you sure?",text:"You won't be able to revert this!",icon:"warning",showCancelButton:!0,confirmButtonColor:"#3085d6",cancelButtonColor:"#d33",confirmButtonText:"Yes, delete it!"})).isConfirmed&&(users=users?.filter((t=>t.userId!==e)),allProducts=allProducts?.filter((e=>e.seller==users.firstName)),console.log(allProducts),localStorage.setItem("allProducts",JSON.stringify(allProducts)),localStorage.setItem("users",JSON.stringify(users)),await(Swal?.fire("Deleted!","User has been deleted.","success")),renderUserSection(),renderProductSection())},window.approveSeller=async function(e){const t=users?.findIndex((t=>t.userId===e));-1!==t&&(users[t]={...users[t],role:"Seller",want_to_be_seller:!1},localStorage.setItem("users",JSON.stringify(users)),await(Swal?.fire("Approved!","User is now a seller.","success")),renderSellerApplications(),renderUserSection())},window.rejectSeller=async function(e){const t=users.findIndex((t=>t.userId===e));-1!==t&&(users[t]={...users[t],want_to_be_seller:!1},localStorage.setItem("users",JSON.stringify(users)),await(Swal?.fire("Rejected!","Seller request rejected.","success")),renderSellerApplications())},document.getElementById("productSaveBtn").addEventListener("click",(function(){document.querySelector(".product-edit-form").dispatchEvent(new Event("submit"))}));const addProductImageInput=document.getElementById("productImage");addProductImageInput&&addProductImageInput.addEventListener("change",(function(){const e=document.getElementById("addProductImagePreview");e&&(e.src=getImagePreviewUrl("productImage"))}));const editProductImageInput=document.querySelector(".product-image");function getImagePreviewUrl(e){const t=document.getElementById(e);return t.files&&t.files[0]?URL.createObjectURL(t.files[0]):null}editProductImageInput&&editProductImageInput.addEventListener("change",(function(){const e=document.querySelector(".add-modal__img");e&&(e.src=getImagePreviewUrl("productImage"))}));const addProductForm=document.getElementById("addProductForm");if(addProductForm){const e=document.getElementById("productSeller");e.innerHTML='<option value="">Select Seller</option>',e.innerHTML+=sellers.map((e=>`                        \n      <option value="${e.userId}">${e.firstName}</option>`)).join(""),addProductForm.addEventListener("submit",(async function(e){e.preventDefault();const t={id:allProducts.length>0?Math.max(...allProducts.map((e=>e.id)))+1:1,name:document.getElementById("productName").value,price:parseFloat(document.getElementById("productPrice").value),category:document.getElementById("productCategory").value,seller:document.getElementById("productSeller").options[document.getElementById("productSeller").selectedIndex].text,createdBy:document.getElementById("productSeller").value,description:document.getElementById("productDescription").value,image:getImagePreviewUrl("productImage")||"/assets/images/products/default-product.jpg",images:[getImagePreviewUrl("productImage")]||["/assets/images/products/default-product.jpg"],quantity:10,rating:0,ratingCount:0,reviews:[],sale:""+(""!==document.querySelector(".product-sale").value.trim()?document.querySelector(".product-sale").value+"%":"")};allProducts.push(t),localStorage.setItem("allProducts",JSON.stringify(allProducts)),renderProductSection(),renderDashboard(),addProductForm.reset();bootstrap.Modal.getInstance(document.getElementById("addProductModal")).hide(),await Swal.fire("Success!","Product added successfully!","success")}))}const Messages={elements:{container:document.getElementById("messagesContainer"),usersContainer:document.getElementById("users-container"),noMessage:document.getElementById("noMessage"),filterButtons:document.querySelectorAll(".filter-buttons button"),modalUserName:document.getElementById("modalUserName"),modalMessagesContainer:document.getElementById("modal-messages-container")},init(){this.elements.container?.classList.remove("d-none");const e=JSON.parse(localStorage.getItem("contact"))||[],t=this.groupMessagesByUser(e);this.renderUserCards(t),this.setupEventListeners(t),this.filterMessages("all",t)},groupMessagesByUser:e=>e.reduce(((e,t,s)=>{const{email:n}=t;return e[n]||(e[n]={name:t.name,email:n,phone:t.phone,role:t.role||"Customer",unread:!0,messages:[]}),e[n].messages.push({...t,id:s}),e}),{}),renderUserCards(e){const{usersContainer:t,noMessage:s}=this.elements,n=Object.keys(e).length>0;s.classList.toggle("d-none",n),n&&(t.innerHTML=Object.entries(e).map((([e,t],s)=>this.createUserCard(t,s))).join(""))},createUserCard(e,t){const s="Seller"===e.role?"badge-seller":"badge-customer";return`\n      <div class="col-md-6 col-lg-4 user-card-container"\n           data-role="${e.role}"\n           data-unread="${e.unread}"\n           data-user-id="${t}">\n        <div class="user-card h-100">\n          <div class="user-header">\n            <h3 class="user-name">${e.name}</h3>\n            <span class="badge badge-role ${s}">\n              ${e.role}\n            </span>\n          </div>\n          <div class="user-body d-flex align-items-center justify-content-between mt-2 py-4">\n            <div>\n              <div class="user-detail">\n                <i class="fas fa-envelope"></i>\n                <span>${e.email}</span>\n              </div>\n              <div class="user-detail">\n                <i class="fas fa-phone"></i>\n                <span>${e.phone}</span>\n              </div>\n            </div>\n            <div>\n              <button class="messages-btn"\n                      data-bs-toggle="modal"\n                      data-bs-target="#messagesModal"\n                      data-user-id="${t}">\n                <i class="fas fa-comments"></i>\n                <span class="messages-count">${e.messages.length}</span>\n              </button>\n            </div>\n          </div>\n        </div>\n      </div>\n    `},setupEventListeners(e){const{filterButtons:t}=this.elements;t.forEach((t=>{t.addEventListener("click",(()=>{const s=t.id.replace("filter","").toLowerCase();this.filterMessages(s,e)}))})),document.addEventListener("click",(t=>{const s=t.target.closest(".messages-btn");s&&this.openUserMessages(s.dataset.userId,e)}))},filterMessages(e,t){const{noMessage:s}=this.elements,n=document.querySelectorAll(".user-card-container");let a=!1;n.forEach((t=>{const s="all"===e||"customers"===e&&"Customer"===t.dataset.role||"sellers"===e&&"Seller"===t.dataset.role||"unread"===e&&"true"===t.dataset.unread;t.style.display=s?"":"none",s&&(a=!0)})),s.classList.toggle("d-none",a)},openUserMessages(e,t){const{modalUserName:s,modalMessagesContainer:n}=this.elements,a=Object.values(t)[e];if(!a)return;s.textContent=a.name,n.innerHTML=a.messages.map((e=>`\n        <div class="modal-message">\n          <p>${e.message}</p>\n          <div class="message-date">${e.date}</div>\n        </div>\n      `)).join(""),a.unread=!1;const r=document.querySelector(`.user-card-container[data-user-id="${e}"]`);r&&(r.dataset.unread="false")}},support=document.querySelector("[data-show=messagesContainer]");support.addEventListener("click",(()=>Messages.init())),document.addEventListener("DOMContentLoaded",(()=>{init()}));
+import {
+  loginUser,
+  validateName,
+  validatePhone,
+  validateEmail,
+} from "/assets/js/utils.js";
+const user = loginUser();
+if (user.role !== "Admin") {
+  window.location.href = "/customer/home/home.html";
+}
+// DOM Elements
+const elements = {
+  sidebar: {
+    container: document.getElementById("sidebarContainer"),
+    sidebar: document.getElementById("sidebar"),
+    openBtn: document.getElementById("openSidebar"),
+    closeBtn: document.getElementById("closeSidebar"),
+  },
+  mainContent: document.getElementById("mainContent"),
+  userDisplay: {
+    name: document.getElementById("userName"),
+    revenue: document.querySelector(".TotalRevenue"),
+    revenueRate: document.querySelector(".TotalRevenueRate"),
+    inStock: document.querySelector(".inStock"),
+    orders: document.querySelector(".totalOrders"),
+    products: document.querySelector(".topSellingProducts"),
+    totalProductsNum: document.querySelector(".totalProductsNum"),
+    users: document.querySelector(".totalUsers"),
+    flashTable: document.querySelector("table > tbody"),
+    allProducts: document.querySelector(".allProducts"),
+  },
+};
+
+// Data
+let users = JSON.parse(localStorage.getItem("users")) || [];
+const sellers = users.filter((u) => u.role === "Seller");
+let allProducts = JSON.parse(localStorage.getItem("allProducts")) || [];
+
+// Initialize
+function init() {
+  setupSidebar();
+  setupSectionToggles();
+  renderDashboard();
+  setupCharts();
+  startFlashSaleTimer();
+  renderUserSection();
+  renderProductSection();
+}
+
+// Sidebar Functions
+function setupSidebar() {
+  const { container, openBtn, closeBtn } = elements.sidebar;
+
+  // Initial state
+  if (container.classList.contains("collapsed")) {
+    openBtn.style.display = "block";
+    closeBtn.style.display = "none";
+    elements.mainContent.classList.add("full");
+  } else {
+    openBtn.style.display = "none";
+    closeBtn.style.display = "block";
+    elements.mainContent.classList.remove("full");
+  }
+
+  // Event listeners
+  elements.sidebar.openBtn.addEventListener("click", () =>
+    toggleSidebar(false)
+  );
+  elements.sidebar.closeBtn.addEventListener("click", () =>
+    toggleSidebar(true)
+  );
+}
+
+function toggleSidebar(collapse) {
+  const { container, openBtn, closeBtn } = elements.sidebar;
+
+  container.classList.toggle("collapsed", collapse);
+  elements.mainContent.classList.toggle("full", collapse);
+  openBtn.style.display = collapse ? "block" : "none";
+  closeBtn.style.display = collapse ? "none" : "block";
+}
+
+// Section Navigation
+function setupSectionToggles() {
+  document.querySelectorAll(".section-toggle-btn").forEach((btn) => {
+    btn.addEventListener("click", function () {
+      const targetId = this.getAttribute("data-show");
+      for (let btn of document.querySelectorAll(".section-toggle-btn")) {
+        btn.classList.remove("active");
+      }
+      this.classList.add("active");
+      // Hide all sections
+      Array.from(elements.mainContent.children).forEach((child) => {
+        child.classList.add("d-none");
+        child.classList.remove("active");
+      });
+
+      // Show target section
+      document.getElementById(targetId)?.classList.remove("d-none");
+    });
+  });
+}
+
+// Dashboard Rendering
+function renderDashboard() {
+  const user = loginUser();
+  elements.userDisplay.name.textContent = `${user?.firstName} ${user?.lastName}`;
+
+  // Calculate revenue and orders
+  let sum = 0;
+  let allOrders = 0;
+
+  users.forEach((user) => {
+    user?.orders?.forEach((order) => {
+      allOrders++;
+      sum += Number(order.total) || 0;
+    });
+  });
+
+  elements.userDisplay.revenue.textContent = `$${sum.toFixed(2)}`;
+  elements.userDisplay.orders.textContent = allOrders;
+
+  // Revenue percentage calculation
+  const lastDayRevenue =
+    parseFloat(localStorage.getItem("totalRevenuePrevDay")) || 0;
+  let percentDifference = 0;
+
+  if (lastDayRevenue) {
+    percentDifference =
+      lastDayRevenue === 0
+        ? 0
+        : ((sum - lastDayRevenue) / lastDayRevenue) * 100;
+    if (Math.abs(percentDifference) < 0.001) percentDifference = 0;
+  }
+
+  elements.userDisplay.revenueRate.classList.add(
+    percentDifference >= 0 ? "text-success" : "text-danger"
+  );
+
+  elements.userDisplay.revenueRate.innerHTML =
+    percentDifference >= 0
+      ? `<i class="fas fa-arrow-up" aria-hidden="true"></i> ${Math.abs(
+          percentDifference
+        ).toFixed(2)}% from last day`
+      : `<i class="fas fa-arrow-down" aria-hidden="true"></i> ${Math.abs(
+          percentDifference
+        ).toFixed(2)}% from last day`;
+
+  // Stock information
+  const productsInStock = allProducts.filter((p) => p.quantity > 0).length;
+  elements.userDisplay.totalProductsNum.textContent = allProducts.length;
+  const lowStockCount = allProducts.length - productsInStock;
+
+  if (lowStockCount > 0) {
+    elements.userDisplay.inStock.classList.remove("d-none");
+    elements.userDisplay.inStock.innerHTML = `<i class="fas fa-arrow-down" aria-hidden="true"></i> ${lowStockCount} items low stock`;
+  } else {
+    elements.userDisplay.inStock.classList.add("d-none");
+  }
+
+  // Total users
+  const totalUsersCount = users?.length > 0 ? users?.length - 1 : 0;
+  elements.userDisplay.users.textContent = totalUsersCount;
+
+  // Top selling products
+  renderTopSellingProducts();
+  renderFlashSaleProducts();
+}
+
+// Product Rendering
+function renderTopSellingProducts() {
+  const productCounts = {};
+
+  users?.forEach((user) => {
+    user?.orders?.forEach((order) => {
+      order.products?.forEach((product) => {
+        if (!productCounts[product.id]) {
+          productCounts[product.id] = { ...product, count: 0 };
+        }
+        productCounts[product.id].count += product.count || 0;
+      });
+    });
+  });
+
+  const topProducts = Object.values(productCounts)
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 4);
+
+  elements.userDisplay.products.innerHTML = topProducts
+    .map(
+      (product) => `
+    <div class="col-sm-6 col-md-6 col-lg-6 mb-3">
+      <div class="card product-card h-100">
+        <img src="${
+          product.image
+        }" class="card-img-top w-50" alt="Product" loading ="lazy"/>
+        ${
+          product.sale.trim()
+            ? `<span class="discount-badge">${product.sale} OFF</span>`
+            : ""
+        }
+        <div class="card-body">
+          <h6 class="card-title">${product.name}</h6>
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <span class="text-danger"> $${
+                product.sale.trim()
+                  ? parseFloat(product.price) *
+                    (1 - parseFloat(product.sale) / 100)
+                  : product.price
+              }</span>
+              ${
+                product.sale.trim()
+                  ? `
+                <span class="text-muted text-decoration-line-through ms-2">
+                  $${product.price}
+                </span>
+              `
+                  : ""
+              }
+            </div>
+            <span class="text-muted small">${product.count} sold</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  `
+    )
+    .join("");
+}
+
+function renderFlashSaleProducts() {
+  const productCounts = {};
+
+  users?.forEach((user) => {
+    user?.orders?.forEach((order) => {
+      order.products?.forEach((product) => {
+        if (!productCounts[product.id]) {
+          productCounts[product.id] = product.count || 0;
+        } else {
+          productCounts[product.id] += product.count || 0;
+        }
+      });
+    });
+  });
+
+  const flashProducts = allProducts
+    .filter((p) => p.sale)
+    .sort((a, b) => parseFloat(b.sale) - parseFloat(a.sale));
+
+  elements.userDisplay.flashTable.innerHTML = flashProducts
+    .map(
+      (product) => `
+    <tr>
+      <td>${product.name}</td>
+      <td>
+        <span class="badge ${
+          parseFloat(product.sale) > 15
+            ? "bg-danger bg-opacity-10 text-danger"
+            : "bg-success bg-opacity-10 text-success"
+        }">
+          ${product.sale}
+        </span>
+      </td>
+      <td>${productCounts[product.id] || 0}</td>
+      <td>$${product.price}</td>
+    </tr>
+  `
+    )
+    .join("");
+}
+
+// Charts
+function setupCharts() {
+  // Category Chart
+  const categoryCtx = document.getElementById("categoryChart").getContext("2d");
+  new Chart(categoryCtx, {
+    type: "doughnut",
+    data: {
+      labels: [
+        "Men & Fashion",
+        "Electronics",
+        "Home & Lifestyle",
+        "Medicine",
+        "Sports & Outdoor",
+      ],
+      datasets: [
+        {
+          data: [0, 100, 0, 0, 0],
+          backgroundColor: [
+            "#3498db",
+            "#2ecc71",
+            "#9b59b6",
+            "#f1c40f",
+            "#e74c3c",
+          ],
+          borderWidth: 0,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { position: "right" },
+        tooltip: {
+          callbacks: {
+            label: (context) => `${context.label}: ${context.raw}%`,
+          },
+        },
+      },
+    },
+  });
+
+  // Sales Chart
+  const dailySales = Array(7).fill(0);
+
+  users?.forEach((user) => {
+    user?.orders?.forEach((order) => {
+      const day = new Date(order.date).getDay();
+      dailySales[day > 6 ? 0 : day] += Number(order.total) || 0;
+    });
+  });
+
+  const salesCtx = document.getElementById("salesChart").getContext("2d");
+  new Chart(salesCtx, {
+    type: "line",
+    data: {
+      labels: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+      datasets: [
+        {
+          label: "Sales",
+          data: dailySales,
+          backgroundColor: "rgba(75, 192, 192, 0.2)",
+          borderColor: "rgba(75, 192, 192, 1)",
+          borderWidth: 2,
+          tension: 0.4,
+          fill: true,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { position: "top" },
+        tooltip: { mode: "index", intersect: false },
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            callback: (value) => `$${value}`,
+          },
+        },
+      },
+    },
+  });
+}
+
+// Flash Sale Timer
+function startFlashSaleTimer() {
+  const timerElements = {
+    hours: document.getElementById("flashSaleHours"),
+    minutes: document.getElementById("flashSaleMinutes"),
+    seconds: document.getElementById("flashSaleSeconds"),
+  };
+
+  let time = {
+    h: parseInt(timerElements.hours.textContent),
+    m: parseInt(timerElements.minutes.textContent),
+    s: parseInt(timerElements.seconds.textContent),
+  };
+
+  setInterval(() => {
+    time.s--;
+    if (time.s < 0) {
+      time.s = 59;
+      time.m--;
+      if (time.m < 0) {
+        time.m = 59;
+        time.h--;
+      }
+    }
+
+    timerElements.hours.textContent = time.h.toString().padStart(2, "0");
+    timerElements.minutes.textContent = time.m.toString().padStart(2, "0");
+    timerElements.seconds.textContent = time.s.toString().padStart(2, "0");
+  }, 1000);
+}
+
+// User Management
+function renderUserSection() {
+  const usersAccordion = document.getElementById("usersAccordion");
+  usersAccordion.innerHTML = "";
+
+  // Skip first user (admin)
+  users?.slice(1).forEach((user) => {
+    const userId = user?.userId;
+    const userRoleClass =
+      user?.role === "Seller" ? "role-seller" : "role-customer";
+
+    usersAccordion.innerHTML += `
+      <div class="accordion-item mb-2">
+        <h2 class="accordion-header" id="heading-${userId}">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" 
+            data-bs-target="#collapse-${userId}" aria-expanded="false" aria-controls="collapse-${userId}">
+            ${user?.firstName} ${user?.lastName}
+            <span class="user-role ${userRoleClass}">${user?.role}</span>
+          </button>
+        </h2>
+        <div id="collapse-${userId}" class="accordion-collapse collapse" 
+          aria-labelledby="heading-${userId}" data-bs-parent="#usersAccordion">
+          <div class="accordion-body">
+            <div class="user-info-item">
+              <span class="user-info-label">First Name:</span> ${
+                user?.firstName
+              }
+            </div>
+            <div class="user-info-item">
+              <span class="user-info-label">Last Name:</span> ${user?.lastName}
+            </div>
+            <div class="user-info-item">
+              <span class="user-info-label">Email:</span> ${user?.email}
+            </div>
+            <div class="user-info-item">
+              <span class="user-info-label">Phone:</span> ${user?.phone}
+            </div>
+            <div class="user-info-item">
+              <span class="user-info-label">Role:</span> ${user?.role}
+            </div>
+            <div class="mt-3">
+              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-${userId}">
+                <i class="fas fa-edit me-1" aria-hidden="true"></i> Edit
+              </button>
+              <button class="btn btn-danger ms-2" onclick="window.deleteUser(${userId})">
+                <i class="fas fa-trash-alt me-1" aria-hidden="true"></i> Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- User Modal -->
+      <div class="modal fade" id="modal-${userId}" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Edit User</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form onsubmit="window.saveUserChanges(${userId}); return false;">
+                <div class="mb-3">
+                  <label class="form-label">First Name</label>
+                  <input type="text" class="form-control" id="modal-${userId}-firstName" 
+                    value="${user?.firstName}" required>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Last Name</label>
+                  <input type="text" class="form-control" id="modal-${userId}-lastName" 
+                    value="${user?.lastName}" required>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Email</label>
+                  <input type="email" class="form-control" id="modal-${userId}-email" 
+                    value="${user?.email}" required>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Phone</label>
+                  <input type="tel" class="form-control" id="modal-${userId}-phone" 
+                    value="${user?.phone}" required>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Role</label>
+                  <select class="form-select" id="modal-${userId}-role" required>
+                    <option value="Customer" ${
+                      user?.role === "Customer" ? "selected" : ""
+                    }>Customer</option>
+                    <option value="Seller" ${
+                      user?.role === "Seller" ? "selected" : ""
+                    }>Seller</option>
+                  </select>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                  <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+
+  // Seller Applications
+  renderSellerApplications();
+}
+
+function renderSellerApplications() {
+  const applicationsContainer = document.querySelector(".applications");
+  const pendingBadge = document.querySelector(".pending");
+  const noPendingMessage = document.querySelector(".noPending");
+
+  const wantedSellers = users?.filter((user) => user?.want_to_be_seller);
+  pendingBadge.textContent = `${wantedSellers.length} pending`;
+
+  if (wantedSellers.length === 0) {
+    noPendingMessage.classList.remove("d-none");
+    applicationsContainer.innerHTML = "";
+    return;
+  }
+
+  noPendingMessage.classList.add("d-none");
+  applicationsContainer.innerHTML = wantedSellers
+    .map(
+      (user) => `
+    <div class="request-item">
+      <div class="request-username">${user?.firstName} ${user?.lastName}</div>
+      <div class="request-email">${user?.email}</div>
+      <div class="mt-2">
+        <button class="btn btn-success btn-accept" onclick="window.approveSeller(${user?.userId})">
+          <i class="fas fa-check me-1" aria-hidden="true"></i> Approve
+        </button>
+        <button class="btn btn-danger btn-reject" onclick="window.rejectSeller(${user?.userId})">
+          <i class="fas fa-times me-1" aria-hidden="true"></i> Reject
+        </button>
+      </div>
+    </div>
+  `
+    )
+    .join("");
+}
+
+// Window functions
+window.saveUserChanges = async function (userId) {
+  try {
+    const modal = bootstrap.Modal.getInstance(
+      document.getElementById(`modal-${userId}`)
+    );
+    const inputs = {
+      firstName: document
+        .getElementById(`modal-${userId}-firstName`)
+        .value.trim(),
+      lastName: document
+        .getElementById(`modal-${userId}-lastName`)
+        .value.trim(),
+      email: document.getElementById(`modal-${userId}-email`).value.trim(),
+      phone: document.getElementById(`modal-${userId}-phone`).value.trim(),
+      role: document.getElementById(`modal-${userId}-role`).value,
+    };
+
+    // Validation
+    if (!validateName(inputs?.firstName) || !validateName(inputs.lastName)) {
+      throw new Error("Please enter valid names");
+    }
+    if (!validateEmail(inputs?.email)) {
+      throw new Error("Please enter a valid email");
+    }
+    if (!validatePhone(inputs?.phone)) {
+      throw new Error("Please enter a valid phone number");
+    }
+
+    // Update user
+    const userIndex = users?.findIndex((u) => u.userId === userId);
+    if (userIndex === -1) throw new Error("User not found");
+
+    users[userIndex] = { ...users[userIndex], ...inputs };
+    localStorage.setItem("users", JSON.stringify(users));
+
+    await Swal.fire("Success!", "User updated successfully", "success");
+    modal.hide();
+    renderUserSection();
+  } catch (error) {
+    await Swal.fire("Error!", error.message, "error");
+  }
+};
+
+window.deleteUser = async function (userId) {
+  const result = await Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!",
+  });
+
+  if (!result.isConfirmed) return;
+  const user = users?.find((u) => u.userId === userId);
+  users = users?.filter((u) => u.userId !== userId);
+  localStorage.setItem("users", JSON.stringify(users));
+  allProducts = allProducts?.filter((p) => p?.seller !== user.firstName);
+  localStorage.setItem("allProducts", JSON.stringify(allProducts));
+  await Swal?.fire("Deleted!", "User has been deleted.", "success");
+  renderUserSection();
+  renderProductSection();
+};
+
+window.approveSeller = async function (userId) {
+  const userIndex = users?.findIndex((u) => u.userId === userId);
+  if (userIndex === -1) return;
+
+  users[userIndex] = {
+    ...users[userIndex],
+    role: "Seller",
+    want_to_be_seller: false,
+  };
+
+  localStorage.setItem("users", JSON.stringify(users));
+  await Swal?.fire("Approved!", "User is now a seller.", "success");
+  renderSellerApplications();
+  renderUserSection();
+};
+
+window.rejectSeller = async function (userId) {
+  const userIndex = users.findIndex((u) => u.userId === userId);
+  if (userIndex === -1) return;
+
+  users[userIndex] = {
+    ...users[userIndex],
+    want_to_be_seller: false,
+  };
+
+  localStorage.setItem("users", JSON.stringify(users));
+  await Swal?.fire("Rejected!", "Seller request rejected.", "success");
+  renderSellerApplications();
+};
+
+function renderProductSection() {
+  const totalProductsHeader = document.querySelector(".totalProductsHeader");
+  totalProductsHeader.innerHTML = ` (${allProducts.length})`;
+  elements.userDisplay.allProducts.innerHTML = "";
+
+  allProducts.forEach((product) => {
+    const carouselIndicators = product.images
+      .map(
+        (_, index) => `
+        <button type="button" data-bs-target="#carousel-${product.id}" 
+                data-bs-slide-to="${index}" 
+                ${index === 0 ? 'class="active" aria-current="true"' : ""}
+                aria-label="Slide ${index + 1}"></button>
+      `
+      )
+      .join("");
+
+    const carouselItems = product.images
+      .map(
+        (image, index) => `
+        <div class="carousel-item ${index === 0 ? "active" : ""}">
+          <img src="${image}" 
+               class="d-block product-img" 
+               style="width: 250px; height: 200px; object-fit: contain;"
+               alt="${product.name}"
+               loading ="lazy">
+        </div>
+      `
+      )
+      .join("");
+
+    elements.userDisplay.allProducts.innerHTML += `
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card h-100">
+          <div id="carousel-${
+            product.id
+          }" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+              ${carouselIndicators}
+            </div>
+            <div class="carousel-inner text-center">
+              ${carouselItems}
+            </div>
+            ${
+              product.images.length > 1
+                ? `
+            <button class="carousel-control-prev" type="button" 
+                    data-bs-target="#carousel-${product.id}" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" 
+                    data-bs-target="#carousel-${product.id}" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+            `
+                : ""
+            }
+          </div>
+          <div class="product-card-body">
+            <h5 class="product-name">${product.name}</h5>
+            <span class="product-price mb-2">$${product.price.toFixed(2)}</span>
+            <div class="product-meta mb-2">
+              <div>
+                <i class="fas fa-tag" aria-hidden="true"></i>
+                <span class="category-badge">${product.category}</span>
+              </div>
+              <div><i class="fas fa-user" aria-hidden="true"></i> ${
+                product.seller || "Admin"
+              }</div>         
+              ${
+                product.sale
+                  ? `<div><i class="fas fa-percent" aria-hidden="true"></i> ${product.sale}</div>`
+                  : `<div><i class="fas fa-percent" aria-hidden="true"></i> no sale</div>`
+              }
+              <div class="product-quantity mb-2">
+                <i class="fas fa-boxes" aria-hidden="true"></i> Quantity: ${
+                  product.quantity || 0
+                }
+              </div>
+            </div>
+            <div class="d-flex justify-content-around mt-3">
+              <button class="btn btn-primary px-4 edit-btn" data-product-id="${
+                product.id
+              }">
+                <i class="fas fa-edit me-1" aria-hidden="true"></i> Edit
+              </button>
+              <button class="btn btn-danger px-4 delete-btn" data-product-id="${
+                product.id
+              }">
+                <i class="fas fa-trash-alt me-1" aria-hidden="true"></i> Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+
+  // Initialize carousels after rendering
+  document.querySelectorAll(".carousel").forEach((carousel) => {
+    new bootstrap.Carousel(carousel);
+  });
+
+  // Set up event listeners for product actions
+  setupProductEventListeners();
+}
+
+function setupProductEventListeners() {
+  // Edit product - open modal with product data
+  elements.userDisplay.allProducts.addEventListener("click", function (e) {
+    const editBtn = e.target.closest(".edit-btn");
+    const deleteBtn = e.target.closest(".delete-btn");
+
+    if (editBtn) {
+      const productId = parseInt(editBtn.dataset.productId);
+      const product = allProducts.find((p) => p.id === productId);
+
+      if (product) {
+        populateEditForm(product);
+        const editModal = new bootstrap.Modal(
+          document.getElementById("productEditModal")
+        );
+        editModal.show();
+      }
+    }
+
+    if (deleteBtn) {
+      const productId = parseInt(deleteBtn.dataset.productId);
+      deleteProduct(productId);
+    }
+  });
+
+  // Save edited product
+  const editProductForm = document.querySelector(".product-edit-form");
+  if (editProductForm) {
+    editProductForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      saveEditedProduct();
+    });
+  }
+}
+document
+  .getElementById("productSaveBtn")
+  .addEventListener("click", function () {
+    document
+      .querySelector(".product-edit-form")
+      .dispatchEvent(new Event("submit"));
+  });
+function populateEditForm(product) {
+  document.querySelector(".product-id").value = product.id;
+  document.querySelector(".productNameEdit").value = product.name;
+  document.querySelector(".productPriceEdit").value = product.price;
+  document.querySelector(".product-description").value =
+    product.description || "";
+  document.querySelector(".productSaleEdit").value =
+    parseFloat(product.sale) || 0;
+  document.querySelector(".productQuantityEdit").value =
+    Number(product.quantity) || 0;
+
+  // Set category select
+  const categorySelect = document.querySelector(".product-category");
+  if (categorySelect) {
+    for (let i = 0; i < categorySelect.options.length; i++) {
+      if (categorySelect.options[i].value === product.category) {
+        categorySelect.selectedIndex = i;
+        break;
+      }
+    }
+  }
+
+  // Set seller select
+
+  const sellerSelect = document.querySelector(".product-seller");
+  sellerSelect.innerHTML = `<option value="">Select Seller</option>`;
+  sellerSelect.innerHTML += sellers
+    .map(
+      (user) => `                        
+      <option value="${user.userId}">${user.firstName}</option>`
+    )
+    .join("");
+
+  if (sellerSelect) {
+    for (let i = 0; i < sellerSelect.options.length; i++) {
+      if (sellerSelect.options[i].text === product.seller) {
+        sellerSelect.selectedIndex = i;
+        break;
+      }
+    }
+  }
+
+  // Set current image
+  const imgElement = document.querySelector(".add-modal__img");
+  if (imgElement && product.image) {
+    imgElement.src = product.image;
+  }
+}
+
+async function saveEditedProduct() {
+  const productId = parseInt(document.querySelector(".product-id").value);
+  const productIndex = allProducts.findIndex((p) => p.id === productId);
+
+  if (productIndex !== -1) {
+    const updatedProduct = {
+      ...allProducts[productIndex],
+      name: document.querySelector(".productNameEdit").value,
+      price: parseFloat(document.querySelector(".productPriceEdit").value),
+      category: document.querySelector(".product-category").value,
+      seller:
+        document.querySelector(".product-seller").options[
+          document.querySelector(".product-seller").selectedIndex
+        ].text,
+      createdBy: document.querySelector(".product-seller").value,
+      description: document.querySelector(".product-description").value,
+      sale:
+        parseInt(document.querySelector(".productSaleEdit").value) + "%" || "",
+      quantity:
+        parseInt(document.querySelector(".productQuantityEdit").value) || 0,
+    };
+
+    // Handle image update if a new image was selected
+    const imageInput = document.querySelector(".product-image");
+    if (imageInput.files.length > 0) {
+      updatedProduct.image = URL.createObjectURL(imageInput.files[0]);
+      updatedProduct.images = [updatedProduct.image];
+    }
+
+    allProducts[productIndex] = updatedProduct;
+    localStorage.setItem("allProducts", JSON.stringify(allProducts));
+    renderProductSection();
+    renderDashboard();
+
+    const editModal = bootstrap.Modal.getInstance(
+      document.getElementById("productEditModal")
+    );
+    editModal.hide();
+
+    await Swal.fire("Success!", "Product updated successfully!", "success");
+  }
+}
+
+async function deleteProduct(productId) {
+  const result = await Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!",
+  });
+
+  if (result.isConfirmed) {
+    allProducts = allProducts.filter((p) => p.id !== productId);
+    localStorage.setItem("allProducts", JSON.stringify(allProducts));
+    renderProductSection();
+    renderDashboard();
+    await Swal.fire("Deleted!", "Product has been deleted.", "success");
+  }
+}
+// Initialize product image preview for add form
+const addProductImageInput = document.getElementById("productImage");
+if (addProductImageInput) {
+  addProductImageInput.addEventListener("input", function () {
+    const previewElement = document.getElementById("addProductImagePreview");
+    if (previewElement) {
+      previewElement.src =
+        this.value || "/assets/images/products/default-product.jpg";
+    }
+  });
+}
+
+// Initialize product image preview for edit form
+const editProductImageInput = document.querySelector(".product-image");
+if (editProductImageInput) {
+  editProductImageInput.addEventListener("input", function () {
+    const previewElement = document.querySelector(".add-modal__img");
+    if (previewElement) {
+      previewElement.src =
+        this.value || "/assets/images/products/default-product.jpg";
+    }
+  });
+}
+
+// Add product form submission
+const addProductForm = document.getElementById("addProductForm");
+if (addProductForm) {
+  const sellerSelect = document.getElementById("productSeller");
+  sellerSelect.innerHTML = `<option value="">Select Seller</option>`;
+  sellerSelect.innerHTML += sellers
+    .map(
+      (user) => `                        
+      <option value="${user.userId}">${user.firstName}</option>`
+    )
+    .join("");
+  addProductForm.addEventListener("submit", async function (e) {
+    e.preventDefault();
+    const newProduct = {
+      id:
+        allProducts.length > 0
+          ? Math.max(...allProducts.map((p) => p.id)) + 1
+          : 1,
+      name: document.getElementById("productName").value,
+      price: parseFloat(document.getElementById("productPrice").value),
+      category: document.getElementById("productCategory").value,
+      seller:
+        document.getElementById("productSeller").options[
+          document.getElementById("productSeller").selectedIndex
+        ].text,
+      createdBy: document.getElementById("productSeller").value,
+      description: document.getElementById("productDescription").value,
+      image:
+        document.getElementById("productImage").value ||
+        "/assets/images/products/default-product.jpg",
+      images: [document.getElementById("productImage").value] || [
+        "/assets/images/products/default-product.jpg",
+      ],
+      quantity: 10, // Default quantity
+      rating: 0,
+      ratingCount: 0,
+      reviews: [],
+      sale: `${
+        document.querySelector(".product-sale").value.trim() !== ""
+          ? document.querySelector(".product-sale").value + `%`
+          : ""
+      }`,
+    };
+
+    allProducts.push(newProduct);
+    localStorage.setItem("allProducts", JSON.stringify(allProducts));
+    renderProductSection();
+    renderDashboard();
+
+    // Reset form and close modal
+    addProductForm.reset();
+    const addModal = bootstrap.Modal.getInstance(
+      document.getElementById("addProductModal")
+    );
+    addModal.hide();
+
+    await Swal.fire("Success!", "Product added successfully!", "success");
+  });
+}
+//message section
+const Messages = {
+  // DOM Elements
+  elements: {
+    container: document.getElementById("messagesContainer"),
+    usersContainer: document.getElementById("users-container"),
+    noMessage: document.getElementById("noMessage"),
+    filterButtons: document.querySelectorAll(".filter-buttons button"),
+    modalUserName: document.getElementById("modalUserName"),
+    modalMessagesContainer: document.getElementById("modal-messages-container"),
+  },
+
+  // Initialize messages dashboard
+  init() {
+    this.elements.container?.classList.remove("d-none");
+    const messages = JSON.parse(localStorage.getItem("contact")) || [];
+    const groupedMessages = this.groupMessagesByUser(messages);
+
+    this.renderUserCards(groupedMessages);
+    this.setupEventListeners(groupedMessages);
+    this.filterMessages("all", groupedMessages);
+  },
+
+  // Group messages by user email
+  groupMessagesByUser(messages) {
+    return messages.reduce((groups, message, index) => {
+      const { email } = message;
+
+      if (!groups[email]) {
+        groups[email] = {
+          name: message.name,
+          email,
+          phone: message.phone,
+          role: message.role || "Customer",
+          unread: true,
+          messages: [],
+        };
+      }
+
+      groups[email].messages.push({
+        ...message,
+        id: index,
+      });
+
+      return groups;
+    }, {});
+  },
+
+  // Render user cards
+  renderUserCards(groupedMessages) {
+    const { usersContainer, noMessage } = this.elements;
+    const hasMessages = Object.keys(groupedMessages).length > 0;
+
+    noMessage.classList.toggle("d-none", hasMessages);
+    if (!hasMessages) return;
+
+    usersContainer.innerHTML = Object.entries(groupedMessages)
+      .map(([email, user], index) => this.createUserCard(user, index))
+      .join("");
+  },
+
+  // Create individual user card HTML
+  createUserCard(user, index) {
+    const roleClass =
+      user.role === "Seller" ? "badge-seller" : "badge-customer";
+
+    return `
+      <div class="col-md-6 col-lg-4 user-card-container"
+           data-role="${user.role}"
+           data-unread="${user.unread}"
+           data-user-id="${index}">
+        <div class="user-card h-100">
+          <div class="user-header">
+            <h3 class="user-name">${user.name}</h3>
+            <span class="badge badge-role ${roleClass}">
+              ${user.role}
+            </span>
+          </div>
+          <div class="user-body d-flex align-items-center justify-content-between mt-2 py-4">
+            <div>
+              <div class="user-detail">
+                <i class="fas fa-envelope"></i>
+                <span>${user.email}</span>
+              </div>
+              <div class="user-detail">
+                <i class="fas fa-phone"></i>
+                <span>${user.phone}</span>
+              </div>
+            </div>
+            <div>
+              <button class="messages-btn"
+                      data-bs-toggle="modal"
+                      data-bs-target="#messagesModal"
+                      data-user-id="${index}">
+                <i class="fas fa-comments"></i>
+                <span class="messages-count">${user.messages.length}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
+  // Set up event listeners
+  setupEventListeners(groupedMessages) {
+    const { filterButtons } = this.elements;
+
+    // Filter buttons
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const filter = button.id.replace("filter", "").toLowerCase();
+        this.filterMessages(filter, groupedMessages);
+      });
+    });
+
+    // Modal open handler
+    document.addEventListener("click", (e) => {
+      const messageBtn = e.target.closest(".messages-btn");
+      if (messageBtn) {
+        this.openUserMessages(messageBtn.dataset.userId, groupedMessages);
+      }
+    });
+  },
+
+  // Filter messages by criteria
+  filterMessages(filter, groupedMessages) {
+    const { noMessage } = this.elements;
+    const userCards = document.querySelectorAll(".user-card-container");
+    let hasVisibleCards = false;
+
+    userCards.forEach((card) => {
+      const shouldShow =
+        filter === "all" ||
+        (filter === "customers" && card.dataset.role === "Customer") ||
+        (filter === "sellers" && card.dataset.role === "Seller") ||
+        (filter === "unread" && card.dataset.unread === "true");
+
+      card.style.display = shouldShow ? "" : "none";
+      if (shouldShow) hasVisibleCards = true;
+    });
+
+    noMessage.classList.toggle("d-none", hasVisibleCards);
+  },
+
+  // Open user messages in modal
+  openUserMessages(userId, groupedMessages) {
+    const { modalUserName, modalMessagesContainer } = this.elements;
+    const user = Object.values(groupedMessages)[userId];
+
+    if (!user) return;
+
+    modalUserName.textContent = user.name;
+    modalMessagesContainer.innerHTML = user.messages
+      .map(
+        (message) => `
+        <div class="modal-message">
+          <p>${message.message}</p>
+          <div class="message-date">${message.date}</div>
+        </div>
+      `
+      )
+      .join("");
+
+    // Mark as read
+    user.unread = false;
+    const userCard = document.querySelector(
+      `.user-card-container[data-user-id="${userId}"]`
+    );
+    if (userCard) userCard.dataset.unread = "false";
+  },
+};
+
+const support = document.querySelector("[data-show=messagesContainer]");
+support.addEventListener("click", () => Messages.init());
+// Initialize when DOM is loaded
+document.addEventListener("DOMContentLoaded", () => {
+  init();
+});
