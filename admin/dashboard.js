@@ -6,7 +6,7 @@ import {
 } from "/assets/js/utils.js";
 const user = loginUser();
 if (user?.role !== "Admin" || !user) {
-  window.location.href = "/customer/home/home.html";
+  window.location.href = "/access-denied.html";
 }
 // DOM Elements
 const elements = {
